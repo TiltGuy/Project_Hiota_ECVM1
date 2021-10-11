@@ -446,20 +446,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b5be99b92af77478488f396b988ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_cameraBaseDirection: {fileID: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
+  _groundChecker: {fileID: 6188173131968936273}
+  characontroller: {fileID: 6634799758529909337}
+  Hiota_Anim: {fileID: 1670080000814941675}
   m_speed: 5
   m_jumpHeight: 2
   m_dashDistance: 5
-  m_cameraBaseDirection: {fileID: 0}
   m_turnSpeed: 20
   m_finalInputCharacterX: 0
   m_finalInputCharacterZ: 0
   maxCoyoteTime: 0.15
   _isGrounded: 0
-  _groundChecker: {fileID: 6188173131968936273}
   distanceCheckGround: 0.45
-  Ground:
-    serializedVersion: 2
-    m_Bits: 0
   b_IsFocusing: 0
   gravity: -9.17
   dashVectorMultiplicator: 1
@@ -472,18 +474,17 @@ MonoBehaviour:
   m_camR: {x: 0, y: 0, z: 0}
   directionToGo: {x: 0, y: 0, z: 0}
   currentDirection: {x: 0, y: 0, z: 0}
-  currentHiotaTarget: {fileID: 0}
-  characontroller: {fileID: 6634799758529909337}
-  Hiota_Anim: {fileID: 1670080000814941675}
   m_inputsKeyBoard: {x: 0, y: 0, z: 0}
   m_InputMoveVector: {x: 0, y: 0}
   m_LeftStickControllerX: 0
   m_LeftStickControllerZ: 0
+  m_accelMovController: 0.5
   m_HoldAttackSpeed: 5
   maxAttackTime: 0.2
-  MainCamera_GO: {fileID: 0}
-  FocusCamera_GO: {fileID: 0}
-  currentState: {fileID: 11400000, guid: 27d5cf121a830524581747181def3484, type: 2}
+  GO_MainCamera: {fileID: 0}
+  GO_FocusCamera: {fileID: 0}
+  currentHiotaTarget: {fileID: 0}
+  currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
   remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   eyes: {fileID: 6425963666598805639}
 --- !u!114 &1758020377
@@ -1764,15 +1765,17 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 239378781582670930, guid: 5d831861ebe4e094f9c29586bdc93717, type: 3}
-  - {fileID: -3661639628750336703, guid: 5d831861ebe4e094f9c29586bdc93717, type: 3}
+  - {fileID: 2100000, guid: 100ac4e09f53b434f8b87d31aea80975, type: 2}
+  - {fileID: 2100000, guid: 87f94c6d4c41a734bb566bc946d5c715, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2398,6 +2401,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2413,6 +2421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2424,16 +2437,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e4982b282817e44fb858edae44ddf2a,
