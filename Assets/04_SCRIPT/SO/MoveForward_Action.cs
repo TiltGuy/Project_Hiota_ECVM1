@@ -54,9 +54,22 @@ public class MoveForward_Action : Action_SO
             //controller.Hiota_Anim.SetFloat("DirectZ_FocusMode", controller.m_InputMoveVector.y);
             Debug.Log(currentSpeed);
             
-
-            Quaternion finalrot = Quaternion.LookRotation(controller.directionToGo, Vector3.up);
-            controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
+            //Update of the Orientation of Hiota
+            if (controller.b_IsFocusing)
+            {
+                Vector3 hiotaPos = controller.transform.position;
+                Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+                dir.y = 0;
+                controller.directionToFocus = dir;
+                //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
+                Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
+                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Quaternion finalrot = Quaternion.LookRotation(controller.directionToGo, Vector3.up);
+                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
+            }
 
         }
 

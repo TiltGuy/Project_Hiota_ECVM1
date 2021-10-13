@@ -104,6 +104,9 @@ public class PlayerController_FSM : MonoBehaviour
     [Tooltip("The direction where Hiota want to go")]
     [HideInInspector] public Vector3 directionToGo;
 
+    [Tooltip("The direction where Hiota want to go")]
+    [HideInInspector] public Vector3 directionToFocus;
+
     [Tooltip("The direction where Hiota goes actually ==> directionToGo + Gravity")]
     [HideInInspector] public Vector3 currentDirection;
 
