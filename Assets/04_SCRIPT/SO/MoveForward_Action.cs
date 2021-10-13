@@ -72,6 +72,19 @@ public class MoveForward_Action : Action_SO
             }
 
         }
+        else
+        {
+            if (controller.b_IsFocusing)
+            {
+                Vector3 hiotaPos = controller.transform.position;
+                Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+                dir.y = 0;
+                controller.directionToFocus = dir;
+                //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
+                Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
+                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
+            }
+        }
 
         controller.Hiota_Anim.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
 
