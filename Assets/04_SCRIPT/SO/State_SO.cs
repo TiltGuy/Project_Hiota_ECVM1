@@ -9,14 +9,20 @@ public class State_SO : ScriptableObject
     public Action_SO[] actionsUpdate;
     public Action_SO[] actionsExit;
     public Transition[] transitions;
+    [Tooltip("If ticked the state will bypass all of his transitions in the inspector")]
+    [SerializeField] private bool transitionsHardCoded = false;
     public bool b_TimedState;
     public float stateDuration;
     public Color sceneGizmosColor = Color.grey;
+    
 
     public void UpdtateState(PlayerController_FSM controller)
     {
         DoActions(controller, actionsUpdate);
-        CheckTransitions(controller);
+        if(!transitionsHardCoded)
+        {
+            CheckTransitions(controller);
+        }
     }
 
     private void DoActions(PlayerController_FSM controller, Action_SO[] actions)

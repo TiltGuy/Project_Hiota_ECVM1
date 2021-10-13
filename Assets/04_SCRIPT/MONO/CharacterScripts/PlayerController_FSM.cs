@@ -25,6 +25,10 @@ public class PlayerController_FSM : MonoBehaviour
     ///<summary> The animator of the player</summary>
     public Animator Hiota_Anim;
 
+    public Transform HolsterSword;
+
+    public Transform HandOfSword;
+
     #endregion
 
 
@@ -281,6 +285,7 @@ public class PlayerController_FSM : MonoBehaviour
         if (!b_IsFocusing && currentHiotaTarget != null)
         {
             b_IsFocusing = true;
+            Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(true);
             GO_MainCamera.SetActive(false);
             Debug.Log(b_IsFocusing);
@@ -288,6 +293,7 @@ public class PlayerController_FSM : MonoBehaviour
         else
         {
             b_IsFocusing = false;
+            Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(false);
             GO_MainCamera.SetActive(true);
             Debug.Log(b_IsFocusing);
