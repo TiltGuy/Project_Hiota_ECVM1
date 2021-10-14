@@ -453,6 +453,8 @@ MonoBehaviour:
   _groundChecker: {fileID: 6188173131968936273}
   characontroller: {fileID: 6634799758529909337}
   Hiota_Anim: {fileID: 1670080000814941675}
+  HolsterSword: {fileID: 0}
+  HandOfSword: {fileID: 0}
   m_speed: 5
   m_jumpHeight: 2
   m_dashDistance: 5
@@ -591,6 +593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046464114825322326}
   - component: {fileID: 1670080000814941675}
+  - component: {fileID: 836114933}
   m_Layer: 0
   m_Name: Hiota_BaseMesh
   m_TagString: Untagged
@@ -637,6 +640,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &836114933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670080000814941676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c061d2f3d950f6743a50fbd2c8f2e064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1685074307096713033
 GameObject:
   m_ObjectHideFlags: 0

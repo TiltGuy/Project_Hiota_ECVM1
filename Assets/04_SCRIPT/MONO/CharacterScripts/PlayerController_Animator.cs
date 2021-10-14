@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PlayerController_Animator : MonoBehaviour
 {
+    # region DEPENDENCIES
+
+    [Header(" -- DEPENDENCIES -- ")]
+
+
+    [Tooltip("It needs the prefab of CameraBase")]
+    public GameObject Sword_GO;
+    public CapsuleCollider swordHitBox;
+    public Animator animator;
+
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +25,10 @@ public class PlayerController_Animator : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateSwordHitBoxStatut()
+    {
+        swordHitBox.enabled = !swordHitBox.enabled;
     }
 }
