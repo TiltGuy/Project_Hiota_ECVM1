@@ -31,4 +31,8 @@ public class PlayerController_Animator : MonoBehaviour
     {
         swordHitBox.enabled = !swordHitBox.enabled;
     }
+    //public void UpdateSwordHitBoxStatutFalse()
+    //{
+    //    swordHitBox.enabled = false;
+    //}
 }
