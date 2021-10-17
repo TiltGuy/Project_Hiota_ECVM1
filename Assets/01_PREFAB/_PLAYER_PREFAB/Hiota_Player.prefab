@@ -246,7 +246,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2046464114825322326}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0.000010245299, y: -47.81164, z: -89.999985}
+  m_LocalEulerAnglesHint: {x: 0.000010245215, y: -47.81164, z: -89.999985}
 --- !u!1 &649042277317867287
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,8 +482,9 @@ MonoBehaviour:
   m_LeftStickControllerX: 0
   m_LeftStickControllerZ: 0
   m_accelMovController: 0.5
-  m_HoldAttackSpeed: 5
-  maxAttackTime: 0.2
+  m_speedTurnWhenAttack: 5
+  m_turnSpeedWhenFocused: 20
+  b_AttackInput: 0
   GO_MainCamera: {fileID: 0}
   GO_FocusCamera: {fileID: 0}
   currentHiotaTarget: {fileID: 0}
@@ -1976,7 +1977,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2046464114825322326}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.000013660382, y: -92.11735, z: -90}
+  m_LocalEulerAnglesHint: {x: 0.000013660354, y: -92.11735, z: -90}
 --- !u!1 &6443930585876805328
 GameObject:
   m_ObjectHideFlags: 0
