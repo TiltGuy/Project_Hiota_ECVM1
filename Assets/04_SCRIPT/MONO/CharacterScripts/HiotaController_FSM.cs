@@ -70,7 +70,7 @@ public class HiotaController_FSM : MonoBehaviour
     public float maxDashTime = .5f;
     public float dashSpeed = 5f;
     public Vector3 dashDirection;
-    public bool b_WantDash = false;
+    public bool b_DashInput = false;
 
     #endregion
 
@@ -172,7 +172,11 @@ public class HiotaController_FSM : MonoBehaviour
         controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
-        controls.Player.Dash.started += ctx => b_WantDash = true;
+        controls.Player.Dash.started += ctx => b_DashInput = true;
+        controls.Player.Dash.canceled += ctx => b_DashInput = false;
+
+        controls.Player.Attack.started += ctx => b_DashInput = true;
+        controls.Player.Attack.canceled += ctx => b_DashInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
     }
