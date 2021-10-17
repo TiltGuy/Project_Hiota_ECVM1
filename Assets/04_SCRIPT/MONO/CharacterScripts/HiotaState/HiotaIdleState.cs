@@ -38,10 +38,10 @@ public class HiotaIdleState : HiotaBaseState
             hiota.TransitionToState(hiota.FallingState);
         }
 
-        if (hiota.b_WantDash)
+        if (hiota.b_DashInput)
         {
             hiota.TransitionToState(hiota.DashingState);
-            hiota.b_WantDash = false;
+            hiota.b_DashInput = false;
         }
     }
 

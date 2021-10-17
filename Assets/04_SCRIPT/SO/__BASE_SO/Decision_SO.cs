@@ -43,4 +43,9 @@ public abstract class Decision_SO : ScriptableObject
     {
         return controller.b_IsFocusing;
     }
+
+    public bool CheckAttackInput(PlayerController_FSM controller)
+    {
+        return controller.b_AttackInput;
+    }
 }

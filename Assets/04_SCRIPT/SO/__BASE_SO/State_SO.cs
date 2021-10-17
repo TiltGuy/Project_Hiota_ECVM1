@@ -9,6 +9,10 @@ public class State_SO : ScriptableObject
     public Action_SO[] actionsUpdate;
     public Action_SO[] actionsExit;
     public Transition[] transitions;
+
+    [Tooltip("At least One Transitions is necessary if State's Timed")]
+    public Transition[] transitionsAfterCountdown;
+
     [Tooltip("If ticked the state will bypass all of his transitions in the inspector")]
     [SerializeField] private bool transitionsHardCoded = false;
     public bool b_TimedState;
