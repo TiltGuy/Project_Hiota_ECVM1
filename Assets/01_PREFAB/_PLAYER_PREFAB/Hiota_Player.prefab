@@ -687,6 +687,7 @@ MonoBehaviour:
   swordHitBox: {fileID: 6878089639430701603}
   animator: {fileID: 1670080000814941675}
   controller_FSM: {fileID: 7586485832782531401}
+  nbHitBoxTrue: 0
 --- !u!1 &1685074307096713033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,6 +2510,11 @@ PrefabInstance:
     - target: {fileID: 3580015139419113264, guid: 951a88ce9a320344e9b0f773f9a0994f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546476557667592041, guid: 951a88ce9a320344e9b0f773f9a0994f,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
