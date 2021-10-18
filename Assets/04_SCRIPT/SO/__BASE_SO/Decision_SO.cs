@@ -6,7 +6,7 @@ public abstract class Decision_SO : ScriptableObject
 {
     public virtual bool Decide(PlayerController_FSM controller)
     {
-        bool checkBoolean = IsWantingToMove(controller);
+        bool checkBoolean = true;
         Debug.Log(checkBoolean);
         return checkBoolean;
     }
@@ -42,5 +42,10 @@ public abstract class Decision_SO : ScriptableObject
     public bool FocusModeCheckBoolean(PlayerController_FSM controller)
     {
         return controller.b_IsFocusing;
+    }
+
+    public bool CheckAttackInput(PlayerController_FSM controller)
+    {
+        return controller.b_AttackInput;
     }
 }

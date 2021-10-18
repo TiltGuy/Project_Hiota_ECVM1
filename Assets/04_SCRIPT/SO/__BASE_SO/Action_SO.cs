@@ -13,4 +13,9 @@ public abstract class Action_SO : ScriptableObject
     {
         controller.Animator.SetBool(boolName, boolTargetValue);
     }
+
+    public void ChangeAnimatorTrigger(PlayerController_FSM controller, string triggerName)
+    {
+        controller.Animator.SetTrigger(triggerName);
+    }
 }

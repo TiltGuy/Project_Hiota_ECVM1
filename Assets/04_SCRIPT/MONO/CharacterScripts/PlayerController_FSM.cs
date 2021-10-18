@@ -53,7 +53,7 @@ public class PlayerController_FSM : MonoBehaviour
     [Tooltip("Distance of the dash")]
     [SerializeField] public float m_dashDistance = 5f;
 
-    [Tooltip("the speed of the rotation between the forward of th character and the direction to go")]
+    [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
     public float m_turnSpeed = 20;
 
     [Tooltip("The sum of the x axis of the controller and the ZQSD")]
@@ -131,10 +131,20 @@ public class PlayerController_FSM : MonoBehaviour
 
     [Header(" -- ATTACK SETTINGS -- ")]
 
-    [Tooltip("The speed of the player")]
-    [SerializeField] public float m_HoldAttackSpeed = 5f;
+    [Tooltip("The speedTurn of the player when it attack")]
+    [SerializeField] public float m_speedTurnWhenAttack = 5f;
 
-    public float maxAttackTime = .2f;
+    [Tooltip("the speed of the rotation between the forward of the character and the direction to go when it's in Focus")]
+    public float m_turnSpeedWhenFocused = 20;
+
+    [Tooltip("the Boolean that check the input")]
+    public bool b_AttackInput = false;
+
+    //[Tooltip("The speed of the player")]
+    //public float m_HoldAttackSpeed = 5f;
+
+    //[Tooltip("The time remaining of a Attack")]
+    //public float maxAttackTime = .2f;
 
 
     #endregion
@@ -185,6 +195,10 @@ public class PlayerController_FSM : MonoBehaviour
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
         controls.Player.Dash.started += ctx => b_WantDash = true;
+        controls.Player.Dash.canceled += ctx => b_WantDash = false;
+
+        controls.Player.Attack.started += ctx => b_AttackInput = true;
+        controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
     }
@@ -202,6 +216,7 @@ public class PlayerController_FSM : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        InitializationState(currentState);
         GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
@@ -216,10 +231,12 @@ public class PlayerController_FSM : MonoBehaviour
         {
             coyoteTime += Time.deltaTime;
         }
-
+        
         currentState.UpdtateState(this);
         //Debug.Log("CurrentState = " + currentState);
-        
+
+        //Debug.Log(b_AttackInput);
+
 
     }
 
@@ -229,6 +246,15 @@ public class PlayerController_FSM : MonoBehaviour
         {
             currentState.ExitState(this);
             currentState = NextState;
+            currentState.EnterState(this);
+        }
+    }
+
+    public void InitializationState(State_SO InitState)
+    {
+        if (InitState != remainState)
+        {
+            currentState = InitState;
             currentState.EnterState(this);
         }
     }

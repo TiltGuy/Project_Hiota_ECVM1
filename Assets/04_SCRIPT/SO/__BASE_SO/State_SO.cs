@@ -5,24 +5,49 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableStateMachine/State")]
 public class State_SO : ScriptableObject
 {
+    public string Name;
+
     public Action_SO[] actionsEnter;
     public Action_SO[] actionsUpdate;
     public Action_SO[] actionsExit;
     public Transition[] transitions;
+
+    [Tooltip("At least One Transitions is necessary if State's Timed")]
+    public Transition[] transitionsAfterCountdown;
+
     [Tooltip("If ticked the state will bypass all of his transitions in the inspector")]
     [SerializeField] private bool transitionsHardCoded = false;
+
     public bool b_TimedState;
+
+    [Tooltip("The number of seconds the timed State lasts")]
     public float stateDuration;
+    private float stateTimer = 0f;
     public Color sceneGizmosColor = Color.grey;
     
 
     public void UpdtateState(PlayerController_FSM controller)
     {
+        if(b_TimedState)
+        {
+            if(stateTimer <= stateDuration)
+            {
+                stateTimer += Time.deltaTime;
+            }
+            else
+            {
+                //CheckTimedStateTransitions
+                CheckTimedStateTransitions(controller);
+            }
+        }
+
         DoActions(controller, actionsUpdate);
         if(!transitionsHardCoded)
         {
             CheckTransitions(controller);
         }
+
+        //Debug.Log(stateTimer);
     }
 
     private void DoActions(PlayerController_FSM controller, Action_SO[] actions)
@@ -50,8 +75,35 @@ public class State_SO : ScriptableObject
         }
     }
 
+    private void CheckTimedStateTransitions(PlayerController_FSM controller)
+    {
+        if (transitionsAfterCountdown == null)
+        {
+            Debug.LogError("There isn't State Timed Transitions in this " + Name + " State");
+            return;
+        }
+
+        foreach (Transition transition in transitionsAfterCountdown)
+        {
+            bool b_DecisionSucceded = transition.decision.Decide(controller);
+
+            if (b_DecisionSucceded)
+            {
+                controller.TransitionToState(transition.true_State);
+            }
+            else
+            {
+                controller.TransitionToState(transition.False_State);
+            }
+        }
+    }
+
     public void EnterState(PlayerController_FSM controller)
     {
+        if(b_TimedState)
+        {
+            stateTimer = 0;
+        }
         //Debug.Log(controller.currentState + "ENTER");
         DoActions(controller, actionsEnter);
     }

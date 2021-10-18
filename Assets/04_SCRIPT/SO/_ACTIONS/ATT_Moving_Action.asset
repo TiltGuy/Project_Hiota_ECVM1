@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
-  m_Name: RemainInState
+  m_Script: {fileID: 11500000, guid: b70ca2e1c34121f4caa70d0116fa2124, type: 3}
+  m_Name: ATT_Moving_Action
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  sceneGizmosColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  b_ConstantMove: 0
+  b_UseActionSpeed: 1
+  speedMovementAction: 2

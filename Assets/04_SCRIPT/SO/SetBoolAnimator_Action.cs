@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "PluggableStateMachine/Actions/SetBool_Action")]
+[CreateAssetMenu (menuName = "PluggableStateMachine/Actions/SetBoolAnimator_Action")]
 public class SetBoolAnimator_Action : Action_SO
 {
     public string NameofBoolean;
