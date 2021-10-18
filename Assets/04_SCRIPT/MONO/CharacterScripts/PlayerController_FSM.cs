@@ -216,6 +216,7 @@ public class PlayerController_FSM : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        InitializationState(currentState);
         GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
@@ -245,6 +246,15 @@ public class PlayerController_FSM : MonoBehaviour
         {
             currentState.ExitState(this);
             currentState = NextState;
+            currentState.EnterState(this);
+        }
+    }
+
+    public void InitializationState(State_SO InitState)
+    {
+        if (InitState != remainState)
+        {
+            currentState = InitState;
             currentState.EnterState(this);
         }
     }

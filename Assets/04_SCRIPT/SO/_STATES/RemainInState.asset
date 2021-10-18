@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
   m_Name: RemainInState
   m_EditorClassIdentifier: 
-  actions: []
+  Name: RemainInState
+  actionsEnter: []
+  actionsUpdate: []
+  actionsExit: []
   transitions: []
+  transitionsAfterCountdown: []
+  transitionsHardCoded: 0
+  b_TimedState: 0
+  stateDuration: 0
   sceneGizmosColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
