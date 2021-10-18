@@ -15,19 +15,10 @@ public class PlayerController_Animator : MonoBehaviour
     public Animator animator;
     [SerializeField]
     private PlayerController_FSM controller_FSM;
+    public int nbHitBoxTrue = 0;
 
     #endregion
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void ToggleSwordHitBoxStatut()
     {
@@ -42,6 +33,8 @@ public class PlayerController_Animator : MonoBehaviour
     public void UpdateSwordHitBoxStatutTrue()
     {
         swordHitBox.enabled = true;
+        nbHitBoxTrue++;
+        Debug.Log(nbHitBoxTrue);
     }
 
     public void ShaftSword()
