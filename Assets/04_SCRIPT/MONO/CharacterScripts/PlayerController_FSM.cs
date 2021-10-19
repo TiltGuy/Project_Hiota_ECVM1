@@ -314,7 +314,7 @@ public class PlayerController_FSM : MonoBehaviour
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(true);
             GO_MainCamera.SetActive(false);
-            Debug.Log(b_IsFocusing);
+            //Debug.Log(b_IsFocusing);
         }
         else
         {

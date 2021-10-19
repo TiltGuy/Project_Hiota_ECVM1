@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 1758020377}
   m_Layer: 0
   m_Name: Hiota_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +687,6 @@ MonoBehaviour:
   swordHitBox: {fileID: 6878089639430701603}
   animator: {fileID: 1670080000814941675}
   controller_FSM: {fileID: 7586485832782531401}
-  nbHitBoxTrue: 0
 --- !u!1 &1685074307096713033
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +913,18 @@ Transform:
   m_Father: {fileID: 5416091798746697828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -23.165525, y: 157.35202, z: -161.21538}
+--- !u!114 &8650825823385740244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2247605952555364238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa43ddf98c3bd94f88a83442e8b41a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2259976099588534955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,16 +2526,10 @@ PrefabInstance:
     - target: {fileID: 7546476557667592041, guid: 951a88ce9a320344e9b0f773f9a0994f,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951a88ce9a320344e9b0f773f9a0994f, type: 3}
---- !u!1 &2247605952555364238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2952254500066593476, guid: 951a88ce9a320344e9b0f773f9a0994f,
-    type: 3}
-  m_PrefabInstance: {fileID: 4019913913437594954}
-  m_PrefabAsset: {fileID: 0}
 --- !u!136 &6878089639430701603 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 7546476557667592041, guid: 951a88ce9a320344e9b0f773f9a0994f,
@@ -2534,6 +2539,12 @@ CapsuleCollider:
 --- !u!4 &461441574648275578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3580015139419113264, guid: 951a88ce9a320344e9b0f773f9a0994f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4019913913437594954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2247605952555364238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2952254500066593476, guid: 951a88ce9a320344e9b0f773f9a0994f,
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}

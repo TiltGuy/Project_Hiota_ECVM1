@@ -15,7 +15,7 @@ public class PlayerController_Animator : MonoBehaviour
     public Animator animator;
     [SerializeField]
     private PlayerController_FSM controller_FSM;
-    public int nbHitBoxTrue = 0;
+    //public int nbHitBoxTrue = 0;
 
     #endregion
     
@@ -33,8 +33,8 @@ public class PlayerController_Animator : MonoBehaviour
     public void UpdateSwordHitBoxStatutTrue()
     {
         swordHitBox.enabled = true;
-        nbHitBoxTrue++;
-        Debug.Log(nbHitBoxTrue);
+        //nbHitBoxTrue++;
+        //Debug.Log(nbHitBoxTrue);
     }
 
     public void ShaftSword()
@@ -50,4 +50,6 @@ public class PlayerController_Animator : MonoBehaviour
         Sword_GO.transform.localPosition = Vector3.zero;
         Sword_GO.transform.localRotation = Quaternion.identity;
     }
+
+    
 }
