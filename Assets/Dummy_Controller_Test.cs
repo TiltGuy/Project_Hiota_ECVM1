@@ -9,9 +9,9 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable, ITouchable
         Debug.Log("ARGH!!!");
     }
 
-    public void TakeDamages()
+    public void TakeDamages(float damages)
     {
-        Debug.Log("ARGH!!!");
+        Debug.Log("ARGH!!! j'ai pris : " + damages + " points de Dommages");
     }
 
 

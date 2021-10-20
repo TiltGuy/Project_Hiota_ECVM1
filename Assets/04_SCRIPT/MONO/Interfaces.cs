@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamages();
+    void TakeDamages(float damages);
 }
 
 public interface ITouchable

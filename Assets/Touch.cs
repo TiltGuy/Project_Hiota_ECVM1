@@ -11,10 +11,10 @@ public class Touch : MonoBehaviour
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
             if (damageable != null)
             {
-                damageable.TakeDamages();
+                damageable.TakeDamages(1);
             }
             
-            Debug.Log("Je TOUCHE!!!");
+            //Debug.Log("Je TOUCHE!!!");
         }
     }
 }
