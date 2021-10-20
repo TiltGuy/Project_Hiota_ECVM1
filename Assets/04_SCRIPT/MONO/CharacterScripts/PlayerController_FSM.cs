@@ -140,6 +140,9 @@ public class PlayerController_FSM : MonoBehaviour
     [Tooltip("the Boolean that check the input")]
     public bool b_AttackInput = false;
 
+    [Tooltip("the Boolean that if the player is stunned")]
+    public bool b_Stunned = false;
+
     //[Tooltip("The speed of the player")]
     //public float m_HoldAttackSpeed = 5f;
 
@@ -194,8 +197,8 @@ public class PlayerController_FSM : MonoBehaviour
         controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
-        controls.Player.Dash.started += ctx => b_WantDash = true;
-        controls.Player.Dash.canceled += ctx => b_WantDash = false;
+        controls.Player.Dash.started += ctx => b_Stunned = true;
+        controls.Player.Dash.canceled += ctx => b_Stunned = false;
 
         controls.Player.Attack.started += ctx => b_AttackInput = true;
         controls.Player.Attack.canceled += ctx => b_AttackInput = false;
@@ -314,7 +317,7 @@ public class PlayerController_FSM : MonoBehaviour
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(true);
             GO_MainCamera.SetActive(false);
-            Debug.Log(b_IsFocusing);
+            //Debug.Log(b_IsFocusing);
         }
         else
         {

@@ -48,4 +48,9 @@ public abstract class Decision_SO : ScriptableObject
     {
         return controller.b_AttackInput;
     }
+
+    public bool CheckStunBoolean(PlayerController_FSM controller)
+    {
+        return controller.b_Stunned;
+    }
 }

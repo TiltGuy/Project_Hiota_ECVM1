@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableStateMachine/Actions/MoveForward_Action")]
-public class MoveForward_Action : Action_SO
+[CreateAssetMenu(menuName = "PluggableStateMachine/Actions/ATT_MoveForward_Action")]
+public class ATT_MoveForward_Action : Action_SO
 {
     [SerializeField]
     private bool b_ConstantMove;
@@ -12,10 +12,13 @@ public class MoveForward_Action : Action_SO
 
     [SerializeField]
     private float speedMovementAction;
+    //[Tooltip("The speed will change according his timing in the current TimedState")]
+    //[SerializeField]
+    //private AnimationCurve speedMovementCurveFactor;
 
     public override void Act(PlayerController_FSM controller)
     {
-        if(!b_ConstantMove)
+        if (!b_ConstantMove)
         {
             ControlledMove(controller);
         }
@@ -29,7 +32,7 @@ public class MoveForward_Action : Action_SO
     {
         float currentSpeed;
         float maxSpeed;
-        if(b_UseActionSpeed)
+        if (b_UseActionSpeed)
         {
             maxSpeed = speedMovementAction;
         }
@@ -38,7 +41,7 @@ public class MoveForward_Action : Action_SO
             maxSpeed = controller.m_speed;
         }
 
-        if(controller.m_InputMoveVector != Vector2.zero)
+        if (controller.m_InputMoveVector != Vector2.zero)
         {
             controller.m_camF = controller.m_cameraBaseDirection.forward;
             controller.m_camR = controller.m_cameraBaseDirection.right;
@@ -56,8 +59,8 @@ public class MoveForward_Action : Action_SO
             controller.characontroller.Move(controller.directionToGo * Time.deltaTime * currentSpeed);
             //controller.Hiota_Anim.SetFloat("DirectX_FocusMode", controller.m_InputMoveVector.x);
             //controller.Hiota_Anim.SetFloat("DirectZ_FocusMode", controller.m_InputMoveVector.y);
-            //Debug.Log(currentSpeed);
-            
+            Debug.Log(currentSpeed);
+
             //Update of the Orientation of Hiota
             if (controller.b_IsFocusing)
             {
@@ -67,14 +70,14 @@ public class MoveForward_Action : Action_SO
                 controller.directionToFocus = dir;
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
-                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
+                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_speedTurnWhenAttack * Time.deltaTime);
                 controller.Hiota_Anim.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
                 controller.Hiota_Anim.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
             }
             else
             {
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToGo, Vector3.up);
-                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
+                controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_speedTurnWhenAttack * Time.deltaTime);
             }
 
         }
@@ -126,9 +129,7 @@ public class MoveForward_Action : Action_SO
 
             currentSpeed = maxSpeed;
 
-            //controller.Hiota_Anim.SetFloat("DirectX_FocusMode", controller.m_InputMoveVector.x);
-            //controller.Hiota_Anim.SetFloat("DirectZ_FocusMode", controller.m_InputMoveVector.y);
-            Debug.Log(currentSpeed);
+            //Debug.Log(currentSpeed);
 
             //Update of the Orientation of Hiota
             if (controller.b_IsFocusing)
@@ -171,5 +172,4 @@ public class MoveForward_Action : Action_SO
         controller.Hiota_Anim.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
 
     }
-
 }
