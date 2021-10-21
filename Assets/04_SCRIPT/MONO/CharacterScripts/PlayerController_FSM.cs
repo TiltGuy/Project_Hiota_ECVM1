@@ -225,13 +225,25 @@ public class PlayerController_FSM : MonoBehaviour
     private void Start()
     {
         InitializationState(currentState);
-        GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
+        //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(IsDetectingGround())
+        UpdateCoyoteTime();
+
+        currentState.UpdtateState(this);
+        //Debug.Log("CurrentState = " + currentState);
+
+        //Debug.Log(b_AttackInput);
+
+
+    }
+
+    private void UpdateCoyoteTime()
+    {
+        if (IsDetectingGround())
         {
             coyoteTime = 0;
         }
@@ -239,13 +251,6 @@ public class PlayerController_FSM : MonoBehaviour
         {
             coyoteTime += Time.deltaTime;
         }
-        
-        currentState.UpdtateState(this);
-        //Debug.Log("CurrentState = " + currentState);
-
-        //Debug.Log(b_AttackInput);
-
-
     }
 
     public void TransitionToState(State_SO NextState)
@@ -330,7 +335,7 @@ public class PlayerController_FSM : MonoBehaviour
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(false);
             GO_MainCamera.SetActive(true);
-            Debug.Log(b_IsFocusing);
+            Debug.Log(b_IsFocusing, this);
         }
     }
 
