@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Touch : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerController_FSM controller_FSM;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -11,7 +13,7 @@ public class Touch : MonoBehaviour
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
             if (damageable != null)
             {
-                damageable.TakeDamages(1);
+                damageable.TakeDamages(controller_FSM.currentAttackStats.damages);
             }
             
             //Debug.Log("Je TOUCHE!!!");

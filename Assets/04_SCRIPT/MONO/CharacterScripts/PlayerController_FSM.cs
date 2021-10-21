@@ -29,6 +29,8 @@ public class PlayerController_FSM : MonoBehaviour
 
     public Transform HandOfSword;
 
+    public CharacterStats_SO HiotaStats;
+
     #endregion
 
 
@@ -142,6 +144,9 @@ public class PlayerController_FSM : MonoBehaviour
 
     [Tooltip("the Boolean that if the player is stunned")]
     public bool b_Stunned = false;
+
+    [Tooltip("the current Stats of the attack that will be used for the next or current hit")]
+    public AttackStats_SO currentAttackStats;
 
     //[Tooltip("The speed of the player")]
     //public float m_HoldAttackSpeed = 5f;

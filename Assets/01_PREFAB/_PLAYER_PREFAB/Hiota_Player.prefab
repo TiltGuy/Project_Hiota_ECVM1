@@ -485,6 +485,7 @@ MonoBehaviour:
   Hiota_Anim: {fileID: 1670080000814941675}
   HolsterSword: {fileID: 2633846553027578116}
   HandOfSword: {fileID: 2090796916}
+  HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
   m_speed: 5
   m_jumpHeight: 2
   m_dashDistance: 5
@@ -516,6 +517,7 @@ MonoBehaviour:
   m_turnSpeedWhenFocused: 20
   b_AttackInput: 0
   b_Stunned: 0
+  currentAttackStats: {fileID: 11400000, guid: 5476168748d1b62449bed6c81e2648b2, type: 2}
   GO_MainCamera: {fileID: 0}
   GO_FocusCamera: {fileID: 0}
   currentHiotaTarget: {fileID: 0}
@@ -926,6 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa43ddf98c3bd94f88a83442e8b41a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller_FSM: {fileID: 7586485832782531401}
 --- !u!1 &2259976099588534955
 GameObject:
   m_ObjectHideFlags: 0
