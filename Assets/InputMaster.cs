@@ -49,6 +49,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""LookCamera"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""051e5a91-15fc-497d-acb2-23bb54c22404"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -205,26 +213,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Camera"",
-            ""id"": ""6d561a65-e932-404d-a20d-d7d011463b76"",
-            ""actions"": [
-                {
-                    ""name"": ""LookCamera"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""4b339711-53a2-4cad-a4a9-1d81119b5bb7"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""59e85090-5b58-48eb-b4c8-a527fd4db07e"",
+                    ""id"": ""601d1cc7-8976-4409-b59b-f1089ae7646d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -235,7 +227,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b616d1c8-0aaa-489b-8c3d-e557c5209c55"",
+                    ""id"": ""9c781407-cc3c-44ed-9722-221186b87d79"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -283,9 +275,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_FocusTarget = m_Player.FindAction("FocusTarget", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        // Camera
-        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
-        m_Camera_LookCamera = m_Camera.FindAction("LookCamera", throwIfNotFound: true);
+        m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +329,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_FocusTarget;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_LookCamera;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -347,6 +338,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @FocusTarget => m_Wrapper.m_Player_FocusTarget;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -368,6 +360,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @LookCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
+                @LookCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
+                @LookCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -384,43 +379,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-            }
-        }
-    }
-    public PlayerActions @Player => new PlayerActions(this);
-
-    // Camera
-    private readonly InputActionMap m_Camera;
-    private ICameraActions m_CameraActionsCallbackInterface;
-    private readonly InputAction m_Camera_LookCamera;
-    public struct CameraActions
-    {
-        private @InputMaster m_Wrapper;
-        public CameraActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LookCamera => m_Wrapper.m_Camera_LookCamera;
-        public InputActionMap Get() { return m_Wrapper.m_Camera; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
-        public void SetCallbacks(ICameraActions instance)
-        {
-            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
-            {
-                @LookCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnLookCamera;
-                @LookCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnLookCamera;
-                @LookCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnLookCamera;
-            }
-            m_Wrapper.m_CameraActionsCallbackInterface = instance;
-            if (instance != null)
-            {
                 @LookCamera.started += instance.OnLookCamera;
                 @LookCamera.performed += instance.OnLookCamera;
                 @LookCamera.canceled += instance.OnLookCamera;
             }
         }
     }
-    public CameraActions @Camera => new CameraActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
     private int m_KeyBMouseSchemeIndex = -1;
     public InputControlScheme KeyBMouseScheme
     {
@@ -445,9 +410,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnFocusTarget(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-    }
-    public interface ICameraActions
-    {
         void OnLookCamera(InputAction.CallbackContext context);
     }
 }
