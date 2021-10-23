@@ -6,7 +6,6 @@ using UnityEngine;
 public class CharacterStats_SO : ScriptableObject
 {
     public float maxHealth;
-    public float currentHealth;
+    public float baseHealth;
     public float baseArmor;
-    public float currentArmor;
 }
