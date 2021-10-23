@@ -18,4 +18,9 @@ public abstract class Action_SO : ScriptableObject
     {
         controller.Animator.SetTrigger(triggerName);
     }
+
+    public void SetCurrentAttackStats(PlayerController_FSM controller, AttackStats_SO attackStats_SO)
+    {
+        controller.currentAttackStats = attackStats_SO;
+    }
 }

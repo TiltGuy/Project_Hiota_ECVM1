@@ -52,7 +52,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""LookCamera"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""051e5a91-15fc-497d-acb2-23bb54c22404"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
