@@ -156,6 +156,9 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     [Tooltip("the current Stats of the attack that will be used for the next or current hit")]
     public AttackStats_SO currentAttackStats;
 
+    [Tooltip("the time unitl the input b_AttackInput will become false")]
+    public float timeBufferAttackInput = .5f;
+
     //[Tooltip("The speed of the player")]
     //public float m_HoldAttackSpeed = 5f;
 
@@ -214,8 +217,8 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         //controls.Player.Dash.started += ctx => TakeDamages(3);
         controls.Player.Dash.canceled += ctx => b_Stunned = false;
 
-        controls.Player.Attack.started += ctx => b_AttackInput = true;
-        controls.Player.Attack.canceled += ctx => b_AttackInput = false;
+        controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
+        //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
 
@@ -250,9 +253,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         currentState.UpdtateState(this);
         //Debug.Log("CurrentState = " + currentState);
 
-        //Debug.Log(b_AttackInput);
-
-
+        Debug.Log(b_AttackInput, this);
     }
 
     private void UpdateCoyoteTime()
@@ -384,5 +385,18 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
             statCurrentHealth -= damageTaken;
             statCurrentHealth = Mathf.Clamp(statCurrentHealth, 0, statCurrentHealth);
         }
+    }
+
+    private IEnumerator BufferingAttackInputCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        b_AttackInput = false;
+    }
+
+    private void TakeAttackInputInBuffer()
+    {
+        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        b_AttackInput = true;
+        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
     }
 }

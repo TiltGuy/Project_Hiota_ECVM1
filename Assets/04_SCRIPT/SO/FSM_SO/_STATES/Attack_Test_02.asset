@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
-  m_Name: Attack_Test_01
+  m_Name: Attack_Test_02
   m_EditorClassIdentifier: 
-  Name: Attack_Test_01
+  Name: Attack_Test_02
   actionsEnter:
   - {fileID: 11400000, guid: 04410b1366390b84ca8ef446aab6a5aa, type: 2}
-  - {fileID: 11400000, guid: 6d8cf3bc79030354e833e05eae2948ad, type: 2}
+  - {fileID: 11400000, guid: 4f6501b236094a74f94662c600ade542, type: 2}
   actionsUpdate:
   - {fileID: 11400000, guid: 8e2d32bec98c7044db3b6cf568868729, type: 2}
   actionsExit: []
@@ -24,16 +24,13 @@ MonoBehaviour:
     true_State: {fileID: 11400000, guid: bd73c49f4516a2f45ba7e80b69eed833, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   transitionsAfterCountdown:
-  - decision: {fileID: 11400000, guid: f5d9d79ef3f17d14e88a01a75be022d2, type: 2}
-    true_State: {fileID: 11400000, guid: adc80c243986c1847af14957975b72a4, type: 2}
-    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
+  - decision: {fileID: 11400000, guid: 14302cd62bfcd744ea75a1a489fcb198, type: 2}
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  - decision: {fileID: 11400000, guid: 14302cd62bfcd744ea75a1a489fcb198, type: 2}
+  - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   transitionsHardCoded: 0
   b_TimedState: 1
   stateDuration: 0.5
-  sceneGizmosColor: {r: 0.9056604, g: 0.055535804, b: 0.055535804, a: 1}
+  sceneGizmosColor: {r: 1, g: 0, b: 0, a: 1}
