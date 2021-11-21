@@ -168,6 +168,15 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
 
     #endregion
 
+    #region PARRY Settings
+
+    [Header(" -- PARRY SETTINGS -- ")]
+
+    public bool b_Parry = false;
+
+
+    #endregion
+
     #region CAMERA SETTINGS & DEPENDENDCIES
 
     [Header(" -- CAMERA SETTINGS & DEPENDENDCIES -- ")]
@@ -216,6 +225,9 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         controls.Player.Dash.started += ctx => b_Stunned = true;
         //controls.Player.Dash.started += ctx => TakeDamages(3);
         controls.Player.Dash.canceled += ctx => b_Stunned = false;
+
+        controls.Player.Parry.started += ctx => b_Parry = true;
+        controls.Player.Parry.canceled += ctx => b_Parry = false;
 
         controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
         //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;

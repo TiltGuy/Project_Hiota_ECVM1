@@ -53,4 +53,9 @@ public abstract class Decision_SO : ScriptableObject
     {
         return controller.b_Stunned;
     }
+
+    public bool CheckBoolean(PlayerController_FSM controller)
+    {
+        return controller.b_Parry;
+    }
 }

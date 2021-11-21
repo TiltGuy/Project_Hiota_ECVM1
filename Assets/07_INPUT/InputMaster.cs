@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/InputMaster.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/07_INPUT/InputMaster.inputactions'
 
 using System;
 using System.Collections;
@@ -57,20 +57,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a451e50-c5f7-4fa8-9650-40f9b883550b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""8981a2df-8454-4b49-bb45-fa868ed5b2b7"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""599995a6-40e7-4a2e-933e-5d1c5b83e803"",
@@ -216,6 +213,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""168a91f5-8b5d-430a-a906-aab9cc07b320"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""601d1cc7-8976-4409-b59b-f1089ae7646d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -233,6 +241,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6abd9b35-fbcd-470a-a6ae-998dd3848306"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -276,6 +295,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_FocusTarget = m_Player.FindAction("FocusTarget", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
+        m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -330,6 +350,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_FocusTarget;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LookCamera;
+    private readonly InputAction m_Player_Parry;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -339,6 +360,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @FocusTarget => m_Wrapper.m_Player_FocusTarget;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
+        public InputAction @Parry => m_Wrapper.m_Player_Parry;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +385,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @LookCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
                 @LookCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
                 @LookCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
+                @Parry.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
+                @Parry.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
+                @Parry.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -382,6 +407,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @LookCamera.started += instance.OnLookCamera;
                 @LookCamera.performed += instance.OnLookCamera;
                 @LookCamera.canceled += instance.OnLookCamera;
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
             }
         }
     }
@@ -411,5 +439,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnFocusTarget(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLookCamera(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
     }
 }

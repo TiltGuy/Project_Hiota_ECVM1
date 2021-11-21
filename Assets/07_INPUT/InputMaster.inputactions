@@ -44,20 +44,17 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "5a451e50-c5f7-4fa8-9650-40f9b883550b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "8981a2df-8454-4b49-bb45-fa868ed5b2b7",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "599995a6-40e7-4a2e-933e-5d1c5b83e803",
@@ -203,6 +200,17 @@
                 },
                 {
                     "name": "",
+                    "id": "168a91f5-8b5d-430a-a906-aab9cc07b320",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyB&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "601d1cc7-8976-4409-b59b-f1089ae7646d",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -220,6 +228,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "LookCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6abd9b35-fbcd-470a-a6ae-998dd3848306",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyB&Mouse",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
