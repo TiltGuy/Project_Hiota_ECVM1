@@ -375,7 +375,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamages(float damageTaken)
+    public void TakeDamages(float damageTaken, Transform striker)
     {
         float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
         LoseHP(damageTaken);

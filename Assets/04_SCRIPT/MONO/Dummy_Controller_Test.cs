@@ -6,6 +6,7 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
 {
     public CharacterStats_SO characterStats;
     public float currentHealth;
+    public GameObject HitFXprefab;
 
     private void Start()
     {
@@ -20,15 +21,6 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
         return OutputDamage;
     }
 
-    public void TakeDamages(float damageTaken)
-    {
-        float damageOuput = CalculateFinalDamages(damageTaken, characterStats.baseArmor);
-        LoseHP(damageTaken);
-        //LoseHP(damageTaken, currentHealth);
-        //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
-        Debug.Log("il ne me reste plus que " + currentHealth + " d'HP", this);
-    }
-
     private void LoseHP(float damageTaken)
     {
         if(currentHealth > 0)
@@ -36,4 +28,21 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
             currentHealth -= damageTaken;
         }
     }
+
+    public void TakeDamages(float damageTaken, Transform striker)
+    {
+        float damageOuput = CalculateFinalDamages(damageTaken, characterStats.baseArmor);
+        LoseHP(damageTaken);
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, (striker.transform.position - transform.position), out hit))
+        {
+            Instantiate(HitFXprefab, hit.point, Quaternion.identity);
+        }
+        //LoseHP(damageTaken, currentHealth);
+        //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
+        Debug.Log("il ne me reste plus que " + currentHealth + " d'HP", this);
+    }
+
+    
 }
