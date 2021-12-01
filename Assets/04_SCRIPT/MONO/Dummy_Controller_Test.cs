@@ -16,7 +16,7 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
     private float CalculateFinalDamages(float damages, float Armor)
     {
         float OutputDamage = Mathf.Clamp(damages - Armor, 0, damages);
-        Debug.Log(OutputDamage);
+        Debug.Log(OutputDamage,this);
         return OutputDamage;
     }
 

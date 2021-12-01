@@ -16,7 +16,7 @@ public class Touch : MonoBehaviour
                 damageable.TakeDamages(controller_FSM.currentAttackStats.damages);
             }
             
-            //Debug.Log("Je TOUCHE!!!");
+            Debug.Log("Je TOUCHE!!!",this);
         }
     }
 }
