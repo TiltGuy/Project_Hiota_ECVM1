@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Touch : MonoBehaviour
+public class Touch2 : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerController_FSM controller_FSM;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -13,10 +11,10 @@ public class Touch : MonoBehaviour
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
             if (damageable != null)
             {
-                damageable.TakeDamages(controller_FSM.BasicAttackStats.damages, transform);
+                damageable.TakeDamages(2, transform);
             }
-            
-            Debug.Log("Je TOUCHE!!!",this);
+
+            Debug.Log("Je TOUCHE!!!", this);
         }
     }
 }

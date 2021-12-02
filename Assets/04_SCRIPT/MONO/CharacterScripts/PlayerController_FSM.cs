@@ -153,8 +153,17 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     [Tooltip("the Boolean that if the player is stunned")]
     public bool b_Stunned = false;
 
-    [Tooltip("the current Stats of the attack that will be used for the next or current hit")]
-    public AttackStats_SO currentAttackStats;
+    [Tooltip("the current Stats of the Basic Attack that will be used for the next or current hit")]
+    public AttackStats_SO BasicAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Side Attack that will be used for the next or current hit")]
+    public AttackStats_SO SideAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Front Attack that will be used for the next or current hit")]
+    public AttackStats_SO FrontAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Back Attack that will be used for the next or current hit")]
+    public AttackStats_SO BackAttackStats;
 
     [Tooltip("the time unitl the input b_AttackInput will become false")]
     public float timeBufferAttackInput = .5f;
@@ -206,11 +215,6 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         get { return Hiota_Anim; }
     }
 
-    /*public Rigidbody Rigidbody
-    {
-        get { return rbody; }
-    }*/
-
     private void Awake()
     {
         characontroller = GetComponent<CharacterController>();
@@ -254,6 +258,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     private void Start()
     {
         InitializationState(currentState);
+        Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
@@ -265,7 +270,6 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         currentState.UpdtateState(this);
         //Debug.Log("CurrentState = " + currentState);
 
-        Debug.Log(b_AttackInput, this);
     }
 
     private void UpdateCoyoteTime()

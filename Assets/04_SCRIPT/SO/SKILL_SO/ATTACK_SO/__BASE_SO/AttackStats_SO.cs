@@ -6,4 +6,5 @@ using UnityEngine;
 public class AttackStats_SO : ScriptableObject
 {
     public float damages;
+    public Transform hitBoxPrefab;
 }

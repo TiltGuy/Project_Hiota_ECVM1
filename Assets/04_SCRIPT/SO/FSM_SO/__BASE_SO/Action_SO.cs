@@ -21,6 +21,6 @@ public abstract class Action_SO : ScriptableObject
 
     public void SetCurrentAttackStats(PlayerController_FSM controller, AttackStats_SO attackStats_SO)
     {
-        controller.currentAttackStats = attackStats_SO;
+        controller.BasicAttackStats = attackStats_SO;
     }
 }
