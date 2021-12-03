@@ -7,10 +7,13 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
     public CharacterStats_SO characterStats;
     public float currentHealth;
     public GameObject HitFXprefab;
+    private Collider coll;
 
     private void Start()
     {
         currentHealth = characterStats.baseHealth;
+        coll = GetComponent<Collider>();
+        Debug.Log(coll, this);
     }
 
 
@@ -35,10 +38,13 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
         LoseHP(damageTaken);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, (striker.transform.position - transform.position), out hit))
-        {
-            Instantiate(HitFXprefab, hit.point, Quaternion.identity);
-        }
+        Vector3 ClosestPointToStriker = coll.ClosestPointOnBounds(striker.position);
+        Instantiate(HitFXprefab, ClosestPointToStriker, Quaternion.identity);
+
+        //if (Physics.Raycast(transform.position, (striker.transform.position - transform.position), out hit))
+        //{
+        //    Instantiate(HitFXprefab, hit.point, Quaternion.identity);
+        //}
         //LoseHP(damageTaken, currentHealth);
         //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
         Debug.Log("il ne me reste plus que " + currentHealth + " d'HP", this);

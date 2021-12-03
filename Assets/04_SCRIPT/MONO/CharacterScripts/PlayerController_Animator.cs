@@ -41,6 +41,8 @@ public class PlayerController_Animator : MonoBehaviour
 
             currentAttackHitbox = Instantiate(basicAttackHitBoxPrefab, controller_FSM.transform.position, Quaternion.identity);
             currentAttackHitbox.SetParent(controller_FSM.transform);
+            currentAttackHitbox.transform.localPosition = Vector3.zero;
+            currentAttackHitbox.transform.localRotation = Quaternion.identity;
         }
         Debug.Log("Basic Attack HitBox is : " + basicAttackHitBoxPrefab, this);
         
