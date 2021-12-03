@@ -50,7 +50,7 @@ public class PlayerController_Animator : MonoBehaviour
     {
         if (basicAttackHitBoxPrefab)
         {
-            
+            currentAttackHitbox.GetComponent<Touch>().DestroyItSelfAfterUsed();
         }
         //swordHitBox.enabled = false;
     }
