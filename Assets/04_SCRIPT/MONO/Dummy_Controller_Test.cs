@@ -36,10 +36,13 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
     {
         float damageOuput = CalculateFinalDamages(damageTaken, characterStats.baseArmor);
         LoseHP(damageTaken);
-        RaycastHit hit;
+        //RaycastHit hit;
 
         Vector3 ClosestPointToStriker = coll.ClosestPointOnBounds(striker.position);
-        Instantiate(HitFXprefab, ClosestPointToStriker, Quaternion.identity);
+        if (HitFXprefab != null)
+        {
+            Instantiate(HitFXprefab, ClosestPointToStriker, Quaternion.identity);
+        }
 
         //if (Physics.Raycast(transform.position, (striker.transform.position - transform.position), out hit))
         //{
