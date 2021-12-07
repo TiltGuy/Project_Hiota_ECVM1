@@ -263,6 +263,8 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     {
         InitializationState(currentState);
         Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
@@ -271,6 +273,8 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     {
         UpdateCoyoteTime();
 
+        float scalarVector = Vector3.Dot(transform.forward, directionToGo);
+        Debug.Log(scalarVector, this);
         currentState.UpdtateState(this);
         //Debug.Log("CurrentState = " + currentState);
 
