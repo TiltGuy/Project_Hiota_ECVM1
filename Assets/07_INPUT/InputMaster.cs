@@ -65,6 +65,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DebugInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""7590bd8c-b82e-4480-b1fd-3ac5d80f8284"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -254,6 +262,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfb933aa-6a32-4fca-a176-86e65e7c3929"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -296,6 +315,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
         m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
+        m_Player_DebugInput = m_Player.FindAction("DebugInput", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -351,6 +371,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LookCamera;
     private readonly InputAction m_Player_Parry;
+    private readonly InputAction m_Player_DebugInput;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -361,6 +382,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
         public InputAction @Parry => m_Wrapper.m_Player_Parry;
+        public InputAction @DebugInput => m_Wrapper.m_Player_DebugInput;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +410,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Parry.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
                 @Parry.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
                 @Parry.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
+                @DebugInput.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugInput;
+                @DebugInput.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugInput;
+                @DebugInput.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugInput;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -410,6 +435,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Parry.started += instance.OnParry;
                 @Parry.performed += instance.OnParry;
                 @Parry.canceled += instance.OnParry;
+                @DebugInput.started += instance.OnDebugInput;
+                @DebugInput.performed += instance.OnDebugInput;
+                @DebugInput.canceled += instance.OnDebugInput;
             }
         }
     }
@@ -440,5 +468,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnLookCamera(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
+        void OnDebugInput(InputAction.CallbackContext context);
     }
 }

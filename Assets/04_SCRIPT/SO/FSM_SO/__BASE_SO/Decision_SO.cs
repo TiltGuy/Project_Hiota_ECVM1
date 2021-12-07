@@ -58,4 +58,9 @@ public abstract class Decision_SO : ScriptableObject
     {
         return controller.b_Parry;
     }
+
+    public bool CheckDashBoolean(PlayerController_FSM controller)
+    {
+        return controller.b_WantDash;
+    }
 }

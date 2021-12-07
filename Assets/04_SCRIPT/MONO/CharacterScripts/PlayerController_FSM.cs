@@ -226,9 +226,13 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
-        controls.Player.Dash.started += ctx => b_Stunned = true;
+        controls.Player.Dash.started += ctx => b_WantDash = true;
         //controls.Player.Dash.started += ctx => TakeDamages(3);
-        controls.Player.Dash.canceled += ctx => b_Stunned = false;
+        controls.Player.Dash.canceled += ctx => b_WantDash = false;
+
+        controls.Player.DebugInput.started += ctx => b_Stunned = true;
+        //controls.Player.Dash.started += ctx => TakeDamages(3);
+        controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
 
         controls.Player.Parry.started += ctx => b_Parry = true;
         controls.Player.Parry.canceled += ctx => b_Parry = false;
