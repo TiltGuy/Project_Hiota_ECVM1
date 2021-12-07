@@ -15,27 +15,49 @@ public class PlayerController_Animator : MonoBehaviour
     public Animator animator;
     [SerializeField]
     private PlayerController_FSM controller_FSM;
+    private Transform basicAttackHitBoxPrefab;
+    private Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;
 
     #endregion
-    
+
+    private void Start()
+    {
+        basicAttackHitBoxPrefab = controller_FSM.BasicAttackStats.hitBoxPrefab;
+        Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
+
+    }
 
     public void ToggleSwordHitBoxStatut()
     {
         swordHitBox.enabled = !swordHitBox.enabled;
     }
 
-    public void UpdateSwordHitBoxStatutFalse()
+    public void UpdateBasicAttackHitBoxStatutTrue()
     {
-        swordHitBox.enabled = false;
+        //swordHitBox.enabled = true;
+        if (basicAttackHitBoxPrefab)
+        {
+
+            currentAttackHitbox = Instantiate(basicAttackHitBoxPrefab, controller_FSM.transform.position, Quaternion.identity);
+            currentAttackHitbox.SetParent(controller_FSM.transform);
+            currentAttackHitbox.transform.localPosition = Vector3.zero;
+            currentAttackHitbox.transform.localRotation = Quaternion.identity;
+        }
+        Debug.Log("Basic Attack HitBox is : " + basicAttackHitBoxPrefab, this);
+        
     }
 
-    public void UpdateSwordHitBoxStatutTrue()
+    public void UpdateBasicAttackHitBoxStatutFalse()
     {
-        swordHitBox.enabled = true;
-        //nbHitBoxTrue++;
-        //Debug.Log(nbHitBoxTrue);
+        if (basicAttackHitBoxPrefab)
+        {
+            currentAttackHitbox.GetComponent<Touch>().DestroyItSelfAfterUsed();
+        }
+        //swordHitBox.enabled = false;
     }
+
+    
 
     public void ShaftSword()
     {

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamages(float damages);
+    void TakeDamages(float damageTaken, Transform Striker);
 }
 
 public interface ITouchable
 {
-    void DoSomething();
+    void Touch();
 }

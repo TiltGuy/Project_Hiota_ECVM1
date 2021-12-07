@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController_FSM : MonoBehaviour
+public class PlayerController_FSM : MonoBehaviour, IDamageable
 {
     # region DEPENDENCIES
 
@@ -29,10 +29,20 @@ public class PlayerController_FSM : MonoBehaviour
 
     public Transform HandOfSword;
 
+    public CharacterStats_SO HiotaStats;
+
     #endregion
 
 
-    # region INPUT SETTINGS
+    #region STATS VARIABLES
+
+    private float statCurrentHealth;
+    private float currentArmor;
+
+    #endregion
+
+
+    #region INPUT SETTINGS
 
     [Header(" -- INPUT SETTINGS -- ")]
 
@@ -143,11 +153,35 @@ public class PlayerController_FSM : MonoBehaviour
     [Tooltip("the Boolean that if the player is stunned")]
     public bool b_Stunned = false;
 
+    [Tooltip("the current Stats of the Basic Attack that will be used for the next or current hit")]
+    public AttackStats_SO BasicAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Side Attack that will be used for the next or current hit")]
+    public AttackStats_SO SideAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Front Attack that will be used for the next or current hit")]
+    public AttackStats_SO FrontAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Back Attack that will be used for the next or current hit")]
+    public AttackStats_SO BackAttackStats;
+
+    [Tooltip("the time unitl the input b_AttackInput will become false")]
+    public float timeBufferAttackInput = .5f;
+
     //[Tooltip("The speed of the player")]
     //public float m_HoldAttackSpeed = 5f;
 
     //[Tooltip("The time remaining of a Attack")]
     //public float maxAttackTime = .2f;
+
+
+    #endregion
+
+    #region PARRY Settings
+
+    [Header(" -- PARRY SETTINGS -- ")]
+
+    public bool b_Parry = false;
 
 
     #endregion
@@ -181,11 +215,6 @@ public class PlayerController_FSM : MonoBehaviour
         get { return Hiota_Anim; }
     }
 
-    /*public Rigidbody Rigidbody
-    {
-        get { return rbody; }
-    }*/
-
     private void Awake()
     {
         characontroller = GetComponent<CharacterController>();
@@ -197,13 +226,26 @@ public class PlayerController_FSM : MonoBehaviour
         controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
-        controls.Player.Dash.started += ctx => b_Stunned = true;
-        controls.Player.Dash.canceled += ctx => b_Stunned = false;
+        controls.Player.Dash.started += ctx => b_WantDash = true;
+        //controls.Player.Dash.started += ctx => TakeDamages(3);
+        controls.Player.Dash.canceled += ctx => b_WantDash = false;
 
-        controls.Player.Attack.started += ctx => b_AttackInput = true;
-        controls.Player.Attack.canceled += ctx => b_AttackInput = false;
+        controls.Player.DebugInput.started += ctx => b_Stunned = true;
+        //controls.Player.Dash.started += ctx => TakeDamages(3);
+        controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
+
+        controls.Player.Parry.started += ctx => b_Parry = true;
+        controls.Player.Parry.canceled += ctx => b_Parry = false;
+
+        controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
+        //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
+
+        //initialisation of ALL the STATS SETTINGS
+        statCurrentHealth = HiotaStats.baseHealth;
+        currentArmor = HiotaStats.baseArmor;
+
     }
 
     private void OnEnable()
@@ -220,13 +262,23 @@ public class PlayerController_FSM : MonoBehaviour
     private void Start()
     {
         InitializationState(currentState);
-        GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
+        Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
+        //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(IsDetectingGround())
+        UpdateCoyoteTime();
+
+        currentState.UpdtateState(this);
+        //Debug.Log("CurrentState = " + currentState);
+
+    }
+
+    private void UpdateCoyoteTime()
+    {
+        if (IsDetectingGround())
         {
             coyoteTime = 0;
         }
@@ -234,13 +286,6 @@ public class PlayerController_FSM : MonoBehaviour
         {
             coyoteTime += Time.deltaTime;
         }
-        
-        currentState.UpdtateState(this);
-        //Debug.Log("CurrentState = " + currentState);
-
-        //Debug.Log(b_AttackInput);
-
-
     }
 
     public void TransitionToState(State_SO NextState)
@@ -325,7 +370,7 @@ public class PlayerController_FSM : MonoBehaviour
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(false);
             GO_MainCamera.SetActive(true);
-            Debug.Log(b_IsFocusing);
+            //Debug.Log(b_IsFocusing, this);
         }
     }
 
@@ -338,4 +383,40 @@ public class PlayerController_FSM : MonoBehaviour
         }
     }
 
+    public void TakeDamages(float damageTaken, Transform striker)
+    {
+        float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
+        LoseHP(damageTaken);
+        //LoseHP(damageTaken, currentHealth);
+        //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
+        Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
+    }
+
+    private float CalculateFinalDamages(float damages, float Armor)
+    {
+        float OutputDamage = Mathf.Clamp(damages - Armor, 0, damages);
+        return OutputDamage;
+    }
+
+    private void LoseHP(float damageTaken)
+    {
+        if (statCurrentHealth > 0)
+        {
+            statCurrentHealth -= damageTaken;
+            statCurrentHealth = Mathf.Clamp(statCurrentHealth, 0, statCurrentHealth);
+        }
+    }
+
+    private IEnumerator BufferingAttackInputCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        b_AttackInput = false;
+    }
+
+    private void TakeAttackInputInBuffer()
+    {
+        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        b_AttackInput = true;
+        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+    }
 }
