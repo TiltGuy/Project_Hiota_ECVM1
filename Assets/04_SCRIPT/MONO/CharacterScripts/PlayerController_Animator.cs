@@ -24,7 +24,7 @@ public class PlayerController_Animator : MonoBehaviour
     private void Start()
     {
         basicAttackHitBoxPrefab = controller_FSM.BasicAttackStats.hitBoxPrefab;
-        Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
+        //Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
 
     }
 

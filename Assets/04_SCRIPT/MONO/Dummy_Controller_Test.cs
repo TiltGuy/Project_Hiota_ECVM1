@@ -13,7 +13,7 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
     {
         currentHealth = characterStats.baseHealth;
         coll = GetComponent<Collider>();
-        Debug.Log(coll, this);
+        //Debug.Log(coll, this);
     }
 
 

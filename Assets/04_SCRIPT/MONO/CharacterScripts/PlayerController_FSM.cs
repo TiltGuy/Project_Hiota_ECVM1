@@ -263,7 +263,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     private void Start()
     {
         InitializationState(currentState);
-        Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
+        //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
@@ -272,7 +272,6 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     // Update is called once per frame
     private void Update()
     {
-        UpdateCoyoteTime();
 
         float scalarVector = Vector3.Dot(transform.forward, directionToGo);
         //Debug.Log(scalarVector, this);
@@ -280,23 +279,12 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         if(m_InputMoveVector!=Vector2.zero)
         {
             lastDirectionInput = directionToGo;
-            Debug.Log("lastDirectionInput = " + lastDirectionInput,this);
         }
         //Debug.Log("CurrentState = " + currentState);
+        IsDetectingGround();
 
     }
 
-    private void UpdateCoyoteTime()
-    {
-        if (IsDetectingGround())
-        {
-            coyoteTime = 0;
-        }
-        else
-        {
-            coyoteTime += Time.deltaTime;
-        }
-    }
 
     public void TransitionToState(State_SO NextState)
     {
@@ -318,31 +306,29 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     }
 
     //Detection ground with a sphere
-    public bool IsDetectingGround()
+    public void IsDetectingGround()
     {
-        _isGrounded = Physics.CheckSphere(_groundChecker.position, distanceCheckGround, Ground, QueryTriggerInteraction.Ignore);
-        if (_isGrounded)
+        //_isGrounded = Physics.CheckSphere(_groundChecker.position, distanceCheckGround, Ground, QueryTriggerInteraction.Ignore);
+        //if (_isGrounded)
+        //{
+        //    return true;
+        //}
+        //else
+        //    return false;
+        if (characontroller.isGrounded)
         {
-            return true;
+            _isGrounded = true;
         }
         else
-            return false;
+        {
+            _isGrounded = false;
+        }
         //Debug.DrawLine(transform.position,)
         //return coyoteTime < maxCoyoteTime;
     }
 
     //Detection ground with the function IsDetectingGround and the Coyote Time
-    public bool IsGrounded()
-    {
-        if (IsDetectingGround() && (coyoteTime < maxCoyoteTime))
-        {
-            return true;
-        }
-        else
-            return false;
-        //Debug.DrawLine(transform.position,)
-        //return coyoteTime < maxCoyoteTime;
-    }
+    
 
     void OnDrawGizmosSelected()
     {
@@ -380,7 +366,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(false);
             GO_MainCamera.SetActive(true);
-            //Debug.Log(b_IsFocusing, this);
+            Debug.Log(b_IsFocusing, this);
         }
     }
 
