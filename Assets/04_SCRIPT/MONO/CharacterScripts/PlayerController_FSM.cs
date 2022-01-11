@@ -99,6 +99,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     public float maxDashTime = .5f;
     public float dashSpeed = 5f;
     public Vector3 dashDirection;
+    public Vector3 lastDirectionInput;
     public bool b_WantDash = false;
 
     #endregion
@@ -274,8 +275,13 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         UpdateCoyoteTime();
 
         float scalarVector = Vector3.Dot(transform.forward, directionToGo);
-        Debug.Log(scalarVector, this);
+        //Debug.Log(scalarVector, this);
         currentState.UpdtateState(this);
+        if(m_InputMoveVector!=Vector2.zero)
+        {
+            lastDirectionInput = directionToGo;
+            Debug.Log("lastDirectionInput = " + lastDirectionInput,this);
+        }
         //Debug.Log("CurrentState = " + currentState);
 
     }

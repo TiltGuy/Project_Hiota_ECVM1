@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableStateMachine/Actions/MoveForward_Action")]
-public class MoveForward_Action : Action_SO
+[CreateAssetMenu(menuName = "PluggableStateMachine/Actions/ACT_MOVE")]
+public class ACT_MOVE : Action_SO
 {
     [SerializeField]
     private bool b_ConstantMove;
@@ -48,12 +48,15 @@ public class MoveForward_Action : Action_SO
             controller.m_camF = controller.m_camF.normalized;
             controller.m_camR = controller.m_camR.normalized;
 
-            controller.directionToGo = controller.m_camF * controller.m_InputMoveVector.y + controller.m_camR * controller.m_InputMoveVector.x;
-            controller.dashDirection = controller.directionToGo.normalized;
-
             currentSpeed = maxSpeed;
 
-            controller.characontroller.Move(controller.directionToGo * Time.deltaTime * currentSpeed);
+            controller.directionToGo = controller.m_camF * controller.m_InputMoveVector.y + controller.m_camR * controller.m_InputMoveVector.x;
+            controller.currentDirection = new Vector3(controller.directionToGo.x * currentSpeed, controller.gravity, controller.directionToGo.z * currentSpeed);
+            controller.dashDirection = controller.directionToGo.normalized;
+
+            
+
+            controller.characontroller.Move(controller.currentDirection * Time.deltaTime );
             //controller.Hiota_Anim.SetFloat("DirectX_FocusMode", controller.m_InputMoveVector.x);
             //controller.Hiota_Anim.SetFloat("DirectZ_FocusMode", controller.m_InputMoveVector.y);
             //Debug.Log(currentSpeed);
@@ -92,6 +95,9 @@ public class MoveForward_Action : Action_SO
                 controller.Hiota_Anim.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
                 controller.Hiota_Anim.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
             }
+
+            Vector3 fallGravity = new Vector3(0, controller.gravity, 0);
+            controller.characontroller.Move(fallGravity * Time.deltaTime);
         }
 
         controller.Hiota_Anim.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
