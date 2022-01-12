@@ -7,6 +7,18 @@ public class CheckDashBoolean : Decision_SO
 {
     public override bool Decide(PlayerController_FSM controller)
     {
-        return controller.b_WantDash;
+        //Debug.Log("Je checke" + CheckHiotaCanDash(controller));
+        return CheckHiotaCanDash(controller);
+    }
+
+    public bool CheckHiotaCanDash(PlayerController_FSM controller)
+    {
+        if (controller.b_WantDash && controller.b_CanDash)
+        {
+            
+            return true;
+        }
+        else
+            return false;
     }
 }
