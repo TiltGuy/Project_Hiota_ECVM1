@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: DASH_State
   m_EditorClassIdentifier: 
   Name: 
-  actionsEnter: []
+  actionsEnter:
+  - {fileID: 11400000, guid: 739957066bf32364ca1a83165248daf8, type: 2}
   actionsUpdate:
   - {fileID: 11400000, guid: e61339b926286c841931f7503451fde8, type: 2}
   actionsExit:
   - {fileID: 11400000, guid: fbebd5a9977d5f441922326fa58317ea, type: 2}
+  - {fileID: 11400000, guid: 332fb222592bfff41bf07e5cb142abf2, type: 2}
   transitions: []
   transitionsAfterCountdown:
   - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}

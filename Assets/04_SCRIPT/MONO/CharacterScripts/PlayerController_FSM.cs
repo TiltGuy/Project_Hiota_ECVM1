@@ -281,9 +281,9 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         {
             lastDirectionInput = directionToGo;
         }
-        //Debug.Log("CurrentState = " + currentState);
+        Debug.Log("CurrentState = " + currentState);
         IsDetectingGround();
-        print("b_CanDash = " + b_CanDash);
+        //print("b_CanDash = " + b_CanDash);
 
     }
 
