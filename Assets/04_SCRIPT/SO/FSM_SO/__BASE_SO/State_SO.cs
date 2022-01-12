@@ -15,20 +15,25 @@ public class State_SO : ScriptableObject
     [Tooltip("At least One Transitions is necessary if State's Timed")]
     public Transition[] transitionsAfterCountdown;
 
-    [Tooltip("If ticked the state will bypass all of his transitions in the inspector")]
-    [SerializeField] private bool transitionsHardCoded = false;
+    [Header(" --- TRANSITIONS SETTINGS ---")]
 
-    public bool b_TimedState;
+    [Tooltip("If ticked the state will bypass all of his transitions in the inspector")]
+    [SerializeField] private bool b_NormalTransitions = true;
+
+    public bool b_TransitionsAfterCountdown;
 
     [Tooltip("The number of seconds the timed State lasts")]
     public float stateDuration;
     private float stateTimer = 0f;
+
+    [Header("--- DEBUG ---")]
+
     public Color sceneGizmosColor = Color.grey;
     
 
     public void UpdtateState(PlayerController_FSM controller)
     {
-        if(b_TimedState)
+        if(b_TransitionsAfterCountdown)
         {
             if(stateTimer <= stateDuration)
             {
@@ -42,7 +47,7 @@ public class State_SO : ScriptableObject
         }
 
         DoActions(controller, actionsUpdate);
-        if(!transitionsHardCoded)
+        if(b_NormalTransitions)
         {
             CheckTransitions(controller);
         }
@@ -100,7 +105,7 @@ public class State_SO : ScriptableObject
 
     public void EnterState(PlayerController_FSM controller)
     {
-        if(b_TimedState)
+        if(b_TransitionsAfterCountdown)
         {
             stateTimer = 0;
         }

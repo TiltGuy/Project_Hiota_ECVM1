@@ -15,9 +15,9 @@ MonoBehaviour:
   Name: 
   actionsEnter: []
   actionsUpdate:
-  - {fileID: 11400000, guid: dfd3a26d95f957b46a0683722524d0b1, type: 2}
   - {fileID: 11400000, guid: e61339b926286c841931f7503451fde8, type: 2}
-  actionsExit: []
+  actionsExit:
+  - {fileID: 11400000, guid: fbebd5a9977d5f441922326fa58317ea, type: 2}
   transitions: []
   transitionsAfterCountdown:
   - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
   - decision: {fileID: 11400000, guid: 14302cd62bfcd744ea75a1a489fcb198, type: 2}
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  transitionsHardCoded: 0
-  b_TimedState: 1
+  b_NormalTransitions: 0
+  b_TransitionsAfterCountdown: 1
   stateDuration: 0.25
   sceneGizmosColor: {r: 1, g: 0, b: 0.9816508, a: 1}

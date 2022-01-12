@@ -98,9 +98,11 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     public float dashDistance = 2f;
     public float maxDashTime = .5f;
     public float dashSpeed = 5f;
+    public float dashCooldown = 0.75f;
     public Vector3 dashDirection;
     public Vector3 lastDirectionInput;
     public bool b_WantDash = false;
+    public bool b_CanDash = true;
 
     #endregion
 
@@ -228,7 +230,6 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
         controls.Player.Dash.started += ctx => b_WantDash = true;
-        //controls.Player.Dash.started += ctx => TakeDamages(3);
         controls.Player.Dash.canceled += ctx => b_WantDash = false;
 
         controls.Player.DebugInput.started += ctx => b_Stunned = true;
@@ -282,6 +283,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         }
         //Debug.Log("CurrentState = " + currentState);
         IsDetectingGround();
+        print("b_CanDash = " + b_CanDash);
 
     }
 
@@ -407,6 +409,14 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(time);
         b_AttackInput = false;
+    }
+
+    public IEnumerator BufferingDashEvent()
+    {
+        b_CanDash = false;
+        yield return new WaitForSeconds(dashCooldown);
+        b_CanDash = true;
+        b_WantDash = false;
     }
 
     private void TakeAttackInputInBuffer()
