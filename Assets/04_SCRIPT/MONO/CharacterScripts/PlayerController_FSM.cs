@@ -101,6 +101,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     public float dashCooldown = 0.75f;
     public Vector3 dashDirection;
     public Vector3 lastDirectionInput;
+    public float scalarVector;
     public bool b_WantDash = false;
     public bool b_CanDash = true;
 
@@ -274,8 +275,8 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     private void Update()
     {
 
-        float scalarVector = Vector3.Dot(transform.forward, directionToGo);
-        //Debug.Log(scalarVector, this);
+        scalarVector = Vector3.Dot(transform.forward, directionToGo);
+        Debug.Log(scalarVector, this);
         currentState.UpdtateState(this);
         if(m_InputMoveVector!=Vector2.zero)
         {

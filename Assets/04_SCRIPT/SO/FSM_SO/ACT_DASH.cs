@@ -8,7 +8,9 @@ public class ACT_DASH : Action_SO
 
     [SerializeField]
     private float speedMovementAction;
+    [SerializeField]
     private Vector3 dashDirection;
+    public bool b_ConstraintDash = false;
 
     public override void Act(PlayerController_FSM controller)
     {
@@ -19,9 +21,15 @@ public class ACT_DASH : Action_SO
     {
         
         
-
-        dashDirection = controller.lastDirectionInput;
-        controller.characontroller.Move(dashDirection * Time.deltaTime * speedMovementAction);
+        if(!b_ConstraintDash)
+        {
+            dashDirection = controller.lastDirectionInput;
+            controller.characontroller.Move(dashDirection * Time.deltaTime * speedMovementAction);
+        }
+        else
+        {
+            controller.characontroller.Move(controller.transform.forward * Time.deltaTime * speedMovementAction);
+        }
 
     }
 }

@@ -63,4 +63,12 @@ public abstract class Decision_SO : ScriptableObject
     {
         return controller.b_WantDash;
     }
+
+    public bool CheckInBetween(float numberToTest, float min, float max)
+    {
+        if (numberToTest >= min && numberToTest <= max)
+            return true;
+        else
+            return false;
+    }
 }
