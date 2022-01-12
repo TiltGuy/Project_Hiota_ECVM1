@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
 {
     private NavMeshAgent agent;
     public Transform player;
+    private Rigidbody rb;
 
 
     //Agro
@@ -15,8 +16,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
     private float playerDistance;
     private bool canAgro;
     private bool isAgro = false;
-    private Transform target;
+    [SerializeField] private Transform target;
     private Vector3 ZombiSpeed;
+    [SerializeField] private float Cooldown;
 
 
 
@@ -26,6 +28,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] private bool canStroll;
     private bool isStrolling = true;
     private Vector3 lastPos;
+    private bool targetAquired = false;
 
 
     //Gizmos
@@ -46,7 +49,16 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
 
     //Attack
+    public bool canAttack;
     public int attackDamage = 1;
+
+
+    //Loot
+    public GameObject lifeLoot;
+
+
+    //Animations
+    public Animator enemyAnimator;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,10 +66,13 @@ public class EnemyAI : MonoBehaviour, IDamageable
         
         Fill = 1f;
         agent = GetComponent<NavMeshAgent>();
-        //anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        enemyAnimator = GetComponentInChildren<Animator>();
+
         if (canStroll)
         {
             RandomTarget();
+            targetAquired = true;
         }
 
 
@@ -80,16 +95,18 @@ public class EnemyAI : MonoBehaviour, IDamageable
                 targetDistance = Vector3.Distance(transform.position, target.position);
             }
 
-            if (canAgro && isAgro == false)
+            if (canAgro && isAgro == false && targetDistance <= playerDistance)
             {
                 target = player.transform;
                 isAgro = true;
                 isStrolling = false;
+                targetAquired = true;
 
             }
-            else if (canStroll && isStrolling == false && isAgro == false)
+            else if (canStroll && isStrolling == false && isAgro == false && targetAquired == false)
             {
-                RandomTarget();
+                Invoke("RandomTarget",5);
+                targetAquired = true;
             }
 
             if (isAgro)
@@ -100,20 +117,43 @@ public class EnemyAI : MonoBehaviour, IDamageable
             if (playerDistance <= agroDistance)
             {
                 canAgro = true;
+                canAttack = false;
+            }
+            else if (playerDistance > agroDistance && isAgro)
+			{
+                Invoke("RandomTarget", Cooldown);
+                new WaitForSeconds(Cooldown);
+                isAgro = false;
+                canAgro = false;
+                targetAquired = false;
+
             }
 
-            if (targetDistance <= stopDistance)
+			if (targetDistance <= stopDistance && targetDistance <= playerDistance)
             {
                 if (isAgro)
                 {
-                    print("agrougrou!");
+                    //agent.isStopped = true;
+                    
+                    //rb.velocity = Vector3.zero;
+                    //lance une attaque
+                    canAttack = true;
+                    enemyAnimator.SetBool("canAttack", true);
+                    //print("agrougrou!");
                 }
                 else if (isStrolling)
                 {
                     isStrolling = false;
+                    targetAquired = false;
                 }
 
             }
+			else
+			{
+                canAttack = false;
+                enemyAnimator.SetBool("canAttack", false);
+                isStrolling = true;
+			}
 
         }
 
@@ -195,16 +235,26 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if(Fill <= 0)
 		{
             Destroy(gameObject);
+            // Instantiate Object for Hiota ++Health
+            Instantiate(lifeLoot, transform.position, transform.rotation);
 		}
     }
 
-    void OnTriggerEnter(Collider other)
-	{
+    void HurtHiota(float damages)
+    {
         HiotaHealth player = other.GetComponent<HiotaHealth>();
-        if(player != null)
-		{
+
+        if (player != null && canAttack == true)
+        {
             player.Hurt(attackDamage);
-		}
-        
-	}
+            //Attack
+            enemyAnimator.SetBool("canAttack", true);
+        }
+
+
+    }
+
+    //mettre sur un script au même niveau du mesh + animator (animator sur le mesh)
+    
+    
 }
