@@ -34,6 +34,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     //Gizmos
     [SerializeField] private float agroDistance;
     [SerializeField] private float stopDistance;
+    [SerializeField] private float attackDistance;
 
 
     //Health
@@ -51,7 +52,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     //Attack
     public bool canAttack;
     public int attackDamage = 1;
-
+    
+    
 
     //Loot
     public GameObject lifeLoot;
@@ -81,6 +83,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
         currentHealth = characterStats.baseHealth;
         coll = GetComponent<Collider>();
         Debug.Log(coll, this);
+
+        
     }
 
     // Update is called once per frame
@@ -165,6 +169,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }                                               //
                                                         //
                                                         //anim.SetFloat("SpeedZ", ZombiSpeed.magnitude);  //
+
+        
     }
 
     private void FixedUpdate()
@@ -179,6 +185,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), agroDistance);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), stopDistance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), attackDistance);
     }
 
     void RandomTarget()
@@ -240,21 +248,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
 		}
     }
 
-    void HurtHiota(float damages)
-    {
-        HiotaHealth player = other.GetComponent<HiotaHealth>();
-
-        if (player != null && canAttack == true)
-        {
-            player.Hurt(attackDamage);
-            //Attack
-            enemyAnimator.SetBool("canAttack", true);
-        }
-
-
-    }
-
-    //mettre sur un script au même niveau du mesh + animator (animator sur le mesh)
     
     
 }
