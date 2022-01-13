@@ -42,6 +42,9 @@ public class StaticEnemyAI : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+
+        lifeLoot.SetActive(false);
+
         Fill = 1f;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
@@ -117,8 +120,10 @@ public class StaticEnemyAI : MonoBehaviour, IDamageable
 
         if (Fill <= 0)
         {
+            lifeLoot.SetActive(true);
             Destroy(gameObject);
             // Instantiate Object for Hiota ++Health
+            
             Instantiate(lifeLoot, transform.position, transform.rotation);
         }
     }

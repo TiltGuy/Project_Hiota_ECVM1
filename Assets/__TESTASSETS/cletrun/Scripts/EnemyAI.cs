@@ -99,7 +99,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
                 targetDistance = Vector3.Distance(transform.position, target.position);
             }
 
-            if (canAgro && isAgro == false && targetDistance <= playerDistance)
+            if (canAgro && isAgro == false /*&& targetDistance <= playerDistance*/)
             {
                 target = player.transform;
                 isAgro = true;
@@ -217,7 +217,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         float damageOuput = CalculateFinalDamages(damageTaken, characterStats.baseArmor);
         LoseHP(damageTaken);
-        Fill -= 0.2f;
+        Fill -= damageTaken;
         Bar.fillAmount = Fill;
         
         
@@ -243,6 +243,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if(Fill <= 0)
 		{
             Destroy(gameObject);
+
+            
             // Instantiate Object for Hiota ++Health
             Instantiate(lifeLoot, transform.position, transform.rotation);
 		}

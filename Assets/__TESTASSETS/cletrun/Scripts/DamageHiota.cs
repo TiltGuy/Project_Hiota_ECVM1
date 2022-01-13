@@ -11,8 +11,8 @@ public class DamageHiota : MonoBehaviour
     public float attackDamage;
 
     public Animator enemyAnimator;
-    //public EnemyAI enemyScript;
-    public StaticEnemyAI staticEnemyScript;
+    public Enemy enemyScript;
+    //public StaticEnemyAI staticEnemyScript;
 
     public Transform player;
     
@@ -45,7 +45,7 @@ public class DamageHiota : MonoBehaviour
     {
         hiotaHealth = player.GetComponent<HiotaHealth>();
 
-        if(/*enemyScript.canAttack == true ||*/ staticEnemyScript.canAttack == true)
+        if(enemyScript.canAttack == true /*|| staticEnemyScript.canAttack == true*/)
 		{
             hiotaHealth.Hurt(attackDamage);
             //Attack

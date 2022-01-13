@@ -32,9 +32,9 @@ public class HiotaHealth : MonoBehaviour
 		_health -= attackDamage;
 		Fill = _health / _maxHealth;
 		hiotaHealthBar.fillAmount = Fill;
-		Debug.Log("Health: " + _health);
-		Debug.Log("Fill : " + Fill);
-		Debug.Log("Damages : " + attackDamage);
+		//Debug.Log("Health: " + _health);
+		//Debug.Log("Fill : " + Fill);
+		//Debug.Log("Damages : " + attackDamage);
 		
 	}
 
