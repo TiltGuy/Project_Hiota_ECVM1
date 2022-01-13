@@ -13,6 +13,7 @@ public class PlayerController_Animator : MonoBehaviour
     public GameObject Sword_GO;
     public CapsuleCollider swordHitBox;
     public Animator animator;
+    public Transform ps;
     [SerializeField]
     private PlayerController_FSM controller_FSM;
     private Transform basicAttackHitBoxPrefab;
@@ -73,5 +74,9 @@ public class PlayerController_Animator : MonoBehaviour
         Sword_GO.transform.localRotation = Quaternion.identity;
     }
 
-    
+    public void DustCloud()
+    {
+        Instantiate(ps,transform.position, Quaternion.identity);
+    }
+
 }
