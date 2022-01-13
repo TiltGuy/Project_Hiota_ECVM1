@@ -21,14 +21,11 @@ MonoBehaviour:
   - decision: {fileID: 11400000, guid: 1964240999d6c0b479233a9102439765, type: 2}
     true_State: {fileID: 11400000, guid: bd73c49f4516a2f45ba7e80b69eed833, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  transitionsAfterCountdown:
-  - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
-    true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
-    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  - decision: {fileID: 11400000, guid: 14302cd62bfcd744ea75a1a489fcb198, type: 2}
-    true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
-    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  transitionsHardCoded: 0
-  b_TimedState: 1
+  - decision: {fileID: 11400000, guid: a4acf1650feb8b448a75530d31c955d7, type: 2}
+    true_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+    False_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+  transitionsAfterCountdown: []
+  b_NormalTransitions: 1
+  b_TransitionsAfterCountdown: 0
   stateDuration: 0.5
   sceneGizmosColor: {r: 0, g: 0.025779724, b: 1, a: 1}

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa43ddf98c3bd94f88a83442e8b41a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller_FSM: {fileID: 7586485832782531401}
+  AttackStats: {fileID: 0}
 --- !u!65 &2086673974
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_cameraBaseDirection: {fileID: 0}
   Ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _groundChecker: {fileID: 6188173131968936273}
   characontroller: {fileID: 6634799758529909337}
   Hiota_Anim: {fileID: 1670080000814941675}
@@ -561,8 +561,12 @@ MonoBehaviour:
   dashDistance: 2
   maxDashTime: 0.5
   dashSpeed: 5
+  dashCooldown: 0.75
   dashDirection: {x: 0, y: 0, z: 0}
+  lastDirectionInput: {x: 0, y: 0, z: 0}
+  scalarVector: 0
   b_WantDash: 0
+  b_CanDash: 1
   m_camF: {x: 0, y: 0, z: 0}
   m_camR: {x: 0, y: 0, z: 0}
   directionToGo: {x: 0, y: 0, z: 0}
@@ -993,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa43ddf98c3bd94f88a83442e8b41a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller_FSM: {fileID: 7586485832782531401}
+  AttackStats: {fileID: 0}
 --- !u!1 &2259976099588534955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6188173131968936273
 Transform:
   m_ObjectHideFlags: 0
