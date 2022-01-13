@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     //Attack
     public bool canAttack;
-    public int attackDamage = 1;
+    //public float attackDamage = 1f;
     
     
 

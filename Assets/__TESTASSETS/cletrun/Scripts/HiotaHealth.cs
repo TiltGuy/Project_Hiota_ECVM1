@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class HiotaHealth : MonoBehaviour
 {
-	private float _health;
+	public float _health;
 	private float _maxHealth;
 	public Image hiotaHealthBar;
 	public float Fill;
+
+	
 
 	void Start()
 	{
@@ -25,14 +27,14 @@ public class HiotaHealth : MonoBehaviour
 		}
 	}
 
-	public void Hurt(int attackDamage)
+	public void Hurt(float attackDamage)
 	{
 		_health -= attackDamage;
 		Fill = _health / _maxHealth;
 		hiotaHealthBar.fillAmount = Fill;
 		Debug.Log("Health: " + _health);
 		Debug.Log("Fill : " + Fill);
-
+		Debug.Log("Damages : " + attackDamage);
 		
 	}
 
