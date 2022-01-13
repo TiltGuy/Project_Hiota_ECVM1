@@ -186,6 +186,9 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     [Header(" -- PARRY SETTINGS -- ")]
 
     public bool b_Parry = false;
+    public bool b_PerfectParry = false;
+    public float timerPerfectParry = .5f;
+    public bool b_NormalParry = false;
 
 
     #endregion
@@ -426,4 +429,6 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         b_AttackInput = true;
         StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
     }
+
+    
 }

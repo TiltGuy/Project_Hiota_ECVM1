@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Attack_Test_01
   actionsEnter:
-  - {fileID: 11400000, guid: d09ec254b17515e45b2d87cf90ba92c1, type: 2}
+  - {fileID: 11400000, guid: e69c07aaab1f3f24a9e7e56553bb3c8c, type: 2}
   actionsUpdate: []
-  actionsExit: []
+  actionsExit:
+  - {fileID: 11400000, guid: 42ca01e4daab1504fb4af2aaa948590a, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 1964240999d6c0b479233a9102439765, type: 2}
     true_State: {fileID: 11400000, guid: bd73c49f4516a2f45ba7e80b69eed833, type: 2}
