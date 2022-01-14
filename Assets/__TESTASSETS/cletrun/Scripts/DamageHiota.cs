@@ -13,6 +13,7 @@ public class DamageHiota : MonoBehaviour
     public Animator enemyAnimator;
     public Enemy enemyScript;
     //public StaticEnemyAI staticEnemyScript;
+    public PlayerController_FSM playerScript;
 
     public Transform player;
     
@@ -45,7 +46,7 @@ public class DamageHiota : MonoBehaviour
     {
         hiotaHealth = player.GetComponent<HiotaHealth>();
 
-        if(enemyScript.canAttack == true /*&& isHiotaInvicible*/ /*|| staticEnemyScript.canAttack == true*/)
+        if(enemyScript.canAttack == true && playerScript.b_Parry == false/*|| staticEnemyScript.canAttack == true*/)
 		{
             hiotaHealth.Hurt(attackDamage);
             //Attack
