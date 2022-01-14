@@ -38,6 +38,8 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
 
     private float statCurrentHealth;
     private float currentArmor;
+    [HideInInspector]
+    public bool b_IsInvicible = false;
 
     #endregion
 
@@ -74,7 +76,6 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
 
     [Tooltip("it's the little time before hiota begin to fall")]
     public float maxCoyoteTime = 0.15f;
-    private float coyoteTime = 0;
 
     [Tooltip("it check if Hiota is touching the ground with the Ground Checker")]
     public bool _isGrounded = false;
@@ -186,10 +187,15 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     [Header(" -- PARRY SETTINGS -- ")]
 
     public bool b_Parry = false;
+    public bool b_CanParry = false;
     public bool b_PerfectParry = false;
     public float timerPerfectParry = .5f;
     public float perfectTimer = 0f;
     public bool b_NormalParry = false;
+    public float currentMaxGuard = 10f;
+    public float currentGuard = 1f;
+    public float guardIncreaseSpeed = 1f;
+    public bool b_CanRecoverParry = true;
 
 
     #endregion
@@ -280,16 +286,32 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     {
 
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
-        Debug.Log(scalarVector, this);
+        //Debug.Log(scalarVector, this);
         currentState.UpdtateState(this);
         if(m_InputMoveVector!=Vector2.zero)
         {
             lastDirectionInput = directionToGo;
         }
-        Debug.Log("CurrentState = " + currentState);
+        //Debug.Log("CurrentState = " + currentState);
         IsDetectingGround();
-        //print("b_CanDash = " + b_CanDash);
+        print("b_IsInvicible = " + b_IsInvicible);
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
+        if (currentGuard> 0)
+        {
+            b_CanParry = true;
+            if (b_Parry)
+            {
+                IncreaseParryVariable(guardIncreaseSpeed);
+            }
+            else
+                IncreaseParryVariable(guardIncreaseSpeed/0.75f);
+
+        }
+        else
+        {
+            IncreaseParryVariableWhenUnderZero(guardIncreaseSpeed);
+            b_CanParry = false;
+        }
 
     }
 
@@ -431,6 +453,28 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         b_AttackInput = true;
         StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
     }
-
     
+    public IEnumerator ChockingTime()
+    {
+        b_CanRecoverParry = false;
+        yield return new WaitForSeconds(1f);
+        b_CanRecoverParry = true;
+
+    }
+
+    private void IncreaseParryVariable(float guardDecreaseSpeed)
+    {
+        if(currentGuard<= currentMaxGuard)
+        {
+            currentGuard += Time.deltaTime * guardDecreaseSpeed;
+        }
+    }
+
+    private void IncreaseParryVariableWhenUnderZero(float guardDecreaseSpeed)
+    {
+        currentGuard += Time.deltaTime * (guardDecreaseSpeed / 1.5f);
+    }
+
+
+
 }

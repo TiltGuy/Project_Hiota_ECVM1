@@ -546,6 +546,7 @@ MonoBehaviour:
   HolsterSword: {fileID: 2633846553027578116}
   HandOfSword: {fileID: 2090796916}
   HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
+  b_IsInvicible: 0
   m_speed: 5
   m_jumpHeight: 2
   m_dashDistance: 5
@@ -587,10 +588,15 @@ MonoBehaviour:
   BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
   timeBufferAttackInput: 0.4
   b_Parry: 0
+  b_CanParry: 1
   b_PerfectParry: 0
   timerPerfectParry: 0.5
   perfectTimer: 0
   b_NormalParry: 0
+  currentMaxGuard: 10
+  currentGuard: 1
+  guardIncreaseSpeed: 0.5
+  b_CanRecoverParry: 1
   GO_MainCamera: {fileID: 0}
   GO_FocusCamera: {fileID: 0}
   currentHiotaTarget: {fileID: 0}
@@ -765,7 +771,7 @@ MonoBehaviour:
   Sword_GO: {fileID: 2247605952555364238}
   swordHitBox: {fileID: 6878089639430701603}
   animator: {fileID: 1670080000814941675}
-  ps: {fileID: 0}
+  ps: {fileID: 4939392671061270624, guid: 2150f8852bcdf4849a1cf5eea8513c49, type: 3}
   controller_FSM: {fileID: 7586485832782531401}
 --- !u!1 &1685074307096713033
 GameObject:
