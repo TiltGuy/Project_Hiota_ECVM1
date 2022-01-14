@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
+        Destroy(gameObject);
         Destroy(Dialogue01);
         Debug.Log("Dialogue OFF");
         

@@ -45,7 +45,7 @@ public class DamageHiota : MonoBehaviour
     {
         hiotaHealth = player.GetComponent<HiotaHealth>();
 
-        if(enemyScript.canAttack == true /*|| staticEnemyScript.canAttack == true*/)
+        if(enemyScript.canAttack == true /*&& isHiotaInvicible*/ /*|| staticEnemyScript.canAttack == true*/)
 		{
             hiotaHealth.Hurt(attackDamage);
             //Attack
