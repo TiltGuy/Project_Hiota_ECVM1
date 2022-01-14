@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public float detectionDistance;
     public float attackDistance;
 
+    //ParticleSystem
+    public Transform AggroTaken;
+    public bool EnemySpotPlayer;
+
     /*public GameObject projectile;
     public float cadenceTir;
     private float timerTir;
@@ -72,6 +76,7 @@ public class Enemy : MonoBehaviour, IDamageable
             if((agent.destination - transform.position).magnitude < 2f)
 			{
                 agent.SetDestination(RandomNavmeshLocation(4f));
+                EnemySpotPlayer = false;
             }
 		}
         else if (dirAvatar.magnitude > attackDistance) 
@@ -79,7 +84,13 @@ public class Enemy : MonoBehaviour, IDamageable
             //Chasse
             agent.SetDestination(refAvatar.position);
             //agent.destination = refAvatar.position;
-		}
+            if (!EnemySpotPlayer)
+            {
+                Instantiate(AggroTaken, transform.position, Quaternion.identity);
+                EnemySpotPlayer = true;
+            }
+            
+        }
         else
 		{
             //Attack

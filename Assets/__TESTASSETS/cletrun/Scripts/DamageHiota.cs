@@ -50,7 +50,6 @@ public class DamageHiota : MonoBehaviour
             hiotaHealth.Hurt(attackDamage);
             //Attack
             enemyAnimator.SetBool("canAttack", true);
-            
         }
 		
         

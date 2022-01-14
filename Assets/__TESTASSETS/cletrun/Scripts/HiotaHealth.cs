@@ -9,8 +9,9 @@ public class HiotaHealth : MonoBehaviour
 	private float _maxHealth;
 	public Image hiotaHealthBar;
 	public float Fill;
+	public Transform Particle_Damage_Taken;
+	public Transform Particle_Health_Recovered;
 
-	
 
 	void Start()
 	{
@@ -35,7 +36,7 @@ public class HiotaHealth : MonoBehaviour
 		//Debug.Log("Health: " + _health);
 		//Debug.Log("Fill : " + Fill);
 		//Debug.Log("Damages : " + attackDamage);
-		
+		Instantiate(Particle_Damage_Taken, transform.position, Quaternion.identity);
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -48,6 +49,7 @@ public class HiotaHealth : MonoBehaviour
 			print("Regeneratiooonnn !!!");
 			Debug.Log("Health: " + _health);
 			Destroy(other.gameObject);
+			Instantiate(Particle_Health_Recovered, transform.position, Quaternion.identity);
 		}
 	}
 

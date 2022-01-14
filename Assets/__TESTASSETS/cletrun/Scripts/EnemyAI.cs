@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     public Transform player;
     private Rigidbody rb;
 
+    //ParticleSystems
+    public Transform AggroTaken;
 
     //Agro
     [SerializeField] private float targetDistance;
@@ -116,6 +118,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
             if (isAgro)
             {
                 agent.destination = target.position;
+                Instantiate(AggroTaken, transform.position, Quaternion.identity);
             }
 
             if (playerDistance <= agroDistance)
