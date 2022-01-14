@@ -582,13 +582,14 @@ MonoBehaviour:
   b_AttackInput: 0
   b_Stunned: 0
   BasicAttackStats: {fileID: 11400000, guid: 8ba78e8f4a1fad5468fdedac4e77c4ff, type: 2}
-  SideAttackStats: {fileID: 11400000, guid: d0fac1ecbed1a804fae59ed04eda90a5, type: 2}
-  FrontAttackStats: {fileID: 11400000, guid: d0fac1ecbed1a804fae59ed04eda90a5, type: 2}
-  BackAttackStats: {fileID: 11400000, guid: d0fac1ecbed1a804fae59ed04eda90a5, type: 2}
+  SideAttackStats: {fileID: 11400000, guid: ea5de9ab7d762ba4690aee1ed4e21e4e, type: 2}
+  FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
+  BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
   timeBufferAttackInput: 0.4
   b_Parry: 0
   b_PerfectParry: 0
   timerPerfectParry: 0.5
+  perfectTimer: 0
   b_NormalParry: 0
   GO_MainCamera: {fileID: 0}
   GO_FocusCamera: {fileID: 0}
@@ -762,6 +763,7 @@ MonoBehaviour:
   Sword_GO: {fileID: 2247605952555364238}
   swordHitBox: {fileID: 6878089639430701603}
   animator: {fileID: 1670080000814941675}
+  ps: {fileID: 0}
   controller_FSM: {fileID: 7586485832782531401}
 --- !u!1 &1685074307096713033
 GameObject:

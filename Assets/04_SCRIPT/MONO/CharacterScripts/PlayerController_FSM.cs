@@ -188,6 +188,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
     public bool b_Parry = false;
     public bool b_PerfectParry = false;
     public float timerPerfectParry = .5f;
+    public float perfectTimer = 0f;
     public bool b_NormalParry = false;
 
 
@@ -288,6 +289,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         Debug.Log("CurrentState = " + currentState);
         IsDetectingGround();
         //print("b_CanDash = " + b_CanDash);
+        Debug.DrawRay(transform.position, directionToFocus, Color.red);
 
     }
 
