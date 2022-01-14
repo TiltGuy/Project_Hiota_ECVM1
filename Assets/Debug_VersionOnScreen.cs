@@ -22,10 +22,4 @@ public class Debug_VersionOnScreen : MonoBehaviour
         textVersionGame.text = devPhaseGame + " Version " + Application.version;
         //Debug.Log("Application Version : " + Application.version);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

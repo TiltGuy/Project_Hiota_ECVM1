@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController_FSM : MonoBehaviour
+public class PlayerController_FSM : MonoBehaviour, IDamageable
 {
     # region DEPENDENCIES
 
@@ -29,10 +29,22 @@ public class PlayerController_FSM : MonoBehaviour
 
     public Transform HandOfSword;
 
+    public CharacterStats_SO HiotaStats;
+
     #endregion
 
 
-    # region INPUT SETTINGS
+    #region STATS VARIABLES
+
+    private float statCurrentHealth;
+    private float currentArmor;
+    [HideInInspector]
+    public bool b_IsInvicible = false;
+
+    #endregion
+
+
+    #region INPUT SETTINGS
 
     [Header(" -- INPUT SETTINGS -- ")]
 
@@ -53,7 +65,7 @@ public class PlayerController_FSM : MonoBehaviour
     [Tooltip("Distance of the dash")]
     [SerializeField] public float m_dashDistance = 5f;
 
-    [Tooltip("the speed of the rotation between the forward of th character and the direction to go")]
+    [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
     public float m_turnSpeed = 20;
 
     [Tooltip("The sum of the x axis of the controller and the ZQSD")]
@@ -64,7 +76,6 @@ public class PlayerController_FSM : MonoBehaviour
 
     [Tooltip("it's the little time before hiota begin to fall")]
     public float maxCoyoteTime = 0.15f;
-    private float coyoteTime = 0;
 
     [Tooltip("it check if Hiota is touching the ground with the Ground Checker")]
     public bool _isGrounded = false;
@@ -88,8 +99,12 @@ public class PlayerController_FSM : MonoBehaviour
     public float dashDistance = 2f;
     public float maxDashTime = .5f;
     public float dashSpeed = 5f;
+    public float dashCooldown = 0.75f;
     public Vector3 dashDirection;
+    public Vector3 lastDirectionInput;
+    public float scalarVector;
     public bool b_WantDash = false;
+    public bool b_CanDash = true;
 
     #endregion
 
@@ -131,10 +146,56 @@ public class PlayerController_FSM : MonoBehaviour
 
     [Header(" -- ATTACK SETTINGS -- ")]
 
-    [Tooltip("The speed of the player")]
-    [SerializeField] public float m_HoldAttackSpeed = 5f;
+    [Tooltip("The speedTurn of the player when it attack")]
+    [SerializeField] public float m_speedTurnWhenAttack = 5f;
 
-    public float maxAttackTime = .2f;
+    [Tooltip("the speed of the rotation between the forward of the character and the direction to go when it's in Focus")]
+    public float m_turnSpeedWhenFocused = 20;
+
+    [Tooltip("the Boolean that check the input")]
+    public bool b_AttackInput = false;
+
+    [Tooltip("the Boolean that if the player is stunned")]
+    public bool b_Stunned = false;
+
+    [Tooltip("the current Stats of the Basic Attack that will be used for the next or current hit")]
+    public AttackStats_SO BasicAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Side Attack that will be used for the next or current hit")]
+    public AttackStats_SO SideAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Front Attack that will be used for the next or current hit")]
+    public AttackStats_SO FrontAttackStats;
+
+    [Tooltip("the current Stats and HitBox of the Back Attack that will be used for the next or current hit")]
+    public AttackStats_SO BackAttackStats;
+
+    [Tooltip("the time unitl the input b_AttackInput will become false")]
+    public float timeBufferAttackInput = .5f;
+
+    //[Tooltip("The speed of the player")]
+    //public float m_HoldAttackSpeed = 5f;
+
+    //[Tooltip("The time remaining of a Attack")]
+    //public float maxAttackTime = .2f;
+
+
+    #endregion
+
+    #region PARRY Settings
+
+    [Header(" -- PARRY SETTINGS -- ")]
+
+    public bool b_Parry = false;
+    public bool b_CanParry = false;
+    public bool b_PerfectParry = false;
+    public float timerPerfectParry = .5f;
+    public float perfectTimer = 0f;
+    public bool b_NormalParry = false;
+    public float currentMaxGuard = 10f;
+    public float currentGuard = 1f;
+    public float guardIncreaseSpeed = 1f;
+    public bool b_CanRecoverParry = true;
 
 
     #endregion
@@ -168,11 +229,6 @@ public class PlayerController_FSM : MonoBehaviour
         get { return Hiota_Anim; }
     }
 
-    /*public Rigidbody Rigidbody
-    {
-        get { return rbody; }
-    }*/
-
     private void Awake()
     {
         characontroller = GetComponent<CharacterController>();
@@ -185,8 +241,24 @@ public class PlayerController_FSM : MonoBehaviour
         controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
         controls.Player.Dash.started += ctx => b_WantDash = true;
+        controls.Player.Dash.canceled += ctx => b_WantDash = false;
+
+        controls.Player.DebugInput.started += ctx => b_Stunned = true;
+        //controls.Player.Dash.started += ctx => TakeDamages(3);
+        controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
+
+        controls.Player.Parry.started += ctx => b_Parry = true;
+        controls.Player.Parry.canceled += ctx => b_Parry = false;
+
+        controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
+        //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
+
+        //initialisation of ALL the STATS SETTINGS
+        statCurrentHealth = HiotaStats.baseHealth;
+        currentArmor = HiotaStats.baseArmor;
+
     }
 
     private void OnEnable()
@@ -202,26 +274,47 @@ public class PlayerController_FSM : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
+        InitializationState(currentState);
+        //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(IsDetectingGround())
+
+        scalarVector = Vector3.Dot(transform.forward, directionToGo);
+        //Debug.Log(scalarVector, this);
+        currentState.UpdtateState(this);
+        if(m_InputMoveVector!=Vector2.zero)
         {
-            coyoteTime = 0;
+            lastDirectionInput = directionToGo;
+        }
+        //Debug.Log("CurrentState = " + currentState);
+        IsDetectingGround();
+        print("b_IsInvicible = " + b_IsInvicible);
+        Debug.DrawRay(transform.position, directionToFocus, Color.red);
+        if (currentGuard> 0)
+        {
+            b_CanParry = true;
+            if (b_Parry)
+            {
+                IncreaseParryVariable(guardIncreaseSpeed);
+            }
+            else
+                IncreaseParryVariable(guardIncreaseSpeed/0.75f);
+
         }
         else
         {
-            coyoteTime += Time.deltaTime;
+            IncreaseParryVariableWhenUnderZero(guardIncreaseSpeed);
+            b_CanParry = false;
         }
 
-        currentState.UpdtateState(this);
-        //Debug.Log("CurrentState = " + currentState);
-        
-
     }
+
 
     public void TransitionToState(State_SO NextState)
     {
@@ -233,32 +326,39 @@ public class PlayerController_FSM : MonoBehaviour
         }
     }
 
-    //Detection ground with a sphere
-    public bool IsDetectingGround()
+    public void InitializationState(State_SO InitState)
     {
-        _isGrounded = Physics.CheckSphere(_groundChecker.position, distanceCheckGround, Ground, QueryTriggerInteraction.Ignore);
-        if (_isGrounded)
+        if (InitState != remainState)
         {
-            return true;
+            currentState = InitState;
+            currentState.EnterState(this);
+        }
+    }
+
+    //Detection ground with a sphere
+    public void IsDetectingGround()
+    {
+        //_isGrounded = Physics.CheckSphere(_groundChecker.position, distanceCheckGround, Ground, QueryTriggerInteraction.Ignore);
+        //if (_isGrounded)
+        //{
+        //    return true;
+        //}
+        //else
+        //    return false;
+        if (characontroller.isGrounded)
+        {
+            _isGrounded = true;
         }
         else
-            return false;
+        {
+            _isGrounded = false;
+        }
         //Debug.DrawLine(transform.position,)
         //return coyoteTime < maxCoyoteTime;
     }
 
     //Detection ground with the function IsDetectingGround and the Coyote Time
-    public bool IsGrounded()
-    {
-        if (IsDetectingGround() && (coyoteTime < maxCoyoteTime))
-        {
-            return true;
-        }
-        else
-            return false;
-        //Debug.DrawLine(transform.position,)
-        //return coyoteTime < maxCoyoteTime;
-    }
+    
 
     void OnDrawGizmosSelected()
     {
@@ -288,7 +388,7 @@ public class PlayerController_FSM : MonoBehaviour
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(true);
             GO_MainCamera.SetActive(false);
-            Debug.Log(b_IsFocusing);
+            //Debug.Log(b_IsFocusing);
         }
         else
         {
@@ -296,7 +396,7 @@ public class PlayerController_FSM : MonoBehaviour
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(false);
             GO_MainCamera.SetActive(true);
-            Debug.Log(b_IsFocusing);
+            Debug.Log(b_IsFocusing, this);
         }
     }
 
@@ -308,5 +408,73 @@ public class PlayerController_FSM : MonoBehaviour
             Gizmos.DrawWireSphere(eyes.position, .5f);
         }
     }
+
+    public void TakeDamages(float damageTaken, Transform striker)
+    {
+        float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
+        LoseHP(damageTaken);
+        //LoseHP(damageTaken, currentHealth);
+        //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
+        Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
+    }
+
+    private float CalculateFinalDamages(float damages, float Armor)
+    {
+        float OutputDamage = Mathf.Clamp(damages - Armor, 0, damages);
+        return OutputDamage;
+    }
+
+    private void LoseHP(float damageTaken)
+    {
+        if (statCurrentHealth > 0)
+        {
+            statCurrentHealth -= damageTaken;
+            statCurrentHealth = Mathf.Clamp(statCurrentHealth, 0, statCurrentHealth);
+        }
+    }
+
+    private IEnumerator BufferingAttackInputCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        b_AttackInput = false;
+    }
+
+    public IEnumerator BufferingDashEvent()
+    {
+        b_CanDash = false;
+        yield return new WaitForSeconds(dashCooldown);
+        b_CanDash = true;
+        b_WantDash = false;
+    }
+
+    private void TakeAttackInputInBuffer()
+    {
+        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        b_AttackInput = true;
+        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+    }
+    
+    public IEnumerator ChockingTime()
+    {
+        b_CanRecoverParry = false;
+        yield return new WaitForSeconds(1f);
+        b_CanRecoverParry = true;
+
+    }
+
+    private void IncreaseParryVariable(float guardDecreaseSpeed)
+    {
+        if(currentGuard<= currentMaxGuard)
+        {
+            currentGuard += Time.deltaTime * guardDecreaseSpeed;
+        }
+    }
+
+    private void IncreaseParryVariableWhenUnderZero(float guardDecreaseSpeed)
+    {
+        currentGuard += Time.deltaTime * (guardDecreaseSpeed / 1.5f);
+    }
+
+
 
 }
