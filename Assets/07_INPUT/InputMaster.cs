@@ -172,7 +172,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""MoveVectorGP"",
                     ""id"": ""0dbe3ccd-1498-4282-93fb-e4f3d6a5dd0d"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

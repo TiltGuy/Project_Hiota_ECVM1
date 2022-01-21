@@ -11,7 +11,8 @@
                     "id": "8af3507c-1113-41f5-90cd-455185c0aa95",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Movement",
@@ -19,7 +20,8 @@
                     "id": "9de3f70e-88c7-4177-af9e-e167c7480a51",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "FocusTarget",
@@ -27,7 +29,8 @@
                     "id": "2fba804d-867e-40e6-86fe-9f6db08455d7",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
@@ -35,7 +38,8 @@
                     "id": "744f6da4-bab3-4d14-af69-96eba7d5e58e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "LookCamera",
@@ -43,7 +47,8 @@
                     "id": "051e5a91-15fc-497d-acb2-23bb54c22404",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Parry",
@@ -51,7 +56,8 @@
                     "id": "5a451e50-c5f7-4fa8-9650-40f9b883550b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DebugInput",
@@ -59,7 +65,8 @@
                     "id": "7590bd8c-b82e-4480-b1fd-3ac5d80f8284",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -143,7 +150,7 @@
                 {
                     "name": "MoveVectorGP",
                     "id": "0dbe3ccd-1498-4282-93fb-e4f3d6a5dd0d",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
