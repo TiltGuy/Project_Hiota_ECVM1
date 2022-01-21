@@ -489,36 +489,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2049625261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &256718795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256718794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CollideAgainst:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IgnoreTag: 
-  m_TransparentLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
-  m_AvoidObstacles: 1
-  m_DistanceLimit: 0
-  m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
-  m_Strategy: 0
-  m_MaximumEffort: 4
-  m_SmoothingTime: 1
-  m_Damping: 0.31
-  m_DampingWhenOccluded: 0.55
-  m_OptimalTargetDistance: 0
 --- !u!4 &445253783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4847823970780559724, guid: 652126379b8af67408b67a99df833dcc,
@@ -1517,16 +1487,6 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 6630128640909138147}
-    - target: {fileID: 8358615981214233392, guid: ab47bea135be49c4bbb0d34ee684d780,
-        type: 3}
-      propertyPath: m_XAxis.m_Wrap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8358615981214233392, guid: ab47bea135be49c4bbb0d34ee684d780,
-        type: 3}
-      propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7899808
-      objectReference: {fileID: 0}
     - target: {fileID: 8358615981214233393, guid: ab47bea135be49c4bbb0d34ee684d780,
         type: 3}
       propertyPath: m_RootOrder
@@ -1626,36 +1586,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 678013460135026689, guid: eb5592d877b97ca449ceac69093e5f02,
-        type: 3}
-      propertyPath: m_LookaheadTime
-      value: 0.183
-      objectReference: {fileID: 0}
-    - target: {fileID: 678013460135026689, guid: eb5592d877b97ca449ceac69093e5f02,
-        type: 3}
-      propertyPath: m_SoftZoneWidth
-      value: 0.096
-      objectReference: {fileID: 0}
-    - target: {fileID: 678013460135026689, guid: eb5592d877b97ca449ceac69093e5f02,
-        type: 3}
-      propertyPath: m_SoftZoneHeight
-      value: 0.712
-      objectReference: {fileID: 0}
-    - target: {fileID: 678013460135026689, guid: eb5592d877b97ca449ceac69093e5f02,
-        type: 3}
-      propertyPath: m_VerticalDamping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 678013460135026689, guid: eb5592d877b97ca449ceac69093e5f02,
-        type: 3}
-      propertyPath: m_HorizontalDamping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 678013460135026689, guid: eb5592d877b97ca449ceac69093e5f02,
-        type: 3}
-      propertyPath: m_LookaheadSmoothing
-      value: 1.7
-      objectReference: {fileID: 0}
     - target: {fileID: 678013460300901269, guid: eb5592d877b97ca449ceac69093e5f02,
         type: 3}
       propertyPath: m_Name
