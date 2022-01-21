@@ -294,7 +294,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
         }
         //Debug.Log("CurrentState = " + currentState);
         IsDetectingGround();
-        print("b_IsInvicible = " + b_IsInvicible);
+        //print("b_IsInvicible = " + b_IsInvicible);
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
         if (currentGuard> 0)
         {

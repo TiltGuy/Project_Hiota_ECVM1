@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8358615981214233393}
   - component: {fileID: 8358615981214233392}
   - component: {fileID: 8358615981214233398}
+  - component: {fileID: 256718795}
   m_Layer: 0
   m_Name: Player_MainCamera_TPS
   m_TagString: Untagged
@@ -148,3 +149,33 @@ MonoBehaviour:
   PlayerIndex: -1
   XYAxis: {fileID: -4571228542308319918, guid: 92c900b86825dbc40aadde5204594169, type: 3}
   ZAxis: {fileID: 0}
+--- !u!114 &256718795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8358615981214233395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 21
+  m_IgnoreTag: Player
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 5
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 1
+  m_Damping: 0.31
+  m_DampingWhenOccluded: 0.55
+  m_OptimalTargetDistance: 0
