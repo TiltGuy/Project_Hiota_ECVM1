@@ -13,7 +13,7 @@ public class DamageHiota : MonoBehaviour
     public Animator enemyAnimator;
     public Enemy enemyScript;
     //public StaticEnemyAI staticEnemyScript;
-    public PlayerController_FSM playerScript;
+    public Controller_FSM playerScript;
 
     public Transform player;
     
