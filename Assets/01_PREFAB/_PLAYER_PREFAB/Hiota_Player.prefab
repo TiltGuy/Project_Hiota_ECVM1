@@ -469,8 +469,8 @@ GameObject:
   - component: {fileID: 1163913624370452289}
   - component: {fileID: 1163913624370452318}
   - component: {fileID: 6634799758529909337}
-  - component: {fileID: 7586485832782531401}
   - component: {fileID: 1758020377}
+  - component: {fileID: 1645655096204719503}
   m_Layer: 0
   m_Name: Hiota_Player
   m_TagString: Player
@@ -524,85 +524,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &7586485832782531401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163913624370452317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b5be99b92af77478488f396b988ba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_cameraBaseDirection: {fileID: 0}
-  Ground:
-    serializedVersion: 2
-    m_Bits: 64
-  _groundChecker: {fileID: 6188173131968936273}
-  characontroller: {fileID: 6634799758529909337}
-  Hiota_Anim: {fileID: 1670080000814941675}
-  HolsterSword: {fileID: 2633846553027578116}
-  HandOfSword: {fileID: 2090796916}
-  HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
-  b_IsInvicible: 0
-  m_speed: 5
-  m_jumpHeight: 2
-  m_dashDistance: 5
-  m_turnSpeed: 20
-  m_finalInputCharacterX: 0
-  m_finalInputCharacterZ: 0
-  maxCoyoteTime: 0.15
-  _isGrounded: 0
-  distanceCheckGround: 0.45
-  b_IsFocusing: 0
-  gravity: -9.17
-  dashVectorMultiplicator: 1
-  dashDistance: 2
-  maxDashTime: 0.5
-  dashSpeed: 5
-  dashCooldown: 0.75
-  dashDirection: {x: 0, y: 0, z: 0}
-  lastDirectionInput: {x: 0, y: 0, z: 0}
-  scalarVector: 0
-  b_WantDash: 0
-  b_CanDash: 1
-  m_camF: {x: 0, y: 0, z: 0}
-  m_camR: {x: 0, y: 0, z: 0}
-  directionToGo: {x: 0, y: 0, z: 0}
-  directionToFocus: {x: 0, y: 0, z: 0}
-  currentDirection: {x: 0, y: 0, z: 0}
-  m_inputsKeyBoard: {x: 0, y: 0, z: 0}
-  m_InputMoveVector: {x: 0, y: 0}
-  m_LeftStickControllerX: 0
-  m_LeftStickControllerZ: 0
-  m_accelMovController: 0.4
-  m_speedTurnWhenAttack: 5
-  m_turnSpeedWhenFocused: 20
-  b_AttackInput: 0
-  b_Stunned: 0
-  BasicAttackStats: {fileID: 11400000, guid: 8ba78e8f4a1fad5468fdedac4e77c4ff, type: 2}
-  SideAttackStats: {fileID: 11400000, guid: ea5de9ab7d762ba4690aee1ed4e21e4e, type: 2}
-  FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
-  BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
-  timeBufferAttackInput: 0.4
-  b_Parry: 0
-  b_CanParry: 1
-  b_PerfectParry: 0
-  timerPerfectParry: 0.5
-  perfectTimer: 0
-  b_NormalParry: 0
-  currentMaxGuard: 20
-  currentGuard: 1
-  guardIncreaseSpeed: 0.9
-  b_CanRecoverParry: 1
-  GO_MainCamera: {fileID: 0}
-  GO_FocusCamera: {fileID: 0}
-  currentHiotaTarget: {fileID: 0}
-  currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
-  remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
-  eyes: {fileID: 6425963666598805639}
 --- !u!114 &1758020377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +555,85 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1645655096204719503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163913624370452317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1762f484d7e53e94f8a796251e37b346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_cameraBaseDirection: {fileID: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 1
+  _groundChecker: {fileID: 1886075193049011714}
+  characontroller: {fileID: 6634799758529909337}
+  Hiota_Anim: {fileID: 1670080000814941675}
+  HolsterSword: {fileID: 2633846553027578116}
+  HandOfSword: {fileID: 2090796916}
+  HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
+  b_IsInvicible: 0
+  m_speed: 5
+  m_jumpHeight: 2
+  m_dashDistance: 5
+  m_turnSpeed: 20
+  m_finalInputCharacterX: 0
+  m_finalInputCharacterZ: 0
+  maxCoyoteTime: 0.15
+  _isGrounded: 0
+  distanceCheckGround: 0.25
+  b_IsFocusing: 0
+  gravity: -9.17
+  dashVectorMultiplicator: 1
+  dashDistance: 2
+  maxDashTime: 0.5
+  dashSpeed: 5
+  dashCooldown: 0.75
+  dashDirection: {x: 0, y: 0, z: 0}
+  lastDirectionInput: {x: 0, y: 0, z: 0}
+  scalarVector: 0
+  b_WantDash: 0
+  b_CanDash: 1
+  m_camF: {x: 0, y: 0, z: 0}
+  m_camR: {x: 0, y: 0, z: 0}
+  directionToGo: {x: 0, y: 0, z: 0}
+  directionToFocus: {x: 0, y: 0, z: 0}
+  currentDirection: {x: 0, y: 0, z: 0}
+  m_inputsKeyBoard: {x: 0, y: 0, z: 0}
+  m_InputMoveVector: {x: 0, y: 0}
+  m_LeftStickControllerX: 0
+  m_LeftStickControllerZ: 0
+  m_accelMovController: 0
+  m_speedTurnWhenAttack: 5
+  m_turnSpeedWhenFocused: 20
+  b_AttackInput: 0
+  b_Stunned: 0
+  BasicAttackStats: {fileID: 11400000, guid: 8ba78e8f4a1fad5468fdedac4e77c4ff, type: 2}
+  SideAttackStats: {fileID: 11400000, guid: ea5de9ab7d762ba4690aee1ed4e21e4e, type: 2}
+  FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
+  BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
+  timeBufferAttackInput: 0.4
+  b_Parry: 0
+  b_CanParry: 1
+  b_PerfectParry: 0
+  timerPerfectParry: 0.5
+  perfectTimer: 0
+  b_NormalParry: 0
+  currentMaxGuard: 10
+  currentGuard: 1
+  guardIncreaseSpeed: 1
+  b_CanRecoverParry: 1
+  GO_MainCamera: {fileID: 0}
+  GO_FocusCamera: {fileID: 0}
+  currentHiotaTarget: {fileID: 0}
+  currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+  remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  eyes: {fileID: 6425963666598805639}
 --- !u!1 &1281754823036717357
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
   swordHitBox: {fileID: 6878089639430701603}
   animator: {fileID: 1670080000814941675}
   ps: {fileID: 4939392671061270624, guid: 2150f8852bcdf4849a1cf5eea8513c49, type: 3}
-  controller_FSM: {fileID: 7586485832782531401}
+  controller_FSM: {fileID: 1645655096204719503}
 --- !u!1 &1685074307096713033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,12 +1916,10 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2939,7 +2937,7 @@ PrefabInstance:
         type: 3}
       propertyPath: controller_FSM
       value: 
-      objectReference: {fileID: 7586485832782531401}
+      objectReference: {fileID: 0}
     - target: {fileID: 3934317114346925758, guid: 71c95d0aabfc7da41a097fa9fec2ccba,
         type: 3}
       propertyPath: m_RootOrder

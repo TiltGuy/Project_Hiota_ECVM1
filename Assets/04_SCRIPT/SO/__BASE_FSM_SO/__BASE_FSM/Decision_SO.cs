@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class Decision_SO : ScriptableObject
 {
-    public virtual bool Decide(PlayerController_FSM controller)
+    public virtual bool Decide(Controller_FSM controller)
     {
         bool checkBoolean = true;
         Debug.Log(checkBoolean);
         return checkBoolean;
     }
 
-    public bool IsWantingToMove(PlayerController_FSM controller)
+    public bool IsWantingToMove(Controller_FSM controller)
     {
         Vector2 m_InputVector = controller.m_InputMoveVector;
 
@@ -25,7 +25,7 @@ public abstract class Decision_SO : ScriptableObject
         }
     }
 
-    public bool NotWantingToMove(PlayerController_FSM controller)
+    public bool NotWantingToMove(Controller_FSM controller)
     {
         Vector2 m_InputVector = controller.m_InputMoveVector;
 
@@ -39,27 +39,27 @@ public abstract class Decision_SO : ScriptableObject
         }
     }
 
-    public bool FocusModeCheckBoolean(PlayerController_FSM controller)
+    public bool FocusModeCheckBoolean(Controller_FSM controller)
     {
         return controller.b_IsFocusing;
     }
 
-    public bool CheckAttackInput(PlayerController_FSM controller)
+    public bool CheckAttackInput(Controller_FSM controller)
     {
         return controller.b_AttackInput;
     }
 
-    public bool CheckStunBoolean(PlayerController_FSM controller)
+    public bool CheckStunBoolean(Controller_FSM controller)
     {
         return controller.b_Stunned;
     }
 
-    public bool CheckBoolean(PlayerController_FSM controller)
+    public bool CheckBoolean(Controller_FSM controller)
     {
         return controller.b_Parry;
     }
 
-    public bool CheckDashBoolean(PlayerController_FSM controller)
+    public bool CheckDashBoolean(Controller_FSM controller)
     {
         return controller.b_WantDash;
     }

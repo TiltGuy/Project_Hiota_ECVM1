@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableStateMachine/Decisions/Player/FocusModeDecision")]
 public class FocusModeDecision : Decision_SO
 {
-    public override bool Decide(PlayerController_FSM controller)
+    public override bool Decide(Controller_FSM controller)
     {
         return FocusModeCheckBoolean(controller);
     }

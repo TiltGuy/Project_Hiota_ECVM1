@@ -8,7 +8,7 @@ public class MoveFocus_Action : Action_SO
     public bool b_ConstantMove;
     public bool b_UseActionSpeed;
     public float speedMovement;
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         if(!b_ConstantMove)
         {
@@ -16,7 +16,7 @@ public class MoveFocus_Action : Action_SO
         }
     }
 
-    private void ControlledMoveFocusMode(PlayerController_FSM controller)
+    private void ControlledMoveFocusMode(Controller_FSM controller)
     {
         float speed;
         if(b_UseActionSpeed)

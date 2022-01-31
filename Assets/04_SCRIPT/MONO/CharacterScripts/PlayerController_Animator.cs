@@ -15,7 +15,7 @@ public class PlayerController_Animator : MonoBehaviour
     public Animator animator;
     public Transform ps;
     [SerializeField]
-    private PlayerController_FSM controller_FSM;
+    private Controller_FSM controller_FSM;
     private Transform basicAttackHitBoxPrefab;
     private Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;

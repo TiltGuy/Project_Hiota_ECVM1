@@ -31,7 +31,7 @@ public class State_SO : ScriptableObject
     public Color sceneGizmosColor = Color.grey;
     
 
-    public void UpdtateState(PlayerController_FSM controller)
+    public void UpdtateState(Controller_FSM controller)
     {
         if(b_TransitionsAfterCountdown)
         {
@@ -55,7 +55,7 @@ public class State_SO : ScriptableObject
         //Debug.Log(stateTimer);
     }
 
-    private void DoActions(PlayerController_FSM controller, Action_SO[] actions)
+    private void DoActions(Controller_FSM controller, Action_SO[] actions)
     {
         foreach(Action_SO a in actions)
         {
@@ -63,7 +63,7 @@ public class State_SO : ScriptableObject
         }
     }
 
-    private void CheckTransitions(PlayerController_FSM controller)
+    private void CheckTransitions(Controller_FSM controller)
     {
         foreach(Transition transition in transitions)
         {
@@ -80,7 +80,7 @@ public class State_SO : ScriptableObject
         }
     }
 
-    private void CheckTimedStateTransitions(PlayerController_FSM controller)
+    private void CheckTimedStateTransitions(Controller_FSM controller)
     {
         if (transitionsAfterCountdown == null)
         {
@@ -103,7 +103,7 @@ public class State_SO : ScriptableObject
         }
     }
 
-    public void EnterState(PlayerController_FSM controller)
+    public void EnterState(Controller_FSM controller)
     {
         if(b_TransitionsAfterCountdown)
         {
@@ -113,7 +113,7 @@ public class State_SO : ScriptableObject
         DoActions(controller, actionsEnter);
     }
 
-    public void ExitState (PlayerController_FSM controller)
+    public void ExitState (Controller_FSM controller)
     {
         //Debug.Log(controller.currentState + "EXIT");
         DoActions(controller, actionsExit);

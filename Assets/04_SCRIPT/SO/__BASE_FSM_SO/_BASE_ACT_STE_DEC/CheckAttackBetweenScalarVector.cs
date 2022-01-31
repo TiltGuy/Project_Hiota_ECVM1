@@ -9,12 +9,12 @@ public class CheckAttackBetweenScalarVector : Decision_SO
     public float min;
     public float max;
 
-    public override bool Decide(PlayerController_FSM controller)
+    public override bool Decide(Controller_FSM controller)
     {
         return AttackWithScalarVector(controller, controller.scalarVector);
     }
 
-    private bool AttackWithScalarVector(PlayerController_FSM controller, float scalarVector)
+    private bool AttackWithScalarVector(Controller_FSM controller, float scalarVector)
     {
         if (base.CheckInBetween(scalarVector, min, max))
         {

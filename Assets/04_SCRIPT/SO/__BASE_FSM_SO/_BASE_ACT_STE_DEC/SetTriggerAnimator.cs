@@ -7,7 +7,7 @@ public class SetTriggerAnimator : Action_SO
 {
     public string NameofTrigger;
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         ChangeAnimatorTrigger(controller, NameofTrigger);
     }

@@ -14,7 +14,7 @@ public class ACT_DASH : Action_SO
     private bool b_DashToEnemy;
     public bool b_ConstraintDash = false;
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         ConstraintMove(controller);
         if(b_DashToEnemy)
@@ -26,7 +26,7 @@ public class ACT_DASH : Action_SO
         }
     }
 
-    private void ConstraintMove(PlayerController_FSM controller)
+    private void ConstraintMove(Controller_FSM controller)
     {
         
         
@@ -43,7 +43,7 @@ public class ACT_DASH : Action_SO
         
     }
 
-    private void RotateEntityToEnemy(PlayerController_FSM controller)
+    private void RotateEntityToEnemy(Controller_FSM controller)
     {
         Vector3 hiotaPos = controller.transform.position;
         Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;

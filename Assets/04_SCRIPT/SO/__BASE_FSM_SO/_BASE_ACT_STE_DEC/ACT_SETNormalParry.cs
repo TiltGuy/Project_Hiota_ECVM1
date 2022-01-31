@@ -6,12 +6,12 @@ using UnityEngine;
 public class ACT_SETNormalParry : Action_SO
 {
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         SetPefectToNormalParry(controller);
     }
 
-    private void SetPefectToNormalParry(PlayerController_FSM controller)
+    private void SetPefectToNormalParry(Controller_FSM controller)
     {
         if(controller.perfectTimer < controller.timerPerfectParry)
         {

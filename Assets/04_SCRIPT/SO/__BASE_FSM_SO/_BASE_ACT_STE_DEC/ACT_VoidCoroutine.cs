@@ -7,12 +7,12 @@ public class ACT_VoidCoroutine : Action_SO
 {
     public string coroutineName;
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         PlayCoroutine(controller);
     }
 
-    public void PlayCoroutine(PlayerController_FSM controller)
+    public void PlayCoroutine(Controller_FSM controller)
     {
         controller.StartCoroutine(coroutineName);
     }

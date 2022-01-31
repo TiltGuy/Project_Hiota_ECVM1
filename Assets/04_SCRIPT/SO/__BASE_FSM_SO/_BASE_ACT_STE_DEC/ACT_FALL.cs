@@ -8,12 +8,12 @@ public class ACT_FALL : Action_SO
     [SerializeField]
     private float gravityFactor = 1f;
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         Fall(controller);
     }
 
-    private void Fall(PlayerController_FSM controller)
+    private void Fall(Controller_FSM controller)
     {
         
 

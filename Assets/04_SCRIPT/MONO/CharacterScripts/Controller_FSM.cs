@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController_FSM : MonoBehaviour, IDamageable
+public class Controller_FSM : MonoBehaviour, IDamageable
 {
     # region DEPENDENCIES
 
@@ -48,7 +48,7 @@ public class PlayerController_FSM : MonoBehaviour, IDamageable
 
     [Header(" -- INPUT SETTINGS -- ")]
 
-    public InputMaster controls;
+    private InputMaster controls;
 
     #endregion
 

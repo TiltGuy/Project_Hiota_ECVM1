@@ -4,27 +4,27 @@ using UnityEngine;
 
 public abstract class Action_SO : ScriptableObject
 {
-    public virtual void Act(PlayerController_FSM controller)
+    public virtual void Act(Controller_FSM controller)
     {
         Debug.Log("Ondebug!!!!", this);
     }
 
-    public void ChangeAnimatorBoolean(PlayerController_FSM controller, string boolName, bool boolTargetValue)
+    public void ChangeAnimatorBoolean(Controller_FSM controller, string boolName, bool boolTargetValue)
     {
         controller.Animator.SetBool(boolName, boolTargetValue);
     }
 
-    public void ChangeAnimatorTrigger(PlayerController_FSM controller, string triggerName)
+    public void ChangeAnimatorTrigger(Controller_FSM controller, string triggerName)
     {
         controller.Animator.SetTrigger(triggerName);
     }
 
-    public void SetCurrentAttackStats(PlayerController_FSM controller, AttackStats_SO attackStats_SO)
+    public void SetCurrentAttackStats(Controller_FSM controller, AttackStats_SO attackStats_SO)
     {
         controller.BasicAttackStats = attackStats_SO;
     }
 
-    public void DebugCurrenState(PlayerController_FSM controller)
+    public void DebugCurrenState(Controller_FSM controller)
     {
         Debug.Log("Hiota est dans l'état " + controller.currentState, this);
     }

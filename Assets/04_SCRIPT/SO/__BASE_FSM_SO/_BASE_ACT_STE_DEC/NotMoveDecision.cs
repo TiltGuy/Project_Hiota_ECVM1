@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableStateMachine/Decisions/Player/NotMoveInputVector_Decision")]
 public class NotMoveDecision : Decision_SO
 {
-    public override bool Decide(PlayerController_FSM controller)
+    public override bool Decide(Controller_FSM controller)
     {
         return base.NotWantingToMove(controller);
     }

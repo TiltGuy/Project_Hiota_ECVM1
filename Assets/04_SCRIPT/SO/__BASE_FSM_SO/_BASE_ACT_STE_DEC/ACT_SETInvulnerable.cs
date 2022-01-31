@@ -8,12 +8,12 @@ public class ACT_SETInvulnerable : Action_SO
     [SerializeField]
     private bool targetValue;
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         SetInvulnerableVariable(controller);
     }
 
-    private void SetInvulnerableVariable(PlayerController_FSM controller)
+    private void SetInvulnerableVariable(Controller_FSM controller)
     {
         controller.b_IsInvicible = targetValue;
     }

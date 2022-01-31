@@ -13,7 +13,7 @@ public class ACT_MOVE : Action_SO
     [SerializeField]
     private float speedMovementAction;
 
-    public override void Act(PlayerController_FSM controller)
+    public override void Act(Controller_FSM controller)
     {
         if(!b_ConstantMove)
         {
@@ -25,7 +25,7 @@ public class ACT_MOVE : Action_SO
         }
     }
 
-    private void ControlledMove(PlayerController_FSM controller)
+    private void ControlledMove(Controller_FSM controller)
     {
         float currentSpeed;
         float maxSpeed;
@@ -104,7 +104,7 @@ public class ACT_MOVE : Action_SO
 
     }
 
-    private void ConstraintMove(PlayerController_FSM controller)
+    private void ConstraintMove(Controller_FSM controller)
     {
         float currentSpeed;
         float maxSpeed;

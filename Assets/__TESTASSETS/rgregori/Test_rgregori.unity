@@ -1151,18 +1151,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1381324546 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7586485832782531401, guid: dda6bb067db491247983c3a9c3d2c278,
-    type: 3}
-  m_PrefabInstance: {fileID: 2012046048076637567}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b5be99b92af77478488f396b988ba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1479872525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1264,7 +1252,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerScript
       value: 
-      objectReference: {fileID: 1381324546}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee68a472d7955454ca1b838390e9d4a4, type: 3}
 --- !u!4 &1479872526 stripped
@@ -2237,22 +2225,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hiota_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7586485832782531401, guid: dda6bb067db491247983c3a9c3d2c278,
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: GO_MainCamera
       value: 
       objectReference: {fileID: 256718794}
-    - target: {fileID: 7586485832782531401, guid: dda6bb067db491247983c3a9c3d2c278,
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: GO_FocusCamera
       value: 
       objectReference: {fileID: 1745112729}
-    - target: {fileID: 7586485832782531401, guid: dda6bb067db491247983c3a9c3d2c278,
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: currentHiotaTarget
       value: 
       objectReference: {fileID: 1479872526}
-    - target: {fileID: 7586485832782531401, guid: dda6bb067db491247983c3a9c3d2c278,
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: m_cameraBaseDirection
       value: 
