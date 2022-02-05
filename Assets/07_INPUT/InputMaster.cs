@@ -328,7 +328,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""id"": ""601d1cc7-8976-4409-b59b-f1089ae7646d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(max=1),NormalizeVector2"",
                     ""groups"": ""KeyB&Mouse"",
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,

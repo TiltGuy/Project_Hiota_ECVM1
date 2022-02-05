@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 6634799758529909337}
   - component: {fileID: 1758020377}
   - component: {fileID: 1645655096204719503}
+  - component: {fileID: 849633942}
   m_Layer: 0
   m_Name: Hiota_Player
   m_TagString: Player
@@ -579,11 +580,8 @@ MonoBehaviour:
   HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
   b_IsInvicible: 0
   m_speed: 5
-  m_jumpHeight: 2
   m_dashDistance: 5
   m_turnSpeed: 20
-  m_finalInputCharacterX: 0
-  m_finalInputCharacterZ: 0
   maxCoyoteTime: 0.15
   _isGrounded: 0
   distanceCheckGround: 0.25
@@ -634,6 +632,25 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
   remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   eyes: {fileID: 6425963666598805639}
+--- !u!114 &849633942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163913624370452317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6582034d29117e147a26ba70fa632f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
+  _health: 0
+  hiotaHealthBar: {fileID: 0}
+  Fill: 0
+  Particle_Damage_Taken: {fileID: 0}
+  Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
+    type: 3}
 --- !u!1 &1281754823036717357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,15 +3107,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951a88ce9a320344e9b0f773f9a0994f, type: 3}
---- !u!136 &6878089639430701603 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 7546476557667592041, guid: 951a88ce9a320344e9b0f773f9a0994f,
-    type: 3}
-  m_PrefabInstance: {fileID: 4019913913437594954}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &461441574648275578 stripped
+--- !u!4 &2046464115410842287 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3580015139419113264, guid: 951a88ce9a320344e9b0f773f9a0994f,
+  m_CorrespondingSourceObject: {fileID: 3147763401422051301, guid: 951a88ce9a320344e9b0f773f9a0994f,
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}
@@ -3108,9 +3119,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2046464115410842287 stripped
+--- !u!4 &461441574648275578 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3147763401422051301, guid: 951a88ce9a320344e9b0f773f9a0994f,
+  m_CorrespondingSourceObject: {fileID: 3580015139419113264, guid: 951a88ce9a320344e9b0f773f9a0994f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4019913913437594954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &6878089639430701603 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7546476557667592041, guid: 951a88ce9a320344e9b0f773f9a0994f,
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}

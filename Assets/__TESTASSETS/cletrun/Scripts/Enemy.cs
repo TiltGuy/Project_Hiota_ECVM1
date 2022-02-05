@@ -110,11 +110,6 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    private void FixedUpdate()
-    {
-
-    }
-
     public Vector3 RandomNavmeshLocation(float radius)
     {
         /*Vector3 randomDirection = Random.insideUnitSphere * radius;

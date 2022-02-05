@@ -707,6 +707,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+--- !u!114 &849633941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
+    type: 3}
+  m_PrefabInstance: {fileID: 2012046048076637567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1762f484d7e53e94f8a796251e37b346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &865651401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1160,11 +1172,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 690514969734133952, guid: ee68a472d7955454ca1b838390e9d4a4,
         type: 3}
-      propertyPath: canDetect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 690514969734133952, guid: ee68a472d7955454ca1b838390e9d4a4,
-        type: 3}
       propertyPath: refAvatar
       value: 
       objectReference: {fileID: 849830671508615742}
@@ -1252,7 +1259,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 849633941}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee68a472d7955454ca1b838390e9d4a4, type: 3}
 --- !u!4 &1479872526 stripped
@@ -1496,6 +1503,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639642244}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1670110629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 65443893392472401, guid: 22e21b8aab13a79409c1e4b303d06485,
+    type: 3}
+  m_PrefabInstance: {fileID: 865651401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745112729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 678013460300901269, guid: eb5592d877b97ca449ceac69093e5f02,
@@ -2165,6 +2184,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 849633942, guid: dda6bb067db491247983c3a9c3d2c278, type: 3}
+      propertyPath: hiotaHealthBar
+      value: 
+      objectReference: {fileID: 1670110629}
     - target: {fileID: 1163913624370452289, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: m_RootOrder

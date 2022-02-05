@@ -16,8 +16,11 @@ public class DamageHiota : MonoBehaviour
     public Controller_FSM playerScript;
 
     public Transform player;
-    
-    
+
+    private void Awake()
+    {
+        hiotaHealth = player.GetComponent<HiotaHealth>();
+    }
 
     void Start()
 	{
@@ -34,7 +37,7 @@ public class DamageHiota : MonoBehaviour
         }
         else if (TimerForNextAttack <= 0)
         {
-            AttackHiota();
+            BeginAttack();
             TimerForNextAttack = attackCooldown;
             
         }
@@ -42,19 +45,24 @@ public class DamageHiota : MonoBehaviour
     
 
     //mettre sur un script au même niveau du mesh + animator (animator sur le mesh)
-    public void AttackHiota()
+    private void BeginAttack()
     {
-        hiotaHealth = player.GetComponent<HiotaHealth>();
+        
 
         if(enemyScript.canAttack == true && playerScript.b_Parry == false/*|| staticEnemyScript.canAttack == true*/)
 		{
-            hiotaHealth.Hurt(attackDamage);
-            //Attack
             enemyAnimator.SetBool("canAttack", true);
         }
-		
-        
-        
+        else
+            enemyAnimator.SetBool("canAttack", false);
+
+
+
+    }
+
+    public void AttackHiota(float damages)
+    {
+        hiotaHealth.Hurt(damages);
     }
 
 }

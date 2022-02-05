@@ -59,20 +59,11 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("The speed of the player")]
     [SerializeField] public float m_speed = 5f;
 
-    [Tooltip("Height of the jump")]
-    [SerializeField] public float m_jumpHeight = 2f;
-
     [Tooltip("Distance of the dash")]
     [SerializeField] public float m_dashDistance = 5f;
 
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
     public float m_turnSpeed = 20;
-
-    [Tooltip("The sum of the x axis of the controller and the ZQSD")]
-    [SerializeField] private float m_finalInputCharacterX;
-
-    [Tooltip("The sum of the z axis of the controller and the ZQSD")]
-    [SerializeField] private float m_finalInputCharacterZ;
 
     [Tooltip("it's the little time before hiota begin to fall")]
     public float maxCoyoteTime = 0.15f;
@@ -439,6 +430,12 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         b_AttackInput = false;
     }
 
+    private void TakeAttackInputInBuffer()
+    {
+        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        b_AttackInput = true;
+        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+    }
     public IEnumerator BufferingDashEvent()
     {
         b_CanDash = false;
@@ -447,13 +444,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         b_WantDash = false;
     }
 
-    private void TakeAttackInputInBuffer()
-    {
-        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
-        b_AttackInput = true;
-        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
-    }
-    
     public IEnumerator ChockingTime()
     {
         b_CanRecoverParry = false;
