@@ -15,14 +15,22 @@ public class HiotaHealth : MonoBehaviour
 	public Transform Particle_Damage_Taken;
 	public Transform Particle_Health_Recovered;
 
+	private Controller_FSM controller;
+
+    private void Awake()
+    {
+		controller = GetComponent<Controller_FSM>();
+    }
 
     void Start()
 	{
 		
-        _health = HiotaStats.baseHealth;
-		_maxHealth = HiotaStats.maxHealth;
+        _health = controller.statCurrentHealth;
+		_maxHealth = controller.HiotaStats.maxHealth;
 		Fill = _health / _maxHealth;
 		hiotaHealthBar.fillAmount = Fill;
+
+		controller.LoseHPDelegate += UpdateHPFillBar;
 	}
 
 	void Update()
@@ -71,6 +79,14 @@ public class HiotaHealth : MonoBehaviour
 		}
 		else
 			Instantiate(targetFX, transform.position, Quaternion.identity);
+	}
+
+	void UpdateHPFillBar()
+    {
+		_health = controller.statCurrentHealth;
+		Fill = _health / _maxHealth;
+		hiotaHealthBar.fillAmount = Fill;
+		print("J'update mes HPs");
 	}
 	
 }

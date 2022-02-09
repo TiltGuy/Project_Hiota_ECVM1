@@ -36,7 +36,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #region STATS VARIABLES
 
-    private float statCurrentHealth;
+    public float statCurrentHealth;
     private float currentArmor;
     [HideInInspector]
     public bool b_IsInvicible = false;
@@ -216,7 +216,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #region DELEGATE INSTANCIATION
 
-
+    public delegate void MultiDelegate();
+    public MultiDelegate LoseHPDelegate;
 
     #endregion
 
@@ -408,10 +409,14 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public void TakeDamages(float damageTaken, Transform striker)
     {
+        //if (!b_Parry)
+        //{
+            
+        //    //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
+        //}
+        //LoseHP(damageTaken, currentHealth);
         float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
         LoseHP(damageTaken);
-        //LoseHP(damageTaken, currentHealth);
-        //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
         Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
     }
 
@@ -427,6 +432,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         {
             statCurrentHealth -= damageTaken;
             statCurrentHealth = Mathf.Clamp(statCurrentHealth, 0, statCurrentHealth);
+            LoseHPDelegate();
         }
     }
 
