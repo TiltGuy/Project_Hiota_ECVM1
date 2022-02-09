@@ -214,6 +214,12 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #endregion
 
+    #region DELEGATE INSTANCIATION
+
+
+
+    #endregion
+
 
     public Animator Animator
     {

@@ -15,6 +15,11 @@ public class DamageHiota : MonoBehaviour
     //public StaticEnemyAI staticEnemyScript;
     public Controller_FSM playerScript;
 
+    [SerializeField]
+    private Transform attackHitBoxPrefab;
+
+    private Transform currentAttackHitbox;
+
     public Transform player;
 
     private void Awake()
@@ -63,6 +68,32 @@ public class DamageHiota : MonoBehaviour
     public void AttackHiota(float damages)
     {
         hiotaHealth.Hurt(damages);
+    }
+
+    public void SpawnFX(Transform targetFXPrefab)
+    {
+        hiotaHealth.SpawnHitReactionFX(targetFXPrefab);
+    }
+
+    public void UpdateBasicAttackStatutTrue()
+    {
+        if (attackHitBoxPrefab)
+        {
+            currentAttackHitbox = Instantiate(attackHitBoxPrefab, enemyScript.transform.position, Quaternion.identity);
+            // Set the parent
+            currentAttackHitbox.SetParent(enemyScript.transform);
+            // be sure to reset TRANSFORM and ROTATION
+            currentAttackHitbox.transform.localPosition = Vector3.zero;
+            currentAttackHitbox.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    public void UpdateBasicAttackStatutFalse()
+    {
+        if (attackHitBoxPrefab)
+        {
+            currentAttackHitbox.GetComponent<TouchHiota>().DestroyItSelfAfterUsed();
+        }
     }
 
 }

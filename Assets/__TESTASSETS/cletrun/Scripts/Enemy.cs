@@ -180,7 +180,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), detectionDistance);
         
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), attackDistance);
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 
     public void SetCanDetect(bool value)

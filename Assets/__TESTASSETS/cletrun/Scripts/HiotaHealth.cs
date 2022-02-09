@@ -41,12 +41,7 @@ public class HiotaHealth : MonoBehaviour
 		//Debug.Log("Health: " + _health);
 		//Debug.Log("Fill : " + Fill);
 		//Debug.Log("Damages : " + attackDamage);
-		if(!Particle_Damage_Taken)
-        {
-			Debug.Log("Particle_Damage_Taken EMPTY",this);
-        }
-		else
-			Instantiate(Particle_Damage_Taken, transform.position, Quaternion.identity);
+		
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -67,6 +62,15 @@ public class HiotaHealth : MonoBehaviour
 				Instantiate(Particle_Health_Recovered, transform.position, Quaternion.identity);
 		}
 	}
-
+	
+	public void SpawnHitReactionFX(Transform targetFX)
+    {
+		if (!targetFX)
+		{
+			Debug.Log("Particle_Damage_Taken EMPTY", this);
+		}
+		else
+			Instantiate(targetFX, transform.position, Quaternion.identity);
+	}
 	
 }
