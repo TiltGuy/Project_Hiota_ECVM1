@@ -16,7 +16,8 @@ public class ACT_SETNormalParry : Action_SO
         if(controller.perfectTimer < controller.timerPerfectParry)
         {
             controller.perfectTimer += Time.deltaTime;
-            
+            controller.b_PerfectParry = true;
+            controller.b_NormalParry = false;
         }
         else
         {

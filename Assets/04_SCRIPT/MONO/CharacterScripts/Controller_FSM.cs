@@ -425,8 +425,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
         else if (b_Parry)
         {
-            LoseGuard(damageTaken);
-            
+            TestGuard(damageTaken);
         }
         //LoseHP(damageTaken, currentHealth);
         
@@ -449,16 +448,25 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
     }
 
-    private void LoseGuard(float damageTaken)
+    private void TestGuard(float damageTaken)
     {
-        if (statCurrentGuard > 0)
+        if(b_PerfectParry)
         {
-            statCurrentGuard -= damageTaken;
-            Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
-            print("j'en suis à " + statCurrentGuard);
-            statCurrentGuard = Mathf.Clamp(statCurrentGuard, 0, statCurrentGuard);
-            UpdateGuardAmountDelegate(statCurrentGuard);
+            print("Perfect PARRRY !!!");
         }
+        else if(!b_PerfectParry)
+        {
+            if (statCurrentGuard > 0)
+            {
+                statCurrentGuard -= damageTaken;
+                Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
+                print("j'en suis à " + statCurrentGuard);
+                statCurrentGuard = Mathf.Clamp(statCurrentGuard, 0, statCurrentGuard);
+                UpdateGuardAmountDelegate(statCurrentGuard);
+            }
+        }
+
+        
 
     }
 
