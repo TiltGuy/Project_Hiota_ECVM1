@@ -54,7 +54,7 @@ public class DamageHiota : MonoBehaviour
     {
         
 
-        if(enemyScript.canAttack == true && playerScript.b_Parry == false/*|| staticEnemyScript.canAttack == true*/)
+        if(enemyScript.canAttack == true /*|| staticEnemyScript.canAttack == true*/)
 		{
             enemyAnimator.SetBool("canAttack", true);
         }

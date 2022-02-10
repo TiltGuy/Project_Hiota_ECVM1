@@ -189,6 +189,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [HideInInspector]
     public float statCurrentGuard = 1f;
     public float guardIncreaseSpeed = 1f;
+    public float guardIncreaseSpeedWhenGuarding = 1f;
     public bool b_CanRecoverParry = true;
 
 
@@ -307,16 +308,17 @@ public class Controller_FSM : MonoBehaviour, IDamageable
             b_CanParry = true;
             if (b_Parry)
             {
-                IncreaseParryVariable(guardIncreaseSpeed);
+                IncreaseParryVariable(1/guardIncreaseSpeed);
             }
             else
-                IncreaseParryVariable(guardIncreaseSpeed/0.75f);
+                IncreaseParryVariable(1/guardIncreaseSpeedWhenGuarding);
 
         }
         else
         {
-            IncreaseParryVariableWhenUnderZero(guardIncreaseSpeed);
-            b_CanParry = false;
+            //IncreaseParryVariableWhenUnderZero(guardIncreaseSpeed);
+            //b_CanParry = false;
+            StartCoroutine("ChockingTime");
         }
 
     }
@@ -458,10 +460,19 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         {
             if (statCurrentGuard > 0)
             {
+                
+                if(statCurrentGuard < damageTaken)
+                {
+                    
+                    statCurrentGuard = 0;
+                    StartCoroutine("ChockingTime");
+                    float damageOutput = CalculateFinalDamages(damageTaken, currentArmor);
+                    LoseHP(damageOutput);
+                }
                 statCurrentGuard -= damageTaken;
                 Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
                 print("j'en suis à " + statCurrentGuard);
-                statCurrentGuard = Mathf.Clamp(statCurrentGuard, 0, statCurrentGuard);
+                statCurrentGuard = Mathf.Clamp(statCurrentGuard, 0, statCurrentMaxGuard);
                 UpdateGuardAmountDelegate(statCurrentGuard);
             }
         }
@@ -493,23 +504,25 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public IEnumerator ChockingTime()
     {
         b_CanRecoverParry = false;
+        b_CanParry = false;
         yield return new WaitForSeconds(1f);
         b_CanRecoverParry = true;
+        statCurrentGuard = 0.1f;
 
     }
 
-    private void IncreaseParryVariable(float guardDecreaseSpeed)
+    private void IncreaseParryVariable(float guardIncreaseSpeed)
     {
         if(statCurrentGuard<= statCurrentMaxGuard)
         {
-            statCurrentGuard += Time.deltaTime * guardDecreaseSpeed;
+            statCurrentGuard += Time.deltaTime * guardIncreaseSpeed;
             UpdateGuardAmountDelegate(statCurrentGuard);
         }
     }
 
-    private void IncreaseParryVariableWhenUnderZero(float guardDecreaseSpeed)
+    private void IncreaseParryVariableWhenUnderZero(float guardIncreaseSpeed)
     {
-        statCurrentGuard += Time.deltaTime * (guardDecreaseSpeed / 1.5f);
+        statCurrentGuard += Time.deltaTime * (guardIncreaseSpeed / 1.5f);
         UpdateGuardAmountDelegate(statCurrentGuard);
     }
 
