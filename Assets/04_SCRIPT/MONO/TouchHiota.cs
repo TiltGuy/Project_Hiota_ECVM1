@@ -14,10 +14,10 @@ public class TouchHiota : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamages(AttackStats.damages, transform);
-                Debug.Log("Player prend " + AttackStats.damages);
+                Debug.Log("Player prend " + AttackStats.damages + " points de dégâts brut sans calculer son armure",this);
             }
 
-            Debug.Log("Je TOUCHE!!!", this);
+            //Debug.Log("Je TOUCHE!!!", this);
         }
     }
 

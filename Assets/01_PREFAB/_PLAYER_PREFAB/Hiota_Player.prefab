@@ -578,6 +578,8 @@ MonoBehaviour:
   HolsterSword: {fileID: 2633846553027578116}
   HandOfSword: {fileID: 2090796916}
   HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
+  statCurrentHealth: 0
+  statCurrentGuard: 0
   b_IsInvicible: 0
   m_speed: 5
   m_dashDistance: 5
@@ -648,7 +650,8 @@ MonoBehaviour:
   _health: 0
   hiotaHealthBar: {fileID: 0}
   Fill: 0
-  Particle_Damage_Taken: {fileID: 0}
+  Particle_Damage_Taken: {fileID: 8704643220767672381, guid: 484313ccad327774abc39dd0db32de18,
+    type: 3}
   Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
     type: 3}
 --- !u!1 &1281754823036717357

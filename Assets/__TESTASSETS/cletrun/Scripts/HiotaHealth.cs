@@ -6,12 +6,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Controller_FSM))]
 public class HiotaHealth : MonoBehaviour
 {
-	[SerializeField]
-	private CharacterStats_SO HiotaStats;
 	public float _health;
 	private float _maxHealth;
-	public Image hiotaHealthBar;
-	public float Fill;
+	public Image healthBar;
+	public float healthPointBarFillAmount;
+	private float _maxGuard;
+	private float _currentGuard;
+	[SerializeField]
+	private Image guardBarImage;
+	private float guardPointBarFillAmount;
 	public Transform Particle_Damage_Taken;
 	public Transform Particle_Health_Recovered;
 
@@ -27,10 +30,18 @@ public class HiotaHealth : MonoBehaviour
 		
         _health = controller.statCurrentHealth;
 		_maxHealth = controller.HiotaStats.maxHealth;
-		Fill = _health / _maxHealth;
-		hiotaHealthBar.fillAmount = Fill;
+		healthPointBarFillAmount = _health / _maxHealth;
+		healthBar.fillAmount = healthPointBarFillAmount;
+
+		_currentGuard = controller.statCurrentGuard;
+		_maxGuard = controller.HiotaStats.maxGuard;
+		guardPointBarFillAmount = _currentGuard / _maxGuard;
+		guardBarImage.fillAmount = guardPointBarFillAmount;
+
 
 		controller.LoseHPDelegate += UpdateHPFillBar;
+		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
+		//UPDATE DELEGATE
 	}
 
 	void Update()
@@ -41,24 +52,24 @@ public class HiotaHealth : MonoBehaviour
 		}
 	}
 
-	public void Hurt(float attackDamage)
-	{
-		_health -= attackDamage;
-		Fill = _health / _maxHealth;
-		hiotaHealthBar.fillAmount = Fill;
-		//Debug.Log("Health: " + _health);
-		//Debug.Log("Fill : " + Fill);
-		//Debug.Log("Damages : " + attackDamage);
+	//public void Hurt(float attackDamage)
+	//{
+	//	_health -= attackDamage;
+	//	healthPointBarFillAmount = _health / _maxHealth;
+	//	healthBar.fillAmount = healthPointBarFillAmount;
+	//	//Debug.Log("Health: " + _health);
+	//	//Debug.Log("Fill : " + Fill);
+	//	//Debug.Log("Damages : " + attackDamage);
 		
-	}
+	//}
 
 	void OnTriggerEnter (Collider other)
 	{
 		if(other.tag == "LifeLoot")
 		{
 			_health += 1;
-			Fill += 0.2f;
-			hiotaHealthBar.fillAmount = Fill;
+			healthPointBarFillAmount += 0.2f;
+			healthBar.fillAmount = healthPointBarFillAmount;
 			//print("Regeneratiooonnn !!!");
 			Debug.Log("Health: " + _health,this);
 			Destroy(other.gameObject);
@@ -81,12 +92,21 @@ public class HiotaHealth : MonoBehaviour
 			Instantiate(targetFX, transform.position, Quaternion.identity);
 	}
 
-	void UpdateHPFillBar()
+	void UpdateHPFillBar(float currentHpToUpdate)
     {
-		_health = controller.statCurrentHealth;
-		Fill = _health / _maxHealth;
-		hiotaHealthBar.fillAmount = Fill;
-		print("J'update mes HPs");
+		_health = currentHpToUpdate;
+		healthPointBarFillAmount = _health / _maxHealth;
+		healthBar.fillAmount = healthPointBarFillAmount;
+		//print("J'update mes HPs");
+	}
+
+	void UpdateGuardBar(float currentGuardPointToUpdate)
+    {
+		_currentGuard = currentGuardPointToUpdate;
+		guardPointBarFillAmount = _currentGuard / _maxGuard;
+		guardBarImage.fillAmount = guardPointBarFillAmount;
+
+
 	}
 	
 }

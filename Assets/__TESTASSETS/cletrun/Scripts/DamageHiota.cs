@@ -67,7 +67,7 @@ public class DamageHiota : MonoBehaviour
 
     public void AttackHiota(float damages)
     {
-        hiotaHealth.Hurt(damages);
+        //hiotaHealth.Hurt(damages);
     }
 
     public void SpawnFX(Transform targetFXPrefab)

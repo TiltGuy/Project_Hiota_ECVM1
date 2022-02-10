@@ -36,6 +36,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #region STATS VARIABLES
 
+    [HideInInspector]
     public float statCurrentHealth;
     private float currentArmor;
     [HideInInspector]
@@ -183,8 +184,10 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public float timerPerfectParry = .5f;
     public float perfectTimer = 0f;
     public bool b_NormalParry = false;
-    public float currentMaxGuard = 10f;
-    public float currentGuard = 1f;
+    [HideInInspector]
+    public float statCurrentMaxGuard = 10f;
+    [HideInInspector]
+    public float statCurrentGuard = 1f;
     public float guardIncreaseSpeed = 1f;
     public bool b_CanRecoverParry = true;
 
@@ -216,8 +219,9 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #region DELEGATE INSTANCIATION
 
-    public delegate void MultiDelegate();
+    public delegate void MultiDelegate(float something);
     public MultiDelegate LoseHPDelegate;
+    public MultiDelegate UpdateGuardAmountDelegate;
 
     #endregion
 
@@ -253,9 +257,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
 
-        //initialisation of ALL the STATS SETTINGS
-        statCurrentHealth = HiotaStats.baseHealth;
-        currentArmor = HiotaStats.baseArmor;
+        
 
     }
 
@@ -277,6 +279,12 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
+        //initialisation of ALL the STATS SETTINGS
+        // In the AWAKE METHOD because other scripts take the stats in start method
+        statCurrentHealth = HiotaStats.baseHealth;
+        currentArmor = HiotaStats.baseArmor;
+        statCurrentGuard = HiotaStats.baseGuard;
+        statCurrentMaxGuard = HiotaStats.maxGuard;
     }
 
     // Update is called once per frame
@@ -294,7 +302,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         IsDetectingGround();
         //print("b_IsInvicible = " + b_IsInvicible);
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
-        if (currentGuard> 0)
+        if (statCurrentGuard> 0)
         {
             b_CanParry = true;
             if (b_Parry)
@@ -409,15 +417,20 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public void TakeDamages(float damageTaken, Transform striker)
     {
-        //if (!b_Parry)
-        //{
+        if (!b_Parry)
+        {
+            float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
+            LoseHP(damageOuput);
+            Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
+        }
+        else if (b_Parry)
+        {
+            LoseGuard(damageTaken);
             
-        //    //Debug.Log("ARGH!!! j'ai pris : " + CalculateFinalDamages(damages, characterStats.baseArmor) + " points de Dommages", this);
-        //}
+        }
         //LoseHP(damageTaken, currentHealth);
-        float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
-        LoseHP(damageTaken);
-        Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
+        
+        //Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
     }
 
     private float CalculateFinalDamages(float damages, float Armor)
@@ -432,8 +445,21 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         {
             statCurrentHealth -= damageTaken;
             statCurrentHealth = Mathf.Clamp(statCurrentHealth, 0, statCurrentHealth);
-            LoseHPDelegate();
+            LoseHPDelegate(statCurrentHealth);
         }
+    }
+
+    private void LoseGuard(float damageTaken)
+    {
+        if (statCurrentGuard > 0)
+        {
+            statCurrentGuard -= damageTaken;
+            Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
+            print("j'en suis à " + statCurrentGuard);
+            statCurrentGuard = Mathf.Clamp(statCurrentGuard, 0, statCurrentGuard);
+            UpdateGuardAmountDelegate(statCurrentGuard);
+        }
+
     }
 
     private IEnumerator BufferingAttackInputCoroutine(float time)
@@ -466,15 +492,17 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     private void IncreaseParryVariable(float guardDecreaseSpeed)
     {
-        if(currentGuard<= currentMaxGuard)
+        if(statCurrentGuard<= statCurrentMaxGuard)
         {
-            currentGuard += Time.deltaTime * guardDecreaseSpeed;
+            statCurrentGuard += Time.deltaTime * guardDecreaseSpeed;
+            UpdateGuardAmountDelegate(statCurrentGuard);
         }
     }
 
     private void IncreaseParryVariableWhenUnderZero(float guardDecreaseSpeed)
     {
-        currentGuard += Time.deltaTime * (guardDecreaseSpeed / 1.5f);
+        statCurrentGuard += Time.deltaTime * (guardDecreaseSpeed / 1.5f);
+        UpdateGuardAmountDelegate(statCurrentGuard);
     }
 
 

@@ -23,7 +23,7 @@ public class ACT_SETNormalParry : Action_SO
             controller.b_PerfectParry = false;
             controller.b_NormalParry = true;
         }
-        Debug.Log("PefectTimer : " + controller.perfectTimer);
+        //Debug.Log("PefectTimer : " + controller.perfectTimer);
     }
 
 }
