@@ -13,7 +13,7 @@ public class ACT_SETNormalParry : Action_SO
 
     private void SetPefectToNormalParry(Controller_FSM controller)
     {
-        if(controller.perfectTimer < controller.timerPerfectParry)
+        if(controller.perfectTimer < controller.timeForPerfectParry)
         {
             controller.perfectTimer += Time.deltaTime;
             controller.b_PerfectParry = true;

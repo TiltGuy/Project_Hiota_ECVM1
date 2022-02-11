@@ -2160,6 +2160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
+      propertyPath: b_CanParry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
       propertyPath: GO_MainCamera
       value: 
       objectReference: {fileID: 256718794}
@@ -2168,6 +2173,11 @@ PrefabInstance:
       propertyPath: GO_FocusCamera
       value: 
       objectReference: {fileID: 1745112729}
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
+      propertyPath: b_CanRecoverParry
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: timerPerfectParry
@@ -2180,9 +2190,24 @@ PrefabInstance:
       objectReference: {fileID: 1479872526}
     - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
+      propertyPath: guardIncreaseSpeed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
+      propertyPath: timeForPerfectParry
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
       propertyPath: m_cameraBaseDirection
       value: 
       objectReference: {fileID: 8096265184319409570}
+    - target: {fileID: 1645655096204719503, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
+      propertyPath: guardIncreaseSpeedWhenGuarding
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dda6bb067db491247983c3a9c3d2c278, type: 3}
 --- !u!1001 &4847823970872177147

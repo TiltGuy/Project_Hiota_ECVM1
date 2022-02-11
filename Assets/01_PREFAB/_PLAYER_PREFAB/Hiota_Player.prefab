@@ -579,7 +579,6 @@ MonoBehaviour:
   HandOfSword: {fileID: 2090796916}
   HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
   statCurrentHealth: 0
-  statCurrentGuard: 0
   b_IsInvicible: 0
   m_speed: 5
   m_dashDistance: 5
@@ -618,15 +617,16 @@ MonoBehaviour:
   FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
   BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
   timeBufferAttackInput: 0.4
-  b_Parry: 0
+  b_IsParrying: 0
   b_CanParry: 1
   b_PerfectParry: 0
-  timerPerfectParry: 0.5
+  timeForPerfectParry: 0.25
   perfectTimer: 0
   b_NormalParry: 0
-  currentMaxGuard: 10
-  currentGuard: 1
-  guardIncreaseSpeed: 1
+  statCurrentMaxGuard: 10
+  statCurrentGuard: 0
+  guardIncreaseSpeed: 0.25
+  guardIncreaseSpeedWhenGuarding: 0.15
   b_CanRecoverParry: 1
   GO_MainCamera: {fileID: 0}
   GO_FocusCamera: {fileID: 0}
@@ -646,10 +646,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6582034d29117e147a26ba70fa632f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
   _health: 0
-  hiotaHealthBar: {fileID: 0}
-  Fill: 0
+  healthBar: {fileID: 0}
+  healthPointBarFillAmount: 0
+  guardBarImage: {fileID: 0}
   Particle_Damage_Taken: {fileID: 8704643220767672381, guid: 484313ccad327774abc39dd0db32de18,
     type: 3}
   Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,

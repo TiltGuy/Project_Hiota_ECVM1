@@ -178,10 +178,14 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     [Header(" -- PARRY SETTINGS -- ")]
 
-    public bool b_Parry = false;
+
+    [HideInInspector]
+    public bool b_IsParrying = false;
     public bool b_CanParry = false;
+    [HideInInspector]
     public bool b_PerfectParry = false;
-    public float timerPerfectParry = .5f;
+    public float timeForPerfectParry = .25f;
+    [HideInInspector]
     public float perfectTimer = 0f;
     public bool b_NormalParry = false;
     [HideInInspector]
@@ -250,8 +254,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         //controls.Player.Dash.started += ctx => TakeDamages(3);
         controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
 
-        controls.Player.Parry.started += ctx => b_Parry = true;
-        controls.Player.Parry.canceled += ctx => b_Parry = false;
+        controls.Player.Parry.started += ctx => b_IsParrying = true;
+        controls.Player.Parry.canceled += ctx => b_IsParrying = false;
 
         controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
         //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
@@ -306,12 +310,12 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         if (statCurrentGuard> 0)
         {
             b_CanParry = true;
-            if (b_Parry)
+            if (!b_IsParrying)
             {
-                IncreaseParryVariable(1/guardIncreaseSpeed);
+                IncreaseParryVariable(guardIncreaseSpeed);
             }
             else
-                IncreaseParryVariable(1/guardIncreaseSpeedWhenGuarding);
+                IncreaseParryVariable(guardIncreaseSpeedWhenGuarding);
 
         }
         else
@@ -419,13 +423,13 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public void TakeDamages(float damageTaken, Transform striker)
     {
-        if (!b_Parry)
+        if (!b_IsParrying)
         {
             float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
             LoseHP(damageOuput);
             Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
-        else if (b_Parry)
+        else if (b_IsParrying)
         {
             TestGuard(damageTaken);
         }
@@ -520,11 +524,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
     }
 
-    private void IncreaseParryVariableWhenUnderZero(float guardIncreaseSpeed)
-    {
-        statCurrentGuard += Time.deltaTime * (guardIncreaseSpeed / 1.5f);
-        UpdateGuardAmountDelegate(statCurrentGuard);
-    }
 
 
 
