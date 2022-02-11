@@ -28,4 +28,14 @@ public abstract class Action_SO : ScriptableObject
     {
         Debug.Log("Hiota est dans l'état " + controller.currentState, this);
     }
+
+    public void SetDashingBooleanValue(Controller_FSM controller, bool targetValue)
+    {
+        controller.b_IsDashing = targetValue;
+    }
+
+    public void SetStunnedBooleanValue(Controller_FSM controller, bool targetValue)
+    {
+        controller.b_Stunned = targetValue;
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class Controller_FSM : MonoBehaviour, IDamageable
 {
@@ -97,6 +98,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public float scalarVector;
     public bool b_WantDash = false;
     public bool b_CanDash = true;
+    [HideInInspector]
+    public bool b_IsDashing = false;
 
     #endregion
 
@@ -423,15 +426,20 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public void TakeDamages(float damageTaken, Transform striker)
     {
-        if (!b_IsParrying)
+        if (!b_IsParrying && !b_IsDashing)
         {
             float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
             LoseHP(damageOuput);
+            b_Stunned = true;
             Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
         else if (b_IsParrying)
         {
             TestGuard(damageTaken);
+        }
+        else if (b_IsDashing)
+        {
+
         }
         //LoseHP(damageTaken, currentHealth);
         

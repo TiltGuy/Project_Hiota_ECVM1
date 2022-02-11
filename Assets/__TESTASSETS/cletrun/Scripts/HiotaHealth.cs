@@ -39,12 +39,23 @@ public class HiotaHealth : MonoBehaviour
 		guardBarImage.fillAmount = guardPointBarFillAmount;
 
 
-		controller.LoseHPDelegate += UpdateHPFillBar;
-		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
+		
 		//UPDATE DELEGATE
 	}
 
-	void Update()
+    private void OnEnable()
+    {
+		controller.LoseHPDelegate += UpdateHPFillBar;
+		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
+	}
+
+    private void OnDisable()
+    {
+		controller.LoseHPDelegate -= UpdateHPFillBar;
+		controller.UpdateGuardAmountDelegate -= UpdateGuardBar;
+	}
+
+    void Update()
 	{
 		if (_health == 0)
 		{
