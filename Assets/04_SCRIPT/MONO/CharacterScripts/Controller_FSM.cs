@@ -15,13 +15,15 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public Transform m_cameraBaseDirection;
 
     [Tooltip("it's the layer used to test the ground")]
-    public LayerMask Ground;
+    private LayerMask Ground;
 
+
+    [SerializeField]
     [Tooltip("it the transform which is under the feet of Hiota")]
-    public Transform _groundChecker;
+    private Transform _groundChecker;
     
     ///<summary> The character controller of the player</summary>
-    public CharacterController characontroller;
+    private CharacterController characontroller;
 
     ///<summary> The animator of the player</summary>
     public Animator Hiota_Anim;
@@ -30,6 +32,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public Transform HandOfSword;
 
+    //TO REWORK ==> Delocalise this reference to HiotaHealth
     public CharacterStats_SO HiotaStats;
 
     #endregion
@@ -293,6 +296,11 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         currentArmor = HiotaStats.baseArmor;
         statCurrentGuard = HiotaStats.baseGuard;
         statCurrentMaxGuard = HiotaStats.maxGuard;
+        m_cameraBaseDirection = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        if (!m_cameraBaseDirection)
+        {
+            Debug.LogError("I Haven't a MainCamera", this);
+        }
     }
 
     // Update is called once per frame

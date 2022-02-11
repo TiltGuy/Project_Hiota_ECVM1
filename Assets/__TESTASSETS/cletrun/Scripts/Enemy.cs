@@ -6,14 +6,19 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public NavMeshAgent agent;
-    public Transform refAvatar;
-    public float detectionDistance;
-    public float attackDistance;
+    [SerializeField]
+    private NavMeshAgent agent;
+    [SerializeField]
+    private Transform refAvatar;
+    [SerializeField]
+    private float detectionDistance;
+    [SerializeField]
+    private float attackDistance;
 
     //ParticleSystem
-    public Transform AggroTaken;
-    public bool EnemySpotPlayer;
+    [SerializeField]
+    private Transform AggroTaken;
+    private bool EnemySpotPlayer;
 
     /*public GameObject projectile;
     public float cadenceTir;
@@ -26,13 +31,17 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool canDetect = false;
     [HideInInspector]
     public bool canAttack = false;
-    public Transform zoneEnemy;
-    public Transform[] waypoints;
+    [SerializeField]
+    private Transform zoneEnemy;
+    [SerializeField]
+    private Transform[] waypoints;
 
     //Health
-    public CharacterStats_SO characterStats;
-    public float currentHealth;
-    public GameObject HitFXprefab;
+    [SerializeField]
+    private CharacterStats_SO characterStats;
+    private float _currentHealth;
+    [SerializeField]
+    private GameObject HitFXprefab;
     private Collider coll;
 
     //Health Bar
@@ -57,7 +66,7 @@ public class Enemy : MonoBehaviour, IDamageable
         agent.SetDestination(RandomNavmeshLocation(4f));
         //trouver un point au hasard sur le NavMesh à 4mètres
 
-        currentHealth = characterStats.baseHealth;
+        _currentHealth = characterStats.baseHealth;
         coll = GetComponent<Collider>();
     }
 
@@ -134,9 +143,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void LoseHP(float damageTaken)
     {
-        if (currentHealth > 0)
+        if (_currentHealth > 0)
         {
-            currentHealth -= damageTaken;
+            _currentHealth -= damageTaken;
             
         }
     }
@@ -161,9 +170,9 @@ public class Enemy : MonoBehaviour, IDamageable
         }
 
 
-        Debug.Log("il ne me reste plus que " + currentHealth + " d'HP", this);
+        Debug.Log("il ne me reste plus que " + _currentHealth + " d'HP", this);
 
-        if (Fill <= 0)
+        if (_currentHealth <= 0)
         {
             lifeLoot.SetActive(true);
             Destroy(gameObject);

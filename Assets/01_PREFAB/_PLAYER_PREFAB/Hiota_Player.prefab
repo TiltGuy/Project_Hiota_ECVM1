@@ -569,9 +569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cameraBaseDirection: {fileID: 0}
-  Ground:
-    serializedVersion: 2
-    m_Bits: 1
   _groundChecker: {fileID: 1886075193049011714}
   characontroller: {fileID: 6634799758529909337}
   Hiota_Anim: {fileID: 1670080000814941675}
@@ -598,6 +595,7 @@ MonoBehaviour:
   scalarVector: 0
   b_WantDash: 0
   b_CanDash: 1
+  b_IsDashing: 0
   m_camF: {x: 0, y: 0, z: 0}
   m_camR: {x: 0, y: 0, z: 0}
   directionToGo: {x: 0, y: 0, z: 0}
