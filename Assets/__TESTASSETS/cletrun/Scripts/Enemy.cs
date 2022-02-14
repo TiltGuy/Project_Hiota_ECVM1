@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     private CharacterStats_SO characterStats;
     private float _currentHealth;
+    private float _currentMaxHealth;
     [SerializeField]
     private GameObject HitFXprefab;
     private Collider coll;
@@ -67,6 +68,7 @@ public class Enemy : MonoBehaviour, IDamageable
         //trouver un point au hasard sur le NavMesh à 4mètres
 
         _currentHealth = characterStats.baseHealth;
+        _currentMaxHealth = characterStats.maxHealth;
         coll = GetComponent<Collider>();
     }
 
@@ -153,8 +155,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamages(float damageTaken, Transform striker)
     {
         float damageOuput = CalculateFinalDamages(damageTaken, characterStats.baseArmor);
-        LoseHP(damageTaken);
-        Fill -= 0.2f;
+        LoseHP(damageOuput);
+        Fill = _currentHealth/_currentMaxHealth;
+        Fill = Mathf.Clamp(Fill, 0, _currentMaxHealth);
         Bar.fillAmount = Fill;
 
         
@@ -175,10 +178,13 @@ public class Enemy : MonoBehaviour, IDamageable
         if (_currentHealth <= 0)
         {
             lifeLoot.SetActive(true);
-            Destroy(gameObject);
+            //STOP FUCKING DESTROY A GAME OBJECT WITHOUT A SAFE GUARD
+            //Destroy(gameObject);
             // Instantiate Object for Hiota ++Health
 
+
             Instantiate(lifeLoot, transform.position, transform.rotation);
+            gameObject.SetActive(false);
         }
     }
 

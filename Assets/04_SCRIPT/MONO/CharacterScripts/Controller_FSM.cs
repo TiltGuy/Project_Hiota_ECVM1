@@ -23,7 +23,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     private Transform _groundChecker;
     
     ///<summary> The character controller of the player</summary>
-    private CharacterController characontroller;
+    public CharacterController characontroller;
 
     ///<summary> The animator of the player</summary>
     public Animator Hiota_Anim;
