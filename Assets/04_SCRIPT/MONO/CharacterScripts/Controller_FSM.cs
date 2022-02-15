@@ -234,6 +234,10 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public MultiDelegate LoseHPDelegate;
     public MultiDelegate UpdateGuardAmountDelegate;
 
+    public delegate void OnEventCombatSystem();
+    public OnEventCombatSystem OnAttackBegin;
+    public OnEventCombatSystem OnDeathEnemy;
+
     #endregion
 
 
@@ -275,11 +279,15 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         controls.Enable();
+        OnAttackBegin += DebugOnEventCombatSystem;
+        OnDeathEnemy += ToggleFocusTarget;
     }
 
     private void OnDisable()
     {
         controls.Disable();
+        OnAttackBegin -= DebugOnEventCombatSystem;
+        OnDeathEnemy -= ToggleFocusTarget;
     }
 
     // Start is called before the first frame update
@@ -308,25 +316,19 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
 
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
-        //Debug.Log(scalarVector, this);
         currentState.UpdtateState(this);
+
         if(m_InputMoveVector!=Vector2.zero)
         {
             lastDirectionInput = directionToGo;
         }
-        //Debug.Log("CurrentState = " + currentState);
+
         IsDetectingGround();
-        //print("b_IsInvicible = " + b_IsInvicible);
+
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
         if (statCurrentGuard> 0)
         {
-            b_CanParry = true;
-            if (!b_IsParrying)
-            {
-                IncreaseParryVariable(guardIncreaseSpeed);
-            }
-            else
-                IncreaseParryVariable(guardIncreaseSpeedWhenGuarding);
+            UpdateGuardVariable();
 
         }
         else
@@ -336,8 +338,20 @@ public class Controller_FSM : MonoBehaviour, IDamageable
             StartCoroutine("ChockingTime");
         }
 
+
+
     }
 
+    private void UpdateGuardVariable()
+    {
+        b_CanParry = true;
+        if (!b_IsParrying)
+        {
+            IncreaseParryVariable(guardIncreaseSpeed);
+        }
+        else
+            IncreaseParryVariable(guardIncreaseSpeedWhenGuarding);
+    }
 
     public void TransitionToState(State_SO NextState)
     {
@@ -403,7 +417,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * m_turnSpeed);
     }
 
-    private void ToggleFocusTarget()
+    public void ToggleFocusTarget()
     {
         if (!b_IsFocusing && currentHiotaTarget != null)
         {
@@ -422,6 +436,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
             Debug.Log(b_IsFocusing, this);
         }
     }
+
+    
 
     private void OnDrawGizmos()
     {
@@ -447,10 +463,9 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
         else if (b_IsDashing)
         {
-
+            // do Something
         }
         //LoseHP(damageTaken, currentHealth);
-        
         //Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
     }
 
@@ -540,7 +555,10 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
     }
 
-
+    void DebugOnEventCombatSystem()
+    {
+        Debug.Log("Currently On Event Delegate", this);
+    }
 
 
 }

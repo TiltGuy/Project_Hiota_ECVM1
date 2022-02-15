@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     private Transform[] waypoints;
 
+    private Controller_FSM HiotaController;
+
     //Health
     [SerializeField]
     private CharacterStats_SO characterStats;
@@ -44,6 +46,8 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     private GameObject HitFXprefab;
     private Collider coll;
+    [SerializeField]
+    public bool b_IsDead;
 
     //Health Bar
     public Image Bar;
@@ -51,6 +55,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     //Loot
     public GameObject lifeLoot;
+
+    public delegate void MultiDelegate();
+    public MultiDelegate OnDeathEnemy;
 
 
     // Start is called before the first frame update
@@ -70,6 +77,21 @@ public class Enemy : MonoBehaviour, IDamageable
         _currentHealth = characterStats.baseHealth;
         _currentMaxHealth = characterStats.maxHealth;
         coll = GetComponent<Collider>();
+
+        if(refAvatar)
+        {
+            HiotaController = refAvatar.GetComponent<Controller_FSM>();
+        }
+    }
+
+    private void OnEnable()
+    {
+        OnDeathEnemy += DeclareIsDead;
+    }
+
+    private void OnDisable()
+    {
+        OnDeathEnemy -= DeclareIsDead;
     }
 
     // Update is called once per frame
@@ -184,6 +206,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
 
             Instantiate(lifeLoot, transform.position, transform.rotation);
+            DeclareIsDead();
+            if(HiotaController)
+            {
+                HiotaController.OnDeathEnemy();
+            }
             gameObject.SetActive(false);
         }
     }
@@ -208,4 +235,17 @@ public class Enemy : MonoBehaviour, IDamageable
 	{
         agent.SetDestination(transform.position + (zoneEnemy.position - transform.position).normalized * 6);
 	}
+
+    private void DeclareIsDead()
+    {
+        if(!b_IsDead)
+        {
+            b_IsDead = true;
+            Debug.Log("b_IsDead is " + b_IsDead);
+        }
+        else
+        {
+            Debug.Log("I'm already Dead !!!", this);
+        }
+    }
 }
