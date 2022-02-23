@@ -37,7 +37,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #endregion
 
-
     #region STATS VARIABLES
 
     [HideInInspector]
@@ -47,7 +46,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public bool b_IsInvicible = false;
 
     #endregion
-
 
     #region INPUT SETTINGS
 
