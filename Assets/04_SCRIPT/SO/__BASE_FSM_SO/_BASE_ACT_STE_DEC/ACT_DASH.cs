@@ -8,7 +8,6 @@ public class ACT_DASH : Action_SO
 
     [SerializeField]
     private float speedMovementAction;
-    [SerializeField]
     private Vector3 dashDirection;
     [SerializeField]
     private bool b_DashToEnemy;
@@ -22,6 +21,7 @@ public class ACT_DASH : Action_SO
             if(controller.b_IsFocusing)
             {
                 //Dash to enemy
+                RotateEntityToEnemy(controller);
             }
         }
     }
@@ -51,6 +51,7 @@ public class ACT_DASH : Action_SO
         controller.directionToFocus = dir;
         //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
         Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
-        controller.transform.rotation = Quaternion.LookRotation(controller.directionToFocus, Vector3.up); ;
+        //controller.transform.rotation = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
+        controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation,finalrot, 0.0085f);
     }
 }
