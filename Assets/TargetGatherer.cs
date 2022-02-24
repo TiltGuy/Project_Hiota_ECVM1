@@ -40,11 +40,11 @@ public class TargetGatherer : MonoBehaviour
         {
             foreach (Transform enemies in PotentialEnemies)
             {
-                Vector3 dir = (enemies.position - controller.eyes.position);
+                Vector3 dir = (enemies.position - transform.position);
                 Debug.Log("check : " + CheckSightLine(enemies.transform));
                 if (CheckSightLine(enemies.transform))
                 {
-                    Debug.DrawRay(controller.eyes.position, dir, Color.yellow);
+                    
                     // if True then add to another List of Targetable Enemies
                     if (!TargetableEnemies.Contains(enemies.transform))
                     {
@@ -53,6 +53,7 @@ public class TargetGatherer : MonoBehaviour
                 }
                 else
                 {
+                    Debug.DrawRay(transform.position, dir, Color.red);
                     if (TargetableEnemies.Contains(enemies.transform))
                     {
                         TargetableEnemies.Remove(enemies.transform);
@@ -71,10 +72,16 @@ public class TargetGatherer : MonoBehaviour
     private bool CheckSightLine(Transform target)
     {
         RaycastHit hit;
-        Vector3 dir = (controller.eyes.position - target.position);
-        if (Physics.Raycast(controller.eyes.position, dir, out hit, 10))
+        Vector3 dir = (target.position - transform.position);
+        if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, layerMask))
         {
-            return true;
+            if (hit.transform.CompareTag("Enemy"))
+            {
+                Debug.DrawRay(transform.position, dir, Color.yellow);
+                return true;
+            }
+            else
+                return false;
         }
         else
         {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4847823970780559715}
   - component: {fileID: 4847823970780559727}
   - component: {fileID: 4847823970780559714}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dummy_SacBoy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -54,12 +54,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,7 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4847823970780559715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,4 +125,4 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 23794361}
   - component: {fileID: 23794360}
   - component: {fileID: 23794363}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 189723357}
   - component: {fileID: 189723356}
   - component: {fileID: 189723359}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 201403593}
   - component: {fileID: 201403592}
   - component: {fileID: 201403595}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 987916350}
   - component: {fileID: 987916349}
   - component: {fileID: 987916352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,6 +1002,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!20 &1113364815 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7007019531082678519, guid: 106aaf11ca78ec844b2cffa3ca8270e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1253787856104639828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1280535275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1021,7 @@ GameObject:
   - component: {fileID: 1280535277}
   - component: {fileID: 1280535276}
   - component: {fileID: 1280535280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spawn_Piedestal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,6 +1175,16 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1978913651}
+    - target: {fileID: 690514969734134010, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690514969734134010, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 690514969734134011, guid: ee68a472d7955454ca1b838390e9d4a4,
         type: 3}
       propertyPath: m_Name
@@ -1239,6 +1255,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 690514969865950198, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 690514969865950201, guid: ee68a472d7955454ca1b838390e9d4a4,
         type: 3}
       propertyPath: player
@@ -1293,7 +1314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1485758649}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1355,7 @@ GameObject:
   - component: {fileID: 1534160734}
   - component: {fileID: 1534160733}
   - component: {fileID: 1534160736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1474,7 +1495,7 @@ GameObject:
   - component: {fileID: 1639642247}
   - component: {fileID: 1639642246}
   - component: {fileID: 1639642249}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1784,7 +1805,7 @@ GameObject:
   - component: {fileID: 2014841395}
   - component: {fileID: 2014841394}
   - component: {fileID: 2014841397}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2261,6 +2282,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1512704071305417047, guid: ee689861a8ab6984e8e3a2e13e0cebf9,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1113364815}
+    - target: {fileID: 1512704071305417047, guid: ee689861a8ab6984e8e3a2e13e0cebf9,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee689861a8ab6984e8e3a2e13e0cebf9, type: 3}
 --- !u!1001 &2012046048076637567
@@ -2278,6 +2309,21 @@ PrefabInstance:
       propertyPath: guardBarImage
       value: 
       objectReference: {fileID: 1899699280}
+    - target: {fileID: 756597735162038548, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
+      propertyPath: m_Radius
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 756597735162038548, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001982654685172471, guid: dda6bb067db491247983c3a9c3d2c278,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1163913624370452289, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: m_RootOrder
@@ -2358,15 +2404,10 @@ PrefabInstance:
       propertyPath: m_cameraBaseDirection
       value: 
       objectReference: {fileID: 8096265184319409570}
-    - target: {fileID: 6425963666598805639, guid: dda6bb067db491247983c3a9c3d2c278,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.575
-      objectReference: {fileID: 0}
     - target: {fileID: 7018018961163401237, guid: dda6bb067db491247983c3a9c3d2c278,
         type: 3}
       propertyPath: layerMask.m_Bits
-      value: 1
+      value: 1537
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dda6bb067db491247983c3a9c3d2c278, type: 3}
@@ -2415,7 +2456,7 @@ PrefabInstance:
     - target: {fileID: 4847823970780559724, guid: 652126379b8af67408b67a99df833dcc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.05996132
+      value: 16.49
       objectReference: {fileID: 0}
     - target: {fileID: 4847823970780559724, guid: 652126379b8af67408b67a99df833dcc,
         type: 3}
