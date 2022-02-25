@@ -10,6 +10,21 @@ public class TargetGatherer : MonoBehaviour
     private LayerMask layerMask;
     public List<Transform> PotentialEnemies;
     public List<Transform> TargetableEnemies;
+    [SerializeField]
+    private Transform mainCamera;
+
+    private void Awake()
+    {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+    }
+
+    private void Start()
+    {
+        if(!mainCamera)
+        {
+            Debug.LogError("There isn't Camera in Main Camera", this);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,6 +51,8 @@ public class TargetGatherer : MonoBehaviour
 
     private void Update()
     {
+
+
         if (PotentialEnemies.Count > 0)
         {
             foreach (Transform enemies in PotentialEnemies)
@@ -62,6 +79,10 @@ public class TargetGatherer : MonoBehaviour
                 }
             }
         }
+
+        
+
+
     }
 
     private void FixedUpdate()
@@ -89,4 +110,15 @@ public class TargetGatherer : MonoBehaviour
         }
 
     }
+
+    private void UpdateTargetableList(List<Transform> ListToRearrange)
+    {
+        if (ListToRearrange.Count > 0)
+        {
+
+            // Check Distance to the target Gatherer
+            // check the Scalar of the CurrentTarget with the Camera
+        }
+    }
+
 }

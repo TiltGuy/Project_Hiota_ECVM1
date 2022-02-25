@@ -1998,10 +1998,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678013460135026694, guid: eb5592d877b97ca449ceac69093e5f02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 678013460300901269, guid: eb5592d877b97ca449ceac69093e5f02,
         type: 3}
       propertyPath: m_Name
       value: Player_FocusCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 678013460300901269, guid: eb5592d877b97ca449ceac69093e5f02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 678013460300901270, guid: eb5592d877b97ca449ceac69093e5f02,
         type: 3}
@@ -2513,21 +2523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Zone (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5450905851834423555, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5798273909116596418, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
         type: 3}
       propertyPath: eventOnExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1479872528}
-    - target: {fileID: 5798273909116596418, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
-        type: 3}
-      propertyPath: eventOnExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToZone
-      objectReference: {fileID: 0}
     - target: {fileID: 7044089939150800459, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
         type: 3}
       propertyPath: eventOnExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2538,16 +2538,6 @@ PrefabInstance:
       propertyPath: eventOnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1479872528}
-    - target: {fileID: 7044089939150800459, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
-        type: 3}
-      propertyPath: eventOnExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCanDetect
-      objectReference: {fileID: 0}
-    - target: {fileID: 7044089939150800459, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
-        type: 3}
-      propertyPath: eventOnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCanDetect
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e41984bdc6fb61b4b9cc7c9922e1f655, type: 3}
 --- !u!4 &7993270225986630600 stripped
