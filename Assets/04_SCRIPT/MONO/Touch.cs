@@ -11,11 +11,11 @@ public class Touch : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
-            Debug.Log(other.gameObject.name, this);
+            //Debug.Log(other.gameObject.name, this);
             if (damageable != null)
             {
                 damageable.TakeDamages(AttackStats.damages, transform);
-                Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
+                //Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
             }
             
             

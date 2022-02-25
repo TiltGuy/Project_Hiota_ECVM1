@@ -871,7 +871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984788564}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Stroll
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -1125,6 +1125,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398132252287216644, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 690514968212907667, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 690514969136434862, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 690514969734133952, guid: ee68a472d7955454ca1b838390e9d4a4,
         type: 3}
       propertyPath: refAvatar
@@ -1145,6 +1160,21 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1978913651}
+    - target: {fileID: 690514969734134010, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 690514969734134010, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 690514969734134010, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 690514969734134011, guid: ee68a472d7955454ca1b838390e9d4a4,
         type: 3}
       propertyPath: m_Name
@@ -1205,6 +1235,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 690514969865950198, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 690514969865950201, guid: ee68a472d7955454ca1b838390e9d4a4,
         type: 3}
       propertyPath: player
@@ -1215,6 +1250,21 @@ PrefabInstance:
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 849633941}
+    - target: {fileID: 690514969901292477, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102613282375274479, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101684925622252884, guid: ee68a472d7955454ca1b838390e9d4a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee68a472d7955454ca1b838390e9d4a4, type: 3}
 --- !u!4 &1479872526 stripped
@@ -1701,7 +1751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1978913651}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Stroll (1)
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -2462,6 +2512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Zone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450905851834423555, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5798273909116596418, guid: e41984bdc6fb61b4b9cc7c9922e1f655,
         type: 3}

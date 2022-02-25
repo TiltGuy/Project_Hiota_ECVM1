@@ -75,7 +75,7 @@ public class TargetGatherer : MonoBehaviour
         Vector3 dir = (target.position - transform.position);
         if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, layerMask))
         {
-            if (hit.transform.CompareTag("Enemy"))
+            if (hit.collider.CompareTag("Enemy"))
             {
                 Debug.DrawRay(transform.position, dir, Color.yellow);
                 return true;
