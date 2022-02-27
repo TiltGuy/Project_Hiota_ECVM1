@@ -214,6 +214,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("The focus of hiota if he have to")]
     public Transform currentHiotaTarget;
 
+    private bool b_CanChangeFocusCameraTarget = true;
+
     #endregion
 
     #region STATE MACHINE SETTINGS
@@ -257,6 +259,9 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
         controls.Player.Dash.started += ctx => b_WantDash = true;
         controls.Player.Dash.canceled += ctx => b_WantDash = false;
+
+        controls.Player.ChangeFocusCameraTarget.started += ctx => ChangeTargetFocusCamera();
+        controls.Player.ChangeFocusCameraTarget.canceled += ctx => ResetFocusCameraTargetFactor();
 
         controls.Player.DebugInput.started += ctx => b_Stunned = true;
         //controls.Player.Dash.started += ctx => TakeDamages(3);
@@ -555,7 +560,51 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     void DebugOnEventCombatSystem()
     {
-        Debug.Log("Currently On Event Delegate", this);
+        //Debug.Log("Currently On Event Delegate", this);
+    }
+
+    void ChangeTargetFocusCamera()
+    {
+        
+        if(b_IsFocusing)
+        {
+            print("CHANGE");
+            if (b_CanChangeFocusCameraTarget)
+            {
+                
+                Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
+                //print("On Change = " + input);
+                if (input != Vector2.zero)
+                {
+                    
+                    b_CanChangeFocusCameraTarget = false;
+                    //print("I want to change my target, bool = " + b_CanChangeFocusCameraTarget);
+                }
+            }
+
+        }
+    }
+
+    void ResetFocusCameraTargetFactor()
+    {
+        
+        if (b_IsFocusing)
+        {
+            Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
+            //print("On Reset = " + input); print("On Reset = " + input);
+            if (!b_CanChangeFocusCameraTarget)
+            {
+                
+                
+                if (input == Vector2.zero)
+                {
+                    //print("RESET");
+                    b_CanChangeFocusCameraTarget = true;
+                    //print("I reset Can Change, bool = " + b_CanChangeFocusCameraTarget);
+                    
+                }
+            }
+        }
     }
 
 

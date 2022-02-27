@@ -58,7 +58,7 @@ public class TargetGatherer : MonoBehaviour
             foreach (Transform enemies in PotentialEnemies)
             {
                 Vector3 dir = (enemies.position - transform.position);
-                Debug.Log("check : " + CheckSightLine(enemies.transform));
+                //Debug.Log("check : " + CheckSightLine(enemies.transform));
                 if (CheckSightLine(enemies.transform))
                 {
                     

@@ -30,7 +30,7 @@ public class ATT_OnAttackBegin : Action_SO
 
     void CallOnAttackBegin(Controller_FSM controller)
     {
-        Debug.Log("Calling On Attack Begin");
+        //Debug.Log("Calling On Attack Begin");
         controller.OnAttackBegin();
     }
 

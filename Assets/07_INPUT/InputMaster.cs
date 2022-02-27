@@ -73,6 +73,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""ChangeFocusCameraTarget"",
+                    ""type"": ""Value"",
+                    ""id"": ""e3f131bb-6650-433b-9c8e-22cbaa2f5f36"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Parry"",
                     ""type"": ""Button"",
                     ""id"": ""5a451e50-c5f7-4fa8-9650-40f9b883550b"",
@@ -421,6 +430,50 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""DebugInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f894910-5dbc-4d9b-9572-7ad6267ea543"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d33c0852-f670-41c4-a51c-fde33b88e489"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21baa11b-ef38-4f13-85ff-97386ac95301"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aebd32f9-a496-4848-8a9a-efb85b5c1631"",
+                    ""path"": ""<XInputController>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -484,6 +537,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_FocusTarget = m_Player.FindAction("FocusTarget", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
+        m_Player_ChangeFocusCameraTarget = m_Player.FindAction("ChangeFocusCameraTarget", throwIfNotFound: true);
         m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
         m_Player_DebugInput = m_Player.FindAction("DebugInput", throwIfNotFound: true);
     }
@@ -550,6 +604,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_FocusTarget;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LookCamera;
+    private readonly InputAction m_Player_ChangeFocusCameraTarget;
     private readonly InputAction m_Player_Parry;
     private readonly InputAction m_Player_DebugInput;
     public struct PlayerActions
@@ -561,6 +616,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @FocusTarget => m_Wrapper.m_Player_FocusTarget;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
+        public InputAction @ChangeFocusCameraTarget => m_Wrapper.m_Player_ChangeFocusCameraTarget;
         public InputAction @Parry => m_Wrapper.m_Player_Parry;
         public InputAction @DebugInput => m_Wrapper.m_Player_DebugInput;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -587,6 +643,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @LookCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
                 @LookCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
                 @LookCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
+                @ChangeFocusCameraTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeFocusCameraTarget;
                 @Parry.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
                 @Parry.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
                 @Parry.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
@@ -612,6 +671,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @LookCamera.started += instance.OnLookCamera;
                 @LookCamera.performed += instance.OnLookCamera;
                 @LookCamera.canceled += instance.OnLookCamera;
+                @ChangeFocusCameraTarget.started += instance.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.performed += instance.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.canceled += instance.OnChangeFocusCameraTarget;
                 @Parry.started += instance.OnParry;
                 @Parry.performed += instance.OnParry;
                 @Parry.canceled += instance.OnParry;
@@ -665,6 +727,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnFocusTarget(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLookCamera(InputAction.CallbackContext context);
+        void OnChangeFocusCameraTarget(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
         void OnDebugInput(InputAction.CallbackContext context);
     }
