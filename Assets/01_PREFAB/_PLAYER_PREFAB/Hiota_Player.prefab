@@ -437,7 +437,6 @@ Transform:
   - {fileID: 2046464114825322326}
   - {fileID: 6425963666598805639}
   - {fileID: 1001982654685172471}
-  - {fileID: 3216549986963078362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1403,36 +1402,6 @@ Transform:
   m_Father: {fileID: 4104909217109646077}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -35.77085, y: 3.8215, z: 15.085929}
---- !u!1 &4197095559704539447
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3216549986963078362}
-  m_Layer: 8
-  m_Name: TargetGathererFirstPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3216549986963078362
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4197095559704539447}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.62, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1163913624370452289}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4248114627886711915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,6 +2068,7 @@ MonoBehaviour:
     m_Bits: 1537
   PotentialEnemies: []
   TargetableEnemies: []
+  mainCamera: {fileID: 0}
 --- !u!1 &6253146716434953641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,12 +3093,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951a88ce9a320344e9b0f773f9a0994f, type: 3}
---- !u!4 &2046464115410842287 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3147763401422051301, guid: 951a88ce9a320344e9b0f773f9a0994f,
-    type: 3}
-  m_PrefabInstance: {fileID: 4019913913437594954}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2247605952555364238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2952254500066593476, guid: 951a88ce9a320344e9b0f773f9a0994f,
@@ -3144,6 +3108,12 @@ Transform:
 --- !u!136 &6878089639430701603 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 7546476557667592041, guid: 951a88ce9a320344e9b0f773f9a0994f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4019913913437594954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2046464115410842287 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3147763401422051301, guid: 951a88ce9a320344e9b0f773f9a0994f,
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}

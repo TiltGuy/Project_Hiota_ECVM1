@@ -10,7 +10,8 @@ public class TargetGatherer : MonoBehaviour
     private LayerMask layerMask;
     public List<Transform> PotentialEnemies;
     public List<Transform> TargetableEnemies;
-    [SerializeField]
+    public List<Transform> LeftEnemies;
+    public List<Transform> RightEnemies;
     private Transform mainCamera;
 
     private void Awake()
@@ -115,7 +116,6 @@ public class TargetGatherer : MonoBehaviour
     {
         if (ListToRearrange.Count > 0)
         {
-
             // Check Distance to the target Gatherer
             // check the Scalar of the CurrentTarget with the Camera
         }
