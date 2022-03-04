@@ -36,6 +36,16 @@ public class TargetGatherer : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Enemy"))
@@ -112,11 +122,6 @@ public class TargetGatherer : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
     private bool CheckSightLine(Transform target)
     {
         RaycastHit hit;
@@ -147,18 +152,108 @@ public class TargetGatherer : MonoBehaviour
         }
     }
 
-    bool CheckObjectToTheRight(Vector3 Origin, Vector3 target)
+    private bool CheckObjectToTheRight(Vector3 Origin, Vector3 target)
     {
         float scalarFactor = Vector3.Dot(Origin.normalized, target.normalized);
         
         // If Left
-        if (scalarFactor < 0)
+        if (scalarFactor > 0)
         {
-            return false;
+            return true;
         }
         else
         {
+            return false;
+        }
+    }
+
+    private bool CheckObjectToTheLeft(Vector3 Origin, Vector3 target)
+    {
+        float scalarFactor = Vector3.Dot(Origin.normalized, target.normalized);
+
+        // If Left
+        if (scalarFactor < 0)
+        {
             return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public Transform CheckoutNextTargetedEnemy(Vector2 input)
+    {
+        Transform currentHiotaTarget = controller.currentHiotaTarget;
+        Transform objectToReturn;
+        objectToReturn = currentHiotaTarget;
+        if (input.x>0)
+        {
+            
+            for(int i = 0; i < TargetableEnemies.Count; i++)
+            {
+                Vector3 currentDirection = TargetableEnemies[i].position - mainCameraTransform.position;
+                if ((TargetableEnemies[i].transform == currentHiotaTarget) 
+                    || (!CheckObjectToTheRight(mainCameraTransform.right, currentDirection)))
+                {
+                    i++;
+                }
+                else
+                {
+                    Vector3 directionObjectToReturn = objectToReturn.position - mainCameraTransform.position;
+                    //check 
+                    if(objectToReturn == currentHiotaTarget)
+                    {
+                        objectToReturn = TargetableEnemies[i].transform;
+                    }
+                    else
+                    {
+                        //compare the dot between object to return and current enemy list
+                        if (Vector3.Dot(mainCameraTransform.right, currentDirection.normalized) 
+                            < Vector3.Dot(mainCameraTransform.right, directionObjectToReturn))
+                        {
+                            objectToReturn = TargetableEnemies[i].transform;
+                        }
+                    }
+                }
+
+                return objectToReturn;
+            }
+            return objectToReturn;
+        }
+        else
+        {
+            for (int i = 0; i < TargetableEnemies.Count; i++)
+            {
+                Vector3 currentDirection = TargetableEnemies[i].position - mainCameraTransform.position;
+                if ((TargetableEnemies[i].transform == currentHiotaTarget)
+                    || (!CheckObjectToTheLeft(mainCameraTransform.right, currentDirection)))
+                {
+                    i++;
+                }
+                else
+                {
+                    Vector3 directionObjectToReturn = objectToReturn.position - mainCameraTransform.position;
+                    //check 
+                    if (objectToReturn == currentHiotaTarget)
+                    {
+                        objectToReturn = TargetableEnemies[i].transform;
+                    }
+                    else
+                    {
+                        //compare the dot between object to return and current enemy list
+                        if (Vector3.Dot(mainCameraTransform.right, currentDirection.normalized)
+                            < Vector3.Dot(mainCameraTransform.right, directionObjectToReturn))
+                        {
+                            objectToReturn = TargetableEnemies[i].transform;
+                        }
+                    }
+                }
+
+                return objectToReturn;
+            }
+            return objectToReturn;
         }
     }
 

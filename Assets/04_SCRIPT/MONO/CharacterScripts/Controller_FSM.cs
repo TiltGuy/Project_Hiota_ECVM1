@@ -17,6 +17,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("it's the layer used to test the ground")]
     private LayerMask Ground;
 
+    [SerializeField]
+    private TargetGatherer targetGatherer;
 
     [SerializeField]
     [Tooltip("it the transform which is under the feet of Hiota")]
@@ -230,9 +232,15 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     #region DELEGATE INSTANCIATION
 
-    public delegate void MultiDelegate(float something);
-    public MultiDelegate LoseHPDelegate;
-    public MultiDelegate UpdateGuardAmountDelegate;
+    public delegate void MultiDelegate();
+    public MultiDelegate OnChangeCurrentPlayerTarget;
+
+    public delegate void MultiDelegateWithfloat(float something);
+    public MultiDelegateWithfloat LoseHPDelegate;
+    public MultiDelegateWithfloat UpdateGuardAmountDelegate;
+
+    public delegate void MultiDelegateWithVector2(Vector2 vector);
+    public MultiDelegateWithVector2 OnChangeTargetFocus;
 
     public delegate void OnEventCombatSystem();
     public OnEventCombatSystem OnAttackBegin;
@@ -284,6 +292,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         controls.Enable();
         OnAttackBegin += DebugOnEventCombatSystem;
         OnDeathEnemy += ToggleFocusTarget;
+        OnChangeTargetFocus += UpdateHiotaCurrentTarget;
     }
 
     private void OnDisable()
@@ -291,6 +300,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         controls.Disable();
         OnAttackBegin -= DebugOnEventCombatSystem;
         OnDeathEnemy -= ToggleFocusTarget;
+        OnChangeTargetFocus -= UpdateHiotaCurrentTarget;
     }
 
     // Start is called before the first frame update
@@ -568,21 +578,32 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         
         if(b_IsFocusing)
         {
+            Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
+            print(input);
+            OnChangeTargetFocus(input);
+            OnChangeCurrentPlayerTarget();
             print("CHANGE");
+
             if (b_CanChangeFocusCameraTarget)
             {
-                
-                Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
+
                 //print("On Change = " + input);
                 if (input != Vector2.zero)
                 {
-                    
+
                     b_CanChangeFocusCameraTarget = false;
                     //print("I want to change my target, bool = " + b_CanChangeFocusCameraTarget);
+
+
                 }
             }
 
         }
+    }
+
+    private void UpdateHiotaCurrentTarget(Vector2 input)
+    {
+        currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
     }
 
     void ResetFocusCameraTargetFactor()
