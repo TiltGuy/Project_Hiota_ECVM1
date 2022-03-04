@@ -10,20 +10,29 @@ public class TargetGatherer : MonoBehaviour
     private LayerMask layerMask;
     public List<Transform> PotentialEnemies;
     public List<Transform> TargetableEnemies;
-    public List<Transform> LeftEnemies;
-    public List<Transform> RightEnemies;
-    private Transform mainCamera;
+    private Transform mainCameraTransform;
+    private Camera mainCamera;
+    private Plane[] planes;
+    private Collider objToVerify;
+
+    [SerializeField]
+    private Transform target;
 
     private void Awake()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        mainCamera = Camera.main;
+        mainCameraTransform = mainCamera.transform;
     }
 
     private void Start()
     {
-        if(!mainCamera)
+        if(!mainCameraTransform)
         {
             Debug.LogError("There isn't Camera in Main Camera", this);
+        }
+        else
+        {
+            planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         }
     }
 
@@ -52,34 +61,51 @@ public class TargetGatherer : MonoBehaviour
 
     private void Update()
     {
-
+        planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
         if (PotentialEnemies.Count > 0)
         {
-            foreach (Transform enemies in PotentialEnemies)
+            foreach (Transform enemy in PotentialEnemies)
             {
-                Vector3 dir = (enemies.position - transform.position);
+                Vector3 dir = (enemy.position - transform.position);
                 //Debug.Log("check : " + CheckSightLine(enemies.transform));
-                if (CheckSightLine(enemies.transform))
+                objToVerify = enemy.GetComponent<Collider>();
+
+                if(GeometryUtility.TestPlanesAABB(planes, objToVerify.bounds))
                 {
-                    
-                    // if True then add to another List of Targetable Enemies
-                    if (!TargetableEnemies.Contains(enemies.transform))
+                    Debug.Log("enemy : " + enemy + " has been detected");
+                    if (CheckSightLine(enemy.transform))
                     {
-                        TargetableEnemies.Add(enemies.transform);
+
+                        // if True then add to another List of Targetable Enemies
+                        if (!TargetableEnemies.Contains(enemy.transform))
+                        {
+                            TargetableEnemies.Add(enemy.transform);
+                        }
+                    }
+                    else
+                    {
+                        Debug.DrawRay(transform.position, dir, Color.red);
+                        if (TargetableEnemies.Contains(enemy.transform))
+                        {
+                            TargetableEnemies.Remove(enemy.transform);
+
+                        }
+                        // if Not then remove this element of the List of Targetable Enemies
                     }
                 }
                 else
                 {
-                    Debug.DrawRay(transform.position, dir, Color.red);
-                    if (TargetableEnemies.Contains(enemies.transform))
-                    {
-                        TargetableEnemies.Remove(enemies.transform);
-                    }
-                    // if Not then remove this element of the List of Targetable Enemies
+                    Debug.Log("the enemy : " + enemy.transform + " hasn't been detected", enemy.transform);
                 }
+
+                
             }
         }
+
+
+        
+
 
         
 
@@ -94,12 +120,12 @@ public class TargetGatherer : MonoBehaviour
     private bool CheckSightLine(Transform target)
     {
         RaycastHit hit;
-        Vector3 dir = (target.position - transform.position);
-        if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, layerMask))
+        Vector3 dir = (target.position - mainCameraTransform.position);
+        if (Physics.Raycast(mainCameraTransform.position, dir, out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                Debug.DrawRay(transform.position, dir, Color.yellow);
+                Debug.DrawRay(mainCameraTransform.position, dir, Color.yellow);
                 return true;
             }
             else
@@ -118,6 +144,21 @@ public class TargetGatherer : MonoBehaviour
         {
             // Check Distance to the target Gatherer
             // check the Scalar of the CurrentTarget with the Camera
+        }
+    }
+
+    bool CheckObjectToTheRight(Vector3 Origin, Vector3 target)
+    {
+        float scalarFactor = Vector3.Dot(Origin.normalized, target.normalized);
+        
+        // If Left
+        if (scalarFactor < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
