@@ -432,15 +432,19 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public void ToggleFocusTarget()
     {
-        if (!b_IsFocusing && currentHiotaTarget != null)
+        if (!b_IsFocusing )
         {
-            b_IsFocusing = true;
-            Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
-            // there use a function in the target Gatherer to check the target nearest to the center of MainCam
-
-            GO_FocusCamera.SetActive(true);
-            GO_MainCamera.SetActive(false);
-            //Debug.Log(b_IsFocusing);
+            if(targetGatherer.TargetableEnemies != null)
+            {
+                b_IsFocusing = true;
+                Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
+                // there use a function in the target Gatherer to check the target nearest to the center of MainCam
+                currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
+                OnChangeCurrentPlayerTarget();
+                GO_FocusCamera.SetActive(true);
+                GO_MainCamera.SetActive(false);
+                //Debug.Log(b_IsFocusing);
+            }
         }
         else
         {
