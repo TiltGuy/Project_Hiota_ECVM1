@@ -434,7 +434,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         if (!b_IsFocusing )
         {
-            if(targetGatherer.TargetableEnemies != null)
+            if(targetGatherer.TargetableEnemies.Count > 0)
             {
                 b_IsFocusing = true;
                 Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
@@ -443,7 +443,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
                 OnChangeCurrentPlayerTarget();
                 GO_FocusCamera.SetActive(true);
                 GO_MainCamera.SetActive(false);
-                //Debug.Log(b_IsFocusing);
+                Debug.Log(currentHiotaTarget);
             }
         }
         else
@@ -599,7 +599,11 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     private void UpdateHiotaCurrentTarget(Vector2 input)
     {
-        currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
+        if(targetGatherer.CheckoutNextTargetedEnemy(input) != null)
+        {
+            currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
+            Debug.Log(targetGatherer.CheckoutNextTargetedEnemy(input));
+        }
     }
 
     void ResetFocusCameraTargetFactor()

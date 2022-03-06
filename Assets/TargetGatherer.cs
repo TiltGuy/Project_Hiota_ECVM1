@@ -12,6 +12,8 @@ public class TargetGatherer : MonoBehaviour
     [Header("-- LISTS OF ENEMIES --")]
     public List<Transform> PotentialEnemies;
     public List<Transform> TargetableEnemies;
+    [SerializeField]
+    List<Transform> SortedListOfEnemies;
     private Transform mainCameraTransform;
     private Camera mainCamera;
     private Plane[] planes;
@@ -192,62 +194,44 @@ public class TargetGatherer : MonoBehaviour
         Transform currentHiotaTarget = controller.currentHiotaTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;
-        //print(input);
-        if (input.x>.25)
+
+        SortedListOfEnemies = (List<Transform>)TargetableEnemies.OrderBy(target =>
         {
+            Vector3 targetDirection = target.position - mainCameraTransform.position;
+
+            Vector2 cameraForwardToPlane = new Vector2(mainCameraTransform.forward.x, mainCameraTransform.forward.z);
+
+            Vector2 targetDirectionToPlane = new Vector2(targetDirection.x, targetDirection.z);
+
+            float angle = Vector2.SignedAngle(cameraForwardToPlane, targetDirectionToPlane);
+
+            return angle;
+        }).ToList();
+
+        print(input);
+        if (input.x>.7f)
+        {
+            if(SortedListOfEnemies.IndexOf(currentHiotaTarget) - 1 >=0 )
+            {
+                Transform nextObjectToTheRight = SortedListOfEnemies[(SortedListOfEnemies.IndexOf(currentHiotaTarget) - 1)];
+                objectToReturn = nextObjectToTheRight;
+                //Debug.Log(nextObjectToTheRight + "Object to the right", nextObjectToTheRight);
+            }
             
-            //for(int i = 0; i < TargetableEnemies.Count; i++)
-            //{
-            //    if(TargetableEnemies[i].transform != currentHiotaTarget)
-            //    {
-            //        Vector3 heading = currentTarget.position - mainCameraTransform.position;
-            //        float currentDirNum = AngleDir(mainCameraTransform.forward, heading, mainCameraTransform.up);
-            //        if(currentDirNum<0)
-            //        {
-            //            foreach(Transform targets in TargetableEnemies)
-            //            {
-
-            //            }
-            //        }
-            //    }
-
-            //}
-            //Debug.Log("final " + objectToReturn, objectToReturn);
             return objectToReturn;
         }
-        else if(input.x < 0.25f)
+        else if(input.x < -0.7f)
         {
-            //for (int i = 0; i < TargetableEnemies.Count; i++)
-            //{
-            //    Vector3 currentPotentialNewDirection = TargetableEnemies[i].position - mainCameraTransform.position;
-            //    if ((TargetableEnemies[i].transform != currentHiotaTarget)
-            //        && (CheckObjectToTheLeft(mainCameraTransform.right, currentPotentialNewDirection)))
-            //    {
-            //        float currentDot = Vector3.Dot(mainCameraTransform.right, currentPotentialNewDirection);
-            //        foreach (Transform targetsToCompare in TargetableEnemies)
-            //        {
-            //            if (targetsToCompare != currentHiotaTarget)
-            //            {
-            //                Vector3 currentDirectionToCompare = targetsToCompare.position - mainCameraTransform.position;
-            //                float currentDotToCompare = Vector3.Dot(mainCameraTransform.right, currentDirectionToCompare);
-            //                if ((currentDot <= currentDotToCompare))
-            //                {
-            //                    //Debug.Log("Je passe bien ici");
-            //                    if (CheckObjectToTheLeft(mainCameraTransform.right, currentDirectionToCompare))
-            //                    {
+            if (SortedListOfEnemies.IndexOf(currentHiotaTarget) + 1 < SortedListOfEnemies.Count)
+            {
+                Transform nextObjectToTheLeft = SortedListOfEnemies[(SortedListOfEnemies.IndexOf(currentHiotaTarget) + 1)];
+                objectToReturn = nextObjectToTheLeft;
+                //Debug.Log((SortedListOfEnemies.IndexOf(currentHiotaTarget) + 1) + "Object to the Left", nextObjectToTheLeft);
+            }
 
-            //                        objectToReturn = targetsToCompare;
-            //                    }
-            //                }
-
-            //            }
-            //        }
-
-            //    }
-            //}
-            //return objectToReturn;
+            return objectToReturn;
         }
-        return objectToReturn;
+        return null;
     }
 
     public Transform CheckoutClosestEnemyToCenterCam()
