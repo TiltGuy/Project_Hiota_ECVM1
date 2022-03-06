@@ -436,6 +436,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         {
             b_IsFocusing = true;
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
+            // there use a function in the target Gatherer to check the target nearest to the center of MainCam
+
             GO_FocusCamera.SetActive(true);
             GO_MainCamera.SetActive(false);
             //Debug.Log(b_IsFocusing);
@@ -579,24 +581,14 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         if(b_IsFocusing)
         {
             Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
-            print(input);
-            OnChangeTargetFocus(input);
-            OnChangeCurrentPlayerTarget();
-            print("CHANGE");
-
+            //print(input.normalized);
             if (b_CanChangeFocusCameraTarget)
             {
-
-                //print("On Change = " + input);
-                if (input != Vector2.zero)
-                {
-
-                    b_CanChangeFocusCameraTarget = false;
-                    //print("I want to change my target, bool = " + b_CanChangeFocusCameraTarget);
-
-
-                }
+                b_CanChangeFocusCameraTarget = false;
+                OnChangeTargetFocus(input);
+                OnChangeCurrentPlayerTarget();
             }
+            //print("CHANGE");
 
         }
     }
@@ -608,24 +600,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     void ResetFocusCameraTargetFactor()
     {
-        
-        if (b_IsFocusing)
-        {
-            Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
-            //print("On Reset = " + input); print("On Reset = " + input);
-            if (!b_CanChangeFocusCameraTarget)
-            {
-                
-                
-                if (input == Vector2.zero)
-                {
-                    //print("RESET");
-                    b_CanChangeFocusCameraTarget = true;
-                    //print("I reset Can Change, bool = " + b_CanChangeFocusCameraTarget);
-                    
-                }
-            }
-        }
+        b_CanChangeFocusCameraTarget = true;
+        //print("Reset");
     }
 
 

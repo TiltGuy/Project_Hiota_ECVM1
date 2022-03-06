@@ -55,7 +55,7 @@
                     "type": "Value",
                     "id": "e3f131bb-6650-433b-9c8e-22cbaa2f5f36",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2,StickDeadzone(min=0.45)",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -406,17 +406,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "DebugInput",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2f894910-5dbc-4d9b-9572-7ad6267ea543",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyB&Mouse",
-                    "action": "ChangeFocusCameraTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

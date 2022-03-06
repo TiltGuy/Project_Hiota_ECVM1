@@ -14,14 +14,14 @@ public class TargetGatherer : MonoBehaviour
     private Camera mainCamera;
     private Plane[] planes;
     private Collider objToVerify;
-
-    [SerializeField]
-    private Transform target;
+    private Transform currentTarget;
+    public float dirNum;
 
     private void Awake()
     {
         mainCamera = Camera.main;
         mainCameraTransform = mainCamera.transform;
+        currentTarget = controller.currentHiotaTarget;
     }
 
     private void Start()
@@ -73,6 +73,10 @@ public class TargetGatherer : MonoBehaviour
     {
         planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
+        Vector3 heading = currentTarget.position - mainCameraTransform.position;
+        dirNum = AngleDir(mainCameraTransform.forward, heading, mainCameraTransform.up);
+        
+
         if (PotentialEnemies.Count > 0)
         {
             foreach (Transform enemy in PotentialEnemies)
@@ -83,7 +87,7 @@ public class TargetGatherer : MonoBehaviour
 
                 if(GeometryUtility.TestPlanesAABB(planes, objToVerify.bounds))
                 {
-                    Debug.Log("enemy : " + enemy + " has been detected");
+                    //Debug.Log("enemy : " + enemy + " has been detected");
                     if (CheckSightLine(enemy.transform))
                     {
 
@@ -106,20 +110,22 @@ public class TargetGatherer : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("the enemy : " + enemy.transform + " hasn't been detected", enemy.transform);
+                    //Debug.Log("the enemy : " + enemy.transform + " hasn't been detected", enemy.transform);
                 }
 
                 
             }
         }
 
+    }
 
-        
+    float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
+    {
+        Vector3 perp = Vector3.Cross(fwd, targetDir);
+        float dir = Vector3.Dot(perp, up);
+        print(dir + " dirnum valeur");
 
-
-        
-
-
+        return dir;
     }
 
     private bool CheckSightLine(Transform target)
@@ -188,73 +194,62 @@ public class TargetGatherer : MonoBehaviour
         Transform currentHiotaTarget = controller.currentHiotaTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;
-        if (input.x>0)
+        //print(input);
+        if (input.x>.25)
         {
             
             for(int i = 0; i < TargetableEnemies.Count; i++)
             {
-                Vector3 currentDirection = TargetableEnemies[i].position - mainCameraTransform.position;
-                if ((TargetableEnemies[i].transform == currentHiotaTarget) 
-                    || (!CheckObjectToTheRight(mainCameraTransform.right, currentDirection)))
+                if(TargetableEnemies[i].transform != currentHiotaTarget)
                 {
-                    i++;
-                }
-                else
-                {
-                    Vector3 directionObjectToReturn = objectToReturn.position - mainCameraTransform.position;
-                    //check 
-                    if(objectToReturn == currentHiotaTarget)
+                    Vector3 heading = currentTarget.position - mainCameraTransform.position;
+                    float currentDirNum = AngleDir(mainCameraTransform.forward, heading, mainCameraTransform.up);
+                    if(currentDirNum<0)
                     {
-                        objectToReturn = TargetableEnemies[i].transform;
-                    }
-                    else
-                    {
-                        //compare the dot between object to return and current enemy list
-                        if (Vector3.Dot(mainCameraTransform.right, currentDirection.normalized) 
-                            < Vector3.Dot(mainCameraTransform.right, directionObjectToReturn))
+                        foreach(Transform targets in TargetableEnemies)
                         {
-                            objectToReturn = TargetableEnemies[i].transform;
+
                         }
                     }
                 }
 
-                return objectToReturn;
             }
+            Debug.Log("final " + objectToReturn, objectToReturn);
             return objectToReturn;
         }
-        else
+        else if(input.x < 0.25f)
         {
             for (int i = 0; i < TargetableEnemies.Count; i++)
             {
-                Vector3 currentDirection = TargetableEnemies[i].position - mainCameraTransform.position;
-                if ((TargetableEnemies[i].transform == currentHiotaTarget)
-                    || (!CheckObjectToTheLeft(mainCameraTransform.right, currentDirection)))
+                Vector3 currentPotentialNewDirection = TargetableEnemies[i].position - mainCameraTransform.position;
+                if ((TargetableEnemies[i].transform != currentHiotaTarget)
+                    && (CheckObjectToTheLeft(mainCameraTransform.right, currentPotentialNewDirection)))
                 {
-                    i++;
-                }
-                else
-                {
-                    Vector3 directionObjectToReturn = objectToReturn.position - mainCameraTransform.position;
-                    //check 
-                    if (objectToReturn == currentHiotaTarget)
+                    float currentDot = Vector3.Dot(mainCameraTransform.right, currentPotentialNewDirection);
+                    foreach (Transform targetsToCompare in TargetableEnemies)
                     {
-                        objectToReturn = TargetableEnemies[i].transform;
-                    }
-                    else
-                    {
-                        //compare the dot between object to return and current enemy list
-                        if (Vector3.Dot(mainCameraTransform.right, currentDirection.normalized)
-                            < Vector3.Dot(mainCameraTransform.right, directionObjectToReturn))
+                        if (targetsToCompare != currentHiotaTarget)
                         {
-                            objectToReturn = TargetableEnemies[i].transform;
+                            Vector3 currentDirectionToCompare = targetsToCompare.position - mainCameraTransform.position;
+                            float currentDotToCompare = Vector3.Dot(mainCameraTransform.right, currentDirectionToCompare);
+                            if ((currentDot <= currentDotToCompare))
+                            {
+                                //Debug.Log("Je passe bien ici");
+                                if (CheckObjectToTheLeft(mainCameraTransform.right, currentDirectionToCompare))
+                                {
+
+                                    objectToReturn = targetsToCompare;
+                                }
+                            }
+
                         }
                     }
-                }
 
-                return objectToReturn;
+                }
             }
             return objectToReturn;
         }
+        return objectToReturn;
     }
 
 }
