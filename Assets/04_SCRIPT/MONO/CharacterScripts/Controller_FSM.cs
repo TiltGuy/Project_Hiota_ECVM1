@@ -10,7 +10,10 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     [Header(" -- DEPENDENCIES -- ")]
 
+    [Tooltip("The Target for the FreeLook Camera")]
+    public Transform cameraTarget;
 
+    [HideInInspector]
     [Tooltip("It needs the prefab of CameraBase")]
     public Transform m_cameraBaseDirection;
 
@@ -209,10 +212,11 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     [Header(" -- CAMERA SETTINGS & DEPENDENDCIES -- ")]
 
-    public GameObject GO_MainCamera;
+    public GameObject GO_CameraFreeLook;
 
     public GameObject GO_FocusCamera;
 
+    [HideInInspector]
     [Tooltip("The focus of hiota if he have to")]
     public Transform currentHiotaTarget;
 
@@ -258,6 +262,11 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         characontroller = GetComponent<CharacterController>();
         //rbody = GetComponent<Rigidbody>();
+        SetMainCameraBaseDirectionTransform();
+
+        SetGOCameraFreeLook();
+
+        SetGOCameraFocus();
 
         //Initialisation of ALL the Bindings with InputMaster
         controls = new InputMaster();
@@ -283,8 +292,35 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
 
-        
 
+
+    }
+
+    private void SetMainCameraBaseDirectionTransform()
+    {
+        m_cameraBaseDirection = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        if (m_cameraBaseDirection == null)
+        {
+            Debug.LogError("I Haven't a MainCamera", this);
+        }
+    }
+
+    private void SetGOCameraFreeLook()
+    {
+        GO_CameraFreeLook = GameObject.FindGameObjectWithTag("CameraFreeLook");
+        if (GO_CameraFreeLook == null)
+        {
+            Debug.LogError("I Haven't a GO_CameraFreeLook", this);
+        }
+    }
+
+    private void SetGOCameraFocus()
+    {
+        GO_FocusCamera = GameObject.FindGameObjectWithTag("CameraFocus");
+        if (GO_FocusCamera == null)
+        {
+            Debug.LogError("I Haven't a GO_FocusCamera", this);
+        }
     }
 
     private void OnEnable()
@@ -317,11 +353,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         currentArmor = HiotaStats.baseArmor;
         statCurrentGuard = HiotaStats.baseGuard;
         statCurrentMaxGuard = HiotaStats.maxGuard;
-        m_cameraBaseDirection = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        if (!m_cameraBaseDirection)
-        {
-            Debug.LogError("I Haven't a MainCamera", this);
-        }
     }
 
     // Update is called once per frame
@@ -442,7 +473,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
                 currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
                 OnChangeCurrentPlayerTarget();
                 GO_FocusCamera.SetActive(true);
-                GO_MainCamera.SetActive(false);
+                GO_CameraFreeLook.SetActive(false);
                 Debug.Log(currentHiotaTarget);
             }
         }
@@ -451,7 +482,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
             b_IsFocusing = false;
             Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
             GO_FocusCamera.SetActive(false);
-            GO_MainCamera.SetActive(true);
+            GO_CameraFreeLook.SetActive(true);
             Debug.Log(b_IsFocusing, this);
         }
     }
