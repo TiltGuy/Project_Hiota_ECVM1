@@ -26,7 +26,6 @@ public class TargetGatherer : MonoBehaviour
     {
         mainCamera = Camera.main;
         mainCameraTransform = mainCamera.transform;
-        currentTarget = controller.currentHiotaTarget;
     }
 
     private void Start()
@@ -39,6 +38,9 @@ public class TargetGatherer : MonoBehaviour
         {
             planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         }
+
+
+        currentTarget = controller.currentHiotaTarget;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -68,7 +70,12 @@ public class TargetGatherer : MonoBehaviour
     {
         planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
-        Vector3 heading = currentTarget.position - mainCameraTransform.position;
+        Vector3 heading = mainCameraTransform.forward;
+
+        if(currentTarget != null)
+        {
+            heading = currentTarget.position - mainCameraTransform.position;
+        }
         dirNum = AngleDir(mainCameraTransform.forward, heading, mainCameraTransform.up);
         
 

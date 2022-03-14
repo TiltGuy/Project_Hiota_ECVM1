@@ -65,6 +65,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         lifeLoot.SetActive(false);
 
+        refAvatar = GameObject.FindGameObjectWithTag("Player").transform;
+
         Fill = 1f;
         agent = GetComponent<NavMeshAgent>();
         //rb = GetComponent<Rigidbody>();

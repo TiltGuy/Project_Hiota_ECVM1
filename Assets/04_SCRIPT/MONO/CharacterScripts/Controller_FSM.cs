@@ -308,6 +308,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     private void SetGOCameraFreeLook()
     {
         GO_CameraFreeLook = GameObject.FindGameObjectWithTag("CameraFreeLook");
+
         if (GO_CameraFreeLook == null)
         {
             Debug.LogError("I Haven't a GO_CameraFreeLook", this);
@@ -317,6 +318,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     private void SetGOCameraFocus()
     {
         GO_FocusCamera = GameObject.FindGameObjectWithTag("CameraFocus");
+        GO_FocusCamera.SetActive(false);
         if (GO_FocusCamera == null)
         {
             Debug.LogError("I Haven't a GO_FocusCamera", this);

@@ -27,7 +27,7 @@ public class AutoSetFollowLookAtFreelookCamera : MonoBehaviour
         {
 
             FLCamera.LookAt = playerController.cameraTarget;
-            Debug.LogWarning("I haven't a playerController.cameraTarget to lookAt", this);
+            //Debug.LogWarning("I haven't a playerController.cameraTarget to lookAt", this);
         }
         else
         {

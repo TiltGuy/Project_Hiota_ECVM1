@@ -37,7 +37,10 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
 
     private void Update()
     {
-        transform.position = currentPlayerTarget.transform.position;
+        if(currentPlayerTarget != null)
+        {
+            transform.position = currentPlayerTarget.transform.position;
+        }
     }
 
     void UpdateMyPlayerCurrentTargetGroup()
