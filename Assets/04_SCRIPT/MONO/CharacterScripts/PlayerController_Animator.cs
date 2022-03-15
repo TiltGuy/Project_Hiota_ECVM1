@@ -15,7 +15,7 @@ public class PlayerController_Animator : MonoBehaviour
     public Animator animator;
     public Transform ps;
     [SerializeField]
-    private PlayerController_FSM controller_FSM;
+    private Controller_FSM controller_FSM;
     private Transform basicAttackHitBoxPrefab;
     private Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;
@@ -45,7 +45,7 @@ public class PlayerController_Animator : MonoBehaviour
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;
         }
-        Debug.Log("Basic Attack HitBox is : " + basicAttackHitBoxPrefab, this);
+        //Debug.Log("Basic Attack HitBox is : " + basicAttackHitBoxPrefab, this);
         
     }
 
@@ -77,6 +77,11 @@ public class PlayerController_Animator : MonoBehaviour
     public void DustCloud()
     {
         Instantiate(ps,transform.position, Quaternion.identity);
+    }
+
+    public void SpawnFX(Transform TargetFX)
+    {
+        Instantiate(TargetFX, transform.position, Quaternion.identity);
     }
 
 }

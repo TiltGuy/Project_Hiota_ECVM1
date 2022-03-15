@@ -3,55 +3,121 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Controller_FSM))]
 public class HiotaHealth : MonoBehaviour
 {
 	public float _health;
 	private float _maxHealth;
-	public Image hiotaHealthBar;
-	public float Fill;
+	public Image healthBar;
+	public float healthPointBarFillAmount;
+	private float _maxGuard;
+	private float _currentGuard;
+	[SerializeField]
+	private Image guardBarImage;
+	private float guardPointBarFillAmount;
 	public Transform Particle_Damage_Taken;
 	public Transform Particle_Health_Recovered;
 
+	private Controller_FSM controller;
 
-	void Start()
+    private void Awake()
+    {
+		controller = GetComponent<Controller_FSM>();
+    }
+
+    void Start()
 	{
-		Fill = 1f;
-		_health = 10;
-		_maxHealth = 10;
+		
+        _health = controller.statCurrentHealth;
+		_maxHealth = controller.HiotaStats.maxHealth;
+		healthPointBarFillAmount = _health / _maxHealth;
+		healthBar.fillAmount = healthPointBarFillAmount;
+
+		_currentGuard = controller.statCurrentGuard;
+		_maxGuard = controller.HiotaStats.maxGuard;
+		guardPointBarFillAmount = _currentGuard / _maxGuard;
+		guardBarImage.fillAmount = guardPointBarFillAmount;
+
+
+		
+		//UPDATE DELEGATE
 	}
 
-	void Update()
+    private void OnEnable()
+    {
+		controller.LoseHPDelegate += UpdateHPFillBar;
+		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
+	}
+
+    private void OnDisable()
+    {
+		controller.LoseHPDelegate -= UpdateHPFillBar;
+		controller.UpdateGuardAmountDelegate -= UpdateGuardBar;
+	}
+
+    void Update()
 	{
 		if (_health == 0)
 		{
-			Destroy(this.gameObject);
+			Debug.Log("tu es décédé", this);
 		}
 	}
 
-	public void Hurt(float attackDamage)
-	{
-		_health -= attackDamage;
-		Fill = _health / _maxHealth;
-		hiotaHealthBar.fillAmount = Fill;
-		//Debug.Log("Health: " + _health);
-		//Debug.Log("Fill : " + Fill);
-		//Debug.Log("Damages : " + attackDamage);
-		Instantiate(Particle_Damage_Taken, transform.position, Quaternion.identity);
-	}
+	//public void Hurt(float attackDamage)
+	//{
+	//	_health -= attackDamage;
+	//	healthPointBarFillAmount = _health / _maxHealth;
+	//	healthBar.fillAmount = healthPointBarFillAmount;
+	//	//Debug.Log("Health: " + _health);
+	//	//Debug.Log("Fill : " + Fill);
+	//	//Debug.Log("Damages : " + attackDamage);
+		
+	//}
 
 	void OnTriggerEnter (Collider other)
 	{
 		if(other.tag == "LifeLoot")
 		{
 			_health += 1;
-			Fill += 0.2f;
-			hiotaHealthBar.fillAmount = Fill;
-			print("Regeneratiooonnn !!!");
-			Debug.Log("Health: " + _health);
+			healthPointBarFillAmount += 0.2f;
+			healthBar.fillAmount = healthPointBarFillAmount;
+			//print("Regeneratiooonnn !!!");
+			Debug.Log("Health: " + _health,this);
 			Destroy(other.gameObject);
-			Instantiate(Particle_Health_Recovered, transform.position, Quaternion.identity);
+			if(!Particle_Health_Recovered)
+            {
+				Debug.Log("Particle_Health_Recovered EMPTY", this);
+			}
+			else
+				Instantiate(Particle_Health_Recovered, transform.position, Quaternion.identity);
 		}
 	}
+	
+	public void SpawnHitReactionFX(Transform targetFX)
+    {
+		if (!targetFX)
+		{
+			Debug.Log("Particle_Damage_Taken EMPTY", this);
+		}
+		else
+			Instantiate(targetFX, transform.position, Quaternion.identity);
+	}
 
+	void UpdateHPFillBar(float currentHpToUpdate)
+    {
+		_health = currentHpToUpdate;
+		healthPointBarFillAmount = _health / _maxHealth;
+		healthBar.fillAmount = healthPointBarFillAmount;
+		//print("J'update mes HPs");
+	}
+
+	void UpdateGuardBar(float currentGuardPointToUpdate)
+    {
+		_currentGuard = currentGuardPointToUpdate;
+		guardPointBarFillAmount = _currentGuard / _maxGuard;
+		guardBarImage.fillAmount = guardPointBarFillAmount;
+
+
+	}
 	
 }
