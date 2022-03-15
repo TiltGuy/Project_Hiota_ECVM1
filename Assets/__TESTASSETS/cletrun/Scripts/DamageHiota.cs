@@ -30,7 +30,6 @@ public class DamageHiota : MonoBehaviour
     void Start()
 	{
         
-        attackCooldown = 3;
         TimerForNextAttack = attackCooldown;
     }
 
@@ -43,7 +42,6 @@ public class DamageHiota : MonoBehaviour
         else if (TimerForNextAttack <= 0)
         {
             BeginAttack();
-            TimerForNextAttack = attackCooldown;
             
         }
     }
@@ -75,9 +73,18 @@ public class DamageHiota : MonoBehaviour
         hiotaHealth.SpawnHitReactionFX(targetFXPrefab);
     }
 
-    public void UpdateBasicAttackStatutTrue()
+    public void UpdateBasicAttackStatutTrue(GameObject Hitbox)
     {
-        if (attackHitBoxPrefab)
+        if( Hitbox)
+        {
+            currentAttackHitbox = Instantiate(Hitbox.transform, enemyScript.transform.position, Quaternion.identity);
+            // Set the parent
+            currentAttackHitbox.SetParent(enemyScript.transform);
+            // be sure to reset TRANSFORM and ROTATION
+            currentAttackHitbox.transform.localPosition = Vector3.zero;
+            currentAttackHitbox.transform.localRotation = Quaternion.identity;
+        }
+        else
         {
             currentAttackHitbox = Instantiate(attackHitBoxPrefab, enemyScript.transform.position, Quaternion.identity);
             // Set the parent
@@ -94,6 +101,15 @@ public class DamageHiota : MonoBehaviour
         {
             currentAttackHitbox.GetComponent<TouchHiota>().DestroyItSelfAfterUsed();
         }
+        else if(currentAttackHitbox)
+        {
+            currentAttackHitbox.gameObject.SetActive(false);
+        }
+    }
+
+    public void HaveFinishedPreviousAttack()
+    {
+        TimerForNextAttack = attackCooldown;
     }
 
 }
