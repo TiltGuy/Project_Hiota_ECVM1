@@ -73,6 +73,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""ChangeFocusCameraTarget"",
+                    ""type"": ""Value"",
+                    ""id"": ""e3f131bb-6650-433b-9c8e-22cbaa2f5f36"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Parry"",
                     ""type"": ""Button"",
                     ""id"": ""5a451e50-c5f7-4fa8-9650-40f9b883550b"",
@@ -98,7 +107,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyB&Mouse"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -110,6 +119,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be620b6b-c1b5-4d27-88e3-805fd2a392d3"",
+                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ae029ba-91ff-437c-b390-31e2afbf0e65"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -170,59 +201,37 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""MoveVectorGP"",
-                    ""id"": ""0dbe3ccd-1498-4282-93fb-e4f3d6a5dd0d"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""350004ba-7bbf-4489-8aaf-e85f03ec1e9b"",
+                    ""path"": ""<DualShockGamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""14d6bd24-29b4-439f-8d14-8ef35a5377f7"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""name"": """",
+                    ""id"": ""7622b7a5-c0cd-40e3-bb6b-cc173889a5cd"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""a6cd1adf-4e29-47c5-8756-85b452465d04"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""name"": """",
+                    ""id"": ""6913e9ec-ae9c-4b51-b42b-f15ad7254af7"",
+                    ""path"": ""<XInputController>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""7ec5b7fc-e244-4318-9809-d197e782d785"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""902aa2bd-944f-4426-a859-71e209e96a96"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -238,10 +247,32 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""827299d4-5880-46f3-be88-acf7925c214f"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""FocusTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93973022-b173-4124-aec2-a95a2ca8c5b5"",
+                    ""path"": ""<DualShockGamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""FocusTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5553e3a4-b939-49ff-b500-e2dd3923b334"",
+                    ""path"": ""<XInputController>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
                     ""action"": ""FocusTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -281,10 +312,32 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""839a7f1a-1d77-4bf9-b084-66465c25e820"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ad07c49-73e7-4652-91e4-808ea7642af9"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""601d1cc7-8976-4409-b59b-f1089ae7646d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(max=1),NormalizeVector2"",
                     ""groups"": ""KeyB&Mouse"",
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,
@@ -303,6 +356,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""3b67c70c-4d06-41c0-b071-0a6b4b464273"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f2f9fec-1b63-4479-a3d3-8e6190d26257"",
+                    ""path"": ""<XInputController>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""6abd9b35-fbcd-470a-a6ae-998dd3848306"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -315,10 +390,32 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0793c952-a7dd-491f-bb43-bf42385b4558"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33ecbf85-ce42-478c-a851-97d2e4487507"",
+                    ""path"": ""<DualShockGamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""296d5b39-2be5-46c6-a4a9-5d8be4067d81"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
                     ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -333,6 +430,94 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""DebugInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d33c0852-f670-41c4-a51c-fde33b88e489"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21baa11b-ef38-4f13-85ff-97386ac95301"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aebd32f9-a496-4848-8a9a-efb85b5c1631"",
+                    ""path"": ""<XInputController>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XBOX360_Scheme"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""KeyboardDirection"",
+                    ""id"": ""7afb58e9-3f29-40da-b8c4-8a17c2f49f6d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8b77e2c7-be9f-4d11-90a5-9160f18e954e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""73ffe502-30ad-4777-8fbd-d90afcc71f53"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cdf2ae07-f720-4f5b-bf2e-643143f7dad0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ac1c74ff-9465-4882-ac59-c9f208830000"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""ChangeFocusCameraTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -364,6 +549,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PS4_Scheme"",
+            ""bindingGroup"": ""PS4_Scheme"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""XBOX360_Scheme"",
+            ""bindingGroup"": ""XBOX360_Scheme"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -374,6 +581,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_FocusTarget = m_Player.FindAction("FocusTarget", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
+        m_Player_ChangeFocusCameraTarget = m_Player.FindAction("ChangeFocusCameraTarget", throwIfNotFound: true);
         m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
         m_Player_DebugInput = m_Player.FindAction("DebugInput", throwIfNotFound: true);
     }
@@ -440,6 +648,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_FocusTarget;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LookCamera;
+    private readonly InputAction m_Player_ChangeFocusCameraTarget;
     private readonly InputAction m_Player_Parry;
     private readonly InputAction m_Player_DebugInput;
     public struct PlayerActions
@@ -451,6 +660,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @FocusTarget => m_Wrapper.m_Player_FocusTarget;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
+        public InputAction @ChangeFocusCameraTarget => m_Wrapper.m_Player_ChangeFocusCameraTarget;
         public InputAction @Parry => m_Wrapper.m_Player_Parry;
         public InputAction @DebugInput => m_Wrapper.m_Player_DebugInput;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -477,6 +687,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @LookCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
                 @LookCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
                 @LookCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookCamera;
+                @ChangeFocusCameraTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeFocusCameraTarget;
                 @Parry.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
                 @Parry.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
                 @Parry.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnParry;
@@ -502,6 +715,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @LookCamera.started += instance.OnLookCamera;
                 @LookCamera.performed += instance.OnLookCamera;
                 @LookCamera.canceled += instance.OnLookCamera;
+                @ChangeFocusCameraTarget.started += instance.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.performed += instance.OnChangeFocusCameraTarget;
+                @ChangeFocusCameraTarget.canceled += instance.OnChangeFocusCameraTarget;
                 @Parry.started += instance.OnParry;
                 @Parry.performed += instance.OnParry;
                 @Parry.canceled += instance.OnParry;
@@ -530,6 +746,24 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
+    private int m_PS4_SchemeSchemeIndex = -1;
+    public InputControlScheme PS4_SchemeScheme
+    {
+        get
+        {
+            if (m_PS4_SchemeSchemeIndex == -1) m_PS4_SchemeSchemeIndex = asset.FindControlSchemeIndex("PS4_Scheme");
+            return asset.controlSchemes[m_PS4_SchemeSchemeIndex];
+        }
+    }
+    private int m_XBOX360_SchemeSchemeIndex = -1;
+    public InputControlScheme XBOX360_SchemeScheme
+    {
+        get
+        {
+            if (m_XBOX360_SchemeSchemeIndex == -1) m_XBOX360_SchemeSchemeIndex = asset.FindControlSchemeIndex("XBOX360_Scheme");
+            return asset.controlSchemes[m_XBOX360_SchemeSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnAttack(InputAction.CallbackContext context);
@@ -537,6 +771,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnFocusTarget(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLookCamera(InputAction.CallbackContext context);
+        void OnChangeFocusCameraTarget(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
         void OnDebugInput(InputAction.CallbackContext context);
     }

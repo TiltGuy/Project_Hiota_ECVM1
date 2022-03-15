@@ -6,14 +6,19 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public NavMeshAgent agent;
-    public Transform refAvatar;
-    public float detectionDistance;
-    public float attackDistance;
+    [SerializeField]
+    private NavMeshAgent agent;
+    [SerializeField]
+    private Transform refAvatar;
+    [SerializeField]
+    private float detectionDistance;
+    [SerializeField]
+    private float attackDistance;
 
     //ParticleSystem
-    public Transform AggroTaken;
-    public bool EnemySpotPlayer;
+    [SerializeField]
+    private Transform AggroTaken;
+    private bool EnemySpotPlayer;
 
     /*public GameObject projectile;
     public float cadenceTir;
@@ -26,14 +31,23 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool canDetect = false;
     [HideInInspector]
     public bool canAttack = false;
-    public Transform zoneEnemy;
-    public Transform[] waypoints;
+    [SerializeField]
+    private Transform zoneEnemy;
+    [SerializeField]
+    private Transform[] waypoints;
+
+    private Controller_FSM HiotaController;
 
     //Health
-    public CharacterStats_SO characterStats;
-    public float currentHealth;
-    public GameObject HitFXprefab;
+    [SerializeField]
+    private CharacterStats_SO characterStats;
+    private float _currentHealth;
+    private float _currentMaxHealth;
+    [SerializeField]
+    private GameObject HitFXprefab;
     private Collider coll;
+    [SerializeField]
+    public bool b_IsDead;
 
     //Health Bar
     public Image Bar;
@@ -42,11 +56,16 @@ public class Enemy : MonoBehaviour, IDamageable
     //Loot
     public GameObject lifeLoot;
 
+    public delegate void MultiDelegate();
+    public MultiDelegate OnDeathEnemy;
+
 
     // Start is called before the first frame update
     void Start()
     {
         lifeLoot.SetActive(false);
+
+        refAvatar = GameObject.FindGameObjectWithTag("Player").transform;
 
         Fill = 1f;
         agent = GetComponent<NavMeshAgent>();
@@ -57,8 +76,24 @@ public class Enemy : MonoBehaviour, IDamageable
         agent.SetDestination(RandomNavmeshLocation(4f));
         //trouver un point au hasard sur le NavMesh à 4mètres
 
-        currentHealth = characterStats.baseHealth;
+        _currentHealth = characterStats.baseHealth;
+        _currentMaxHealth = characterStats.maxHealth;
         coll = GetComponent<Collider>();
+
+        if(refAvatar)
+        {
+            HiotaController = refAvatar.GetComponent<Controller_FSM>();
+        }
+    }
+
+    private void OnEnable()
+    {
+        OnDeathEnemy += DeclareIsDead;
+    }
+
+    private void OnDisable()
+    {
+        OnDeathEnemy -= DeclareIsDead;
     }
 
     // Update is called once per frame
@@ -110,11 +145,6 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    private void FixedUpdate()
-    {
-
-    }
-
     public Vector3 RandomNavmeshLocation(float radius)
     {
         /*Vector3 randomDirection = Random.insideUnitSphere * radius;
@@ -139,9 +169,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void LoseHP(float damageTaken)
     {
-        if (currentHealth > 0)
+        if (_currentHealth > 0)
         {
-            currentHealth -= damageTaken;
+            _currentHealth -= damageTaken;
             
         }
     }
@@ -149,8 +179,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamages(float damageTaken, Transform striker)
     {
         float damageOuput = CalculateFinalDamages(damageTaken, characterStats.baseArmor);
-        LoseHP(damageTaken);
-        Fill -= 0.2f;
+        LoseHP(damageOuput);
+        Fill = _currentHealth/_currentMaxHealth;
+        Fill = Mathf.Clamp(Fill, 0, _currentMaxHealth);
         Bar.fillAmount = Fill;
 
         
@@ -166,15 +197,23 @@ public class Enemy : MonoBehaviour, IDamageable
         }
 
 
-        Debug.Log("il ne me reste plus que " + currentHealth + " d'HP", this);
+        Debug.Log("il ne me reste plus que " + _currentHealth + " d'HP", this);
 
-        if (Fill <= 0)
+        if (_currentHealth <= 0)
         {
             lifeLoot.SetActive(true);
-            Destroy(gameObject);
+            //STOP FUCKING DESTROY A GAME OBJECT WITHOUT A SAFE GUARD
+            //Destroy(gameObject);
             // Instantiate Object for Hiota ++Health
 
+
             Instantiate(lifeLoot, transform.position, transform.rotation);
+            DeclareIsDead();
+            if(HiotaController)
+            {
+                HiotaController.OnDeathEnemy();
+            }
+            gameObject.SetActive(false);
         }
     }
 
@@ -185,7 +224,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), detectionDistance);
         
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1, 0), attackDistance);
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 
     public void SetCanDetect(bool value)
@@ -198,4 +237,17 @@ public class Enemy : MonoBehaviour, IDamageable
 	{
         agent.SetDestination(transform.position + (zoneEnemy.position - transform.position).normalized * 6);
 	}
+
+    private void DeclareIsDead()
+    {
+        if(!b_IsDead)
+        {
+            b_IsDead = true;
+            Debug.Log("b_IsDead is " + b_IsDead);
+        }
+        else
+        {
+            Debug.Log("I'm already Dead !!!", this);
+        }
+    }
 }

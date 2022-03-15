@@ -13,11 +13,19 @@ public class DamageHiota : MonoBehaviour
     public Animator enemyAnimator;
     public Enemy enemyScript;
     //public StaticEnemyAI staticEnemyScript;
-    public PlayerController_FSM playerScript;
+    public Controller_FSM playerScript;
+
+    [SerializeField]
+    private Transform attackHitBoxPrefab;
+
+    private Transform currentAttackHitbox;
 
     public Transform player;
-    
-    
+
+    private void Awake()
+    {
+        hiotaHealth = player.GetComponent<HiotaHealth>();
+    }
 
     void Start()
 	{
@@ -34,7 +42,7 @@ public class DamageHiota : MonoBehaviour
         }
         else if (TimerForNextAttack <= 0)
         {
-            AttackHiota();
+            BeginAttack();
             TimerForNextAttack = attackCooldown;
             
         }
@@ -42,19 +50,50 @@ public class DamageHiota : MonoBehaviour
     
 
     //mettre sur un script au même niveau du mesh + animator (animator sur le mesh)
-    public void AttackHiota()
+    private void BeginAttack()
     {
-        hiotaHealth = player.GetComponent<HiotaHealth>();
+        
 
-        if(enemyScript.canAttack == true && playerScript.b_Parry == false/*|| staticEnemyScript.canAttack == true*/)
+        if(enemyScript.canAttack == true /*|| staticEnemyScript.canAttack == true*/)
 		{
-            hiotaHealth.Hurt(attackDamage);
-            //Attack
             enemyAnimator.SetBool("canAttack", true);
         }
-		
-        
-        
+        else
+            enemyAnimator.SetBool("canAttack", false);
+
+
+
+    }
+
+    public void AttackHiota(float damages)
+    {
+        //hiotaHealth.Hurt(damages);
+    }
+
+    public void SpawnFX(Transform targetFXPrefab)
+    {
+        hiotaHealth.SpawnHitReactionFX(targetFXPrefab);
+    }
+
+    public void UpdateBasicAttackStatutTrue()
+    {
+        if (attackHitBoxPrefab)
+        {
+            currentAttackHitbox = Instantiate(attackHitBoxPrefab, enemyScript.transform.position, Quaternion.identity);
+            // Set the parent
+            currentAttackHitbox.SetParent(enemyScript.transform);
+            // be sure to reset TRANSFORM and ROTATION
+            currentAttackHitbox.transform.localPosition = Vector3.zero;
+            currentAttackHitbox.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    public void UpdateBasicAttackStatutFalse()
+    {
+        if (attackHitBoxPrefab)
+        {
+            currentAttackHitbox.GetComponent<TouchHiota>().DestroyItSelfAfterUsed();
+        }
     }
 
 }
