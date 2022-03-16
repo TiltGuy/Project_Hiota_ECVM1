@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //Patrol
     public bool canDetect = false;
     [HideInInspector]
-    public bool canAttack = false;
+    public bool inRangeOfAttack = false;
     [SerializeField]
     private Transform zoneEnemy;
     [SerializeField]
@@ -49,12 +49,20 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     public bool b_IsDead;
 
+    [SerializeField]
+    private bool b_CanMove = true;
+
+    public float baseSpeed;
+
     //Health Bar
     public Image Bar;
     public float Fill;
 
     //Loot
     public GameObject lifeLoot;
+
+    [SerializeField]
+    private DamageHiota damageHiota;
 
     public delegate void MultiDelegate();
     public MultiDelegate OnDeathEnemy;
@@ -69,6 +77,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         Fill = 1f;
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = baseSpeed;
         //rb = GetComponent<Rigidbody>();
         
         //refAvatar = CharacterMouvement.instance.transform;
@@ -89,11 +98,15 @@ public class Enemy : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         OnDeathEnemy += DeclareIsDead;
+        damageHiota.OnBeginAttack += SetCanMoveFalse;
+        damageHiota.OnFinishAttack += SetCanMoveTrue;
     }
 
     private void OnDisable()
     {
         OnDeathEnemy -= DeclareIsDead;
+        damageHiota.OnBeginAttack -= SetCanMoveFalse;
+        damageHiota.OnFinishAttack -= SetCanMoveTrue;
     }
 
     // Update is called once per frame
@@ -102,7 +115,7 @@ public class Enemy : MonoBehaviour, IDamageable
         dirAvatar = refAvatar.position - transform.position;
         //Debug.Log(dirAvatar.magnitude);
 
-        canAttack = false;
+        inRangeOfAttack = false;
 
         //if(Vector3.Distance(refAvatar.position, transform.position))
         if (dirAvatar.magnitude > detectionDistance || canDetect == false) // Patrouille
@@ -110,14 +123,20 @@ public class Enemy : MonoBehaviour, IDamageable
             //Roam
             if((agent.destination - transform.position).magnitude < 2f)
 			{
-                agent.SetDestination(RandomNavmeshLocation(4f));
+                if(b_CanMove)
+                {
+                    agent.SetDestination(RandomNavmeshLocation(4f));
+                }
                 EnemySpotPlayer = false;
             }
 		}
         else if (dirAvatar.magnitude > attackDistance) 
 		{
             //Chasse
-            agent.SetDestination(refAvatar.position);
+            if(b_CanMove)
+            {
+                agent.SetDestination(refAvatar.position);
+            }
             //agent.destination = refAvatar.position;
             if (!EnemySpotPlayer)
             {
@@ -129,8 +148,12 @@ public class Enemy : MonoBehaviour, IDamageable
         else
 		{
             //Attack
-            agent.SetDestination(transform.position);
-            canAttack = true;
+            if(b_CanMove)
+            {
+
+                agent.SetDestination(transform.position);
+            }
+            inRangeOfAttack = true;
             /*timerTir += Time.deltaTime;
 
             if(timerTir > cadenceTir)
@@ -163,7 +186,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private float CalculateFinalDamages(float damages, float Armor)
     {
         float OutputDamage = Mathf.Clamp(damages - Armor, 0, damages);
-        Debug.Log(OutputDamage, this);
+        //Debug.Log(OutputDamage, this);
         return OutputDamage;
     }
 
@@ -197,7 +220,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
 
 
-        Debug.Log("il ne me reste plus que " + _currentHealth + " d'HP", this);
+        //Debug.Log("il ne me reste plus que " + _currentHealth + " d'HP", this);
 
         if (_currentHealth <= 0)
         {
@@ -208,8 +231,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
 
             Instantiate(lifeLoot, transform.position, transform.rotation);
-            DeclareIsDead();
-            if(HiotaController)
+            OnDeathEnemy();
+            if (HiotaController)
             {
                 HiotaController.OnDeathEnemy();
             }
@@ -250,4 +273,16 @@ public class Enemy : MonoBehaviour, IDamageable
             Debug.Log("I'm already Dead !!!", this);
         }
     }
+
+    private void SetCanMoveTrue()
+    {
+        b_CanMove = true;
+    }
+
+    private void SetCanMoveFalse()
+    {
+        b_CanMove = false;
+    }
+
+
 }

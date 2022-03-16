@@ -541,7 +541,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         if(b_PerfectParry)
         {
-            print("Perfect PARRRY !!!");
+            //print("Perfect PARRRY !!!");
         }
         else if(!b_PerfectParry)
         {

@@ -26,7 +26,7 @@ public abstract class Action_SO : ScriptableObject
 
     public void DebugCurrenState(Controller_FSM controller)
     {
-        Debug.Log("Hiota est dans l'état " + controller.currentState, this);
+        //Debug.Log("Hiota est dans l'état " + controller.currentState, this);
     }
 
     public void SetDashingBooleanValue(Controller_FSM controller, bool targetValue)
