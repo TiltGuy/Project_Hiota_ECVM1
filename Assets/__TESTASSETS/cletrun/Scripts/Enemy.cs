@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private float detectionDistance;
     [SerializeField]
     private float attackDistance;
+    [SerializeField]
+    private float attackSpeed;
 
     //ParticleSystem
     [SerializeField]
@@ -63,6 +65,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField]
     private DamageHiota damageHiota;
+    [SerializeField]
+    private Animator enemyAnimator;
 
     public delegate void MultiDelegate();
     public MultiDelegate OnDeathEnemy;
@@ -116,6 +120,8 @@ public class Enemy : MonoBehaviour, IDamageable
         //Debug.Log(dirAvatar.magnitude);
 
         inRangeOfAttack = false;
+
+        enemyAnimator.SetFloat("motionTime", attackSpeed);
 
         //if(Vector3.Distance(refAvatar.position, transform.position))
         if (dirAvatar.magnitude > detectionDistance || canDetect == false) // Patrouille

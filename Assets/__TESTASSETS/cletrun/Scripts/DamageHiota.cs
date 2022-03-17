@@ -146,7 +146,12 @@ public class DamageHiota : MonoBehaviour
     {
         if (currentAttackHitbox)
         {
-            currentAttackHitbox.GetComponent<TouchHiota>().DestroyItSelfAfterUsed();
+            TouchHiota currentInstance = currentAttackHitbox.GetComponent<TouchHiota>();
+            if(!currentInstance)
+            {
+                currentInstance = currentAttackHitbox.GetComponentInChildren<TouchHiota>();
+            }
+            currentInstance.DestroyItSelfAfterUsed();
         }
     }
 

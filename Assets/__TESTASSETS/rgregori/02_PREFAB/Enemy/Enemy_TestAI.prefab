@@ -598,6 +598,7 @@ MonoBehaviour:
   refAvatar: {fileID: 0}
   detectionDistance: 9.21
   attackDistance: 2.76
+  attackSpeed: 0.5
   AggroTaken: {fileID: 7936721642272932417, guid: d19558d032eee4a48825676f5e6d99cb,
     type: 3}
   canDetect: 1
@@ -615,6 +616,7 @@ MonoBehaviour:
   Fill: 0
   lifeLoot: {fileID: 690514969901292477}
   damageHiota: {fileID: 690514969865950201}
+  enemyAnimator: {fileID: 690514969865950145}
 --- !u!195 &690514969734134012
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -807,16 +809,14 @@ MonoBehaviour:
     type: 3}
   RoundPreviewBoxPrefab: {fileID: 6962967268411725896, guid: 1996d8eeca3a832429b13f16f663d528,
     type: 3}
-  FrontHitBoxPrefab: {fileID: 3934317114346925758, guid: 7c04bfced9202d14fa95fa70835faf31,
-    type: 3}
-  FrontPreviewBoxPrefab: {fileID: 3934317114346925758, guid: 25a196354ebe68f40872ab70ba751862,
-    type: 3}
   HitBoxesPresets:
   - {fileID: 6962967268411725896, guid: b95ca002029c22745923d76b435635ce, type: 3}
   - {fileID: 3934317114346925758, guid: 7c04bfced9202d14fa95fa70835faf31, type: 3}
   PreviewHitBoxesPresets:
   - {fileID: 6962967268411725896, guid: 1996d8eeca3a832429b13f16f663d528, type: 3}
   - {fileID: 3934317114346925758, guid: 25a196354ebe68f40872ab70ba751862, type: 3}
+  currentAttackHitbox: {fileID: 0}
+  previewCurrentAttackHitbox: {fileID: 0}
   b_HaveLaunchedAnAttack: 0
   player: {fileID: 0}
 --- !u!1 &690514969901292477

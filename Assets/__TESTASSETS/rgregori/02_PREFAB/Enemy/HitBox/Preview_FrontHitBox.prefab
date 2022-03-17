@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3934317114346925758
 Transform:
   m_ObjectHideFlags: 0
@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1722633740723633059}
   - component: {fileID: 132856407139988212}
-  - component: {fileID: 2214477539052713409}
   - component: {fileID: 6249331846276782391}
   - component: {fileID: 5900806097815973876}
   m_Layer: 0
@@ -59,8 +58,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4383014625432915065}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0, z: 1.622}
-  m_LocalScale: {x: 1, y: 1.6, z: 1}
+  m_LocalPosition: {x: 0, y: -0.445, z: 1.622}
+  m_LocalScale: {x: 2, y: 1.6, z: 2}
   m_Children: []
   m_Father: {fileID: 3934317114346925758}
   m_RootOrder: 0
@@ -79,19 +78,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2214477539052713409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4383014625432915065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cac6a77372446b4aac6a2bf6f1a28b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackStats: {fileID: 11400000, guid: d0fac1ecbed1a804fae59ed04eda90a5, type: 2}
 --- !u!23 &6249331846276782391
 MeshRenderer:
   m_ObjectHideFlags: 0
