@@ -8,7 +8,6 @@ public class DamageHiota : MonoBehaviour
     public float TimerForNextAttack, attackCooldown;
 
     HiotaHealth hiotaHealth;
-    private bool canAttack;
     public float attackDamage;
 
     public Animator enemyAnimator;
@@ -22,6 +21,8 @@ public class DamageHiota : MonoBehaviour
     [SerializeField]
     private Transform RoundPreviewBoxPrefab;
 
+    [SerializeField]
+    private float steeringSpeed;
 
     [SerializeField]
     private List<Transform> HitBoxesPresets;
@@ -40,6 +41,8 @@ public class DamageHiota : MonoBehaviour
 
     
     private bool isPreparingAttack = false;
+
+    private int currentAttackValue;
 
     public delegate void MultiCastDelegate();
     public MultiCastDelegate OnBeginAttack;
@@ -101,10 +104,10 @@ public class DamageHiota : MonoBehaviour
 
     private void PickAnAttack()
     {
-        int RandomValue = Random.Range(0, HitBoxesPresets.Count);
-        enemyAnimator.SetFloat("IDAttack", RandomValue);
-        currentAttackHitbox = HitBoxesPresets[RandomValue];
-        previewCurrentAttackHitbox = PreviewHitBoxesPresets[RandomValue];
+        currentAttackValue = Random.Range(0, HitBoxesPresets.Count);
+        enemyAnimator.SetFloat("IDAttack", currentAttackValue);
+        currentAttackHitbox = HitBoxesPresets[currentAttackValue];
+        previewCurrentAttackHitbox = PreviewHitBoxesPresets[currentAttackValue];
         print("Choose Attack");
     }
 
@@ -120,7 +123,7 @@ public class DamageHiota : MonoBehaviour
 
     public void UpdateBasicAttackStatutTrue()
     {
-        currentAttackHitbox = Instantiate(currentAttackHitbox, enemyScript.transform.position, Quaternion.identity);
+        currentAttackHitbox = Instantiate(HitBoxesPresets[currentAttackValue], enemyScript.transform.position, Quaternion.identity);
         // Set the parent
         currentAttackHitbox.SetParent(enemyScript.transform);
         // be sure to reset TRANSFORM and ROTATION
@@ -131,7 +134,7 @@ public class DamageHiota : MonoBehaviour
 
     public void UpdatePreviewAttackTrue()
     {
-        previewCurrentAttackHitbox = Instantiate(previewCurrentAttackHitbox, enemyScript.transform.position, Quaternion.identity);
+        previewCurrentAttackHitbox = Instantiate(PreviewHitBoxesPresets[currentAttackValue], enemyScript.transform.position, Quaternion.identity);
         // Set the parent
         previewCurrentAttackHitbox.SetParent(enemyScript.transform);
         // be sure to reset TRANSFORM and ROTATION
@@ -160,6 +163,7 @@ public class DamageHiota : MonoBehaviour
         if(previewCurrentAttackHitbox)
         {
             previewCurrentAttackHitbox.gameObject.SetActive(false);
+            Destroy(previewCurrentAttackHitbox.gameObject);
         }
 
     }
@@ -186,7 +190,7 @@ public class DamageHiota : MonoBehaviour
         isPreparingAttack = false;
     }
 
-    public void SetIsAttacking()
+    public void  SetSteeringValue(float nnewSteeringValue)
     {
 
     }
