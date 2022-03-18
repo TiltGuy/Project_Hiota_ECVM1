@@ -40,6 +40,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     //TO REWORK ==> Delocalise this reference to HiotaHealth
     public CharacterStats_SO HiotaStats;
 
+    public PlayerController_Animator controllerAnim;
+
     #endregion
 
     #region STATS VARIABLES

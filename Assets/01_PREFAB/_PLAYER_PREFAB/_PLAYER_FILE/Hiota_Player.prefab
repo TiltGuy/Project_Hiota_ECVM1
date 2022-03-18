@@ -518,6 +518,7 @@ MonoBehaviour:
   HolsterSword: {fileID: 2633846553027578116}
   HandOfSword: {fileID: 2090796916}
   HiotaStats: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
+  controllerAnim: {fileID: 836114933}
   statCurrentHealth: 0
   b_IsInvicible: 0
   m_speed: 5
@@ -734,6 +735,8 @@ MonoBehaviour:
   animator: {fileID: 1670080000814941675}
   ps: {fileID: 4939392671061270624, guid: 2150f8852bcdf4849a1cf5eea8513c49, type: 3}
   controller_FSM: {fileID: 1645655096204719503}
+  basicAttackHitBoxPrefab: {fileID: 0}
+  currentAttackHitbox: {fileID: 0}
 --- !u!1 &1685074307096713033
 GameObject:
   m_ObjectHideFlags: 0

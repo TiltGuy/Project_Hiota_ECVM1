@@ -38,4 +38,16 @@ public abstract class Action_SO : ScriptableObject
     {
         controller.b_Stunned = targetValue;
     }
+
+    public void SetCurrentHitBoxStatut(Controller_FSM controller, bool targetValue)
+    {
+        if(targetValue)
+        {
+            controller.controllerAnim.UpdateBasicAttackHitBoxStatutTrue();
+        }
+        else
+        {
+            controller.controllerAnim.UpdateBasicAttackHitBoxStatutFalse();
+        }
+    }
 }
