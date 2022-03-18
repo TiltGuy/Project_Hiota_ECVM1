@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     private float attackDistance;
     [SerializeField]
-    private float attackSpeed;
+    private float preparationAttackSpeed;
+    [SerializeField]
+    private float AttackSpeed;
 
     //ParticleSystem
     [SerializeField]
@@ -121,7 +123,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         inRangeOfAttack = false;
 
-        enemyAnimator.SetFloat("motionTime", attackSpeed);
+        enemyAnimator.SetFloat("prepAttackSpeed", preparationAttackSpeed);
+        enemyAnimator.SetFloat("attackSpeed", AttackSpeed);
 
         //if(Vector3.Distance(refAvatar.position, transform.position))
         if (dirAvatar.magnitude > detectionDistance || canDetect == false) // Patrouille

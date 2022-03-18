@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "PluggableStateMachine/Decisions/Player/CheckParryBoolean_Decision")]
-public class CheckParryBoolean : Decision_SO
+public class CheckWanToParryBoolean : Decision_SO
 {
     public override bool Decide(Controller_FSM controller)
     {

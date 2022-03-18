@@ -173,6 +173,9 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("the current Stats and HitBox of the Back Attack that will be used for the next or current hit")]
     public AttackStats_SO BackAttackStats;
 
+    [Tooltip("the current Stats and HitBox of the Parry Attack that will be used for the next or current hit")]
+    public AttackStats_SO ParryAttackStats;
+
     [Tooltip("the time unitl the input b_AttackInput will become false")]
     public float timeBufferAttackInput = .5f;
 
@@ -543,7 +546,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         if(b_PerfectParry)
         {
-            //print("Perfect PARRRY !!!");
+            print("Perfect PARRRY !!!");
         }
         else if(!b_PerfectParry)
         {
