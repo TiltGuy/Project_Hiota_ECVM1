@@ -198,7 +198,10 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public bool b_CanParry = false;
     [HideInInspector]
     public bool b_PerfectParry = false;
+    public bool b_IsPerfectlyParrying = false;
     public float timeForPerfectParry = .25f;
+    [SerializeField]
+    private float timeAfterPerfectlyParrying = .5f;
     [HideInInspector]
     public float perfectTimer = 0f;
     public bool b_NormalParry = false;
@@ -546,6 +549,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         if(b_PerfectParry)
         {
+            StartCoroutine(SetIsPerfectlyParryingCoroutine(timeAfterPerfectlyParrying));
             print("Perfect PARRRY !!!");
         }
         else if(!b_PerfectParry)
@@ -577,6 +581,14 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(time);
         b_AttackInput = false;
+    }
+
+    private IEnumerator SetIsPerfectlyParryingCoroutine(float time)
+    {
+        StopCoroutine("SetIsPerfectlyParryingCoroutine");
+        b_IsPerfectlyParrying = true;
+        yield return new WaitForSeconds(time);
+        b_IsPerfectlyParrying = false;
     }
 
     private void TakeAttackInputInBuffer()

@@ -61,7 +61,7 @@ public abstract class Decision_SO : ScriptableObject
 
     public bool CheckIsParryingPerfectlyBoolean(Controller_FSM controller)
     {
-        return controller.b_PerfectParry;
+        return controller.b_IsPerfectlyParrying;
     }
 
     public bool CheckDashBoolean(Controller_FSM controller)
