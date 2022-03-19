@@ -11,7 +11,9 @@ public class MainMenu : MonoBehaviour
 
 	public GameObject pauseMenu, optionsWindow;
 
-    private void Awake()
+	private bool b_CursorInvisible = true;
+
+	private void Awake()
     {
 		action = new InputMaster();
 	}
@@ -19,7 +21,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
 		action.UI.Cancel.started += ctx => CloseOptions();
-    }
+		action.Player.DebugCursorBinding.started += ctx => HideCursor();
+
+
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+	}
 
     private void OnEnable()
     {
@@ -54,6 +61,22 @@ public class MainMenu : MonoBehaviour
 	{
 		Application.Quit();
 		Debug.Log("Quit");
+	}
+
+	private void HideCursor()
+    {
+		if (!b_CursorInvisible)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+			b_CursorInvisible = true;
+		}
+		else
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+			b_CursorInvisible = false;
+		}
 	}
 
 	
