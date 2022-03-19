@@ -7,42 +7,30 @@ public class MainMenu : MonoBehaviour
 {
 	public string firstLevel;
 
+	private InputMaster action;
+
 	public GameObject pauseMenu, optionsWindow;
 
-
-	void Update()
-	{
-		/*if (Input.GetButtonDown("Fire3"))
-		{
-			PauseUnpause();
-		}*/
-
-		if (optionsWindow == true && Input.GetKey(KeyCode.Escape))
-		{
-			optionsWindow.SetActive(false);
-		}
-
-		if (Input.GetKey(KeyCode.Escape) && SceneManager.GetSceneByName("Scene01_GreenBiome").isLoaded)
-		{
-			PauseUnpause();
-		}
-			
+    private void Awake()
+    {
+		action = new InputMaster();
 	}
 
-	public void PauseUnpause()
-	{
-		if (!pauseMenu.activeInHierarchy)
-		{
-			pauseMenu.SetActive(true);
-			Time.timeScale = 0f;
-		}
-		else
-		{
-			pauseMenu.SetActive(false);
-			Time.timeScale = 1f;
-			optionsWindow.SetActive(false);
-		}
+    private void Start()
+    {
+		action.UI.Cancel.started += ctx => CloseOptions();
+    }
+
+    private void OnEnable()
+    {
+		action.Enable();
 	}
+
+    private void OnDisable()
+    {
+		action.Disable();
+	}
+
 	public void StartGame()
 	{
 		SceneManager.LoadScene(firstLevel);
@@ -55,7 +43,7 @@ public class MainMenu : MonoBehaviour
 
 	public void CloseOptions()
 	{
-		if (optionsWindow == true && Input.GetKey(KeyCode.Escape))
+		if (optionsWindow)
 		{
 			optionsWindow.SetActive(false);
 		}
