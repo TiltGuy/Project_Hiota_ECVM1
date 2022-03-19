@@ -60,6 +60,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     private InputMaster controls;
 
+    private bool b_CursorInvisible = true;
+
     #endregion
 
     #region GLOBAL MOVEMENT Settings
@@ -299,6 +301,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
+        controls.Player.DebugCursorBinding.started += ctx => HideCursor();
 
 
 
@@ -353,7 +356,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     private void Start()
     {
         InitializationState(currentState);
-        //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
+        //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);Cursor.lockState = CursorLockMode.Locked;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
@@ -365,9 +368,26 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         statCurrentMaxGuard = HiotaStats.maxGuard;
     }
 
+    public void HideCursor()
+    {
+        if(!b_CursorInvisible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            b_CursorInvisible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            b_CursorInvisible = false;
+        }
+    }
+
     // Update is called once per frame
     private void Update()
     {
+        if (PauseManager.b_IsPaused) return;
 
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
         currentState.UpdtateState(this);
