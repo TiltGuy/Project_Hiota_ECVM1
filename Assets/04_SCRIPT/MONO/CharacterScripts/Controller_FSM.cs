@@ -40,6 +40,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     //TO REWORK ==> Delocalise this reference to HiotaHealth
     public CharacterStats_SO HiotaStats;
 
+    public PlayerController_Animator controllerAnim;
+
     #endregion
 
     #region STATS VARIABLES
@@ -57,6 +59,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Header(" -- INPUT SETTINGS -- ")]
 
     private InputMaster controls;
+
+    private bool b_CursorInvisible = true;
 
     #endregion
 
@@ -171,6 +175,9 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("the current Stats and HitBox of the Back Attack that will be used for the next or current hit")]
     public AttackStats_SO BackAttackStats;
 
+    [Tooltip("the current Stats and HitBox of the Parry Attack that will be used for the next or current hit")]
+    public AttackStats_SO ParryAttackStats;
+
     [Tooltip("the time unitl the input b_AttackInput will become false")]
     public float timeBufferAttackInput = .5f;
 
@@ -193,7 +200,10 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public bool b_CanParry = false;
     [HideInInspector]
     public bool b_PerfectParry = false;
+    public bool b_IsPerfectlyParrying = false;
     public float timeForPerfectParry = .25f;
+    [SerializeField]
+    private float timeAfterPerfectlyParrying = .5f;
     [HideInInspector]
     public float perfectTimer = 0f;
     public bool b_NormalParry = false;
@@ -291,6 +301,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
         controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
+        controls.Player.DebugCursorBinding.started += ctx => HideCursor();
 
 
 
@@ -345,7 +356,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     private void Start()
     {
         InitializationState(currentState);
-        //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);
+        //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);Cursor.lockState = CursorLockMode.Locked;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
@@ -357,9 +368,26 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         statCurrentMaxGuard = HiotaStats.maxGuard;
     }
 
+    public void HideCursor()
+    {
+        if(!b_CursorInvisible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            b_CursorInvisible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            b_CursorInvisible = false;
+        }
+    }
+
     // Update is called once per frame
     private void Update()
     {
+        if (PauseManager.b_IsPaused) return;
 
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
         currentState.UpdtateState(this);
@@ -541,6 +569,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         if(b_PerfectParry)
         {
+            StartCoroutine(SetIsPerfectlyParryingCoroutine(timeAfterPerfectlyParrying));
             print("Perfect PARRRY !!!");
         }
         else if(!b_PerfectParry)
@@ -572,6 +601,14 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(time);
         b_AttackInput = false;
+    }
+
+    private IEnumerator SetIsPerfectlyParryingCoroutine(float time)
+    {
+        StopCoroutine("SetIsPerfectlyParryingCoroutine");
+        b_IsPerfectlyParrying = true;
+        yield return new WaitForSeconds(time);
+        b_IsPerfectlyParrying = false;
     }
 
     private void TakeAttackInputInBuffer()
