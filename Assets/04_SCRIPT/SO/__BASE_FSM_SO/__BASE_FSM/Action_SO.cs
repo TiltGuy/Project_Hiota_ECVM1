@@ -26,7 +26,7 @@ public abstract class Action_SO : ScriptableObject
 
     public void DebugCurrenState(Controller_FSM controller)
     {
-        Debug.Log("Hiota est dans l'état " + controller.currentState, this);
+        //Debug.Log("Hiota est dans l'état " + controller.currentState, this);
     }
 
     public void SetDashingBooleanValue(Controller_FSM controller, bool targetValue)
@@ -37,5 +37,17 @@ public abstract class Action_SO : ScriptableObject
     public void SetStunnedBooleanValue(Controller_FSM controller, bool targetValue)
     {
         controller.b_Stunned = targetValue;
+    }
+
+    public void SetCurrentHitBoxStatut(Controller_FSM controller, bool targetValue)
+    {
+        if(targetValue)
+        {
+            controller.controllerAnim.UpdateBasicAttackHitBoxStatutTrue();
+        }
+        else
+        {
+            controller.controllerAnim.UpdateBasicAttackHitBoxStatutFalse();
+        }
     }
 }

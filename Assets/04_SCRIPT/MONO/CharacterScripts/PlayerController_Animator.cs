@@ -16,8 +16,10 @@ public class PlayerController_Animator : MonoBehaviour
     public Transform ps;
     [SerializeField]
     private Controller_FSM controller_FSM;
-    private Transform basicAttackHitBoxPrefab;
-    private Transform currentAttackHitbox;
+    [HideInInspector]
+    public Transform basicAttackHitBoxPrefab;
+    [HideInInspector]
+    public Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;
 
     #endregion
@@ -27,6 +29,11 @@ public class PlayerController_Animator : MonoBehaviour
         basicAttackHitBoxPrefab = controller_FSM.BasicAttackStats.hitBoxPrefab;
         //Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
 
+    }
+
+    private void Update()
+    {
+        //print("current attack is : " + currentAttackHitbox);
     }
 
     public void ToggleSwordHitBoxStatut()
@@ -51,7 +58,7 @@ public class PlayerController_Animator : MonoBehaviour
 
     public void UpdateBasicAttackHitBoxStatutFalse()
     {
-        if (basicAttackHitBoxPrefab)
+        if (currentAttackHitbox)
         {
             currentAttackHitbox.GetComponent<Touch>().DestroyItSelfAfterUsed();
         }

@@ -8,7 +8,7 @@ public class Touch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Destructible"))
         {
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
             //Debug.Log(other.gameObject.name, this);
