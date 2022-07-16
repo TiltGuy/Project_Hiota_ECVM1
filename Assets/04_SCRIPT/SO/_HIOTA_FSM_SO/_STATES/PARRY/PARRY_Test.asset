@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
+  m_Name: PARRY_Test
+  m_EditorClassIdentifier: 
+  Name: Attack_Test_01
+  actionsEnter:
+  - {fileID: 11400000, guid: e69c07aaab1f3f24a9e7e56553bb3c8c, type: 2}
+  - {fileID: 11400000, guid: 316d8d025aaf3404ea6d7b865937ec01, type: 2}
+  actionsUpdate:
+  - {fileID: 11400000, guid: 1cc0b7126d5e8c743940c7de5ef281e9, type: 2}
+  actionsExit:
+  - {fileID: 11400000, guid: 42ca01e4daab1504fb4af2aaa948590a, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 1964240999d6c0b479233a9102439765, type: 2}
+    true_State: {fileID: 11400000, guid: bd73c49f4516a2f45ba7e80b69eed833, type: 2}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  - decision: {fileID: 11400000, guid: 5a1152a927f2dc44c94f5712d49cecdf, type: 2}
+    true_State: {fileID: 11400000, guid: dfcac067378eca84e851a92cdeb0c2e9, type: 2}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  - decision: {fileID: 11400000, guid: a4acf1650feb8b448a75530d31c955d7, type: 2}
+    true_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+    False_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+  transitionsAfterCountdown: []
+  b_NormalTransitions: 1
+  b_TransitionsAfterCountdown: 0
+  stateDuration: 0.5
+  sceneGizmosColor: {r: 0, g: 0.025779724, b: 1, a: 1}
