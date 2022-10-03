@@ -6,17 +6,24 @@ using System;
 
 public class Controller_FSM : MonoBehaviour, IDamageable
 {
-    # region DEPENDENCIES
 
-    [Header(" -- DEPENDENCIES -- ")]
+    #region EXTERNAL DEPENDENCIES
 
-    [Tooltip("The Target for the FreeLook Camera")]
+    [Header(" -- EXTERNAL DEPENDENCIES -- ")]
+
+    [Tooltip("The Target for the FreeLook Camera... Normally the GO's name is Camera Target")]
     public Transform cameraTarget;
 
     [HideInInspector]
     [Tooltip("It needs the prefab of CameraBase")]
     public Transform m_cameraBaseDirection;
+    #endregion
 
+    #region DEPENDENCIES
+
+    [Header(" -- DEPENDENCIES -- ")]
+
+    [SerializeField]
     [Tooltip("it's the layer used to test the ground")]
     private LayerMask Ground;
 
