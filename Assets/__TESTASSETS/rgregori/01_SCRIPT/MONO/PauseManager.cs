@@ -21,6 +21,7 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
+        action.UI.Cancel.started += ctx => HideSettings();
         action.UI.Pause.performed += _ => DetermineGamePauseStatut();
     }
 
