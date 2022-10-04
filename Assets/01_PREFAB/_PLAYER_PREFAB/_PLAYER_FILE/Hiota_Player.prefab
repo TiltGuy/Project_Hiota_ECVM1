@@ -414,6 +414,8 @@ GameObject:
   - component: {fileID: 1758020377}
   - component: {fileID: 1645655096204719503}
   - component: {fileID: 849633942}
+  - component: {fileID: 1712430858}
+  - component: {fileID: 3568774824817992259}
   m_Layer: 8
   m_Name: Hiota_Player
   m_TagString: Player
@@ -511,6 +513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 5183304412400876956}
   m_cameraBaseDirection: {fileID: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
   targetGatherer: {fileID: 7018018961163401237}
   _groundChecker: {fileID: 1886075193049011714}
   characontroller: {fileID: 6634799758529909337}
@@ -563,7 +568,9 @@ MonoBehaviour:
   b_IsParrying: 0
   b_CanParry: 1
   b_PerfectParry: 0
+  b_IsPerfectlyParrying: 0
   timeForPerfectParry: 0.25
+  timeAfterPerfectlyParrying: 0.5
   perfectTimer: 0
   b_NormalParry: 0
   statCurrentMaxGuard: 10
@@ -597,6 +604,34 @@ MonoBehaviour:
     type: 3}
   Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
     type: 3}
+--- !u!114 &1712430858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163913624370452317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d968601693cbc44d9a619740d377b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InputMoveVector: {x: 0, y: 0}
+  b_InputDash: 0
+  b_DebugInput: 0
+  b_WantToParry: 0
+--- !u!114 &3568774824817992259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163913624370452317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b99ff0ce21ce246ae8adc2b9e92f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1281754823036717357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,15 +3135,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951a88ce9a320344e9b0f773f9a0994f, type: 3}
---- !u!1 &2247605952555364238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2952254500066593476, guid: 951a88ce9a320344e9b0f773f9a0994f,
-    type: 3}
-  m_PrefabInstance: {fileID: 4019913913437594954}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &461441574648275578 stripped
+--- !u!4 &2046464115410842287 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3580015139419113264, guid: 951a88ce9a320344e9b0f773f9a0994f,
+  m_CorrespondingSourceObject: {fileID: 3147763401422051301, guid: 951a88ce9a320344e9b0f773f9a0994f,
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}
@@ -3118,9 +3147,15 @@ CapsuleCollider:
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2046464115410842287 stripped
+--- !u!1 &2247605952555364238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2952254500066593476, guid: 951a88ce9a320344e9b0f773f9a0994f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4019913913437594954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &461441574648275578 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3147763401422051301, guid: 951a88ce9a320344e9b0f773f9a0994f,
+  m_CorrespondingSourceObject: {fileID: 3580015139419113264, guid: 951a88ce9a320344e9b0f773f9a0994f,
     type: 3}
   m_PrefabInstance: {fileID: 4019913913437594954}
   m_PrefabAsset: {fileID: 0}

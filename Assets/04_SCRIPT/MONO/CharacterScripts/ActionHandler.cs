@@ -23,14 +23,13 @@ public class ActionHandler : MonoBehaviour
     [Tooltip("If the player is focusing a enemy")]
     [SerializeField] public bool b_IsFocusing = false;
 
-    private bool b_CanChangeFocusCameraTarget = true;
+    public bool b_CanChangeFocusTarget = true;
     #endregion
 
     public delegate void MultiDelegateWithVector2(Vector2 vector);
     public MultiDelegateWithVector2 OnChangeTargetFocus;
 
-    public delegate void MultiDelegate();
-    public MultiDelegate OnChangeCurrentPlayerTarget;
+    
 
     private void OnEnable()
     {
@@ -54,16 +53,14 @@ public class ActionHandler : MonoBehaviour
         
     }
 
-    public void ChangeTargetFocusCamera(Vector2 input)
+    public void ChangeTargetFocus(Vector2 input)
     {
 
         if (b_IsFocusing)
         {
-            if (b_CanChangeFocusCameraTarget)
+            if (b_CanChangeFocusTarget)
             {
-                b_CanChangeFocusCameraTarget = false;
-                OnChangeTargetFocus(input);
-                OnChangeCurrentPlayerTarget();
+                b_CanChangeFocusTarget = false;
             }
 
         }

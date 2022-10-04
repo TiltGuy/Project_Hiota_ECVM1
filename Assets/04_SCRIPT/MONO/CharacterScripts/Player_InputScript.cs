@@ -8,6 +8,7 @@ public class Player_InputScript : MonoBehaviour
     #region DEPENDENCIES
 
     ActionHandler actionHandler;
+    ActionCameraPlayer actionCameraPlayer;
 
     #endregion
 
@@ -30,6 +31,7 @@ public class Player_InputScript : MonoBehaviour
     private void Awake()
     {
         actionHandler = GetComponent<ActionHandler>();
+        actionCameraPlayer = GetComponent<ActionCameraPlayer>();
 
         //Initialisation of ALL the Bindings with InputMaster
         controls = new InputMaster();
@@ -40,7 +42,7 @@ public class Player_InputScript : MonoBehaviour
         controls.Player.Dash.started += ctx => SetInputDash(true);
         controls.Player.Dash.canceled += ctx => SetInputDash(false);
 
-        //controls.Player.ChangeFocusCameraTarget.started += ctx => actionHandler.ChangeTargetFocusCamera();
+        controls.Player.ChangeFocusCameraTarget.started += ctx => WantToChangeTarget();
         //controls.Player.ChangeFocusCameraTarget.canceled += ctx => actionHandler.ResetFocusCameraTargetFactor();
 
         controls.Player.DebugInput.started += ctx => b_DebugInput = true;
@@ -74,4 +76,12 @@ public class Player_InputScript : MonoBehaviour
     {
         actionHandler.b_WantDash = value;
     }
+
+    void WantToChangeTarget()
+    {
+        Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
+        actionHandler.ChangeTargetFocus(input);
+    }
+
+
 }
