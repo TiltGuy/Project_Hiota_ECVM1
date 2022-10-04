@@ -656,7 +656,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         //Debug.Log("Currently On Event Delegate", this);
     }
 
-    void ChangeTargetFocusCamera()
+    public void ChangeTargetFocusCamera()
     {
         
         if(b_IsFocusing)
@@ -683,7 +683,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
     }
 
-    void ResetFocusCameraTargetFactor()
+    public void ResetFocusCameraTargetFactor()
     {
         b_CanChangeFocusCameraTarget = true;
         //print("Reset");
