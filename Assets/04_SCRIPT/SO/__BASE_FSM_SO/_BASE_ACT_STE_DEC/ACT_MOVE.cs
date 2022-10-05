@@ -65,7 +65,7 @@ public class ACT_MOVE : Action_SO
             if (controller.b_IsFocusing)
             {
                 Vector3 hiotaPos = controller.transform.position;
-                Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+                Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
                 dir.y = 0;
                 controller.directionToFocus = dir;
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
@@ -86,7 +86,7 @@ public class ACT_MOVE : Action_SO
             if (controller.b_IsFocusing)
             {
                 Vector3 hiotaPos = controller.transform.position;
-                Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+                Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
                 dir.y = 0;
                 controller.directionToFocus = dir;
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
@@ -140,7 +140,7 @@ public class ACT_MOVE : Action_SO
             if (controller.b_IsFocusing)
             {
                 Vector3 hiotaPos = controller.transform.position;
-                Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+                Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
                 dir.y = 0;
                 controller.directionToFocus = dir;
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
@@ -163,7 +163,7 @@ public class ACT_MOVE : Action_SO
             if (controller.b_IsFocusing)
             {
                 Vector3 hiotaPos = controller.transform.position;
-                Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+                Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
                 dir.y = 0;
                 controller.directionToFocus = dir;
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);

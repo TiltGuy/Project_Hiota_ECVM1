@@ -7,7 +7,7 @@ public class Player_InputScript : MonoBehaviour
 {
     #region DEPENDENCIES
 
-    ActionHandler actionHandler;
+    Controller_FSM controller_FSM;
     ActionCameraPlayer actionCameraPlayer;
 
     #endregion
@@ -20,8 +20,6 @@ public class Player_InputScript : MonoBehaviour
 
     private bool b_CursorInvisible = true;
 
-    [Tooltip("The sum of the z axis of the controller and the ZQSD")]
-    public Vector2 m_InputMoveVector = Vector2.zero;
     public bool b_InputDash = false;
     public bool b_DebugInput = false;
     public bool b_WantToParry = false;
@@ -33,14 +31,14 @@ public class Player_InputScript : MonoBehaviour
 
     private void Awake()
     {
-        actionHandler = GetComponent<ActionHandler>();
+        controller_FSM = GetComponent<Controller_FSM>();
         actionCameraPlayer = GetComponent<ActionCameraPlayer>();
 
         //Initialisation of ALL the Bindings with InputMaster
         controls = new InputMaster();
 
-        controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
-        controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
+        controls.Player.Movement.performed += ctx => InputMovement(ctx.ReadValue<Vector2>());
+        controls.Player.Movement.canceled += ctx => InputMovement(Vector2.zero);
 
         controls.Player.Dash.started += ctx => SetInputDash(true);
         controls.Player.Dash.canceled += ctx => SetInputDash(false);
@@ -48,16 +46,16 @@ public class Player_InputScript : MonoBehaviour
         controls.Player.ChangeFocusCameraTarget.started += ctx => WantToChangeTarget();
         controls.Player.ChangeFocusCameraTarget.canceled += ctx => actionCameraPlayer.ResetFocusCameraTargetFactor();
 
-        controls.Player.DebugInput.started += ctx => b_DebugInput = true;
-        controls.Player.DebugInput.canceled += ctx => b_DebugInput = false;
+        controls.Player.DebugInput.started += ctx => controller_FSM.DebugAction(true);
+        controls.Player.DebugInput.canceled += ctx => controller_FSM.DebugAction(false);
 
         controls.Player.Parry.started += ctx => WantingToParry(true);
         controls.Player.Parry.canceled += ctx => WantingToParry(false);
 
-        //controls.Player.Attack.started += ctx => actionHandler.TakeAttackInputInBuffer();
+        controls.Player.Attack.started += ctx => controller_FSM.TakeAttackInputInBuffer();
 
-        //controls.Player.FocusTarget.started += ctx => actionHandler.ToggleFocusTarget();
-        //controls.Player.DebugCursorBinding.started += ctx => actionHandler.HideCursor();
+        controls.Player.FocusTarget.started += ctx => ToggleHiotaFocusMode();
+        controls.Player.DebugCursorBinding.started += ctx => controller_FSM.HideCursor();
     }
 
     private void OnEnable()
@@ -70,20 +68,35 @@ public class Player_InputScript : MonoBehaviour
         controls.Disable();
     }
 
+    void InputMovement(Vector2 value)
+    {
+        controller_FSM.m_InputMoveVector = value;
+    }
+
     void WantingToParry(bool value)
     {
-        actionHandler.b_IsParrying = value;
+        controller_FSM.b_IsParrying = value;
     }
 
     void SetInputDash(bool value)
     {
-        actionHandler.b_WantDash = value;
+        controller_FSM.b_WantDash = value;
     }
 
     void WantToChangeTarget()
     {
         Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
         actionCameraPlayer.ChangeTargetOfPlayer(input);
+    }
+
+    void ToggleHiotaFocusMode()
+    {
+        //appeler la fonction dans la cameraAction script pour changer le comportement camera
+        actionCameraPlayer.ToggleCameraMode();
+        //appeler la fonction dans l'action handler qui va changer le comportement SM et behaviour anim
+        controller_FSM.ToggleFocusTarget();
+        print(controller_FSM.b_IsFocusing);
+        
     }
 
 

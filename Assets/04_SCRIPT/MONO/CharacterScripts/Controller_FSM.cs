@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-public class Controller_FSM : MonoBehaviour, IDamageable
+public class Controller_FSM : ActionHandler, IDamageable
 {
 
     #region EXTERNAL DEPENDENCIES
@@ -27,8 +27,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("it's the layer used to test the ground")]
     private LayerMask Ground;
 
-    [SerializeField]
-    private TargetGatherer targetGatherer;
 
     [SerializeField]
     [Tooltip("it the transform which is under the feet of Hiota")]
@@ -67,7 +65,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     private InputMaster controls;
 
-    private bool b_CursorInvisible = true;
 
     #endregion
 
@@ -93,9 +90,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("it's the radius of the sphere checking the IsGrounded function")]
     public float distanceCheckGround = 0.25f;
 
-    [Tooltip("If the player is focusing a enemy")]
-    [SerializeField] public bool b_IsFocusing = false;
-
     [Tooltip("it catches Hiota when he falls")]
     [SerializeField] public float gravity = -9.17f;
 
@@ -113,7 +107,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public Vector3 dashDirection;
     public Vector3 lastDirectionInput;
     public float scalarVector;
-    public bool b_WantDash = false;
     public bool b_CanDash = true;
     [HideInInspector]
     public bool b_IsDashing = false;
@@ -144,8 +137,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     ///<summary> The vector3 of the inputs. The inputs are by axis</summary>
     public Vector3 m_inputsKeyBoard = Vector3.zero;
 
-    [Tooltip("The sum of the z axis of the controller and the ZQSD")]
-    public Vector2 m_InputMoveVector = Vector2.zero;
 
     ///<summary> the float of the inputs of the controller. The inputs are by axis but seperated into 2 variables</summary>
     public float m_LeftStickControllerX;
@@ -164,12 +155,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go when it's in Focus")]
     public float m_turnSpeedWhenFocused = 20;
 
-    [Tooltip("the Boolean that check the input")]
-    public bool b_AttackInput = false;
-
-    [Tooltip("the Boolean that if the player is stunned")]
-    public bool b_Stunned = false;
-
     [Tooltip("the current Stats of the Basic Attack that will be used for the next or current hit")]
     public AttackStats_SO BasicAttackStats;
 
@@ -185,8 +170,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Tooltip("the current Stats and HitBox of the Parry Attack that will be used for the next or current hit")]
     public AttackStats_SO ParryAttackStats;
 
-    [Tooltip("the time unitl the input b_AttackInput will become false")]
-    public float timeBufferAttackInput = .5f;
 
     //[Tooltip("The speed of the player")]
     //public float m_HoldAttackSpeed = 5f;
@@ -202,12 +185,9 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     [Header(" -- PARRY SETTINGS -- ")]
 
 
-    [HideInInspector]
-    public bool b_IsParrying = false;
     public bool b_CanParry = false;
     [HideInInspector]
     public bool b_PerfectParry = false;
-    public bool b_IsPerfectlyParrying = false;
     public float timeForPerfectParry = .25f;
     [SerializeField]
     private float timeAfterPerfectlyParrying = .5f;
@@ -233,11 +213,8 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     public GameObject GO_FocusCamera;
 
-    [HideInInspector]
-    [Tooltip("The focus of hiota if he have to")]
-    public Transform currentHiotaTarget;
+    
 
-    private bool b_CanChangeFocusCameraTarget = true;
 
     #endregion
 
@@ -259,9 +236,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
     public delegate void MultiDelegateWithfloat(float something);
     public MultiDelegateWithfloat LoseHPDelegate;
     public MultiDelegateWithfloat UpdateGuardAmountDelegate;
-
-    public delegate void MultiDelegateWithVector2(Vector2 vector);
-    public MultiDelegateWithVector2 OnChangeTargetFocus;
 
     public delegate void OnEventCombatSystem();
     public OnEventCombatSystem OnAttackBegin;
@@ -286,29 +260,29 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         SetGOCameraFocus();
 
         //Initialisation of ALL the Bindings with InputMaster
-        controls = new InputMaster();
+        //controls = new InputMaster();
 
-        controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
-        controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
+        //controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
+        //controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
 
-        controls.Player.Dash.started += ctx => b_WantDash = true;
-        controls.Player.Dash.canceled += ctx => b_WantDash = false;
+        //controls.Player.Dash.started += ctx => b_WantDash = true;
+        //controls.Player.Dash.canceled += ctx => b_WantDash = false;
 
-        controls.Player.ChangeFocusCameraTarget.started += ctx => ChangeTargetFocusCamera();
-        controls.Player.ChangeFocusCameraTarget.canceled += ctx => ResetFocusCameraTargetFactor();
+        //controls.Player.ChangeFocusCameraTarget.started += ctx => ChangeTargetFocusCamera();
+        //controls.Player.ChangeFocusCameraTarget.canceled += ctx => ResetFocusCameraTargetFactor();
 
-        controls.Player.DebugInput.started += ctx => b_Stunned = true;
-        //controls.Player.Dash.started += ctx => TakeDamages(3);
-        controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
+        //controls.Player.DebugInput.started += ctx => b_Stunned = true;
+        ////controls.Player.Dash.started += ctx => TakeDamages(3);
+        //controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
 
-        controls.Player.Parry.started += ctx => b_IsParrying = true;
-        controls.Player.Parry.canceled += ctx => b_IsParrying = false;
+        //controls.Player.Parry.started += ctx => b_IsParrying = true;
+        //controls.Player.Parry.canceled += ctx => b_IsParrying = false;
 
-        controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
-        //  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
+        //controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
+        ////  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
 
-        controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
-        controls.Player.DebugCursorBinding.started += ctx => HideCursor();
+        //controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
+        //controls.Player.DebugCursorBinding.started += ctx => HideCursor();
 
 
 
@@ -345,18 +319,14 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
-        controls.Enable();
         OnAttackBegin += DebugOnEventCombatSystem;
-        OnDeathEnemy += ToggleFocusTarget;
-        OnChangeTargetFocus += UpdateHiotaCurrentTarget;
+        //OnDeathEnemy += ToggleFocusTarget;
     }
 
     private void OnDisable()
     {
-        controls.Disable();
         OnAttackBegin -= DebugOnEventCombatSystem;
-        OnDeathEnemy -= ToggleFocusTarget;
-        OnChangeTargetFocus -= UpdateHiotaCurrentTarget;
+        //OnDeathEnemy -= ToggleFocusTarget;
     }
 
     // Start is called before the first frame update
@@ -375,21 +345,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         statCurrentMaxGuard = HiotaStats.maxGuard;
     }
 
-    public void HideCursor()
-    {
-        if(!b_CursorInvisible)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            b_CursorInvisible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            b_CursorInvisible = false;
-        }
-    }
+    
 
     // Update is called once per frame
     private void Update()
@@ -498,32 +454,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * m_turnSpeed);
     }
 
-    public void ToggleFocusTarget()
-    {
-        if (!b_IsFocusing )
-        {
-            if(targetGatherer.TargetableEnemies.Count > 0)
-            {
-                b_IsFocusing = true;
-                Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
-                // there use a function in the target Gatherer to check the target nearest to the center of MainCam
-                currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
-                OnChangeCurrentPlayerTarget();
-                GO_FocusCamera.SetActive(true);
-                GO_CameraFreeLook.SetActive(false);
-                Debug.Log(currentHiotaTarget);
-            }
-        }
-        else
-        {
-            b_IsFocusing = false;
-            Hiota_Anim.SetBool("Is_Focusing", b_IsFocusing);
-            GO_FocusCamera.SetActive(false);
-            GO_CameraFreeLook.SetActive(true);
-            Debug.Log(b_IsFocusing, this);
-        }
-    }
-
     
 
     private void OnDrawGizmos()
@@ -604,26 +534,7 @@ public class Controller_FSM : MonoBehaviour, IDamageable
 
     }
 
-    private IEnumerator BufferingAttackInputCoroutine(float time)
-    {
-        yield return new WaitForSeconds(time);
-        b_AttackInput = false;
-    }
-
-    private IEnumerator SetIsPerfectlyParryingCoroutine(float time)
-    {
-        StopCoroutine("SetIsPerfectlyParryingCoroutine");
-        b_IsPerfectlyParrying = true;
-        yield return new WaitForSeconds(time);
-        b_IsPerfectlyParrying = false;
-    }
-
-    private void TakeAttackInputInBuffer()
-    {
-        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
-        b_AttackInput = true;
-        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
-    }
+    
     public IEnumerator BufferingDashEvent()
     {
         b_CanDash = false;
@@ -674,14 +585,6 @@ public class Controller_FSM : MonoBehaviour, IDamageable
         }
     }
 
-    private void UpdateHiotaCurrentTarget(Vector2 input)
-    {
-        if(targetGatherer.CheckoutNextTargetedEnemy(input) != null)
-        {
-            currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
-            Debug.Log(targetGatherer.CheckoutNextTargetedEnemy(input));
-        }
-    }
 
     public void ResetFocusCameraTargetFactor()
     {

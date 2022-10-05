@@ -46,7 +46,7 @@ public class ACT_DASH : Action_SO
     private void RotateEntityToEnemy(Controller_FSM controller)
     {
         Vector3 hiotaPos = controller.transform.position;
-        Vector3 dir = (controller.currentHiotaTarget.position - hiotaPos).normalized;
+        Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
         dir.y = 0;
         controller.directionToFocus = dir;
         //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);

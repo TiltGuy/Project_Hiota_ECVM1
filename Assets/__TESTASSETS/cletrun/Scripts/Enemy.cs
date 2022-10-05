@@ -243,7 +243,7 @@ public class Enemy : MonoBehaviour, IDamageable
             OnDeathEnemy();
             if (HiotaController)
             {
-                HiotaController.OnDeathEnemy();
+                //HiotaController.OnDeathEnemy();
             }
             gameObject.SetActive(false);
         }

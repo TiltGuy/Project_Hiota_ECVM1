@@ -39,8 +39,10 @@ public class TargetGatherer : MonoBehaviour
             planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         }
 
-
-        currentTarget = controller.currentHiotaTarget;
+        if(controller.currentCharacterTarget)
+        {
+            currentTarget = controller.currentCharacterTarget;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -198,9 +200,13 @@ public class TargetGatherer : MonoBehaviour
 
     public Transform CheckoutNextTargetedEnemy(Vector2 input)
     {
-        Transform currentHiotaTarget = controller.currentHiotaTarget;
+        Transform currentHiotaTarget = controller.currentCharacterTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;
+        
+        
+
+        
 
         SortedListOfEnemies = (List<Transform>)TargetableEnemies.OrderBy(target =>
         {

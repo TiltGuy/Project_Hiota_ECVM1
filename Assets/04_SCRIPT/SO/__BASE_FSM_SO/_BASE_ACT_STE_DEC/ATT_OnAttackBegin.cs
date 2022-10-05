@@ -17,9 +17,9 @@ public class ATT_OnAttackBegin : Action_SO
 
     void UpdateCurrentTarget(Controller_FSM controller)
     {
-        if (controller.currentHiotaTarget)
+        if (controller.currentCharacterTarget)
         {
-            _currentTarget = controller.currentHiotaTarget;
+            _currentTarget = controller.currentCharacterTarget;
         }
         else
         {

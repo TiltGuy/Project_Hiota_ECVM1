@@ -27,7 +27,20 @@ public class ActionHandler : MonoBehaviour
     [HideInInspector]
     public bool b_IsParrying = false;
 
+    [Tooltip("the Boolean that if the player is stunned")]
+    public bool b_Stunned = false;
+
+    [Tooltip("the Boolean that check the input")]
+    public bool b_AttackInput = false;
+
+    public bool b_IsPerfectlyParrying = false;
+
     public bool b_CanChangeFocusCameraTarget = true;
+
+    public Animator characterAnimator;
+
+    [Tooltip("the time unitl the input b_AttackInput will become false")]
+    public float timeBufferAttackInput = .5f;
     #endregion
 
     [SerializeField]
@@ -37,16 +50,9 @@ public class ActionHandler : MonoBehaviour
     public MultiDelegateWithVector2 OnChangeTargetFocus;
     [HideInInspector]
     public Transform currentCharTarget;
-
-    private void OnEnable()
-    {
-        //OnChangeTargetFocus += UpdateHiotaCurrentTarget;
-    }
-
-    private void OnDisable()
-    {
-        //OnChangeTargetFocus -= UpdateHiotaCurrentTarget;
-    }
+    [HideInInspector]
+    [Tooltip("The focus of hiota if he have to")]
+    public Transform currentCharacterTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -54,11 +60,6 @@ public class ActionHandler : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeCharTargetFocus(Transform newTarget)
     {
@@ -68,12 +69,76 @@ public class ActionHandler : MonoBehaviour
             if (b_CanChangeFocusTarget)
             {
                 currentCharTarget = newTarget;
+                currentCharacterTarget = newTarget;
+                OnChangeTargetFocus(newTarget.position);
             }
 
         }
     }
 
-    
+    public void DebugAction(bool b_Value)
+    {
+        toggleStunnedValue(b_Value);
+    }
 
-    
+    private void toggleStunnedValue(bool b_value)
+    {
+        b_Stunned = b_value;
+    }
+
+    public void TakeAttackInputInBuffer()
+    {
+        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        b_AttackInput = true;
+        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+    }
+    private IEnumerator BufferingAttackInputCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        b_AttackInput = false;
+    }
+
+    public IEnumerator SetIsPerfectlyParryingCoroutine(float time)
+    {
+        StopCoroutine("SetIsPerfectlyParryingCoroutine");
+        b_IsPerfectlyParrying = true;
+        yield return new WaitForSeconds(time);
+        b_IsPerfectlyParrying = false;
+    }
+
+    public void ToggleFocusTarget()
+    {
+        if (!b_IsFocusing)
+        {
+            if (targetGatherer.TargetableEnemies.Count > 0)
+            {
+                b_IsFocusing = true;
+                characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
+            }
+            print("AH");
+        }
+        else
+        {
+            b_IsFocusing = false;
+            characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
+        }
+    }
+
+    public void HideCursor()
+    {
+        if (!b_CursorInvisible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            b_CursorInvisible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            b_CursorInvisible = false;
+        }
+    }
+
+
 }

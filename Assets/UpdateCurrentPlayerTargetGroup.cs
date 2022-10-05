@@ -22,7 +22,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
         }
         else
         {
-            currentPlayerTarget = controller.currentHiotaTarget;
+            currentPlayerTarget = controller.currentCharacterTarget;
         }
 
     }
