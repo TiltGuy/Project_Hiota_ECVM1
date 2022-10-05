@@ -24,12 +24,19 @@ public class ActionHandler : MonoBehaviour
     [SerializeField] public bool b_IsFocusing = false;
 
     public bool b_CanChangeFocusTarget = true;
+    [HideInInspector]
+    public bool b_IsParrying = false;
+
+    public bool b_CanChangeFocusCameraTarget = true;
     #endregion
+
+    [SerializeField]
+    private TargetGatherer targetGatherer;
 
     public delegate void MultiDelegateWithVector2(Vector2 vector);
     public MultiDelegateWithVector2 OnChangeTargetFocus;
-
-    
+    [HideInInspector]
+    public Transform currentCharTarget;
 
     private void OnEnable()
     {
@@ -53,25 +60,20 @@ public class ActionHandler : MonoBehaviour
         
     }
 
-    public void ChangeTargetFocus(Vector2 input)
+    public void ChangeCharTargetFocus(Transform newTarget)
     {
 
         if (b_IsFocusing)
         {
             if (b_CanChangeFocusTarget)
             {
-                b_CanChangeFocusTarget = false;
+                currentCharTarget = newTarget;
             }
 
         }
     }
 
-    //private void UpdateHiotaCurrentTarget(Vector2 input)
-    //{
-    //    if (targetGatherer.CheckoutNextTargetedEnemy(input) != null)
-    //    {
-    //        currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
-    //        Debug.Log(targetGatherer.CheckoutNextTargetedEnemy(input));
-    //    }
-    //}
+    
+
+    
 }

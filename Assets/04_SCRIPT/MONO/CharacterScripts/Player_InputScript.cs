@@ -28,6 +28,9 @@ public class Player_InputScript : MonoBehaviour
 
     #endregion
 
+    public delegate void MultiDelegate();
+    public MultiDelegate OnChangeCurrentPlayerTarget;
+
     private void Awake()
     {
         actionHandler = GetComponent<ActionHandler>();
@@ -43,7 +46,7 @@ public class Player_InputScript : MonoBehaviour
         controls.Player.Dash.canceled += ctx => SetInputDash(false);
 
         controls.Player.ChangeFocusCameraTarget.started += ctx => WantToChangeTarget();
-        //controls.Player.ChangeFocusCameraTarget.canceled += ctx => actionHandler.ResetFocusCameraTargetFactor();
+        controls.Player.ChangeFocusCameraTarget.canceled += ctx => actionCameraPlayer.ResetFocusCameraTargetFactor();
 
         controls.Player.DebugInput.started += ctx => b_DebugInput = true;
         controls.Player.DebugInput.canceled += ctx => b_DebugInput = false;
@@ -69,7 +72,7 @@ public class Player_InputScript : MonoBehaviour
 
     void WantingToParry(bool value)
     {
-        //actionHandler.b_IsParrying = value;
+        actionHandler.b_IsParrying = value;
     }
 
     void SetInputDash(bool value)
@@ -80,7 +83,7 @@ public class Player_InputScript : MonoBehaviour
     void WantToChangeTarget()
     {
         Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
-        actionHandler.ChangeTargetFocus(input);
+        actionCameraPlayer.ChangeTargetOfPlayer(input);
     }
 
 

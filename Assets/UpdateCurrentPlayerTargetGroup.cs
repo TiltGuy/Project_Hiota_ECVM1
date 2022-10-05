@@ -7,9 +7,11 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     private Controller_FSM controller;
     [SerializeField]
     private Transform currentPlayerTarget;
+    ActionCameraPlayer actionCameraPlayer;
     private void Awake()
     {
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<Controller_FSM>();
+        actionCameraPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<ActionCameraPlayer>();
     }
 
     private void Start()
@@ -28,11 +30,15 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     private void OnEnable()
     {
         controller.OnChangeCurrentPlayerTarget += UpdateMyPlayerCurrentTargetGroup;
+        actionCameraPlayer.OnChangeTargetPlayerPosition += UpdateMyPlayerCurrentTargetGroup;
+
+
     }
 
     private void OnDisable()
     {
         controller.OnChangeCurrentPlayerTarget -= UpdateMyPlayerCurrentTargetGroup;
+        actionCameraPlayer.OnChangeTargetPlayerPosition -= UpdateMyPlayerCurrentTargetGroup;
     }
 
     private void Update()
@@ -45,7 +51,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
 
     void UpdateMyPlayerCurrentTargetGroup()
     {
-        currentPlayerTarget = controller.currentHiotaTarget;
+        currentPlayerTarget = actionCameraPlayer.currentHiotaTarget;
         //Debug.Log("I want to update my current Target", this);
     }
 }
