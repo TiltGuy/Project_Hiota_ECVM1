@@ -60,6 +60,7 @@ public class CharacterSpecs : MonoBehaviour
     private float currentGuard;
     private float _maxHealth;
 	private float _maxGuard;
+	private float currentArmor;
 	public float Health
 	{
 		get => health;
@@ -77,7 +78,6 @@ public class CharacterSpecs : MonoBehaviour
 			}
 		}
 	}
-
 
 	public float CurrentGuard
 	{
@@ -121,7 +121,6 @@ public class CharacterSpecs : MonoBehaviour
 		}
 	}
 
-
 	public float MaxGuard
 	{
 		get => _maxGuard;
@@ -145,7 +144,6 @@ public class CharacterSpecs : MonoBehaviour
 		}
 	}
 
-    private float currentArmor;
 	public float CurrentArmor 
 	{ 
 		get => currentArmor;

@@ -15,7 +15,8 @@ public class Touch : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamages(AttackStats.damages, transform);
-                //Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
+                Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
+                Debug.Log("Dégats : " + AttackStats.damages, this);
             }
             
             
