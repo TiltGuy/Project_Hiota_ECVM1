@@ -511,12 +511,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1762f484d7e53e94f8a796251e37b346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_InputMoveVector: {x: 0, y: 0}
+  b_WantDash: 0
+  b_IsFocusing: 0
+  b_CanChangeFocusTarget: 1
+  b_IsParrying: 0
+  b_Stunned: 0
+  b_AttackInput: 0
+  b_IsPerfectlyParrying: 0
+  b_CanChangeFocusCameraTarget: 1
+  characterAnimator: {fileID: 1670080000814941675}
+  timeBufferAttackInput: 0.4
+  targetGatherer: {fileID: 7018018961163401237}
+  currentCharTarget: {fileID: 0}
+  currentCharacterTarget: {fileID: 0}
   cameraTarget: {fileID: 5183304412400876956}
   m_cameraBaseDirection: {fileID: 0}
   Ground:
     serializedVersion: 2
     m_Bits: 0
-  targetGatherer: {fileID: 7018018961163401237}
   _groundChecker: {fileID: 1886075193049011714}
   characontroller: {fileID: 6634799758529909337}
   Hiota_Anim: {fileID: 1670080000814941675}
@@ -532,7 +545,6 @@ MonoBehaviour:
   maxCoyoteTime: 0.15
   _isGrounded: 0
   distanceCheckGround: 0.25
-  b_IsFocusing: 0
   gravity: -9.17
   dashVectorMultiplicator: 1
   dashDistance: 2
@@ -542,7 +554,6 @@ MonoBehaviour:
   dashDirection: {x: 0, y: 0, z: 0}
   lastDirectionInput: {x: 0, y: 0, z: 0}
   scalarVector: 0
-  b_WantDash: 0
   b_CanDash: 1
   b_IsDashing: 0
   m_camF: {x: 0, y: 0, z: 0}
@@ -551,24 +562,18 @@ MonoBehaviour:
   directionToFocus: {x: 0, y: 0, z: 0}
   currentDirection: {x: 0, y: 0, z: 0}
   m_inputsKeyBoard: {x: 0, y: 0, z: 0}
-  m_InputMoveVector: {x: 0, y: 0}
   m_LeftStickControllerX: 0
   m_LeftStickControllerZ: 0
   m_accelMovController: 0
   m_speedTurnWhenAttack: 5
   m_turnSpeedWhenFocused: 20
-  b_AttackInput: 0
-  b_Stunned: 0
   BasicAttackStats: {fileID: 11400000, guid: 8ba78e8f4a1fad5468fdedac4e77c4ff, type: 2}
   SideAttackStats: {fileID: 11400000, guid: ea5de9ab7d762ba4690aee1ed4e21e4e, type: 2}
   FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
   BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
   ParryAttackStats: {fileID: 11400000, guid: 634ab48e56c8412459bc02f8b362913e, type: 2}
-  timeBufferAttackInput: 0.4
-  b_IsParrying: 0
   b_CanParry: 1
   b_PerfectParry: 0
-  b_IsPerfectlyParrying: 0
   timeForPerfectParry: 0.25
   timeAfterPerfectlyParrying: 0.5
   perfectTimer: 0
@@ -580,7 +585,6 @@ MonoBehaviour:
   b_CanRecoverParry: 1
   GO_CameraFreeLook: {fileID: 0}
   GO_FocusCamera: {fileID: 0}
-  currentHiotaTarget: {fileID: 0}
   currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
   remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   eyes: {fileID: 6425963666598805639}
@@ -596,6 +600,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6582034d29117e147a26ba70fa632f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharStats_SO: {fileID: 11400000, guid: 35d50d5626303a3448f53adf4ee1abcb, type: 2}
+  m_speedTurnWhenAttack: 5
+  m_turnSpeedWhenFocused: 20
+  BasicAttackStats: {fileID: 11400000, guid: 8ba78e8f4a1fad5468fdedac4e77c4ff, type: 2}
+  SideAttackStats: {fileID: 11400000, guid: ea5de9ab7d762ba4690aee1ed4e21e4e, type: 2}
+  FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
+  BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
+  ParryAttackStats: {fileID: 11400000, guid: 634ab48e56c8412459bc02f8b362913e, type: 2}
   _health: 0
   healthBar: {fileID: 0}
   healthPointBarFillAmount: 0
@@ -616,7 +628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d968601693cbc44d9a619740d377b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InputMoveVector: {x: 0, y: 0}
   b_InputDash: 0
   b_DebugInput: 0
   b_WantToParry: 0
@@ -632,6 +643,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b99ff0ce21ce246ae8adc2b9e92f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetGatherer: {fileID: 7018018961163401237}
+  currentHiotaTarget: {fileID: 0}
+  GO_FocusCamera: {fileID: 0}
+  GO_CameraFreeLook: {fileID: 0}
 --- !u!1 &1281754823036717357
 GameObject:
   m_ObjectHideFlags: 0

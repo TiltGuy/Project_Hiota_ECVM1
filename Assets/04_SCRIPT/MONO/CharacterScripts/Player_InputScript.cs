@@ -20,8 +20,11 @@ public class Player_InputScript : MonoBehaviour
 
     private bool b_CursorInvisible = true;
 
+    [HideInInspector]
     public bool b_InputDash = false;
+    [HideInInspector]
     public bool b_DebugInput = false;
+    [HideInInspector]
     public bool b_WantToParry = false;
 
     #endregion

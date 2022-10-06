@@ -7,7 +7,7 @@ public class DamageHiota : MonoBehaviour
 {
     public float TimerForNextAttack, attackCooldown;
 
-    HiotaHealth hiotaHealth;
+    CharacterSpecs hiotaHealth;
     public float attackDamage;
 
     public Animator enemyAnimator;
@@ -50,7 +50,7 @@ public class DamageHiota : MonoBehaviour
 
     private void Awake()
     {
-        hiotaHealth = player.GetComponent<HiotaHealth>();
+        hiotaHealth = player.GetComponent<CharacterSpecs>();
         enemyAgent = enemyScript.GetComponent<NavMeshAgent>();
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
+[RequireComponent(typeof(CharacterSpecs))]
 public class Controller_FSM : ActionHandler, IDamageable
 {
 
@@ -44,6 +45,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     //TO REWORK ==> Delocalise this reference to HiotaHealth
     public CharacterStats_SO HiotaStats;
+    private CharacterSpecs charSpecs;
 
     public PlayerController_Animator controllerAnim;
 
@@ -51,9 +53,6 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     #region STATS VARIABLES
 
-    [HideInInspector]
-    public float statCurrentHealth;
-    private float currentArmor;
     [HideInInspector]
     public bool b_IsInvicible = false;
 
@@ -252,6 +251,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     private void Awake()
     {
         characontroller = GetComponent<CharacterController>();
+        charSpecs = GetComponent<CharacterSpecs>();
         //rbody = GetComponent<Rigidbody>();
         SetMainCameraBaseDirectionTransform();
 
@@ -339,10 +339,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
         //initialisation of ALL the STATS SETTINGS
         // In the AWAKE METHOD because other scripts take the stats in start method
-        statCurrentHealth = HiotaStats.baseHealth;
-        currentArmor = HiotaStats.baseArmor;
-        statCurrentGuard = HiotaStats.baseGuard;
-        statCurrentMaxGuard = HiotaStats.maxGuard;
     }
 
     
@@ -363,7 +359,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         IsDetectingGround();
 
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
-        if (statCurrentGuard> 0)
+        if (charSpecs.CurrentGuard> 0)
         {
             UpdateGuardVariable();
 
@@ -469,7 +465,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         if (!b_IsParrying && !b_IsDashing)
         {
-            float damageOuput = CalculateFinalDamages(damageTaken, currentArmor);
+            float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
             Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
@@ -494,12 +490,8 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     private void LoseHP(float damageTaken)
     {
-        if (statCurrentHealth > 0)
-        {
-            statCurrentHealth -= damageTaken;
-            statCurrentHealth = Mathf.Clamp(statCurrentHealth, 0, statCurrentHealth);
-            LoseHPDelegate(statCurrentHealth);
-        }
+        charSpecs.Health -= damageTaken;
+        LoseHPDelegate(charSpecs.Health);
     }
 
     private void TestGuard(float damageTaken)
@@ -511,22 +503,19 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
         else if(!b_PerfectParry)
         {
-            if (statCurrentGuard > 0)
+            if (charSpecs.CurrentGuard > 0)
             {
                 
-                if(statCurrentGuard < damageTaken)
+                if(charSpecs.CurrentGuard < damageTaken)
                 {
-                    
-                    statCurrentGuard = 0;
                     StartCoroutine("ChockingTime");
-                    float damageOutput = CalculateFinalDamages(damageTaken, currentArmor);
-                    LoseHP(damageOutput);
+                    float damageOutput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
+                    LoseHP(damageOutput - charSpecs.CurrentGuard);
+                    charSpecs.CurrentGuard = 0;
                 }
-                statCurrentGuard -= damageTaken;
+                charSpecs.CurrentGuard -= damageTaken;
                 Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
-                print("j'en suis à " + statCurrentGuard);
-                statCurrentGuard = Mathf.Clamp(statCurrentGuard, 0, statCurrentMaxGuard);
-                UpdateGuardAmountDelegate(statCurrentGuard);
+                print("j'en suis à " + charSpecs.CurrentGuard);
             }
         }
 
@@ -549,16 +538,15 @@ public class Controller_FSM : ActionHandler, IDamageable
         b_CanParry = false;
         yield return new WaitForSeconds(1f);
         b_CanRecoverParry = true;
-        statCurrentGuard = 0.1f;
+        charSpecs.CurrentGuard = 0.1f;
 
     }
 
     private void IncreaseParryVariable(float guardIncreaseSpeed)
     {
-        if(statCurrentGuard<= statCurrentMaxGuard)
+        if(charSpecs.CurrentGuard<= charSpecs.MaxGuard)
         {
-            statCurrentGuard += Time.deltaTime * guardIncreaseSpeed;
-            UpdateGuardAmountDelegate(statCurrentGuard);
+            charSpecs.CurrentGuard += Time.deltaTime * guardIncreaseSpeed;
         }
     }
 
