@@ -17,7 +17,7 @@ public class PlayerController_Animator : MonoBehaviour
     [SerializeField]
     private Controller_FSM controller_FSM;
     [HideInInspector]
-    public Transform basicAttackHitBoxPrefab;
+    public Transform currentAttackHitboxPrefab;
     [HideInInspector]
     public Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;
@@ -26,7 +26,10 @@ public class PlayerController_Animator : MonoBehaviour
 
     private void Start()
     {
-        basicAttackHitBoxPrefab = controller_FSM.BasicAttackStats.hitBoxPrefab;
+        if(controller_FSM.CurrentAttackStats)
+        {
+            currentAttackHitboxPrefab = controller_FSM.CurrentAttackStats.hitBoxPrefab;
+        }
         //Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
 
     }
@@ -44,10 +47,10 @@ public class PlayerController_Animator : MonoBehaviour
     public void UpdateBasicAttackHitBoxStatutTrue()
     {
         //swordHitBox.enabled = true;
-        if (basicAttackHitBoxPrefab)
+        if (currentAttackHitboxPrefab)
         {
 
-            currentAttackHitbox = Instantiate(basicAttackHitBoxPrefab, controller_FSM.transform.position, Quaternion.identity);
+            currentAttackHitbox = Instantiate(currentAttackHitboxPrefab, controller_FSM.transform.position, Quaternion.identity);
             currentAttackHitbox.SetParent(controller_FSM.transform);
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;

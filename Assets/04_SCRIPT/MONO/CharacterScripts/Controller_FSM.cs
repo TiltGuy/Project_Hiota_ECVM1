@@ -169,6 +169,9 @@ public class Controller_FSM : ActionHandler, IDamageable
     [Tooltip("the current Stats and HitBox of the Parry Attack that will be used for the next or current hit")]
     public AttackStats_SO ParryAttackStats;
 
+    [Tooltip("the current Stats and HitBox that the Character will use in the next move")]
+    public AttackStats_SO CurrentAttackStats;
+
 
     //[Tooltip("The speed of the player")]
     //public float m_HoldAttackSpeed = 5f;
@@ -238,6 +241,11 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public delegate void OnEventCombatSystem();
     public OnEventCombatSystem OnAttackBegin;
+    public OnEventCombatSystem OnBasicABegin;
+    public OnEventCombatSystem OnFrontCABegin;
+    public OnEventCombatSystem OnSideCABegin;
+    public OnEventCombatSystem OnBackCABegin;
+    public OnEventCombatSystem OnParryCABegin;
     public OnEventCombatSystem OnDeathEnemy;
 
     #endregion
@@ -258,6 +266,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         SetGOCameraFreeLook();
 
         SetGOCameraFocus();
+        CurrentAttackStats = BasicAttackStats;
 
         //Initialisation of ALL the Bindings with InputMaster
         //controls = new InputMaster();
@@ -552,7 +561,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     void DebugOnEventCombatSystem()
     {
-        //Debug.Log("Currently On Event Delegate", this);
+        Debug.Log("Currently On Event Delegate", this);
     }
 
     public void ChangeTargetFocusCamera()

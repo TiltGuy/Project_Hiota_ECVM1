@@ -21,7 +21,14 @@ public abstract class Action_SO : ScriptableObject
 
     public void SetCurrentAttackStats(Controller_FSM controller, AttackStats_SO attackStats_SO)
     {
-        controller.BasicAttackStats = attackStats_SO;
+        if(attackStats_SO)
+        {
+            controller.CurrentAttackStats = attackStats_SO;
+        }
+        else
+        {
+            Debug.Log("je n'ai pas de currentAttackStats");
+        }
     }
 
     public void DebugCurrenState(Controller_FSM controller)

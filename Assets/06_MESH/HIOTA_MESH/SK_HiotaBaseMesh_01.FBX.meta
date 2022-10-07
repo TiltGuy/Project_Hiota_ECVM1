@@ -27,6 +27,15 @@ ModelImporter:
   - first:
       74: -3016635762660460498
     second: Hiota_TransitionAtt1ToIdle
+  - first:
+      74: -2077929896283298663
+    second: AT_Basic_Anticipation
+  - first:
+      74: -3393863804269325387
+    second: AT_Basic_HitFrame
+  - first:
+      74: 7705504642796593066
+    second: AT_Basic_Recovery
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -264,6 +273,100 @@ ModelImporter:
       internalID: 0
       firstFrame: 220
       lastFrame: 235
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 80
+    - serializedVersion: 16
+      name: AT_Basic_Anticipation
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 190
+      lastFrame: 195
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.6722543
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 80
+    - serializedVersion: 16
+      name: AT_Basic_HitFrame
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 195
+      lastFrame: 199
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 80
+    - serializedVersion: 16
+      name: AT_Basic_Recovery
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 200
+      lastFrame: 214
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
