@@ -89,9 +89,9 @@ public class PlayerController_Animator : MonoBehaviour
         Instantiate(ps,transform.position, Quaternion.identity);
     }
 
-    public void SpawnFX(Transform TargetFX)
+    public void SpawnFX(GameObject TargetFX)
     {
-        Instantiate(TargetFX, transform.position, Quaternion.identity);
+        Instantiate(TargetFX.transform, transform.position, Quaternion.identity);
     }
 
 }

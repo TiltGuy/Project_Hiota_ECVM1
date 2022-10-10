@@ -43,23 +43,22 @@ public class ATT_OnAttackBegin : Action_SO
         switch (attackType)
         {
             case AttachTypeCall.AT_Basic:
-                controller.OnBasicABegin();
+                controller.OnBasicABegin?.Invoke();
                 break;
             case AttachTypeCall.CA_Front:
-                controller.OnFrontCABegin();
+                controller.OnFrontCABegin?.Invoke();
                 break;
             case AttachTypeCall.CA_Side:
-                controller.OnSideCABegin();
+                controller.OnSideCABegin?.Invoke();
                 break;
             case AttachTypeCall.CA_Back:
-                controller.OnBackCABegin();
+                controller.OnBackCABegin?.Invoke();
                 break;
             case AttachTypeCall.CA_Parry:
-                controller.OnParryCABegin();
+                controller.OnParryCABegin?.Invoke();
                 break;
             case AttachTypeCall.AllAttackType:
-                Debug.Log("Calling On Attack Begin");
-                controller.OnAttackBegin();
+                controller.OnAttackBegin?.Invoke();
                 break;
         }
     }
