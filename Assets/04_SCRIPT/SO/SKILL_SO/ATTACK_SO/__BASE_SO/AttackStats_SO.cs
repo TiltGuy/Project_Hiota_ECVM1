@@ -8,6 +8,10 @@ public class AttackStats_SO : ScriptableObject
     public float damages;
     public Transform hitBoxPrefab;
     public float AnimID_Anticipation = 0f;
+    public float AnticipationAnimSpeed = 1f;
     public float AnimID_Hitframe = 0f;
+    public float HitframeAnimSpeed= 1f;
     public float AnimID_Recovery = 0f;
+    public float RecoveryAnimSpeed = 1f;
+
 }
