@@ -45,7 +45,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     //TO REWORK ==> Delocalise this reference to HiotaHealth
     public CharacterStats_SO HiotaStats;
-    private CharacterSpecs charSpecs;
+    public CharacterSpecs charSpecs;
 
     public PlayerController_Animator controllerAnim;
 
@@ -154,21 +154,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go when it's in Focus")]
     public float m_turnSpeedWhenFocused = 20;
 
-    [Tooltip("the current Stats of the Basic Attack that will be used for the next or current hit")]
-    public AttackStats_SO BasicAttackStats;
-
-    [Tooltip("the current Stats and HitBox of the Side Attack that will be used for the next or current hit")]
-    public AttackStats_SO SideAttackStats;
-
-    [Tooltip("the current Stats and HitBox of the Front Attack that will be used for the next or current hit")]
-    public AttackStats_SO FrontAttackStats;
-
-    [Tooltip("the current Stats and HitBox of the Back Attack that will be used for the next or current hit")]
-    public AttackStats_SO BackAttackStats;
-
-    [Tooltip("the current Stats and HitBox of the Parry Attack that will be used for the next or current hit")]
-    public AttackStats_SO ParryAttackStats;
-
     [Tooltip("the current Stats and HitBox that the Character will use in the next move")]
     public AttackStats_SO CurrentAttackStats;
 
@@ -263,10 +248,10 @@ public class Controller_FSM : ActionHandler, IDamageable
         //rbody = GetComponent<Rigidbody>();
         SetMainCameraBaseDirectionTransform();
 
-        SetGOCameraFreeLook();
+        //SetGOCameraFreeLook();
 
-        SetGOCameraFocus();
-        CurrentAttackStats = BasicAttackStats;
+        //SetGOCameraFocus();
+        CurrentAttackStats = charSpecs.BasicAttackStats;
 
         //Initialisation of ALL the Bindings with InputMaster
         //controls = new InputMaster();
@@ -303,26 +288,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         if (m_cameraBaseDirection == null)
         {
             Debug.LogError("I Haven't a MainCamera", this);
-        }
-    }
-
-    private void SetGOCameraFreeLook()
-    {
-        GO_CameraFreeLook = GameObject.FindGameObjectWithTag("CameraFreeLook");
-
-        if (GO_CameraFreeLook == null)
-        {
-            Debug.LogError("I Haven't a GO_CameraFreeLook", this);
-        }
-    }
-
-    private void SetGOCameraFocus()
-    {
-        GO_FocusCamera = GameObject.FindGameObjectWithTag("CameraFocus");
-        GO_FocusCamera.SetActive(false);
-        if (GO_FocusCamera == null)
-        {
-            Debug.LogError("I Haven't a GO_FocusCamera", this);
         }
     }
 
@@ -562,31 +527,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     void DebugOnEventCombatSystem()
     {
         Debug.Log("Currently On Event Delegate", this);
-    }
-
-    public void ChangeTargetFocusCamera()
-    {
-        
-        if(b_IsFocusing)
-        {
-            Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
-            //print(input.normalized);
-            if (b_CanChangeFocusCameraTarget)
-            {
-                b_CanChangeFocusCameraTarget = false;
-                OnChangeTargetFocus(input);
-                OnChangeCurrentPlayerTarget();
-            }
-            //print("CHANGE");
-
-        }
-    }
-
-
-    public void ResetFocusCameraTargetFactor()
-    {
-        b_CanChangeFocusCameraTarget = true;
-        //print("Reset");
     }
 
 

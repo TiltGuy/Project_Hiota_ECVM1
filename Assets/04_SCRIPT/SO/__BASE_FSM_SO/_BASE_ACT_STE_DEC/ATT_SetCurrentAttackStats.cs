@@ -13,19 +13,19 @@ public class ATT_SetCurrentAttackStats : Action_SO
         switch(attackChosen)
         {
             case AttackChosen.AT_Basic:
-                currentAttackStats = controller.BasicAttackStats;
+                currentAttackStats = controller.charSpecs.BasicAttackStats;
                 break;
             case AttackChosen.CA_Front:
-                currentAttackStats = controller.FrontAttackStats;
+                currentAttackStats = controller.charSpecs.FrontAttackStats;
                 break;
             case AttackChosen.CA_Side:
-                currentAttackStats = controller.SideAttackStats;
+                currentAttackStats = controller.charSpecs.SideAttackStats;
                 break;
             case AttackChosen.CA_Back:
-                currentAttackStats = controller.BackAttackStats;
+                currentAttackStats = controller.charSpecs.BackAttackStats;
                 break;
             case AttackChosen.CA_Parry:
-                currentAttackStats = controller.ParryAttackStats;
+                currentAttackStats = controller.charSpecs.ParryAttackStats;
                 break;
         }
         base.SetCurrentAttackStats(controller, currentAttackStats);
