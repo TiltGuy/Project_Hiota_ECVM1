@@ -189,6 +189,7 @@ public class CharacterSpecs : MonoBehaviour
 	{
 		MaxHealth = CharStats_SO.maxHealth;
 		Health = CharStats_SO.baseHealth;
+
 		//healthPointBarFillAmount = Health / MaxHealth;
 		//healthBar.fillAmount = healthPointBarFillAmount;
 
