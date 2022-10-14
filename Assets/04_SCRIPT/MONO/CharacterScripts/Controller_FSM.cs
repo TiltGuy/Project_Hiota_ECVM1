@@ -44,7 +44,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public Transform HandOfSword;
 
     //TO REWORK ==> Delocalise this reference to HiotaHealth
-    public CharacterStats_SO HiotaStats;
+    public CharacterStats_SO CharStats;
     public CharacterSpecs charSpecs;
 
     public PlayerController_Animator controllerAnim;
@@ -194,11 +194,11 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     #region CAMERA SETTINGS & DEPENDENDCIES
 
-    [Header(" -- CAMERA SETTINGS & DEPENDENDCIES -- ")]
+    //[Header(" -- CAMERA SETTINGS & DEPENDENDCIES -- ")]
 
-    public GameObject GO_CameraFreeLook;
+    //public GameObject GO_CameraFreeLook;
 
-    public GameObject GO_FocusCamera;
+    //public GameObject GO_FocusCamera;
 
     
 

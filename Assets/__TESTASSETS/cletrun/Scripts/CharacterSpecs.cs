@@ -69,12 +69,18 @@ public class CharacterSpecs : MonoBehaviour
 			if (health < 0)
 			{
 				health = 0;
-				UpdateHPFillBar(health);
+				if(healthBar)
+				{
+					UpdateHPFillBar(health);
+				}
 			}
 			else
 			{
 				health = value;
-				UpdateHPFillBar(health);
+				if (healthBar)
+				{
+					UpdateHPFillBar(health);
+				}
 			}
 		}
 	}
@@ -87,13 +93,19 @@ public class CharacterSpecs : MonoBehaviour
 			if (currentGuard < 0)
 			{
 				currentGuard = 0;
-				UpdateGuardBar(currentGuard);
+				if(guardBarImage)
+				{
+					UpdateGuardBar(currentGuard);
+				}
 
 			}
 			else
 			{
 				currentGuard = value;
-				UpdateGuardBar(currentGuard);
+				if (guardBarImage)
+				{
+					UpdateGuardBar(currentGuard);
+				}
 			}
 		}
 	}
