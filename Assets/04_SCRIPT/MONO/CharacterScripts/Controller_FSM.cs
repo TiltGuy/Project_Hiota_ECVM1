@@ -43,9 +43,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public Transform HandOfSword;
 
-    //TO REWORK ==> Delocalise this reference to HiotaHealth
-    public CharacterStats_SO CharStats;
-    public CharacterSpecs charSpecs;
+    [HideInInspector] public CharacterSpecs charSpecs;
 
     public PlayerController_Animator controllerAnim;
 
@@ -199,10 +197,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     //public GameObject GO_CameraFreeLook;
 
     //public GameObject GO_FocusCamera;
-
-    
-
-
     #endregion
 
     #region STATE MACHINE SETTINGS
@@ -252,34 +246,6 @@ public class Controller_FSM : ActionHandler, IDamageable
 
         //SetGOCameraFocus();
         CurrentAttackStats = charSpecs.BasicAttackStats;
-
-        //Initialisation of ALL the Bindings with InputMaster
-        //controls = new InputMaster();
-
-        //controls.Player.Movement.performed += ctx => m_InputMoveVector = ctx.ReadValue<Vector2>();
-        //controls.Player.Movement.canceled += ctx => m_InputMoveVector = Vector2.zero;
-
-        //controls.Player.Dash.started += ctx => b_WantDash = true;
-        //controls.Player.Dash.canceled += ctx => b_WantDash = false;
-
-        //controls.Player.ChangeFocusCameraTarget.started += ctx => ChangeTargetFocusCamera();
-        //controls.Player.ChangeFocusCameraTarget.canceled += ctx => ResetFocusCameraTargetFactor();
-
-        //controls.Player.DebugInput.started += ctx => b_Stunned = true;
-        ////controls.Player.Dash.started += ctx => TakeDamages(3);
-        //controls.Player.DebugInput.canceled += ctx => b_Stunned = false;
-
-        //controls.Player.Parry.started += ctx => b_IsParrying = true;
-        //controls.Player.Parry.canceled += ctx => b_IsParrying = false;
-
-        //controls.Player.Attack.started += ctx => TakeAttackInputInBuffer();
-        ////  controls.Player.Attack.canceled += ctx => b_AttackInput = false;
-
-        //controls.Player.FocusTarget.started += ctx => ToggleFocusTarget();
-        //controls.Player.DebugCursorBinding.started += ctx => HideCursor();
-
-
-
     }
 
     private void SetMainCameraBaseDirectionTransform()
@@ -294,6 +260,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     private void OnEnable()
     {
         OnAttackBegin += DebugOnEventCombatSystem;
+        ///TO REFACTO (OnDeathEnemy)
         //OnDeathEnemy += ToggleFocusTarget;
     }
 
@@ -446,7 +413,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
         else if (b_IsParrying)
         {
-            TestGuard(damageTaken);
+            TestGuard(damageTaken, striker);
         }
         else if (b_IsDashing)
         {
@@ -468,7 +435,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         LoseHPDelegate(charSpecs.Health);
     }
 
-    private void TestGuard(float damageTaken)
+    private void TestGuard(float damageTaken, Transform striker)
     {
         if(b_PerfectParry)
         {
@@ -490,10 +457,11 @@ public class Controller_FSM : ActionHandler, IDamageable
                 charSpecs.CurrentGuard -= damageTaken;
                 Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
                 print("j'en suis à " + charSpecs.CurrentGuard);
+
             }
         }
 
-        
+        striker.SendMessage("Parry", gameObject, SendMessageOptions.DontRequireReceiver);
 
     }
 

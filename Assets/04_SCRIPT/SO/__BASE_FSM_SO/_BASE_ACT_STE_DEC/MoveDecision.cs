@@ -7,6 +7,7 @@ public class MoveDecision : Decision_SO
 {
     public override bool Decide(Controller_FSM controller)
     {
+        //Debug.Log("Decide MoveDecision"+ base.IsWantingToMove(controller));
         return base.IsWantingToMove(controller);
     }
 }
