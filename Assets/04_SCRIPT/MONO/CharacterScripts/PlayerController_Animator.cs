@@ -94,4 +94,9 @@ public class PlayerController_Animator : MonoBehaviour
         Instantiate(TargetFX.transform, transform.position, Quaternion.identity);
     }
 
+    public void FinishAttackAnimation()
+    {
+        Debug.Log("Bob ! Do something ! ",this);
+    }
+
 }
