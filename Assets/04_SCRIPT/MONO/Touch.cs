@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,27 @@ using UnityEngine;
 public class Touch : MonoBehaviour
 {
     public AttackStats_SO AttackStats;
+
+    [HideInInspector] PlayerController_Animator instigatorAnimator;
+    Controller_FSM controllerFSM;
+
+    public PlayerController_Animator InstigatorAnimator 
+    { 
+        get => instigatorAnimator; 
+        set
+        {
+            instigatorAnimator = value;
+        } 
+    }
+
+    public Controller_FSM ControllerFSM 
+    { 
+        get => controllerFSM; 
+        set
+        {
+            controllerFSM = value;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +39,8 @@ public class Touch : MonoBehaviour
                 damageable.TakeDamages(AttackStats.damages, transform);
                 Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
                 Debug.Log("Dégats : " + AttackStats.damages, this);
+                controllerFSM.b_HaveSuccessfullyHitten = true;
+                InstigatorAnimator.animator.SetTrigger("t_SuccessfullyHitten");
             }
             
             

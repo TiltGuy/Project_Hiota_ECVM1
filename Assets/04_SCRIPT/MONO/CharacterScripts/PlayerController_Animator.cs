@@ -14,8 +14,8 @@ public class PlayerController_Animator : MonoBehaviour
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
-    [SerializeField]
-    private Controller_FSM controller_FSM;
+    [HideInInspector]
+    public Controller_FSM controller_FSM;
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;
     [HideInInspector]
@@ -51,6 +51,9 @@ public class PlayerController_Animator : MonoBehaviour
         {
 
             currentAttackHitbox = Instantiate(currentAttackHitboxPrefab, controller_FSM.transform.position, Quaternion.identity);
+            Touch currentInstance = currentAttackHitbox.GetComponent<Touch>();
+            currentInstance.ControllerFSM = controller_FSM;
+            currentInstance.InstigatorAnimator = this;
             currentAttackHitbox.SetParent(controller_FSM.transform);
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;

@@ -47,6 +47,7 @@ public class DamageHiota : MonoBehaviour
     public delegate void MultiCastDelegate();
     public MultiCastDelegate OnBeginAttack;
     public MultiCastDelegate OnFinishAttack;
+    public MultiCastDelegate OnAttackSuccesfull;
 
     private void Awake()
     {
@@ -124,6 +125,8 @@ public class DamageHiota : MonoBehaviour
     public void UpdateBasicAttackStatutTrue()
     {
         currentAttackHitbox = Instantiate(HitBoxesPresets[currentAttackValue], enemyScript.transform.position, Quaternion.identity);
+        TouchHiota currentInstance = currentAttackHitbox.GetComponent<TouchHiota>();
+        //currentInstance.instigator = this;
         // Set the parent
         currentAttackHitbox.SetParent(enemyScript.transform);
         // be sure to reset TRANSFORM and ROTATION
@@ -154,7 +157,6 @@ public class DamageHiota : MonoBehaviour
             {
                 currentInstance = currentAttackHitbox.GetComponentInChildren<TouchHiota>();
             }
-            currentInstance.instigator = this;
             currentInstance.DestroyItSelfAfterUsed();
         }
     }

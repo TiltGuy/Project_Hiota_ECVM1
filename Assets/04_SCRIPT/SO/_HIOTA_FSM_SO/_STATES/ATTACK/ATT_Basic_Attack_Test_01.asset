@@ -20,10 +20,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5aaa0e6ebd8220d498e23939a8963b1c, type: 2}
   - {fileID: 11400000, guid: e0f0ff8b23600fd49bf84dd4105f9ee9, type: 2}
   actionsUpdate: []
-  actionsExit: []
+  actionsExit:
+  - {fileID: 11400000, guid: f143c314fc05d2343b6c033ffedb07fa, type: 2}
+  - {fileID: 11400000, guid: 5d4e54a2c3c3a6b48b6cca541600de53, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 1964240999d6c0b479233a9102439765, type: 2}
     true_State: {fileID: 11400000, guid: bd73c49f4516a2f45ba7e80b69eed833, type: 2}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  - decision: {fileID: 11400000, guid: 36eefa6f6f4e03a488a88dedc438c9c3, type: 2}
+    true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  - decision: {fileID: 11400000, guid: 2bcbe36bf919eb24cbd94b808e12294a, type: 2}
+    true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   transitionsAfterCountdown:
   - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
@@ -33,6 +41,6 @@ MonoBehaviour:
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   b_NormalTransitions: 1
-  b_TransitionsAfterCountdown: 1
+  b_TransitionsAfterCountdown: 0
   stateDuration: 1.5
   sceneGizmosColor: {r: 0.9056604, g: 0.055535804, b: 0.055535804, a: 1}

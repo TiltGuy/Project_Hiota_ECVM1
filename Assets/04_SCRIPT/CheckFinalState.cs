@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class CheckFinalState : StateMachineBehaviour
 {
-    public delegate void OnEventCombatSystem();
-    public OnEventCombatSystem OnAttackFinish;
-    [SerializeField] private PlayerController_Animator playerController_Animator;
+    private Controller_FSM controller;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -24,8 +22,8 @@ public class CheckFinalState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerController_Animator = animator.GetComponent<PlayerController_Animator>();
-        playerController_Animator.FinishAttackAnimation();
+        controller = animator.GetComponent<PlayerController_Animator>().controller_FSM;
+        controller.b_HaveFinishedRecoveringAnimation = true;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

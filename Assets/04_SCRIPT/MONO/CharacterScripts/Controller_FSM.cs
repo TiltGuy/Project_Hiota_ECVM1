@@ -206,6 +206,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     public State_SO currentState;
     public State_SO remainState;
     public Transform eyes;
+    [HideInInspector] public bool b_HaveFinishedRecoveringAnimation;
+    [HideInInspector] public bool b_HaveSuccessfullyHitten;
 
     #endregion
 
