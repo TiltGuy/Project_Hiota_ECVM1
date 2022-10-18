@@ -154,6 +154,7 @@ public class DamageHiota : MonoBehaviour
             {
                 currentInstance = currentAttackHitbox.GetComponentInChildren<TouchHiota>();
             }
+            currentInstance.instigator = this;
             currentInstance.DestroyItSelfAfterUsed();
         }
     }
@@ -195,4 +196,7 @@ public class DamageHiota : MonoBehaviour
 
     }
 
+    public void SimpleStun(float duration)
+    {
+    }
 }
