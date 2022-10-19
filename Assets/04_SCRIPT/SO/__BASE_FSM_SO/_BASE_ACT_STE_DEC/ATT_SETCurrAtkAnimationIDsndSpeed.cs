@@ -29,6 +29,6 @@ public class ATT_SETCurrAtkAnimationIDsndSpeed : Action_SO
         charAnimator.SetFloat("HFAnimMultiplier", controller.CurrentAttackStats.HitframeAnimSpeed);
         charAnimator.SetFloat("RecovAnimMultiplier", controller.CurrentAttackStats.RecoveryAnimSpeed);
 
-        Debug.Log("Animations speeds Changed");
+        //Debug.Log("Animations speeds Changed");
     }
 }

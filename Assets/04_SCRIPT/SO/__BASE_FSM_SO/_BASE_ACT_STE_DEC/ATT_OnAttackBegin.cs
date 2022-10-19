@@ -22,7 +22,7 @@ public class ATT_OnAttackBegin : Action_SO
     {
         UpdateCurrentTarget(controller);
         CallOnAttackBegin(controller);
-        Debug.Log("BTM");
+        //Debug.Log("BTM");
     }
 
     void UpdateCurrentTarget(Controller_FSM controller)

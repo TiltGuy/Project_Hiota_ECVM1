@@ -207,7 +207,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public State_SO remainState;
     public Transform eyes;
     [HideInInspector] public bool b_HaveFinishedRecoveringAnimation;
-    [HideInInspector] public bool b_HaveSuccessfullyHitten;
+    [HideInInspector] private bool b_HaveSuccessfullyHitten;
 
     #endregion
 
@@ -231,10 +231,25 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     #endregion
 
-
     public Animator Animator
     {
         get { return Hiota_Anim; }
+    }
+
+    public bool B_HaveSuccessfullyHitten 
+    {
+        set
+        { 
+            b_HaveSuccessfullyHitten = value;
+            if(Hiota_Anim)
+            {
+                print("Have Change B_Successfullyhitten");
+                Hiota_Anim.SetBool("b_SuccessfullyHitten", value);
+                //Hiota_Anim.SetBool("b_Attack", value);
+            }
+        }
+
+        get => b_HaveSuccessfullyHitten;
     }
 
     private void Awake()
@@ -289,6 +304,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     // Update is called once per frame
     private void Update()
     {
+        print("B_HaveSuccessfullyHitten = " + Hiota_Anim.GetBool("b_SuccessfullyHitten"));
         if (PauseManager.b_IsPaused) return;
 
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
@@ -313,7 +329,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             //b_CanParry = false;
             StartCoroutine("ChockingTime");
         }
-
+        //print("currentState = " + currentState);
 
 
     }
@@ -457,8 +473,8 @@ public class Controller_FSM : ActionHandler, IDamageable
                     charSpecs.CurrentGuard = 0;
                 }
                 charSpecs.CurrentGuard -= damageTaken;
-                Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
-                print("j'en suis à " + charSpecs.CurrentGuard);
+                //Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
+                //print("j'en suis à " + charSpecs.CurrentGuard);
 
             }
         }
@@ -496,7 +512,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     void DebugOnEventCombatSystem()
     {
-        Debug.Log("Currently On Event Delegate", this);
+        //Debug.Log("Currently On Event Delegate", this);
     }
 
 

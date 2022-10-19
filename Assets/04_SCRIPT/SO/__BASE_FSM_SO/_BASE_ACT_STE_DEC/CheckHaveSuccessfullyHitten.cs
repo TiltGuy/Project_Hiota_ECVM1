@@ -7,6 +7,6 @@ public class CheckHaveSuccessfullyHitten : Decision_SO
 {
     public override bool Decide(Controller_FSM controller)
     {
-        return controller.b_HaveSuccessfullyHitten;
+        return controller.B_HaveSuccessfullyHitten;
     }
 }

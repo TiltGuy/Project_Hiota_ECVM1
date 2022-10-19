@@ -82,12 +82,12 @@ public class ActionCameraPlayer : MonoBehaviour
             if(targetGatherer.TargetableEnemies.Count > 0)
             {
                 currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
-                Debug.Log(currentHiotaTarget, this);
+                //Debug.Log(currentHiotaTarget, this);
                 controller_FSM.currentCharacterTarget = currentHiotaTarget;
                 OnChangeTargetPlayerPosition();
                 GO_FocusCamera.SetActive(true);
                 GO_CameraFreeLook.SetActive(false);
-                Debug.Log(currentHiotaTarget, this);
+                //Debug.Log(currentHiotaTarget, this);
             }
             
         }
@@ -95,7 +95,7 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             GO_FocusCamera.SetActive(false);
             GO_CameraFreeLook.SetActive(true);
-            Debug.Log("FreeLook Mode Camera Activated", this);
+            //Debug.Log("FreeLook Mode Camera Activated", this);
         }
     }
 }

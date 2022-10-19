@@ -115,7 +115,7 @@ public class ActionHandler : MonoBehaviour
                 b_IsFocusing = true;
                 characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
             }
-            print("AH");
+            //print("AH");
         }
         else
         {
