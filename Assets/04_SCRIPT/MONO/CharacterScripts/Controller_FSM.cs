@@ -241,12 +241,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         set
         { 
             b_HaveSuccessfullyHitten = value;
-            if(Hiota_Anim)
-            {
-                print("Have Change B_Successfullyhitten");
-                Hiota_Anim.SetBool("b_SuccessfullyHitten", value);
-                //Hiota_Anim.SetBool("b_Attack", value);
-            }
         }
 
         get => b_HaveSuccessfullyHitten;
@@ -304,7 +298,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     // Update is called once per frame
     private void Update()
     {
-        print("B_HaveSuccessfullyHitten = " + Hiota_Anim.GetBool("b_SuccessfullyHitten"));
+        //print("B_HaveSuccessfullyHitten = " + b_HaveSuccessfullyHitten);
         if (PauseManager.b_IsPaused) return;
 
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
@@ -427,7 +421,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
-            Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
+            //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
         else if (b_IsParrying)
         {

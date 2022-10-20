@@ -109,7 +109,7 @@ public class DamageHiota : MonoBehaviour
         enemyAnimator.SetFloat("IDAttack", currentAttackValue);
         currentAttackHitbox = HitBoxesPresets[currentAttackValue];
         previewCurrentAttackHitbox = PreviewHitBoxesPresets[currentAttackValue];
-        print("Choose Attack");
+        //print("Choose Attack");
     }
 
     public void AttackHiota()

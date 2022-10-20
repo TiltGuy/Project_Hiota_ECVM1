@@ -72,7 +72,7 @@ public class ActionCameraPlayer : MonoBehaviour
     {
         controller_FSM.b_CanChangeFocusCameraTarget = true;
         controller_FSM.b_CanChangeFocusTarget = true;
-        print("Reset");
+        //print("Reset");
     }
 
     public void ToggleCameraMode()

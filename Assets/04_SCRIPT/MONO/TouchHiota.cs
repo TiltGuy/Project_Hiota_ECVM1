@@ -24,7 +24,7 @@ public class TouchHiota : MonoBehaviour
 
     public void Parry(GameObject instigator)
     {
-        Debug.Log("PArry: " + instigator);
+        //Debug.Log("PArry: " + instigator);
     }
 
     public void DestroyItSelfAfterUsed()

@@ -255,7 +255,7 @@ public class CharacterSpecs : MonoBehaviour
 			healthPointBarFillAmount += 0.2f;
 			healthBar.fillAmount = healthPointBarFillAmount;
 			//print("Regeneratiooonnn !!!");
-			Debug.Log("Health: " + Health,this);
+			//Debug.Log("Health: " + Health,this);
 			Destroy(other.gameObject);
 			if(!Particle_Health_Recovered)
             {

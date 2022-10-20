@@ -6,7 +6,7 @@ public abstract class Action_SO : ScriptableObject
 {
     public virtual void Act(Controller_FSM controller)
     {
-        Debug.Log("Ondebug!!!!", this);
+        //Debug.Log("Ondebug!!!!", this);
     }
 
     public void ChangeAnimatorBoolean(Controller_FSM controller, string boolName, bool boolTargetValue)
