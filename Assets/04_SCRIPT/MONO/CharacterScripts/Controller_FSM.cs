@@ -39,9 +39,9 @@ public class Controller_FSM : ActionHandler, IDamageable
     ///<summary> The animator of the player</summary>
     public Animator Hiota_Anim;
 
-    public Transform HolsterSword;
+    //public Transform HolsterSword;
 
-    public Transform HandOfSword;
+    //public Transform HandOfSword;
 
     [HideInInspector] public CharacterSpecs charSpecs;
 

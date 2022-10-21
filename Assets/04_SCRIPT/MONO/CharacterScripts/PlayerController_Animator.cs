@@ -75,14 +75,14 @@ public class PlayerController_Animator : MonoBehaviour
 
     public void ShaftSword()
     {
-        Sword_GO.transform.parent = controller_FSM.HolsterSword;
+        //Sword_GO.transform.parent = controller_FSM.HolsterSword;
         Sword_GO.transform.localPosition = Vector3.zero;
         Sword_GO.transform.localRotation = Quaternion.identity;
     }
 
     public void UnShaftSword()
     {
-        Sword_GO.transform.parent = controller_FSM.HandOfSword;
+        //Sword_GO.transform.parent = controller_FSM.HandOfSword;
         Sword_GO.transform.localPosition = Vector3.zero;
         Sword_GO.transform.localRotation = Quaternion.identity;
     }
