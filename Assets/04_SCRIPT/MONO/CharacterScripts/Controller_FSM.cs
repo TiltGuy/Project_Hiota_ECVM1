@@ -18,6 +18,9 @@ public class Controller_FSM : ActionHandler, IDamageable
     [HideInInspector]
     [Tooltip("It needs the prefab of CameraBase")]
     public Transform m_cameraBaseDirection;
+    [SerializeField]
+    private Transform FX_ReactionGuard;
+    private Transform FX_HitReact;
     #endregion
 
     #region DEPENDENCIES
@@ -35,9 +38,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     
     ///<summary> The character controller of the player</summary>
     public CharacterController characontroller;
-
-    ///<summary> The animator of the player</summary>
-    public Animator Hiota_Anim;
 
     //public Transform HolsterSword;
 
@@ -233,7 +233,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public Animator Animator
     {
-        get { return Hiota_Anim; }
+        get { return characterAnimator; }
     }
 
     public bool B_HaveSuccessfullyHitten 
@@ -421,6 +421,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
+            SpawnFXClosestPoint(FX_HitReact, eyes);
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
         else if (b_IsParrying)
@@ -458,8 +459,8 @@ public class Controller_FSM : ActionHandler, IDamageable
         {
             if (charSpecs.CurrentGuard > 0)
             {
-                
-                if(charSpecs.CurrentGuard < damageTaken)
+
+                if (charSpecs.CurrentGuard < damageTaken)
                 {
                     StartCoroutine("ChockingTime");
                     float damageOutput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
@@ -467,17 +468,27 @@ public class Controller_FSM : ActionHandler, IDamageable
                     charSpecs.CurrentGuard = 0;
                 }
                 charSpecs.CurrentGuard -= damageTaken;
+                SpawnFXClosestPoint(FX_ReactionGuard, striker);
                 //Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
                 //print("j'en suis à " + charSpecs.CurrentGuard);
 
             }
         }
 
-        striker.SendMessage("Parry", gameObject, SendMessageOptions.DontRequireReceiver);
+        //striker.SendMessage("Parry", gameObject, SendMessageOptions.DontRequireReceiver);
 
     }
 
-    
+    private void SpawnFXClosestPoint(Transform FXPrefab, Transform striker)
+    {
+        Vector3 ClosestPointToStriker = characontroller.ClosestPointOnBounds(striker.position);
+        if (FXPrefab != null)
+        {
+            Instantiate(FXPrefab, ClosestPointToStriker, Quaternion.identity);
+
+        }
+    }
+
     public IEnumerator BufferingDashEvent()
     {
         b_CanDash = false;

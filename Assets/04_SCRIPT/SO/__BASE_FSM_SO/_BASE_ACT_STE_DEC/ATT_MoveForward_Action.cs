@@ -71,8 +71,8 @@ public class ATT_MoveForward_Action : Action_SO
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
                 controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_speedTurnWhenAttack * Time.deltaTime);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
+                controller.characterAnimator.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
+                controller.characterAnimator.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
             }
             else
             {
@@ -92,12 +92,12 @@ public class ATT_MoveForward_Action : Action_SO
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
                 controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
+                controller.characterAnimator.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
+                controller.characterAnimator.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
             }
         }
 
-        controller.Hiota_Anim.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
+        controller.characterAnimator.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
 
     }
 
@@ -141,8 +141,8 @@ public class ATT_MoveForward_Action : Action_SO
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
                 controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_speedTurnWhenAttack * Time.deltaTime);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
+                controller.characterAnimator.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
+                controller.characterAnimator.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
                 controller.characontroller.Move(controller.transform.forward * Time.deltaTime * currentSpeed);
             }
             else
@@ -164,12 +164,12 @@ public class ATT_MoveForward_Action : Action_SO
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
                 controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeedWhenFocused * Time.deltaTime);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
-                controller.Hiota_Anim.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
+                controller.characterAnimator.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
+                controller.characterAnimator.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
             }
         }
 
-        controller.Hiota_Anim.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
+        controller.characterAnimator.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
 
     }
 }

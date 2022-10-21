@@ -39,7 +39,7 @@ public class MoveFocus_Action : Action_SO
         controller.dashDirection = controller.directionToGo.normalized;
 
         controller.characontroller.Move(controller.directionToGo * Time.deltaTime * speed);
-        controller.Hiota_Anim.SetFloat("DirectX_FocusMode", controller.m_InputMoveVector.x);
-        controller.Hiota_Anim.SetFloat("DirectZ_FocusMode", controller.m_InputMoveVector.y);
+        controller.characterAnimator.SetFloat("DirectX_FocusMode", controller.m_InputMoveVector.x);
+        controller.characterAnimator.SetFloat("DirectZ_FocusMode", controller.m_InputMoveVector.y);
     }
 }

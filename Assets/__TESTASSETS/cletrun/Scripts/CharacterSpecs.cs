@@ -228,13 +228,6 @@ public class CharacterSpecs : MonoBehaviour
 		controller.UpdateGuardAmountDelegate -= UpdateGuardBar;
 	}
 
-    void Update()
-	{
-		if (Health == 0)
-		{
-			Debug.Log("tu es décédé", this);
-		}
-	}
 
 	//public void Hurt(float attackDamage)
 	//{

@@ -54,13 +54,6 @@ public class ActionHandler : MonoBehaviour
     [Tooltip("The focus of hiota if he have to")]
     public Transform currentCharacterTarget;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
     public void ChangeCharTargetFocus(Transform newTarget)
     {
 

@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +38,7 @@ public class Touch : MonoBehaviour
                 damageable.TakeDamages(AttackStats.damages, transform);
                 //Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
                 //Debug.Log("Dégats : " + AttackStats.damages, this);
-                controllerFSM.Hiota_Anim.SetBool("b_Attack", false);
+                controllerFSM.characterAnimator.SetBool("b_Attack", false);
                 controllerFSM.B_HaveSuccessfullyHitten = true;
                 //InstigatorAnimator.animator.SetTrigger("t_SuccessfullyHitten");
             }

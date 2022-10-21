@@ -19,7 +19,7 @@ public class ACT_FALL : Action_SO
 
         Vector3 fallGravity = new Vector3(0, controller.gravity, 0);
         controller.characontroller.Move(fallGravity * Time.deltaTime * gravityFactor);
-        controller.Hiota_Anim.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
+        controller.characterAnimator.SetFloat("Input_Move_Vector", controller.m_InputMoveVector.magnitude);
 
     }
 
