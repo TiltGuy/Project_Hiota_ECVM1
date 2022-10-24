@@ -449,8 +449,10 @@ MonoBehaviour:
   healthBar: {fileID: 39000560671697348}
   healthPointBarFillAmount: 0
   guardBarImage: {fileID: 512061180034281470}
-  Particle_Damage_Taken: {fileID: 0}
-  Particle_Health_Recovered: {fileID: 0}
+  Particle_Damage_Taken: {fileID: 8704643220767672381, guid: 484313ccad327774abc39dd0db32de18,
+    type: 3}
+  Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
+    type: 3}
 --- !u!114 &1273245036896107738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,14 +474,15 @@ MonoBehaviour:
   b_AttackInput: 0
   b_IsPerfectlyParrying: 0
   b_CanChangeFocusCameraTarget: 1
-  characterAnimator: {fileID: 0}
+  characterAnimator: {fileID: 39000562074486561}
   timeBufferAttackInput: 0.5
   targetGatherer: {fileID: 0}
   currentCharTarget: {fileID: 0}
   currentCharacterTarget: {fileID: 0}
   cameraTarget: {fileID: 0}
   m_cameraBaseDirection: {fileID: 0}
-  FX_ReactionGuard: {fileID: 0}
+  FX_ReactionGuard: {fileID: 1100295632028121774, guid: ef2ad23c336edad498f8b80de3ec6c0f,
+    type: 3}
   Ground:
     serializedVersion: 2
     m_Bits: 0

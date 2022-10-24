@@ -12,8 +12,8 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [Header(" -- EXTERNAL DEPENDENCIES -- ")]
 
-    [Tooltip("The Target for the FreeLook Camera... Normally the GO's name is Camera Target")]
-    public Transform cameraTarget;
+    //[Tooltip("The Target for the FreeLook Camera... Normally the GO's name is Camera Target")]
+    //public Transform cameraTarget;
 
     [HideInInspector]
     [Tooltip("It needs the prefab of CameraBase")]

@@ -38,12 +38,80 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] private float stopDistance;
     [SerializeField] private float attackDistance;
 
+    #region -- NEW CODE --
 
     //Health
     public CharacterStats_SO characterStats;
     public float currentHealth;
     public GameObject HitFXprefab;
     private Collider coll;
+
+    [SerializeField]
+    private NavMeshAgent agent;
+    [SerializeField]
+    private Transform refAvatar;
+    [SerializeField]
+    private float detectionDistance;
+    [SerializeField]
+    private float attackDistance;
+    [SerializeField]
+    private float preparationAttackSpeed;
+    [SerializeField]
+    private float AttackSpeed;
+
+    //ParticleSystem
+    [SerializeField]
+    private Transform AggroTaken;
+    private bool EnemySpotPlayer;
+
+    /*public GameObject projectile;
+    public float cadenceTir;
+    private float timerTir;
+    private GameObject clone;*/
+
+    private Vector3 dirAvatar;
+
+    //Patrol
+    public bool canDetect = false;
+    [HideInInspector]
+    public bool inRangeOfAttack = false;
+    [SerializeField]
+    private Transform zoneEnemy;
+    [SerializeField]
+    private Transform[] waypoints;
+
+    private Controller_FSM HiotaController;
+
+    //Health
+    [SerializeField]
+    private CharacterStats_SO characterStats;
+    private float _currentHealth;
+    private float _currentMaxHealth;
+    [SerializeField]
+    private GameObject HitFXprefab;
+    private Collider coll;
+    [SerializeField]
+    public bool b_IsDead;
+
+    [SerializeField]
+    private bool b_CanMove = true;
+
+    public float baseSpeed;
+
+    //Health Bar
+    public Image Bar;
+    public float Fill;
+
+    //Loot
+    public GameObject lifeLoot;
+
+    [SerializeField]
+    private DamageHiota damageHiota;
+    [SerializeField]
+    private Animator enemyAnimator;
+
+    public delegate void MultiDelegate();
+    public MultiDelegate OnDeathEnemy;
 
 
     //Health Bar
@@ -63,6 +131,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     //Animations
     public Animator enemyAnimator;
+
+    #endregion
 
     // Start is called before the first frame update
     void Awake()
