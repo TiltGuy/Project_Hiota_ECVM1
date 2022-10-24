@@ -103,7 +103,7 @@ public class ActionHandler : MonoBehaviour
     {
         if (!b_IsFocusing)
         {
-            if (targetGatherer.TargetableEnemies.Count > 0)
+            if (targetGatherer && targetGatherer.TargetableEnemies.Count > 0)
             {
                 b_IsFocusing = true;
                 characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
