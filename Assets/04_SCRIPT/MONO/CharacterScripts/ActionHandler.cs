@@ -49,8 +49,6 @@ public class ActionHandler : MonoBehaviour
     public delegate void MultiDelegateWithVector2(Vector2 vector);
     public MultiDelegateWithVector2 OnChangeTargetFocus;
     [HideInInspector]
-    public Transform currentCharTarget;
-    [HideInInspector]
     [Tooltip("The focus of hiota if he have to")]
     public Transform currentCharacterTarget;
 
@@ -61,7 +59,6 @@ public class ActionHandler : MonoBehaviour
         {
             if (b_CanChangeFocusTarget)
             {
-                currentCharTarget = newTarget;
                 currentCharacterTarget = newTarget;
                 OnChangeTargetFocus(newTarget.position);
             }

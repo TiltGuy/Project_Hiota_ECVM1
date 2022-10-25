@@ -63,8 +63,8 @@ public class ActionCameraPlayer : MonoBehaviour
         if (targetGatherer.CheckoutNextTargetedEnemy(input) != null)
         {
             currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
-            //controller_FSM.currentCharTarget = currentHiotaTarget;
-            Debug.Log(targetGatherer.CheckoutNextTargetedEnemy(input));
+            controller_FSM.currentCharacterTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
+            Debug.Log(currentHiotaTarget, currentHiotaTarget);
         }
     }
 

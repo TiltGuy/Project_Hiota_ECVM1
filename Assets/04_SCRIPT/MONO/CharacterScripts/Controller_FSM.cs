@@ -20,6 +20,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public Transform m_cameraBaseDirection;
     [SerializeField]
     private Transform FX_ReactionGuard;
+    [SerializeField]
     private Transform FX_HitReact;
     #endregion
 
@@ -39,10 +40,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     ///<summary> The character controller of the player</summary>
     public CharacterController characontroller;
 
-    //public Transform HolsterSword;
-
-    //public Transform HandOfSword;
-
     [HideInInspector] public CharacterSpecs charSpecs;
 
     public PlayerController_Animator controllerAnim;
@@ -54,14 +51,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     [HideInInspector]
     public bool b_IsInvicible = false;
 
-    #endregion
-
-    #region INPUT SETTINGS
-
-    [Header(" -- INPUT SETTINGS -- ")]
-
-    private InputMaster controls;
-
+    [HideInInspector] private bool b_IsTouched = false;
 
     #endregion
 
@@ -70,22 +60,16 @@ public class Controller_FSM : ActionHandler, IDamageable
     [Header(" -- GLOBAL MOVEMENT SETTINGS -- ")]
 
     [Tooltip("The speed of the player")]
-    [SerializeField] public float m_speed = 5f;
-
-    [Tooltip("Distance of the dash")]
-    [SerializeField] public float m_dashDistance = 5f;
+    public float m_speed = 5f;
 
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
-    public float m_turnSpeed = 20;
-
-    [Tooltip("it's the little time before hiota begin to fall")]
-    public float maxCoyoteTime = 0.15f;
+    [HideInInspector] public float m_turnSpeed = 20;
 
     [Tooltip("it check if Hiota is touching the ground with the Ground Checker")]
-    public bool _isGrounded = false;
+    [HideInInspector] public bool _isGrounded = false;
 
     [Tooltip("it's the radius of the sphere checking the IsGrounded function")]
-    public float distanceCheckGround = 0.25f;
+    [HideInInspector] public float distanceCheckGround = 0.25f;
 
     [Tooltip("it catches Hiota when he falls")]
     [SerializeField] public float gravity = -9.17f;
@@ -96,15 +80,11 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [Header(" -- DASH SETTINGS -- ")]
 
-    public float dashVectorMultiplicator = 1f;
-    public float dashDistance = 2f;
-    public float maxDashTime = .5f;
-    public float dashSpeed = 5f;
     public float dashCooldown = 0.75f;
-    public Vector3 dashDirection;
-    public Vector3 lastDirectionInput;
-    public float scalarVector;
-    public bool b_CanDash = true;
+    [HideInInspector] public Vector3 dashDirection;
+    [HideInInspector] public Vector3 lastDirectionInput;
+    [HideInInspector] public float scalarVector;
+    [HideInInspector] public bool b_CanDash = true;
     [HideInInspector]
     public bool b_IsDashing = false;
 
@@ -116,11 +96,11 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     ///<summary> The Forward vector of the camera</summary>
     [Tooltip("The Forward vector of the camera")]
-    [SerializeField] public Vector3 m_camF;
+    [HideInInspector] public Vector3 m_camF;
 
     ///<summary> The Right vector of the camera</summary>
     [Tooltip("The Right vector of the camera")]
-    [SerializeField] public Vector3 m_camR;
+    [HideInInspector] public Vector3 m_camR;
 
     [Tooltip("The direction where Hiota want to go")]
     [HideInInspector] public Vector3 directionToGo;
@@ -130,16 +110,6 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [Tooltip("The direction where Hiota goes actually ==> directionToGo + Gravity")]
     [HideInInspector] public Vector3 currentDirection;
-
-    ///<summary> The vector3 of the inputs. The inputs are by axis</summary>
-    public Vector3 m_inputsKeyBoard = Vector3.zero;
-
-
-    ///<summary> the float of the inputs of the controller. The inputs are by axis but seperated into 2 variables</summary>
-    public float m_LeftStickControllerX;
-    public float m_LeftStickControllerZ;
-
-    public float m_accelMovController;
     #endregion
 
     #region ATTACK Settings
@@ -154,6 +124,10 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [Tooltip("the current Stats and HitBox that the Character will use in the next move")]
     public AttackStats_SO CurrentAttackStats;
+
+    [HideInInspector] public Vector3 DirectionHitReact;
+
+    public float hitReactTime = .1f;
 
 
     //[Tooltip("The speed of the player")]
@@ -244,6 +218,19 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
 
         get => b_HaveSuccessfullyHitten;
+    }
+
+    public bool B_IsTouched
+    {
+        get => b_IsTouched;
+        set
+        {
+            b_IsTouched = value;
+            if (value == false)
+            {
+                DirectionHitReact = Vector3.zero;
+            }
+        }
     }
 
     private void Awake()
@@ -421,7 +408,9 @@ public class Controller_FSM : ActionHandler, IDamageable
             float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
-            SpawnFXClosestPoint(FX_HitReact, eyes);
+            SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
+            SetBoolnDirHitReact(striker);
+
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
         else if (b_IsParrying)
@@ -434,6 +423,14 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
         //LoseHP(damageTaken, currentHealth);
         //Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
+    }
+
+    private void SetBoolnDirHitReact(Transform striker)
+    {
+        B_IsTouched = true;
+        Vector3 pos = transform.position;
+        Vector3 strikerPos = striker.position;
+        DirectionHitReact = ( pos - strikerPos).normalized;
     }
 
     private float CalculateFinalDamages(float damages, float Armor)
@@ -468,7 +465,9 @@ public class Controller_FSM : ActionHandler, IDamageable
                     charSpecs.CurrentGuard = 0;
                 }
                 charSpecs.CurrentGuard -= damageTaken;
-                SpawnFXClosestPoint(FX_ReactionGuard, striker);
+                //Vector3 ClosestPointToStriker = GetPositionAtLocalBounds(striker);
+                Transform objInstantiated = SpawnFXAtPosition(FX_ReactionGuard, eyes.transform.position);
+                Debug.Log(objInstantiated, objInstantiated);
                 //Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
                 //print("j'en suis à " + charSpecs.CurrentGuard);
 
@@ -479,14 +478,22 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     }
 
-    private void SpawnFXClosestPoint(Transform FXPrefab, Transform striker)
+    private Transform SpawnFXAtPosition(Transform FXPrefab,Vector3 positionToSpawn)
     {
-        Vector3 ClosestPointToStriker = characontroller.ClosestPointOnBounds(striker.position);
+        Transform currentObject;
         if (FXPrefab != null)
         {
-            Instantiate(FXPrefab, ClosestPointToStriker, Quaternion.identity);
+            currentObject = Instantiate(FXPrefab, positionToSpawn, Quaternion.identity);
 
         }
+        else
+            currentObject = null;
+        return currentObject;
+    }
+
+    private Vector3 GetPositionAtLocalBounds(Transform striker)
+    {
+        return characontroller.ClosestPointOnBounds(striker.position);
     }
 
     public IEnumerator BufferingDashEvent()
