@@ -1207,7 +1207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104135232663195821}
   m_LocalRotation: {x: 0.0000045874967, y: -0.000000044369155, z: -0.009671305, w: 0.99995327}
-  m_LocalPosition: {x: -0.00999999, y: 0, z: -0.000000029802322}
+  m_LocalPosition: {x: -0.00999999, y: 0, z: 0}
   m_LocalScale: {x: 1.0000005, y: 1.0000002, z: 0.99999976}
   m_Children:
   - {fileID: 4928764249258825446}
@@ -1366,13 +1366,15 @@ MonoBehaviour:
   b_IsPerfectlyParrying: 0
   b_CanChangeFocusCameraTarget: 1
   characterAnimator: {fileID: 1421800232861623346}
-  timeBufferAttackInput: 0.1
+  timeBufferAttackInput: 0.05
   targetGatherer: {fileID: 7018018961163401237}
-  currentCharTarget: {fileID: 0}
   currentCharacterTarget: {fileID: 0}
-  cameraTarget: {fileID: 5183304412400876956}
   m_cameraBaseDirection: {fileID: 0}
   FX_ReactionGuard: {fileID: 1100295632028121774, guid: ef2ad23c336edad498f8b80de3ec6c0f,
+    type: 3}
+  FX_PerfectParry: {fileID: 1100295632028121774, guid: 38644ce119252d74d9f1a3fcb391c67d,
+    type: 3}
+  FX_HitReact: {fileID: 1100295632028121774, guid: 45c35efdc634e974fa5419e3cc7648ee,
     type: 3}
   Ground:
     serializedVersion: 2
@@ -1383,16 +1385,10 @@ MonoBehaviour:
   controllerAnim: {fileID: 8612992019270528409}
   b_IsInvicible: 0
   m_speed: 5
-  m_dashDistance: 5
   m_turnSpeed: 20
-  maxCoyoteTime: 0.15
   _isGrounded: 0
   distanceCheckGround: 0.25
   gravity: -9.17
-  dashVectorMultiplicator: 1
-  dashDistance: 2
-  maxDashTime: 0.5
-  dashSpeed: 5
   dashCooldown: 0.75
   dashDirection: {x: 0, y: 0, z: 0}
   lastDirectionInput: {x: 0, y: 0, z: 0}
@@ -1404,13 +1400,11 @@ MonoBehaviour:
   directionToGo: {x: 0, y: 0, z: 0}
   directionToFocus: {x: 0, y: 0, z: 0}
   currentDirection: {x: 0, y: 0, z: 0}
-  m_inputsKeyBoard: {x: 0, y: 0, z: 0}
-  m_LeftStickControllerX: 0
-  m_LeftStickControllerZ: 0
-  m_accelMovController: 0
   m_speedTurnWhenAttack: 5
   m_turnSpeedWhenFocused: 20
   CurrentAttackStats: {fileID: 0}
+  DirectionHitReact: {x: 0, y: 0, z: 0}
+  hitReactTime: 0.1
   b_CanParry: 1
   b_PerfectParry: 0
   timeForPerfectParry: 0.25
@@ -2257,7 +2251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805994244910641689}
   m_LocalRotation: {x: -0.046471056, y: -0.061994668, z: -0.5979948, w: 0.7977464}
-  m_LocalPosition: {x: -0.00999999, y: 0, z: -0.000000029802322}
+  m_LocalPosition: {x: -0.00999999, y: 0, z: 0}
   m_LocalScale: {x: 0.99999964, y: 1.0000006, z: 0.99999976}
   m_Children:
   - {fileID: 4947210556191900747}
@@ -4716,7 +4710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3978264097020805467}
   m_LocalRotation: {x: -0.6268162, y: -0.012429222, z: -0.06125635, w: 0.7766561}
-  m_LocalPosition: {x: -0.01767081, y: -0.000000007450581, z: 0}
+  m_LocalPosition: {x: -0.01767078, y: 0, z: 0}
   m_LocalScale: {x: 0.99999976, y: 0.9999998, z: 1}
   m_Children:
   - {fileID: 6032247378070939431}

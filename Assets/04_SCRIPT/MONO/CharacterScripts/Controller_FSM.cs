@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(CharacterSpecs))]
 public class Controller_FSM : ActionHandler, IDamageable
@@ -20,6 +21,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     public Transform m_cameraBaseDirection;
     [SerializeField]
     private Transform FX_ReactionGuard;
+    [SerializeField]
+    private Transform FX_PerfectParry;
     [SerializeField]
     private Transform FX_HitReact;
     #endregion
@@ -43,6 +46,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     [HideInInspector] public CharacterSpecs charSpecs;
 
     public PlayerController_Animator controllerAnim;
+
+    public Transform HITTouchedPosition;
 
     #endregion
 
@@ -408,7 +413,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
-            SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
+            SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
             SetBoolnDirHitReact(striker);
 
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
@@ -430,6 +435,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         B_IsTouched = true;
         Vector3 pos = transform.position;
         Vector3 strikerPos = striker.position;
+        Debug.Log(striker.name, striker);
         DirectionHitReact = ( pos - strikerPos).normalized;
     }
 
@@ -450,7 +456,11 @@ public class Controller_FSM : ActionHandler, IDamageable
         if(b_PerfectParry)
         {
             StartCoroutine(SetIsPerfectlyParryingCoroutine(timeAfterPerfectlyParrying));
-            print("Perfect PARRRY !!!");
+            //print("Perfect PARRRY !!!");
+            if ( FX_PerfectParry )
+            {
+                SpawnFXAtPosition(FX_PerfectParry, eyes.transform.position);
+            }
         }
         else if(!b_PerfectParry)
         {
@@ -481,9 +491,10 @@ public class Controller_FSM : ActionHandler, IDamageable
     private Transform SpawnFXAtPosition(Transform FXPrefab,Vector3 positionToSpawn)
     {
         Transform currentObject;
+        Quaternion randomRot = new Quaternion(Random.Range(-45, 45), Random.Range(-45, 45), Random.Range(-45,45),0);
         if (FXPrefab != null)
         {
-            currentObject = Instantiate(FXPrefab, positionToSpawn, Quaternion.identity);
+            currentObject = Instantiate(FXPrefab, positionToSpawn, randomRot);
 
         }
         else
@@ -491,9 +502,14 @@ public class Controller_FSM : ActionHandler, IDamageable
         return currentObject;
     }
 
-    private Vector3 GetPositionAtLocalBounds(Transform striker)
+    private Vector3 GetPositionClosestAtLocalBounds(Transform striker)
     {
         return characontroller.ClosestPointOnBounds(striker.position);
+    }
+
+    private Vector3 GetPositionFarthestAtLocalBounds( Transform striker )
+    {
+        return characontroller.ClosestPointOnBounds(-striker.position);
     }
 
     public IEnumerator BufferingDashEvent()
