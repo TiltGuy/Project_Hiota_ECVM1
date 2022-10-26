@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
         //rb = GetComponent<Rigidbody>();
         
         //refAvatar = CharacterMouvement.instance.transform;
-        if(waypoints != null)
+        if(waypoints.Length >=1)
         {
             agent.SetDestination(RandomNavmeshLocation(4f));
         }
@@ -136,7 +136,7 @@ public class Enemy : MonoBehaviour, IDamageable
 			{
                 if(b_CanMove)
                 {
-                    if (waypoints != null)
+                    if ( waypoints.Length >= 1 )
                     {
                         agent.SetDestination(RandomNavmeshLocation(4f));
                     }
