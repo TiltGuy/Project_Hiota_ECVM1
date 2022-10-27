@@ -149,7 +149,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     [Header(" -- PARRY SETTINGS -- ")]
 
 
-    public bool b_CanParry = false;
+    [HideInInspector] public bool b_CanParry = false;
     [HideInInspector]
     public bool b_PerfectParry = false;
     public float timeForPerfectParry = .25f;
@@ -157,14 +157,14 @@ public class Controller_FSM : ActionHandler, IDamageable
     private float timeAfterPerfectlyParrying = .5f;
     [HideInInspector]
     public float perfectTimer = 0f;
-    public bool b_NormalParry = false;
+    [HideInInspector] public bool b_NormalParry = false;
     [HideInInspector]
     public float statCurrentMaxGuard = 10f;
-    [HideInInspector]
-    public float statCurrentGuard = 1f;
+    [HideInInspector] public float statCurrentGuard = 1f;
     public float guardIncreaseSpeed = 1f;
     public float guardIncreaseSpeedWhenGuarding = 1f;
-    public bool b_CanRecoverParry = true;
+    [HideInInspector] public bool b_CanRecoverParry = true;
+    [HideInInspector] public bool b_isParrying;
 
 
     #endregion
@@ -285,8 +285,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         // In the AWAKE METHOD because other scripts take the stats in start method
     }
 
-    
-
     // Update is called once per frame
     private void Update()
     {
@@ -323,7 +321,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     private void UpdateGuardVariable()
     {
         b_CanParry = true;
-        if (!b_IsParrying)
+        if (!b_IsInputParry)
         {
             IncreaseParryVariable(guardIncreaseSpeed);
         }
@@ -372,9 +370,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         //return coyoteTime < maxCoyoteTime;
     }
 
-    //Detection ground with the function IsDetectingGround and the Coyote Time
-    
-
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
@@ -396,7 +391,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     }
 
     
-
     private void OnDrawGizmos()
     {
         if (currentState != null && eyes != null)
@@ -408,26 +402,25 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public void TakeDamages(float damageTaken, Transform striker)
     {
-        if (!b_IsParrying && !b_IsDashing)
+        if (!b_isParrying && !b_IsDashing)
         {
             float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
             SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
             SetBoolnDirHitReact(striker);
+            print("je suis en train de prendre cher");
 
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
-        else if (b_IsParrying)
+        if ( b_isParrying )
         {
             TestGuard(damageTaken, striker);
         }
-        else if (b_IsDashing)
+        else if ( b_IsDashing )
         {
             // do Something
         }
-        //LoseHP(damageTaken, currentHealth);
-        //Debug.Log("il ne me reste plus que " + statCurrentHealth + " d'HP", this);
     }
 
     private void SetBoolnDirHitReact(Transform striker)
@@ -466,18 +459,21 @@ public class Controller_FSM : ActionHandler, IDamageable
         {
             if (charSpecs.CurrentGuard > 0)
             {
-
+                print("je suis en train de parer");
                 if (charSpecs.CurrentGuard < damageTaken)
                 {
+                    StopCoroutine("ChockingTime");
+                    b_Stunned = true;
+                    SetBoolnDirHitReact(striker);
+                    SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
                     StartCoroutine("ChockingTime");
                     float damageOutput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
                     LoseHP(damageOutput - charSpecs.CurrentGuard);
-                    charSpecs.CurrentGuard = 0;
+                    //charSpecs.CurrentGuard = 0;
                 }
                 charSpecs.CurrentGuard -= damageTaken;
                 //Vector3 ClosestPointToStriker = GetPositionAtLocalBounds(striker);
-                Transform objInstantiated = SpawnFXAtPosition(FX_ReactionGuard, eyes.transform.position);
-                Debug.Log(objInstantiated, objInstantiated);
+                SpawnFXAtPosition(FX_ReactionGuard, eyes.transform.position);
                 //Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
                 //print("j'en suis à " + charSpecs.CurrentGuard);
 
@@ -524,10 +520,16 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         b_CanRecoverParry = false;
         b_CanParry = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         b_CanRecoverParry = true;
         charSpecs.CurrentGuard = 0.1f;
+    }
 
+    //used when in Guard to have a GuardReact behaviour
+    public IEnumerator HitReactWhenGuardingCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        B_IsTouched = false;
     }
 
     private void IncreaseParryVariable(float guardIncreaseSpeed)

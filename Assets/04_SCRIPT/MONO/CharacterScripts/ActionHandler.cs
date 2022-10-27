@@ -25,7 +25,7 @@ public class ActionHandler : MonoBehaviour
 
     public bool b_CanChangeFocusTarget = true;
     [HideInInspector]
-    public bool b_IsParrying = false;
+    public bool b_IsInputParry = false;
 
     [Tooltip("the Boolean that if the player is stunned")]
     public bool b_Stunned = false;

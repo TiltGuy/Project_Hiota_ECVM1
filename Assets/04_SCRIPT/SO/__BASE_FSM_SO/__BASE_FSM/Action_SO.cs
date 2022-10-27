@@ -41,6 +41,11 @@ public abstract class Action_SO : ScriptableObject
         controller.b_IsDashing = targetValue;
     }
 
+    public void SetParryingBooleanValue( Controller_FSM controller, bool targetValue )
+    {
+        controller.b_isParrying = targetValue;
+    }
+
     public void SetStunnedBooleanValue(Controller_FSM controller, bool targetValue)
     {
         controller.b_Stunned = targetValue;

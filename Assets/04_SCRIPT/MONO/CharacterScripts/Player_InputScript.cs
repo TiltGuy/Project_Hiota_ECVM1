@@ -78,7 +78,7 @@ public class Player_InputScript : MonoBehaviour
 
     void WantingToParry(bool value)
     {
-        controller_FSM.b_IsParrying = value;
+        controller_FSM.b_IsInputParry = value;
     }
 
     void SetInputDash(bool value)

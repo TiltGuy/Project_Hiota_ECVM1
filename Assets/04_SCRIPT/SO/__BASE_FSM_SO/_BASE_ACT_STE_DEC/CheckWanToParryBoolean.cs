@@ -12,7 +12,7 @@ public class CheckWanToParryBoolean : Decision_SO
 
     private bool CanParryAndWantParry(Controller_FSM controller)
     {
-        if (controller.b_CanParry && controller.b_IsParrying)
+        if (controller.b_CanParry && controller.b_IsInputParry)
         {
             return true;
         }
