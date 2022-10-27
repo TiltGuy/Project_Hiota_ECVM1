@@ -235,6 +235,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             {
                 DirectionHitReact = Vector3.zero;
             }
+            print(DirectionHitReact);
         }
     }
 
@@ -408,8 +409,8 @@ public class Controller_FSM : ActionHandler, IDamageable
             LoseHP(damageOuput);
             b_Stunned = true;
             SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
-            SetBoolnDirHitReact(striker);
-            print("je suis en train de prendre cher");
+            DirectionHitReact = GetBoolnDirHitReact(striker);
+            //print(DirectionHitReact);
 
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
@@ -423,13 +424,13 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
     }
 
-    private void SetBoolnDirHitReact(Transform striker)
+    private Vector3 GetBoolnDirHitReact(Transform striker)
     {
         B_IsTouched = true;
         Vector3 pos = transform.position;
         Vector3 strikerPos = striker.position;
         Debug.Log(striker.name, striker);
-        DirectionHitReact = ( pos - strikerPos).normalized;
+        return ( pos - strikerPos).normalized;
     }
 
     private float CalculateFinalDamages(float damages, float Armor)
@@ -459,12 +460,13 @@ public class Controller_FSM : ActionHandler, IDamageable
         {
             if (charSpecs.CurrentGuard > 0)
             {
-                print("je suis en train de parer");
+                
                 if (charSpecs.CurrentGuard < damageTaken)
                 {
                     StopCoroutine("ChockingTime");
                     b_Stunned = true;
-                    SetBoolnDirHitReact(striker);
+                    DirectionHitReact = GetBoolnDirHitReact(striker);
+                    //print(DirectionHitReact);
                     SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
                     StartCoroutine("ChockingTime");
                     float damageOutput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);

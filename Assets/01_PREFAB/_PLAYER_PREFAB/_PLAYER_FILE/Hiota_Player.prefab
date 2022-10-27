@@ -1359,8 +1359,8 @@ MonoBehaviour:
   m_InputMoveVector: {x: 0, y: 0}
   b_WantDash: 0
   b_IsFocusing: 0
-  b_CanChangeFocusTarget: 1
-  b_IsParrying: 0
+  b_CanChangeFocusTarget: 0
+  b_IsInputParry: 0
   b_Stunned: 0
   b_AttackInput: 0
   b_IsPerfectlyParrying: 0
@@ -1383,6 +1383,7 @@ MonoBehaviour:
   characontroller: {fileID: 6634799758529909337}
   charSpecs: {fileID: 0}
   controllerAnim: {fileID: 8612992019270528409}
+  HITTouchedPosition: {fileID: 0}
   b_IsInvicible: 0
   m_speed: 5
   m_turnSpeed: 20
@@ -1416,6 +1417,7 @@ MonoBehaviour:
   guardIncreaseSpeed: 0.25
   guardIncreaseSpeedWhenGuarding: 0.15
   b_CanRecoverParry: 1
+  b_isParrying: 0
   currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
   remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   eyes: {fileID: 6425963666598805639}
