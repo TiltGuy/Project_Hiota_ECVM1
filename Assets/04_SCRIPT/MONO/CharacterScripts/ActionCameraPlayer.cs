@@ -28,12 +28,14 @@ public class ActionCameraPlayer : MonoBehaviour
     }
     private void OnEnable()
     {
-        controller_FSM.OnTouched += CommandShakeCamera;
+        controller_FSM.OnTouchedEnemy += CommandShakeCameraWhenTouchingEnemy;
+        controller_FSM.OnHittenByEnemy += CommandShakeCameraWhenBeingTouched;
     }
 
     private void OnDisable()
     {
-        controller_FSM.OnTouched -= CommandShakeCamera;
+        controller_FSM.OnTouchedEnemy -= CommandShakeCameraWhenTouchingEnemy;
+        controller_FSM.OnHittenByEnemy -= CommandShakeCameraWhenBeingTouched;
     }
 
     public void ChangeTargetOfPlayer(Vector2 input)
@@ -95,8 +97,22 @@ public class ActionCameraPlayer : MonoBehaviour
         }
     }
 
-    private void CommandShakeCamera()
+    private void CommandShakeCameraWhenTouchingEnemy()
     {
-        Debug.Log("SHAKE CAMERA NOW !!!");
+        Debug.Log("SHAKE CAMERA TOUCHED !!!");
+        
+    }
+
+    private void CommandShakeCameraWhenBeingTouched()
+    {
+        Debug.Log("SHAKE CAMERA HITTEN !!!");
+        if ( GO_CameraFreeLook )
+        {
+            GO_CameraFreeLook.GetComponent<CinemachineCameraShake>().ShakeCamera(1f, .25f);
+        }
+        if ( GO_FocusCamera )
+        {
+            GO_FocusCamera.GetComponent<CinemachineCameraShake>().ShakeCamera(2, .5f);
+        }
     }
 }

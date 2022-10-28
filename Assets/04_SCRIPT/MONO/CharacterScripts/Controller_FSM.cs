@@ -208,7 +208,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     public OnEventCombatSystem OnParryCABegin;
     public OnEventCombatSystem OnDeathEnemy;
 
-    public OnEventCombatSystem OnTouched;
+    public OnEventCombatSystem OnTouchedEnemy;
+    public OnEventCombatSystem OnHittenByEnemy;
 
     #endregion
 
@@ -412,6 +413,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             b_Stunned = true;
             SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
             DirectionHitReact = GetBoolnDirHitReact(striker);
+            OnHittenByEnemy?.Invoke();
             //print(DirectionHitReact);
 
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
@@ -473,6 +475,8 @@ public class Controller_FSM : ActionHandler, IDamageable
                     StartCoroutine("ChockingTime");
                     float damageOutput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
                     LoseHP(damageOutput - charSpecs.CurrentGuard);
+
+                    OnHittenByEnemy?.Invoke();
                     //charSpecs.CurrentGuard = 0;
                 }
                 charSpecs.CurrentGuard -= damageTaken;

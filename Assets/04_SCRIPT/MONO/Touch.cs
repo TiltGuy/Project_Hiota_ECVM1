@@ -40,7 +40,7 @@ public class Touch : MonoBehaviour
                 //Debug.Log("Dégats : " + AttackStats.damages, this);
                 controllerFSM.characterAnimator.SetBool("b_Attack", false);
                 controllerFSM.B_HaveSuccessfullyHitten = true;
-                controllerFSM.OnTouched();
+                controllerFSM.OnTouchedEnemy?.Invoke();
                 //InstigatorAnimator.animator.SetTrigger("t_SuccessfullyHitten");
             }
             

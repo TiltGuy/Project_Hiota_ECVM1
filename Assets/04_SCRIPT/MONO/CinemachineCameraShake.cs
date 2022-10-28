@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CinemachineShake : MonoBehaviour
+public class CinemachineCameraShake : MonoBehaviour
 {
     enum TypeOfCamera{FocusCamera, FreeLookCamera};
     [SerializeField] TypeOfCamera CameraType = TypeOfCamera.FocusCamera;
@@ -47,9 +47,24 @@ public class CinemachineShake : MonoBehaviour
 
     public void ShakeCamera( float intensity, float shakeTime )
     {
-        cinemachineBasicMultiChannelPerlin = GetComponent<CinemachineBasicMultiChannelPerlin>();
 
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-        shakerTimer = shakeTime;
+        if(CameraType == TypeOfCamera.FocusCamera)
+        {
+            cinemachineBasicMultiChannelPerlin = 
+                FocusCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            print("Facus");
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+            shakerTimer = shakeTime;
+        }
+        else
+        {
+            cinemachineBasicMultiChannelPerlin =
+            NormalCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            print("Normal");
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+            
+            
+            shakerTimer = shakeTime;
+        }
     }
 }
