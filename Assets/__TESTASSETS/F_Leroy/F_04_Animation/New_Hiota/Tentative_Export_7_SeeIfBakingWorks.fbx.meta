@@ -48,6 +48,24 @@ ModelImporter:
   - first:
       74: 7256064158486949222
     second: Hiota_Idle
+  - first:
+      74: -2701838016485857637
+    second: Hiota_DASH_L
+  - first:
+      74: -8120329710730418210
+    second: Hiota_FOCUS_WalkFrwd
+  - first:
+      74: 6765356925111496717
+    second: Hiota_FOCUS_WalkBkwd
+  - first:
+      74: 4426052290772943600
+    second: Hiota_FOCUS_WalkLeft
+  - first:
+      74: -1578087252778204004
+    second: Hiota_FOCUS_WalkRight
+  - first:
+      74: -6547593159309400367
+    second: Hiota_FOCUS_Idle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -61,17 +79,9 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
-      in configuration does not match rotation in animation file:\n\t'M_Armored_SPine_1'
-      : rotation error = 33.229607 deg\n\t'R_New_Antennae_Bone_1' : rotation error
-      = 107.327934 deg\n\t'L_New_Antennae_Bone_1' : rotation error = 123.514107 deg\n"
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'M_Armored_SPine_1' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'R_New_Antennae_Bone_1'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'L_New_Antennae_Bone_1'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -247,8 +257,8 @@ ModelImporter:
       name: Hiota_Guard
       takeName: Take 001
       internalID: 0
-      firstFrame: 40
-      lastFrame: 43
+      firstFrame: 335
+      lastFrame: 365
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -276,8 +286,8 @@ ModelImporter:
       name: Hiota_GuardReact
       takeName: Take 001
       internalID: 0
-      firstFrame: 41
-      lastFrame: 43
+      firstFrame: 315
+      lastFrame: 330
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -305,8 +315,8 @@ ModelImporter:
       name: Hiota_DASH_Bkwd
       takeName: Take 001
       internalID: 0
-      firstFrame: 85
-      lastFrame: 86
+      firstFrame: 425
+      lastFrame: 440
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -334,8 +344,8 @@ ModelImporter:
       name: Hiota_DASH_Fwd
       takeName: Take 001
       internalID: 0
-      firstFrame: 60
-      lastFrame: 62
+      firstFrame: 405
+      lastFrame: 420
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -363,8 +373,8 @@ ModelImporter:
       name: Hiota_DASH_R
       takeName: Take 001
       internalID: 0
-      firstFrame: 105
-      lastFrame: 106
+      firstFrame: 465
+      lastFrame: 480
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -556,8 +566,8 @@ ModelImporter:
       name: Hiota_Idle
       takeName: Take 001
       internalID: 0
-      firstFrame: 55
-      lastFrame: 57
+      firstFrame: 125
+      lastFrame: 155
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -572,6 +582,180 @@ ModelImporter:
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hiota_DASH_L
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 445
+      lastFrame: 460
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hiota_FOCUS_WalkFrwd
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 195
+      lastFrame: 220
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hiota_FOCUS_WalkBkwd
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 225
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hiota_FOCUS_WalkLeft
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 255
+      lastFrame: 280
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hiota_FOCUS_WalkRight
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 285
+      lastFrame: 310
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hiota_FOCUS_Idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 160
+      lastFrame: 190
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
