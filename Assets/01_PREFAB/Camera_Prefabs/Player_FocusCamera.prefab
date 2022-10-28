@@ -105,14 +105,13 @@ GameObject:
   - component: {fileID: 678013460300901271}
   - component: {fileID: 678013460300901270}
   - component: {fileID: 3068084663556393016}
-  - component: {fileID: 1628016949}
   m_Layer: 2
   m_Name: Player_FocusCamera
   m_TagString: CameraFocus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &678013460300901271
 Transform:
   m_ObjectHideFlags: 0
@@ -193,15 +192,3 @@ MonoBehaviour:
   m_Damping: 0.31
   m_DampingWhenOccluded: 0.55
   m_OptimalTargetDistance: 0
---- !u!114 &1628016949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 678013460300901269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5969a53d6f3e7e340af24d4673ebeab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

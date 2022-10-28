@@ -26,18 +26,14 @@ public class ActionCameraPlayer : MonoBehaviour
         controller_FSM = GetComponent<Controller_FSM>();
         player_InputScript = GetComponent<Player_InputScript>();
     }
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        controller_FSM.OnTouched += CommandShakeCamera;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        controller_FSM.OnTouched -= CommandShakeCamera;
     }
 
     public void ChangeTargetOfPlayer(Vector2 input)
@@ -97,5 +93,10 @@ public class ActionCameraPlayer : MonoBehaviour
             GO_CameraFreeLook.SetActive(true);
             //Debug.Log("FreeLook Mode Camera Activated", this);
         }
+    }
+
+    private void CommandShakeCamera()
+    {
+        Debug.Log("SHAKE CAMERA NOW !!!");
     }
 }

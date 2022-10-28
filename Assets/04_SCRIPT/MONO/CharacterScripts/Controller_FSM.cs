@@ -208,6 +208,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     public OnEventCombatSystem OnParryCABegin;
     public OnEventCombatSystem OnDeathEnemy;
 
+    public OnEventCombatSystem OnTouched;
+
     #endregion
 
     public Animator Animator
