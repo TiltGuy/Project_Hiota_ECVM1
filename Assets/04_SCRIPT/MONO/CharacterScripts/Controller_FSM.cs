@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(CharacterSpecs))]
@@ -27,9 +28,17 @@ public class Controller_FSM : ActionHandler, IDamageable
     private Transform FX_HitReact;
     #endregion
 
-    #region DEPENDENCIES
+    #region COMMUN DEPENDENCIES
 
-    [Header(" -- DEPENDENCIES -- ")]
+    [Header(" -- COMMUN DEPENDENCIES -- ")]
+
+    public PlayerController_Animator controllerAnim;
+    #endregion
+
+
+    #region DEPENDENCIESPlayer
+
+    [Header(" -- DEPENDENCIES (If Player) -- ")]
 
     [SerializeField]
     [Tooltip("it's the layer used to test the ground")]
@@ -45,9 +54,19 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [HideInInspector] public CharacterSpecs charSpecs;
 
-    public PlayerController_Animator controllerAnim;
+    
 
     public Transform HITTouchedPosition;
+
+    #endregion
+
+    #region DEPENDENCIESEnemy
+
+    [Header(" -- DEPENDENCIES (If Enemy) -- ")]
+
+    public NavMeshAgent NavAgent;
+    public Rigidbody CharRigidbody;
+    [SerializeField] public List<Transform> waypoints;
 
     #endregion
 
@@ -303,7 +322,10 @@ public class Controller_FSM : ActionHandler, IDamageable
             lastDirectionInput = directionToGo;
         }
 
-        IsDetectingGround();
+        if(characontroller)
+        {
+            IsDetectingGround();
+        }
 
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
         if (charSpecs.CurrentGuard> 0)
@@ -355,13 +377,6 @@ public class Controller_FSM : ActionHandler, IDamageable
     //Detection ground with a sphere
     public void IsDetectingGround()
     {
-        //_isGrounded = Physics.CheckSphere(_groundChecker.position, distanceCheckGround, Ground, QueryTriggerInteraction.Ignore);
-        //if (_isGrounded)
-        //{
-        //    return true;
-        //}
-        //else
-        //    return false;
         if (characontroller.isGrounded)
         {
             _isGrounded = true;
@@ -378,7 +393,10 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(_groundChecker.position, distanceCheckGround);
+        if(_groundChecker)
+        {
+            Gizmos.DrawWireSphere(_groundChecker.position, distanceCheckGround);
+        }
     }
 
     public Vector3 CalculateMidVector(Vector3 Origin, Vector3 Target)
@@ -551,6 +569,13 @@ public class Controller_FSM : ActionHandler, IDamageable
     void DebugOnEventCombatSystem()
     {
         //Debug.Log("Currently On Event Delegate", this);
+    }
+
+    public Vector3 RandomNavmeshLocation( float radius )
+    {
+        Vector3 finalPosition = waypoints[Mathf.RoundToInt(Random.value * (waypoints.Count - 1))].position;
+        return finalPosition;
+
     }
 
 

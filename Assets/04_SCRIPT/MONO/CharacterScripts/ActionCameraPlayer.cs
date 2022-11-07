@@ -99,13 +99,21 @@ public class ActionCameraPlayer : MonoBehaviour
 
     private void CommandShakeCameraWhenTouchingEnemy()
     {
-        Debug.Log("SHAKE CAMERA TOUCHED !!!");
-        
+        //Debug.Log("SHAKE CAMERA TOUCHED !!!");
+        if ( GO_CameraFreeLook )
+        {
+            GO_CameraFreeLook.GetComponent<CinemachineCameraShake>().ShakeCamera(.5f, .1f);
+        }
+        if ( GO_FocusCamera )
+        {
+            GO_FocusCamera.GetComponent<CinemachineCameraShake>().ShakeCamera(1f, .25f);
+        }
+
     }
 
     private void CommandShakeCameraWhenBeingTouched()
     {
-        Debug.Log("SHAKE CAMERA HITTEN !!!");
+        //Debug.Log("SHAKE CAMERA HITTEN !!!");
         if ( GO_CameraFreeLook )
         {
             GO_CameraFreeLook.GetComponent<CinemachineCameraShake>().ShakeCamera(1f, .25f);

@@ -5,6 +5,7 @@ using System.Linq;
 
 public class TargetGatherer : MonoBehaviour
 {
+    [SerializeField] private string TargetTag = "Enemy";
     [SerializeField]
     private Controller_FSM controller;
     [SerializeField]
@@ -47,7 +48,7 @@ public class TargetGatherer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag(TargetTag) )
         {
             if(!PotentialEnemies.Contains(other.transform))
             {
@@ -58,7 +59,7 @@ public class TargetGatherer : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag(TargetTag) )
         {
             if(PotentialEnemies.Contains(other.transform))
             {

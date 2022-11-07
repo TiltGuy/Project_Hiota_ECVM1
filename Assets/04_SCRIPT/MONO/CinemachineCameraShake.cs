@@ -8,6 +8,8 @@ public class CinemachineCameraShake : MonoBehaviour
     enum TypeOfCamera{FocusCamera, FreeLookCamera};
     [SerializeField] TypeOfCamera CameraType = TypeOfCamera.FocusCamera;
 
+    public Transform StartPosition;
+
     CinemachineFreeLook NormalCamera;
     CinemachineVirtualCamera FocusCamera;
     private float shakerTimer;
@@ -20,15 +22,28 @@ public class CinemachineCameraShake : MonoBehaviour
             case TypeOfCamera.FocusCamera:
             {
                 FocusCamera = GetComponent<CinemachineVirtualCamera>();
+                cinemachineBasicMultiChannelPerlin =
+                    FocusCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
                 break;
             }
 
             case TypeOfCamera.FreeLookCamera:
             {
                 NormalCamera = GetComponent<CinemachineFreeLook>();
+                cinemachineBasicMultiChannelPerlin =
+                    NormalCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                if (StartPosition != null)
+                {
+                    NormalCamera.ForceCameraPosition(StartPosition.position, NormalCamera.transform.rotation);
+                }
                 break;
             }
         }
+    }
+
+    private void Start()
+    {
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
     }
 
     // Update is called once per frame
@@ -43,6 +58,7 @@ public class CinemachineCameraShake : MonoBehaviour
                 cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
             }
         }
+        Debug.Log(cinemachineBasicMultiChannelPerlin.m_AmplitudeGain, this);
     }
 
     public void ShakeCamera( float intensity, float shakeTime )
@@ -52,7 +68,7 @@ public class CinemachineCameraShake : MonoBehaviour
         {
             cinemachineBasicMultiChannelPerlin = 
                 FocusCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            print("Facus");
+            //print("Facus");
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
             shakerTimer = shakeTime;
         }
@@ -60,7 +76,7 @@ public class CinemachineCameraShake : MonoBehaviour
         {
             cinemachineBasicMultiChannelPerlin =
             NormalCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            print("Normal");
+            //print("Normal");
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
             
             

@@ -68,7 +68,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""051e5a91-15fc-497d-acb2-23bb54c22404"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.25)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },

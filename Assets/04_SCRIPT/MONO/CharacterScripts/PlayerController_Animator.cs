@@ -14,7 +14,6 @@ public class PlayerController_Animator : MonoBehaviour
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
-    [HideInInspector]
     public Controller_FSM controller_FSM;
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;

@@ -27,7 +27,7 @@ public class ActionHandler : MonoBehaviour
     [HideInInspector]
     public bool b_IsInputParry = false;
 
-    [Tooltip("the Boolean that if the player is stunned")]
+    [Tooltip("the Boolean that if the character is stunned")]
     public bool b_Stunned = false;
 
     [Tooltip("the Boolean that check the input")]
@@ -40,7 +40,7 @@ public class ActionHandler : MonoBehaviour
     public Animator characterAnimator;
 
     [Tooltip("the time unitl the input b_AttackInput will become false")]
-    public float timeBufferAttackInput = .5f;
+    public float timeBufferAttackInput = .1f;
     #endregion
 
     [SerializeField]
