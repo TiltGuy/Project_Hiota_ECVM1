@@ -12,6 +12,9 @@ public class ActionHandler : MonoBehaviour
 
     #endregion
 
+    //[HideInInspector]
+    [Tooltip("The focus of character if he have to")]
+    public Transform currentCharacterTarget;
     #region MOVEMENT Settings
 
     [Header(" -- MOVEMENT SETTINGS -- ")]
@@ -48,9 +51,6 @@ public class ActionHandler : MonoBehaviour
 
     public delegate void MultiDelegateWithVector2(Vector2 vector);
     public MultiDelegateWithVector2 OnChangeTargetFocus;
-    [HideInInspector]
-    [Tooltip("The focus of hiota if he have to")]
-    public Transform currentCharacterTarget;
 
     public void ChangeCharTargetFocus(Transform newTarget)
     {

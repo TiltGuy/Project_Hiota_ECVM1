@@ -5,6 +5,7 @@ using System.Linq;
 
 public class TargetGatherer : MonoBehaviour
 {
+    public bool b_IsPlayer;
     [SerializeField] private string TargetTag = "Enemy";
     [SerializeField]
     private Controller_FSM controller;
@@ -22,6 +23,14 @@ public class TargetGatherer : MonoBehaviour
     private Transform currentTarget;
     [HideInInspector]
     public float dirNum;
+
+    #region DELEGATE INSTANCIATION
+
+    public delegate void MultiDelegate(Transform transform);
+    public MultiDelegate AddEnemyToList;
+    public MultiDelegate RemoveEnemyToList;
+
+    #endregion
 
     private void Awake()
     {
@@ -53,6 +62,7 @@ public class TargetGatherer : MonoBehaviour
             if(!PotentialEnemies.Contains(other.transform))
             {
                 PotentialEnemies.Add(other.transform);
+                AddEnemyToList?.Invoke(other.transform);
             }
         }
     }
@@ -63,8 +73,10 @@ public class TargetGatherer : MonoBehaviour
         {
             if(PotentialEnemies.Contains(other.transform))
             {
+                RemoveEnemyToList?.Invoke(other.transform);
                 TargetableEnemies.Remove(other.transform);
                 PotentialEnemies.Remove(other.transform);
+                
             }
         }
     }
@@ -74,6 +86,11 @@ public class TargetGatherer : MonoBehaviour
         planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
         Vector3 heading = mainCameraTransform.forward;
+
+        if( !b_IsPlayer )
+        {
+            return;
+        }
 
         if(currentTarget != null)
         {

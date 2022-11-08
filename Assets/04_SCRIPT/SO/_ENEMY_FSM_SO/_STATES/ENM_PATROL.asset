@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
-  m_Name: ENM_Locomotion_Free&Focus
+  m_Name: ENM_PATROL
   m_EditorClassIdentifier: 
   actionsEnter:
   - {fileID: 11400000, guid: 13a5136bc00afd64b918a3ddfa19ef2e, type: 2}
@@ -18,9 +18,12 @@ MonoBehaviour:
   actionsUpdate:
   - {fileID: 11400000, guid: ccbf0dfa637319545b4004f3c63ae4db, type: 2}
   actionsExit: []
-  transitions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: af71acdb41e1b1b418b867e6a108d1b5, type: 2}
+    true_State: {fileID: 11400000}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   transitionsAfterCountdown: []
   b_NormalTransitions: 1
   b_TransitionsAfterCountdown: 0
   stateDuration: 0
-  sceneGizmosColor: {r: 0.12829298, g: 0.8773585, b: 0.13149458, a: 1}
+  sceneGizmosColor: {r: 0.9245283, g: 0.056692798, b: 0.8747069, a: 1}

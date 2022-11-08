@@ -64,23 +64,46 @@ public class CinemachineCameraShake : MonoBehaviour
     public void ShakeCamera( float intensity, float shakeTime )
     {
 
-        if(CameraType == TypeOfCamera.FocusCamera)
+        //if(CameraType == TypeOfCamera.FocusCamera)
+        //{
+        //    cinemachineBasicMultiChannelPerlin = 
+        //        FocusCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //    //print("Facus");
+        //    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        //    shakerTimer = shakeTime;
+        //}
+        //else
+        //{
+        //    cinemachineBasicMultiChannelPerlin =
+        //    NormalCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //    //print("Normal");
+        //    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+            
+            
+        //    shakerTimer = shakeTime;
+        //}
+
+        switch ( CameraType )
         {
-            cinemachineBasicMultiChannelPerlin = 
+            case TypeOfCamera.FocusCamera:
+            {
+                cinemachineBasicMultiChannelPerlin =
                 FocusCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            //print("Facus");
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-            shakerTimer = shakeTime;
-        }
-        else
-        {
-            cinemachineBasicMultiChannelPerlin =
+                //print("Facus");
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+                shakerTimer = shakeTime;
+                break;
+            }
+
+            case TypeOfCamera.FreeLookCamera:
+            {
+                cinemachineBasicMultiChannelPerlin =
             NormalCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            //print("Normal");
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-            
-            
-            shakerTimer = shakeTime;
+                //print("Normal");
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+                shakerTimer = shakeTime;
+                break;
+            }
         }
     }
 }

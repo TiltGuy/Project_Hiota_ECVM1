@@ -76,4 +76,12 @@ public abstract class Decision_SO : ScriptableObject
         else
             return false;
     }
+
+    public bool CheckIfCurrentCharacterTarget(Controller_FSM controller)
+    {
+        if ( controller.currentCharacterTarget )
+            return true;
+        else
+            return false;
+    }
 }

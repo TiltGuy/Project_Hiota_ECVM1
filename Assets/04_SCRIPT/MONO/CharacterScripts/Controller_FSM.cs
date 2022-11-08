@@ -66,7 +66,9 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public NavMeshAgent NavAgent;
     public Rigidbody CharRigidbody;
-    [SerializeField] public List<Transform> waypoints;
+    public List<Transform> waypoints;
+    public IABrain BrainAI;
+
 
     #endregion
 
