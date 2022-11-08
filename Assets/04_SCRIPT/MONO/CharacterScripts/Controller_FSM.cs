@@ -528,7 +528,15 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     private Vector3 GetPositionClosestAtLocalBounds(Transform striker)
     {
-        return characontroller.ClosestPointOnBounds(striker.position);
+        if(characontroller)
+        {
+            return characontroller.ClosestPointOnBounds(striker.position);
+        }
+        else if(CharRigidbody)
+        {
+            return CharRigidbody.ClosestPointOnBounds(striker.position);
+        }
+        return Vector3.zero;
     }
 
     private Vector3 GetPositionFarthestAtLocalBounds( Transform striker )
