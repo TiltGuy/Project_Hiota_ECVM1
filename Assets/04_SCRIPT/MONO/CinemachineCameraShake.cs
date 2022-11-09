@@ -58,7 +58,7 @@ public class CinemachineCameraShake : MonoBehaviour
                 cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
             }
         }
-        Debug.Log(cinemachineBasicMultiChannelPerlin.m_AmplitudeGain, this);
+        //Debug.Log(cinemachineBasicMultiChannelPerlin.m_AmplitudeGain, this);
     }
 
     public void ShakeCamera( float intensity, float shakeTime )

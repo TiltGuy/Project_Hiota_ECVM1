@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Touch : MonoBehaviour
 {
+    [SerializeField] private string Tag = "Enemy";
     public AttackStats_SO AttackStats;
 
     [HideInInspector] PlayerController_Animator instigatorAnimator;
@@ -29,7 +30,7 @@ public class Touch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Destructible"))
+        if (other.CompareTag(Tag) || other.CompareTag("Destructible"))
         {
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
             //Debug.Log(other.gameObject.name, this);

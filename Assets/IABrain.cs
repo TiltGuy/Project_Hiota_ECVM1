@@ -8,6 +8,29 @@ public class IABrain : MonoBehaviour
 
     private Controller_FSM controller_FSM;
     private TargetGatherer targetGatherer;
+    [HideInInspector] public float factorStrafecrossDirection = 1f;
+    private bool b_IsEnemyInFight = false;
+    [SerializeField] private float timeToInvertStrafeDirection = 4f;
+    [Range(.1f,50f)]
+    public float speedOfTurningEnemyWhenFocus = 50f;
+
+    public bool B_IsEnemyInFight
+    {
+        get { return b_IsEnemyInFight; }
+        set 
+        { 
+            b_IsEnemyInFight = value;
+            if (b_IsEnemyInFight)
+            {
+                StopCoroutine("InvertFactorStrafeDirection_Coroutine");
+                StartCoroutine("InvertFactorStrafeDirection_Coroutine");
+            }
+            else
+            {
+                StopCoroutine("InvertFactorStrafeDirection_Coroutine");
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -35,26 +58,25 @@ public class IABrain : MonoBehaviour
         targetGatherer.RemoveEnemyToList -= RemoveCurrentControllerTarget;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void AddCurrentControllerTarget(Transform transform)
     {
         controller_FSM.currentCharacterTarget = transform;
+        B_IsEnemyInFight = true;
         Debug.Log(transform, targetGatherer.transform);
     }
 
     private void RemoveCurrentControllerTarget(Transform transform)
     {
         controller_FSM.currentCharacterTarget = null;
+        B_IsEnemyInFight = false;
     }
+
+    private IEnumerator InvertFactorStrafeDirection_Coroutine()
+    {
+        yield return new WaitForSeconds(timeToInvertStrafeDirection);
+        factorStrafecrossDirection *= -1;
+        StartCoroutine("InvertFactorStrafeDirection_Coroutine");
+    }
+
+
 }
