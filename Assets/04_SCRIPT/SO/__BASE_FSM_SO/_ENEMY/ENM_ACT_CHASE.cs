@@ -6,6 +6,7 @@ using UnityEngine;
 public class ENM_ACT_CHASE : Action_SO
 {
     public float stopDistance = 2f;
+    public bool b_CanStrafeifCloseEnough = true;
     public override void Act( Controller_FSM controller )
     {
 
@@ -33,7 +34,14 @@ public class ENM_ACT_CHASE : Action_SO
         }
         else
         {
-            controller.NavAgent.SetDestination(controller.transform.position + dir);
+            if(b_CanStrafeifCloseEnough)
+            {
+                controller.NavAgent.SetDestination(controller.transform.position + dir);
+            }
+            else
+            {
+                controller.NavAgent.SetDestination(controller.transform.position);
+            }
         }
     }
 

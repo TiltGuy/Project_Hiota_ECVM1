@@ -13,6 +13,8 @@ public class IABrain : MonoBehaviour
     [SerializeField] private float timeToInvertStrafeDirection = 4f;
     [Range(.1f,50f)]
     public float speedOfTurningEnemyWhenFocus = 50f;
+    [Range(.1f, 50f)]
+    public float speedTurningWhenAttacking = 20f;
 
     #region ATTACK SETTINGS
 
