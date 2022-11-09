@@ -342,6 +342,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             StartCoroutine("ChockingTime");
         }
         //print("currentState = " + currentState);
+        Debug.Log(this + " current state = " + currentState, this);
 
 
     }
@@ -586,6 +587,12 @@ public class Controller_FSM : ActionHandler, IDamageable
         Vector3 finalPosition = waypoints[Mathf.RoundToInt(Random.value * (waypoints.Count - 1))].position;
         return finalPosition;
 
+    }
+
+    public Vector3 GetLocalVelocity()
+    {
+        Vector3 GetLocalVelocity = transform.InverseTransformDirection(NavAgent.velocity);
+        return GetLocalVelocity;
     }
 
 

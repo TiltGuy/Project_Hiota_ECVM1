@@ -14,6 +14,14 @@ public class IABrain : MonoBehaviour
     [Range(.1f,50f)]
     public float speedOfTurningEnemyWhenFocus = 50f;
 
+    #region ATTACK SETTINGS
+
+    [HideInInspector] public bool b_WantToAttack;
+    public float timerBetweenATK = 6f;
+    public float minDistForPerformingAttack = 1f;
+
+    #endregion
+
     public bool B_IsEnemyInFight
     {
         get { return b_IsEnemyInFight; }
@@ -23,11 +31,14 @@ public class IABrain : MonoBehaviour
             if (b_IsEnemyInFight)
             {
                 StopCoroutine("InvertFactorStrafeDirection_Coroutine");
+                StopCoroutine("TimerBetweenAttacks_Coroutine");
                 StartCoroutine("InvertFactorStrafeDirection_Coroutine");
+                StartCoroutine("TimerBetweenAttacks_Coroutine");
             }
             else
             {
                 StopCoroutine("InvertFactorStrafeDirection_Coroutine");
+                StopCoroutine("TimerBetweenAttacks_Coroutine");
             }
         }
     }
@@ -76,6 +87,13 @@ public class IABrain : MonoBehaviour
         yield return new WaitForSeconds(timeToInvertStrafeDirection);
         factorStrafecrossDirection *= -1;
         StartCoroutine("InvertFactorStrafeDirection_Coroutine");
+    }
+
+    private IEnumerator TimerBetweenAttacks_Coroutine()
+    {
+        yield return new WaitForSeconds(timerBetweenATK);
+        b_WantToAttack = true;
+        StartCoroutine("TimerBetweenAttacks_Coroutine");
     }
 
 

@@ -53,6 +53,7 @@ public class PlayerController_Animator : MonoBehaviour
             Touch currentInstance = currentAttackHitbox.GetComponent<Touch>();
             currentInstance.ControllerFSM = controller_FSM;
             currentInstance.InstigatorAnimator = this;
+            currentInstance.AttackStats = controller_FSM.CurrentAttackStats;
             currentAttackHitbox.SetParent(controller_FSM.transform);
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;

@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
-  m_Name: ENM_CHASE_FOCUS
+  m_Name: ENM_CLOSE_DISTANCE
   m_EditorClassIdentifier: 
   actionsEnter:
-  - {fileID: 11400000, guid: 92c9780646d8f8344bc944c3ac5deb7c, type: 2}
+  - {fileID: 11400000, guid: e6e9664b96e35ac4f97d95d5a46437f3, type: 2}
   actionsUpdate:
-  - {fileID: 11400000, guid: e9956a9dce309224da5c827ccbdde867, type: 2}
-  actionsExit:
-  - {fileID: 11400000, guid: 420db6d2f51421e448d6645ba548e688, type: 2}
+  - {fileID: 11400000, guid: 2f4efcdd364208a4cb8e365e688f4392, type: 2}
+  actionsExit: []
   transitions:
-  - decision: {fileID: 11400000, guid: ffc53b613fb8e5848a5881a53b70a41d, type: 2}
-    true_State: {fileID: 11400000, guid: 0a7ae995abc24a443927cd68c06e71f5, type: 2}
+  - decision: {fileID: 11400000, guid: 192153604ecdecc44998662000c4b96d, type: 2}
+    true_State: {fileID: 11400000, guid: 2b7a8374d28d7ff46a26975babdb1af6, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   transitionsAfterCountdown: []
   b_NormalTransitions: 1
   b_TransitionsAfterCountdown: 0
   stateDuration: 0
-  sceneGizmosColor: {r: 0, g: 1, b: 0.055066347, a: 1}
+  sceneGizmosColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

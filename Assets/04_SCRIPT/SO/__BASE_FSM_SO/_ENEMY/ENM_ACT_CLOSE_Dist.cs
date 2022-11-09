@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableStateMachine/Actions/Enemy/ACT_CHASE")]
-public class ENM_ACT_CHASE : Action_SO
+[CreateAssetMenu(menuName = "PluggableStateMachine/Actions/Enemy/ENM_ACT_CLOSE_Dist")]
+public class ENM_ACT_CLOSE_Dist : Action_SO
 {
     public float stopDistance = 2f;
     public override void Act( Controller_FSM controller )
@@ -13,7 +13,7 @@ public class ENM_ACT_CHASE : Action_SO
         MoveToPlayer(controller);
     }
 
-    private void MoveToPlayer (Controller_FSM controller)
+    private void MoveToPlayer( Controller_FSM controller )
     {
         Vector3 DistToEnemy = controller.transform.position - controller.currentCharacterTarget.position;
         controller.NavAgent.updateRotation = false;
