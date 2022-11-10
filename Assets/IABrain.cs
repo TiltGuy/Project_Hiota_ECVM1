@@ -18,7 +18,7 @@ public class IABrain : MonoBehaviour
 
     #region ATTACK SETTINGS
 
-    [HideInInspector] public bool b_WantToAttack;
+    public bool b_WantToAttack;
     public float timerBetweenATK = 6f;
     public float minDistForPerformingAttack = 1f;
 

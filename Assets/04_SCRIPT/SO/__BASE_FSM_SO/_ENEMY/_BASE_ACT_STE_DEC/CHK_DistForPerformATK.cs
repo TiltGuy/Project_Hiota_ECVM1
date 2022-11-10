@@ -11,6 +11,7 @@ public class CHK_DistForPerformATK : Decision_SO
     {
         distBetweenContndEnemy = Vector3.Distance
             (controller.transform.position,controller.currentCharacterTarget.transform.position);
+        Debug.Log(distBetweenContndEnemy < controller.BrainAI.minDistForPerformingAttack);
         if (distBetweenContndEnemy < controller.BrainAI.minDistForPerformingAttack)
             return true;
         else

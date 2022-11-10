@@ -19,7 +19,8 @@ public class ENM_ACT_RotateToEnemy : Action_SO
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, rotation, Time.deltaTime * controller.BrainAI.speedTurningWhenAttacking);
-        controller.NavAgent.SetDestination(controller.transform.position);
+        controller.NavAgent.updatePosition = false;
+        controller.NavAgent.velocity = Vector3.zero;
     }
 
 }

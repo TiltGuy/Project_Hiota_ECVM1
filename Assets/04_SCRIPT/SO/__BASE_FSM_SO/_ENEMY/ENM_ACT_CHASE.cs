@@ -25,9 +25,9 @@ public class ENM_ACT_CHASE : Action_SO
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, rotation, Time.deltaTime * controller.BrainAI.speedOfTurningEnemyWhenFocus);
         //controller.transform.rotation = rotation;
-        Debug.Log(controller.GetLocalVelocity().normalized, controller);
+        //Debug.Log(controller.GetLocalVelocity().normalized, controller);
         UpdateInputMoveVectorAnimator(controller);
-
+        controller.NavAgent.updatePosition = true;
         if ( DistToEnemy.magnitude > stopDistance )
         {
             controller.NavAgent.SetDestination(controller.currentCharacterTarget.position);

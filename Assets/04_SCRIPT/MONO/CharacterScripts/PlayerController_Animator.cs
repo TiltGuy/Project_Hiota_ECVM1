@@ -58,7 +58,7 @@ public class PlayerController_Animator : MonoBehaviour
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;
         }
-        //Debug.Log("Basic Attack HitBox is : " + basicAttackHitBoxPrefab, this);
+        //Debug.Log("Basic Attack HitBox is : " + currentAttackHitbox, this);
         
     }
 

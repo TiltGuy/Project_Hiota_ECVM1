@@ -259,7 +259,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             {
                 DirectionHitReact = Vector3.zero;
             }
-            print(DirectionHitReact);
+            //print(DirectionHitReact);
         }
     }
 
@@ -342,7 +342,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             StartCoroutine("ChockingTime");
         }
         //print("currentState = " + currentState);
-        Debug.Log(this + " current state = " + currentState, this);
+        //Debug.Log(this + " current state = " + currentState, this);
 
 
     }
@@ -454,7 +454,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         B_IsTouched = true;
         Vector3 pos = transform.position;
         Vector3 strikerPos = striker.position;
-        Debug.Log(striker.name, striker);
+        //Debug.Log(striker.name, striker);
         return ( pos - strikerPos).normalized;
     }
 
@@ -503,6 +503,7 @@ public class Controller_FSM : ActionHandler, IDamageable
                 charSpecs.CurrentGuard -= damageTaken;
                 //Vector3 ClosestPointToStriker = GetPositionAtLocalBounds(striker);
                 SpawnFXAtPosition(FX_ReactionGuard, eyes.transform.position);
+                characterAnimator.SetTrigger("t_Parry");
                 //Debug.Log("ARGH!!! j'ai bloqué : " + damageTaken + " points de Dommages", this);
                 //print("j'en suis à " + charSpecs.CurrentGuard);
 
