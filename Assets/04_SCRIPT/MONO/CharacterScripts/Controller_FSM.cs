@@ -437,7 +437,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
             LoseHP(damageOuput);
             b_Stunned = true;
-            SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
+            SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
             DirectionHitReact = GetBoolnDirHitReact(striker);
             OnHittenByEnemy?.Invoke();
             //print(DirectionHitReact);
@@ -497,7 +497,7 @@ public class Controller_FSM : ActionHandler, IDamageable
                     b_Stunned = true;
                     DirectionHitReact = GetBoolnDirHitReact(striker);
                     //print(DirectionHitReact);
-                    SpawnFXAtPosition(FX_HitReact, GetPositionClosestAtLocalBounds(striker));
+                    SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
                     StartCoroutine("ChockingTime");
                     float damageOutput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
                     LoseHP(damageOutput - charSpecs.CurrentGuard);

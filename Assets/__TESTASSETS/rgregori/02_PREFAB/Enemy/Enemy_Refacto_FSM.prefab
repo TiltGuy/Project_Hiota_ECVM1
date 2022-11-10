@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 7880094868655912138}
   - component: {fileID: 1273245036896107738}
   - component: {fileID: 1897634448}
-  - component: {fileID: 1859740601}
+  - component: {fileID: 1912565262}
   m_Layer: 9
   m_Name: Enemy_Refacto_FSM
   m_TagString: Enemy
@@ -389,9 +389,10 @@ MonoBehaviour:
   speedTurningWhenAttacking: 5.7
   b_WantToAttack: 0
   timerBetweenATK: 6
+  TimeBtwATKRandomize: 1
   minDistForPerformingAttack: 2.4
---- !u!136 &1859740601
-CapsuleCollider:
+--- !u!65 &1912565262
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -400,10 +401,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.7349987, y: 2.0192354, z: 0.64666367}
+  m_Center: {x: 0, y: 1.0024346, z: 0}
 --- !u!1 &39000561188572071
 GameObject:
   m_ObjectHideFlags: 0

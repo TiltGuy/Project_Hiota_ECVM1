@@ -20,6 +20,7 @@ public class IABrain : MonoBehaviour
 
     public bool b_WantToAttack;
     public float timerBetweenATK = 6f;
+    public float TimeBtwATKRandomize = 1f;
     public float minDistForPerformingAttack = 1f;
 
     #endregion
@@ -93,7 +94,13 @@ public class IABrain : MonoBehaviour
 
     private IEnumerator TimerBetweenAttacks_Coroutine()
     {
-        yield return new WaitForSeconds(timerBetweenATK);
+        float finalTimer;
+        TimeBtwATKRandomize = Random.Range(timerBetweenATK - TimeBtwATKRandomize, timerBetweenATK + TimeBtwATKRandomize);
+        finalTimer = timerBetweenATK + TimeBtwATKRandomize;
+        print(finalTimer);
+
+        yield return new WaitForSeconds(finalTimer);
+        
         b_WantToAttack = true;
         StartCoroutine("TimerBetweenAttacks_Coroutine");
     }
