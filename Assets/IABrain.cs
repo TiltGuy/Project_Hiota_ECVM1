@@ -75,7 +75,7 @@ public class IABrain : MonoBehaviour
     {
         controller_FSM.currentCharacterTarget = transform;
         B_IsEnemyInFight = true;
-        Debug.Log(transform, targetGatherer.transform);
+        //Debug.Log(transform, targetGatherer.transform);
     }
 
     private void RemoveCurrentControllerTarget(Transform transform)
@@ -97,6 +97,11 @@ public class IABrain : MonoBehaviour
         b_WantToAttack = true;
         StartCoroutine("TimerBetweenAttacks_Coroutine");
     }
+
+    //private void Update()
+    //{
+    //    Debug.Log(b_WantToAttack);
+    //}
 
 
 }

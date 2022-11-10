@@ -7,6 +7,7 @@ public class CheckHaveSuccessfullyHitten : Decision_SO
 {
     public override bool Decide(Controller_FSM controller)
     {
+        //Debug.Log(controller.B_HaveSuccessfullyHitten);
         return controller.B_HaveSuccessfullyHitten;
     }
 }

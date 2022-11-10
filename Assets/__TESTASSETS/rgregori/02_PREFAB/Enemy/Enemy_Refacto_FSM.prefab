@@ -191,11 +191,11 @@ GameObject:
   m_Component:
   - component: {fileID: 39000561153551390}
   - component: {fileID: 39000561153551388}
-  - component: {fileID: 39000561153551389}
   - component: {fileID: 39000561153551386}
   - component: {fileID: 7880094868655912138}
   - component: {fileID: 1273245036896107738}
   - component: {fileID: 1897634448}
+  - component: {fileID: 1859740601}
   m_Layer: 9
   m_Name: Enemy_Refacto_FSM
   m_TagString: Enemy
@@ -244,19 +244,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &39000561153551389
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39000561153551387}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.2419043, y: 1.8260896, z: 3.173276}
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!54 &39000561153551386
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -328,8 +315,10 @@ MonoBehaviour:
   m_cameraBaseDirection: {fileID: 0}
   FX_ReactionGuard: {fileID: 1100295632028121774, guid: ef2ad23c336edad498f8b80de3ec6c0f,
     type: 3}
-  FX_PerfectParry: {fileID: 0}
-  FX_HitReact: {fileID: 0}
+  FX_PerfectParry: {fileID: 1100295632028121774, guid: 38644ce119252d74d9f1a3fcb391c67d,
+    type: 3}
+  FX_HitReact: {fileID: 1100295632028121774, guid: 45c35efdc634e974fa5419e3cc7648ee,
+    type: 3}
   controllerAnim: {fileID: 0}
   Ground:
     serializedVersion: 2
@@ -401,6 +390,20 @@ MonoBehaviour:
   b_WantToAttack: 0
   timerBetweenATK: 6
   minDistForPerformingAttack: 2.4
+--- !u!136 &1859740601
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39000561153551387}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &39000561188572071
 GameObject:
   m_ObjectHideFlags: 0

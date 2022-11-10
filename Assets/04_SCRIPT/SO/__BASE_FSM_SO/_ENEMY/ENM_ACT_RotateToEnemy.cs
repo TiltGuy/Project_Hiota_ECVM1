@@ -9,6 +9,7 @@ public class ENM_ACT_RotateToEnemy : Action_SO
     {
         //Move to Player
         RotateToPlayer(controller);
+        Debug.Log("In Attack");
     }
 
     private void RotateToPlayer( Controller_FSM controller )

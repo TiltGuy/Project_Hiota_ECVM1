@@ -342,7 +342,12 @@ public class Controller_FSM : ActionHandler, IDamageable
             StartCoroutine("ChockingTime");
         }
         //print("currentState = " + currentState);
-        //Debug.Log(this + " current state = " + currentState, this);
+        //fDebug.Log(this + " current state = " + currentState, this);
+        if ( CharRigidbody )
+        {
+            //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
+        }
+        //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
 
 
     }

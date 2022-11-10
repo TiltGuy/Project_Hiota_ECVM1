@@ -7,6 +7,7 @@ public class CheckRecoverAnimationFullfilled : Decision_SO
 {
     public override bool Decide(Controller_FSM controller)
     {
+        //Debug.Log(controller.b_HaveFinishedRecoveringAnimation);
         return controller.b_HaveFinishedRecoveringAnimation;
     }
 }
