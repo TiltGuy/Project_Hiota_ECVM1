@@ -35,7 +35,7 @@ public class ACT_MOVE : Action_SO
         }
         else
         {
-            maxSpeed = controller.m_speed;
+            maxSpeed = controller.currentSpeed;
         }
 
         if(controller.m_InputMoveVector != Vector2.zero)
@@ -114,7 +114,7 @@ public class ACT_MOVE : Action_SO
         }
         else
         {
-            maxSpeed = controller.m_speed;
+            maxSpeed = controller.currentSpeed;
         }
 
         if (controller.m_InputMoveVector != Vector2.zero)

@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         //trouver un point au hasard sur le NavMesh à 4mètres
 
-        _currentHealth = characterStats.baseHealth;
+        _currentHealth = characterStats.StartHealth;
         _currentMaxHealth = characterStats.maxHealth;
         coll = GetComponent<Collider>();
 

@@ -50,7 +50,7 @@ public class StaticEnemyAI : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponentInChildren<Animator>();
 
-        currentHealth = characterStats.baseHealth;
+        currentHealth = characterStats.StartHealth;
         coll = GetComponent<Collider>();
         //Debug.Log(coll, this);
     }

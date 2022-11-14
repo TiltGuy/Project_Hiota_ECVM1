@@ -25,7 +25,7 @@ public class MoveFocus_Action : Action_SO
         }
         else
         {
-            speed = controller.m_speed;
+            speed = controller.currentSpeed;
         }
         controller.m_camF = controller.m_cameraBaseDirection.forward;
         controller.m_camR = controller.m_cameraBaseDirection.right;

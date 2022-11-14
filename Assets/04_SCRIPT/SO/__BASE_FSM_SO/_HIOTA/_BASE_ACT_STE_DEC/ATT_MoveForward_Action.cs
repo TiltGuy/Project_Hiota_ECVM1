@@ -38,7 +38,7 @@ public class ATT_MoveForward_Action : Action_SO
         }
         else
         {
-            maxSpeed = controller.m_speed;
+            maxSpeed = controller.currentSpeed;
         }
 
         if (controller.m_InputMoveVector != Vector2.zero)
@@ -111,7 +111,7 @@ public class ATT_MoveForward_Action : Action_SO
         }
         else
         {
-            maxSpeed = controller.m_speed;
+            maxSpeed = controller.currentSpeed;
         }
 
         if (controller.m_InputMoveVector != Vector2.zero)

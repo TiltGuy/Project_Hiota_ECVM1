@@ -85,8 +85,11 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [Header(" -- GLOBAL MOVEMENT SETTINGS -- ")]
 
-    [Tooltip("The speed of the player")]
-    public float m_speed = 5f;
+    [Tooltip("The current speed used by the FSM")]
+    public float baseSpeed = 5f;
+
+    [Tooltip("The current speed used by the FSM")]
+    public float currentSpeed = 5f;
 
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
     [HideInInspector] public float m_turnSpeed = 20;
@@ -305,9 +308,24 @@ public class Controller_FSM : ActionHandler, IDamageable
         //Debug.Log("Player controller says : " + BasicAttackStats.hitBoxPrefab, this);Cursor.lockState = CursorLockMode.Locked;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SetVariablesFromSO();
+
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
         //initialisation of ALL the STATS SETTINGS
         // In the AWAKE METHOD because other scripts take the stats in start method
+    }
+
+    private void SetVariablesFromSO()
+    {
+        if ( charSpecs.CharStats_SO )
+        {
+            baseSpeed = charSpecs.CharStats_SO.BaseSpeed;
+            currentSpeed = baseSpeed;
+        }
+        else
+        {
+            Debug.LogError("Canot take charStats_SO in charSpecs !!!", this);
+        }
     }
 
     // Update is called once per frame
@@ -333,7 +351,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         if (charSpecs.CurrentGuard> 0)
         {
             UpdateGuardVariable();
-
         }
         else
         {

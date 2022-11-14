@@ -200,7 +200,7 @@ public class CharacterSpecs : MonoBehaviour
     void Start()
 	{
 		MaxHealth = CharStats_SO.maxHealth;
-		Health = CharStats_SO.baseHealth;
+		Health = CharStats_SO.StartHealth;
 
 		//healthPointBarFillAmount = Health / MaxHealth;
 		//healthBar.fillAmount = healthPointBarFillAmount;
