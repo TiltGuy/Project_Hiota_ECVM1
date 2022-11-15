@@ -28,7 +28,7 @@ public class State_SO : ScriptableObject
 
     [Tooltip("The number of seconds the timed State lasts")]
     public float stateDuration;
-    private float stateTimer = 0f;
+    public float stateTimer = 0f;
     #endregion
 
     #region --- DEBUG ---

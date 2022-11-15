@@ -155,7 +155,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public AttackStats_SO CurrentAttackStats;
 
     [HideInInspector] public Vector3 DirectionHitReact;
-
+    public Transform currentStriker;
     public float hitReactTime = .1f;
 
 
@@ -458,6 +458,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             b_Stunned = true;
             SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
             DirectionHitReact = GetBoolnDirHitReact(striker);
+            currentStriker = striker;
             OnHittenByEnemy?.Invoke();
             //print(DirectionHitReact);
 

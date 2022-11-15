@@ -9,19 +9,23 @@ public class ACT_HOOKED :Action_SO
     private Vector3 HookedDirection;
     [SerializeField]
     private float speedMovementAction = 1f;
+    [SerializeField] private AnimationCurve MovementSpeedCurve;
 
     public override void Act( Controller_FSM controller )
     {
         //do the push Dummy
         if ( controller.B_IsTouched )
         {
-            HookedDirection = -controller.DirectionHitReact;
+            float currentStateTime = controller.currentState.stateTimer/controller.currentState.stateDuration;
+            float currentSpeedMovement = MovementSpeedCurve.Evaluate( currentStateTime );
             if(controller.characontroller)
             {
-                controller.characontroller.Move(HookedDirection * Time.deltaTime * speedMovementAction);
+                Vector3 currentMovement = Vector3.MoveTowards(controller.transform.position, controller.currentStriker.position, currentSpeedMovement);
+                controller.characontroller.Move(currentMovement * Time.deltaTime);
             }
             else if(controller.NavAgent)
             {
+                controller.NavAgent.updatePosition = false;
 
             }
 
