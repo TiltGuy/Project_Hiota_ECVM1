@@ -88,7 +88,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398132252287216644}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -598,7 +598,7 @@ MonoBehaviour:
   refAvatar: {fileID: 0}
   detectionDistance: 9.21
   attackDistance: 2.76
-  preparationAttackSpeed: 2
+  preparationAttackSpeed: 1
   AttackSpeed: 1
   AggroTaken: {fileID: 7936721642272932417, guid: d19558d032eee4a48825676f5e6d99cb,
     type: 3}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 690514969865950201}
   m_Layer: 9
   m_Name: Enemy_Mesh
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1034,7 +1034,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6101684925622252884}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

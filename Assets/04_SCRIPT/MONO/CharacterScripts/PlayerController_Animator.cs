@@ -14,10 +14,9 @@ public class PlayerController_Animator : MonoBehaviour
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
-    [SerializeField]
-    private Controller_FSM controller_FSM;
+    public Controller_FSM controller_FSM;
     [HideInInspector]
-    public Transform basicAttackHitBoxPrefab;
+    public Transform currentAttackHitboxPrefab;
     [HideInInspector]
     public Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;
@@ -26,7 +25,10 @@ public class PlayerController_Animator : MonoBehaviour
 
     private void Start()
     {
-        basicAttackHitBoxPrefab = controller_FSM.BasicAttackStats.hitBoxPrefab;
+        if(controller_FSM.CurrentAttackStats)
+        {
+            currentAttackHitboxPrefab = controller_FSM.CurrentAttackStats.hitBoxPrefab;
+        }
         //Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
 
     }
@@ -44,15 +46,19 @@ public class PlayerController_Animator : MonoBehaviour
     public void UpdateBasicAttackHitBoxStatutTrue()
     {
         //swordHitBox.enabled = true;
-        if (basicAttackHitBoxPrefab)
+        if (currentAttackHitboxPrefab)
         {
 
-            currentAttackHitbox = Instantiate(basicAttackHitBoxPrefab, controller_FSM.transform.position, Quaternion.identity);
+            currentAttackHitbox = Instantiate(currentAttackHitboxPrefab, controller_FSM.transform.position, Quaternion.identity);
+            Touch currentInstance = currentAttackHitbox.GetComponent<Touch>();
+            currentInstance.ControllerFSM = controller_FSM;
+            currentInstance.InstigatorAnimator = this;
+            currentInstance.AttackStats = controller_FSM.CurrentAttackStats;
             currentAttackHitbox.SetParent(controller_FSM.transform);
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;
         }
-        //Debug.Log("Basic Attack HitBox is : " + basicAttackHitBoxPrefab, this);
+        //Debug.Log("Basic Attack HitBox is : " + currentAttackHitbox, this);
         
     }
 
@@ -69,14 +75,14 @@ public class PlayerController_Animator : MonoBehaviour
 
     public void ShaftSword()
     {
-        Sword_GO.transform.parent = controller_FSM.HolsterSword;
+        //Sword_GO.transform.parent = controller_FSM.HolsterSword;
         Sword_GO.transform.localPosition = Vector3.zero;
         Sword_GO.transform.localRotation = Quaternion.identity;
     }
 
     public void UnShaftSword()
     {
-        Sword_GO.transform.parent = controller_FSM.HandOfSword;
+        //Sword_GO.transform.parent = controller_FSM.HandOfSword;
         Sword_GO.transform.localPosition = Vector3.zero;
         Sword_GO.transform.localRotation = Quaternion.identity;
     }
@@ -86,9 +92,14 @@ public class PlayerController_Animator : MonoBehaviour
         Instantiate(ps,transform.position, Quaternion.identity);
     }
 
-    public void SpawnFX(Transform TargetFX)
+    public void SpawnFX(GameObject TargetFX)
     {
-        Instantiate(TargetFX, transform.position, Quaternion.identity);
+        Instantiate(TargetFX.transform, transform.position, Quaternion.identity);
+    }
+
+    public void FinishAttackAnimation()
+    {
+        Debug.Log("Bob ! Do something ! ",this);
     }
 
 }

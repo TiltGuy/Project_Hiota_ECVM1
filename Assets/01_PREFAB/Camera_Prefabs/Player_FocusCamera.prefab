@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 678013460135026690}
   - component: {fileID: 678013460135026689}
   - component: {fileID: 130786756}
+  - component: {fileID: 678013459630089486}
   m_Layer: 2
   m_Name: cm
   m_TagString: Untagged
@@ -94,6 +95,23 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &678013459630089486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678013460135026694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 2
+  mNoiseOffsets: {x: 688.478, y: -268.14355, z: -874.9187}
 --- !u!1 &678013460300901269
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,14 +123,14 @@ GameObject:
   - component: {fileID: 678013460300901271}
   - component: {fileID: 678013460300901270}
   - component: {fileID: 3068084663556393016}
-  - component: {fileID: 1628016949}
+  - component: {fileID: 1333829612}
   m_Layer: 2
   m_Name: Player_FocusCamera
   m_TagString: CameraFocus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &678013460300901271
 Transform:
   m_ObjectHideFlags: 0
@@ -145,7 +163,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 10
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
@@ -193,7 +211,7 @@ MonoBehaviour:
   m_Damping: 0.31
   m_DampingWhenOccluded: 0.55
   m_OptimalTargetDistance: 0
---- !u!114 &1628016949
+--- !u!114 &1333829612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,6 +220,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 678013460300901269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5969a53d6f3e7e340af24d4673ebeab6, type: 3}
+  m_Script: {fileID: 11500000, guid: aa8a86f331eedac48a2dbe2c79b6f36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraType: 0

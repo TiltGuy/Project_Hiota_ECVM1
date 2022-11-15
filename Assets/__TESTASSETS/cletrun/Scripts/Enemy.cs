@@ -87,11 +87,13 @@ public class Enemy : MonoBehaviour, IDamageable
         //rb = GetComponent<Rigidbody>();
         
         //refAvatar = CharacterMouvement.instance.transform;
-
-        agent.SetDestination(RandomNavmeshLocation(4f));
+        if(waypoints.Length >=1)
+        {
+            agent.SetDestination(RandomNavmeshLocation(4f));
+        }
         //trouver un point au hasard sur le NavMesh à 4mètres
 
-        _currentHealth = characterStats.baseHealth;
+        _currentHealth = characterStats.StartHealth;
         _currentMaxHealth = characterStats.maxHealth;
         coll = GetComponent<Collider>();
 
@@ -134,7 +136,10 @@ public class Enemy : MonoBehaviour, IDamageable
 			{
                 if(b_CanMove)
                 {
-                    agent.SetDestination(RandomNavmeshLocation(4f));
+                    if ( waypoints.Length >= 1 )
+                    {
+                        agent.SetDestination(RandomNavmeshLocation(4f));
+                    }
                 }
                 EnemySpotPlayer = false;
             }
@@ -179,14 +184,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public Vector3 RandomNavmeshLocation(float radius)
     {
-        /*Vector3 randomDirection = Random.insideUnitSphere * radius;
-        randomDirection += transform.position;
-        NavMeshHit hit;
-        Vector3 finalPosition = Vector3.zero;
-        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
-        {
-            finalPosition = hit.position;
-        }*/
         Vector3 finalPosition = waypoints[Mathf.RoundToInt(Random.value * (waypoints.Length - 1))].position;
         return finalPosition;
 
@@ -243,7 +240,7 @@ public class Enemy : MonoBehaviour, IDamageable
             OnDeathEnemy();
             if (HiotaController)
             {
-                HiotaController.OnDeathEnemy();
+                //HiotaController.OnDeathEnemy();
             }
             gameObject.SetActive(false);
         }
@@ -275,11 +272,11 @@ public class Enemy : MonoBehaviour, IDamageable
         if(!b_IsDead)
         {
             b_IsDead = true;
-            Debug.Log("b_IsDead is " + b_IsDead);
+            //Debug.Log("b_IsDead is " + b_IsDead);
         }
         else
         {
-            Debug.Log("I'm already Dead !!!", this);
+            //Debug.Log("I'm already Dead !!!", this);
         }
     }
 

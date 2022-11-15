@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
   m_Name: STUN_Test
   m_EditorClassIdentifier: 
-  Name: 
   actionsEnter:
   - {fileID: 11400000, guid: ac2a67e84bdbd72489d457a10f995cce, type: 2}
   - {fileID: 11400000, guid: 5dc3cb7843a6bcf40bf2ecfd2dbd9774, type: 2}
@@ -21,6 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e406c9da829750045ab9acd4b9896c8c, type: 2}
   actionsUpdate:
   - {fileID: 11400000, guid: dfd3a26d95f957b46a0683722524d0b1, type: 2}
+  - {fileID: 11400000, guid: e95cc75846b302d4884339cc37aa070c, type: 2}
   actionsExit:
   - {fileID: 11400000, guid: 13a5136bc00afd64b918a3ddfa19ef2e, type: 2}
   - {fileID: 11400000, guid: 70de25290c9ef6445bcb13f302125d1f, type: 2}
@@ -29,7 +29,7 @@ MonoBehaviour:
   transitionsAfterCountdown:
   - decision: {fileID: 11400000, guid: 14302cd62bfcd744ea75a1a489fcb198, type: 2}
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
-    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+    False_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
   - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}

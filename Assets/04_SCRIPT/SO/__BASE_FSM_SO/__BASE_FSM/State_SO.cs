@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableStateMachine/State")]
 public class State_SO : ScriptableObject
 {
-    public string Name;
+    #region --- ACTION SETTINGS ---
+    [Header(" --- ACTION SETTINGS ---")]
 
     public Action_SO[] actionsEnter;
     public Action_SO[] actionsUpdate;
@@ -14,8 +15,11 @@ public class State_SO : ScriptableObject
 
     [Tooltip("At least One Transitions is necessary if State's Timed")]
     public Transition[] transitionsAfterCountdown;
+    #endregion
 
-    [Header(" --- TRANSITIONS SETTINGS ---")]
+    #region --- TRANSITIONS SETTINGS ---
+
+    [Header("--- TRANSITIONS SETTINGS ---")]
 
     [Tooltip("If ticked the state will bypass all of his transitions in the inspector")]
     [SerializeField] private bool b_NormalTransitions = true;
@@ -25,11 +29,13 @@ public class State_SO : ScriptableObject
     [Tooltip("The number of seconds the timed State lasts")]
     public float stateDuration;
     private float stateTimer = 0f;
+    #endregion
 
+    #region --- DEBUG ---
     [Header("--- DEBUG ---")]
 
     public Color sceneGizmosColor = Color.grey;
-    
+    #endregion
 
     public void UpdtateState(Controller_FSM controller)
     {
@@ -84,7 +90,7 @@ public class State_SO : ScriptableObject
     {
         if (transitionsAfterCountdown == null)
         {
-            Debug.LogError("There isn't State Timed Transitions in this " + Name + " State");
+            //Debug.LogError("There isn't State Timed Transitions in this " + Name + " State");
             return;
         }
 

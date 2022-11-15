@@ -6,7 +6,7 @@ public abstract class Action_SO : ScriptableObject
 {
     public virtual void Act(Controller_FSM controller)
     {
-        Debug.Log("Ondebug!!!!", this);
+        //Debug.Log("Ondebug!!!!", this);
     }
 
     public void ChangeAnimatorBoolean(Controller_FSM controller, string boolName, bool boolTargetValue)
@@ -21,7 +21,14 @@ public abstract class Action_SO : ScriptableObject
 
     public void SetCurrentAttackStats(Controller_FSM controller, AttackStats_SO attackStats_SO)
     {
-        controller.BasicAttackStats = attackStats_SO;
+        if(attackStats_SO)
+        {
+            controller.CurrentAttackStats = attackStats_SO;
+        }
+        else
+        {
+            Debug.Log("je n'ai pas de currentAttackStats");
+        }
     }
 
     public void DebugCurrenState(Controller_FSM controller)
@@ -32,6 +39,11 @@ public abstract class Action_SO : ScriptableObject
     public void SetDashingBooleanValue(Controller_FSM controller, bool targetValue)
     {
         controller.b_IsDashing = targetValue;
+    }
+
+    public void SetParryingBooleanValue( Controller_FSM controller, bool targetValue )
+    {
+        controller.b_isParrying = targetValue;
     }
 
     public void SetStunnedBooleanValue(Controller_FSM controller, bool targetValue)

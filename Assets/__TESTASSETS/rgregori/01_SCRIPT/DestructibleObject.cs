@@ -18,6 +18,6 @@ public class DestructibleObject : MonoBehaviour, IDamageable
         {
             rb.AddExplosionForce(500, Striker.position, 1);
         }
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

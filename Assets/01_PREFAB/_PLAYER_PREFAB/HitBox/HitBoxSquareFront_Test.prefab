@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 7177624510705637400}
   m_Layer: 0
   m_Name: HitBoxSquareFront_Test
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7177624510705637403
 Transform:
   m_ObjectHideFlags: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa43ddf98c3bd94f88a83442e8b41a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tag: Enemy
   AttackStats: {fileID: 0}
 --- !u!65 &7177624510705637400
 BoxCollider:

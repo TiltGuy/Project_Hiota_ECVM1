@@ -5,6 +5,7 @@ using UnityEngine;
 public class TouchHiota : MonoBehaviour
 {
     public AttackStats_SO AttackStats;
+    public DamageHiota instigator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +20,11 @@ public class TouchHiota : MonoBehaviour
 
             //Debug.Log("Je TOUCHE!!!", this);
         }
+    }
+
+    public void Parry(GameObject instigator)
+    {
+        //Debug.Log("PArry: " + instigator);
     }
 
     public void DestroyItSelfAfterUsed()

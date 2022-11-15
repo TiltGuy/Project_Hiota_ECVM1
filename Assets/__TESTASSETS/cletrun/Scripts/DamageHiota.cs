@@ -7,7 +7,7 @@ public class DamageHiota : MonoBehaviour
 {
     public float TimerForNextAttack, attackCooldown;
 
-    HiotaHealth hiotaHealth;
+    CharacterSpecs hiotaHealth;
     public float attackDamage;
 
     public Animator enemyAnimator;
@@ -47,10 +47,11 @@ public class DamageHiota : MonoBehaviour
     public delegate void MultiCastDelegate();
     public MultiCastDelegate OnBeginAttack;
     public MultiCastDelegate OnFinishAttack;
+    public MultiCastDelegate OnAttackSuccesfull;
 
     private void Awake()
     {
-        hiotaHealth = player.GetComponent<HiotaHealth>();
+        hiotaHealth = player.GetComponent<CharacterSpecs>();
         enemyAgent = enemyScript.GetComponent<NavMeshAgent>();
     }
 
@@ -108,7 +109,7 @@ public class DamageHiota : MonoBehaviour
         enemyAnimator.SetFloat("IDAttack", currentAttackValue);
         currentAttackHitbox = HitBoxesPresets[currentAttackValue];
         previewCurrentAttackHitbox = PreviewHitBoxesPresets[currentAttackValue];
-        print("Choose Attack");
+        //print("Choose Attack");
     }
 
     public void AttackHiota()
@@ -124,6 +125,8 @@ public class DamageHiota : MonoBehaviour
     public void UpdateBasicAttackStatutTrue()
     {
         currentAttackHitbox = Instantiate(HitBoxesPresets[currentAttackValue], enemyScript.transform.position, Quaternion.identity);
+        TouchHiota currentInstance = currentAttackHitbox.GetComponent<TouchHiota>();
+        //currentInstance.instigator = this;
         // Set the parent
         currentAttackHitbox.SetParent(enemyScript.transform);
         // be sure to reset TRANSFORM and ROTATION
@@ -195,4 +198,7 @@ public class DamageHiota : MonoBehaviour
 
     }
 
+    public void SimpleStun(float duration)
+    {
+    }
 }

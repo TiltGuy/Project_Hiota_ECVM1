@@ -16,26 +16,26 @@ public class AutoSetFollowLookAtFreelookCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetLookAtAndFollow();
+        //SetLookAtAndFollow();
     }
 
-    private void SetLookAtAndFollow()
-    {
-        FLCamera.Follow = playerTransform;
+    //private void SetLookAtAndFollow()
+    //{
+    //    FLCamera.Follow = playerTransform;
 
-        if (playerController.cameraTarget != null)
-        {
+    //    if (playerController.cameraTarget != null)
+    //    {
 
-            FLCamera.LookAt = playerController.cameraTarget;
-            //Debug.LogWarning("I haven't a playerController.cameraTarget to lookAt", this);
-        }
-        else
-        {
-            FLCamera.LookAt = playerTransform;
-            if (FLCamera.LookAt == null)
-            {
-                Debug.LogError("There isn't a playerTransform in the scene", this);
-            }
-        }
-    }
+    //        FLCamera.LookAt = playerController.cameraTarget;
+    //        //Debug.LogWarning("I haven't a playerController.cameraTarget to lookAt", this);
+    //    }
+    //    else
+    //    {
+    //        FLCamera.LookAt = playerTransform;
+    //        if (FLCamera.LookAt == null)
+    //        {
+    //            Debug.LogError("There isn't a playerTransform in the scene", this);
+    //        }
+    //    }
+    //}
 }

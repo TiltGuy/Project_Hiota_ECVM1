@@ -5,6 +5,8 @@ using System.Linq;
 
 public class TargetGatherer : MonoBehaviour
 {
+    public bool b_IsPlayer;
+    [SerializeField] private string TargetTag = "Enemy";
     [SerializeField]
     private Controller_FSM controller;
     [SerializeField]
@@ -21,6 +23,14 @@ public class TargetGatherer : MonoBehaviour
     private Transform currentTarget;
     [HideInInspector]
     public float dirNum;
+
+    #region DELEGATE INSTANCIATION
+
+    public delegate void MultiDelegate(Transform transform);
+    public MultiDelegate AddEnemyToList;
+    public MultiDelegate RemoveEnemyToList;
+
+    #endregion
 
     private void Awake()
     {
@@ -39,29 +49,34 @@ public class TargetGatherer : MonoBehaviour
             planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         }
 
-
-        currentTarget = controller.currentHiotaTarget;
+        if(controller.currentCharacterTarget)
+        {
+            currentTarget = controller.currentCharacterTarget;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag(TargetTag) )
         {
             if(!PotentialEnemies.Contains(other.transform))
             {
                 PotentialEnemies.Add(other.transform);
+                AddEnemyToList?.Invoke(other.transform);
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag(TargetTag) )
         {
             if(PotentialEnemies.Contains(other.transform))
             {
+                RemoveEnemyToList?.Invoke(other.transform);
                 TargetableEnemies.Remove(other.transform);
                 PotentialEnemies.Remove(other.transform);
+                
             }
         }
     }
@@ -71,6 +86,11 @@ public class TargetGatherer : MonoBehaviour
         planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
         Vector3 heading = mainCameraTransform.forward;
+
+        if( !b_IsPlayer )
+        {
+            return;
+        }
 
         if(currentTarget != null)
         {
@@ -198,9 +218,13 @@ public class TargetGatherer : MonoBehaviour
 
     public Transform CheckoutNextTargetedEnemy(Vector2 input)
     {
-        Transform currentHiotaTarget = controller.currentHiotaTarget;
+        Transform currentHiotaTarget = controller.currentCharacterTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;
+        
+        
+
+        
 
         SortedListOfEnemies = (List<Transform>)TargetableEnemies.OrderBy(target =>
         {

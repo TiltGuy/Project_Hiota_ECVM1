@@ -56,7 +56,7 @@ public abstract class Decision_SO : ScriptableObject
 
     public bool CheckIsParryingBoolean(Controller_FSM controller)
     {
-        return controller.b_IsParrying;
+        return controller.b_IsInputParry;
     }
 
     public bool CheckIsParryingPerfectlyBoolean(Controller_FSM controller)
@@ -72,6 +72,14 @@ public abstract class Decision_SO : ScriptableObject
     public bool CheckInBetween(float numberToTest, float min, float max)
     {
         if (numberToTest >= min && numberToTest <= max)
+            return true;
+        else
+            return false;
+    }
+
+    public bool CheckIfCurrentCharacterTarget(Controller_FSM controller)
+    {
+        if ( controller.currentCharacterTarget )
             return true;
         else
             return false;
