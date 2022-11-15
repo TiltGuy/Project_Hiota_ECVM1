@@ -11,7 +11,10 @@ public class ENM_ACT_CHASE : Action_SO
     {
 
         //Move to Player
-        MoveToPlayer(controller);
+        if( controller.currentCharacterTarget )
+        {
+            MoveToPlayer(controller);
+        }
     }
 
     private void MoveToPlayer (Controller_FSM controller)
@@ -30,16 +33,20 @@ public class ENM_ACT_CHASE : Action_SO
         controller.NavAgent.updatePosition = true;
         if ( DistToEnemy.magnitude > stopDistance )
         {
+
+            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
             controller.NavAgent.SetDestination(controller.currentCharacterTarget.position);
         }
         else
         {
             if(b_CanStrafeifCloseEnough)
             {
+                controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeedWhenStrafing;
                 controller.NavAgent.SetDestination(controller.transform.position + dir);
             }
             else
             {
+                controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
                 controller.NavAgent.SetDestination(controller.transform.position);
             }
         }

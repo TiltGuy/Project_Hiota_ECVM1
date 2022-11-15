@@ -330,12 +330,11 @@ MonoBehaviour:
   HITTouchedPosition: {fileID: 0}
   NavAgent: {fileID: 39000561153551388}
   CharRigidbody: {fileID: 39000561153551386}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
   BrainAI: {fileID: 1897634448}
   b_IsInvicible: 0
-  m_speed: 5
+  baseSpeed: 5
+  currentSpeed: 5
   m_turnSpeed: 20
   _isGrounded: 0
   distanceCheckGround: 0.25
@@ -389,7 +388,7 @@ MonoBehaviour:
   speedOfTurningEnemyWhenFocus: 25.7
   speedTurningWhenAttacking: 5.7
   b_WantToAttack: 0
-  timerBetweenATK: 6
+  timerBetweenATK: 3
   TimeBtwATKRandomize: 1
   minDistForPerformingAttack: 2.4
 --- !u!65 &1912565262
