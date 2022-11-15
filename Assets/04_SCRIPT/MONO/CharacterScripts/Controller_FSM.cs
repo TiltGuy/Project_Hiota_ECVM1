@@ -320,6 +320,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         if ( charSpecs.CharStats_SO )
         {
             baseSpeed = charSpecs.CharStats_SO.BaseSpeed;
+            print(baseSpeed);
             currentSpeed = baseSpeed;
         }
         else
@@ -365,6 +366,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
         }
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
+        print(currentSpeed);
 
 
     }
