@@ -15,6 +15,9 @@ public class IABrain : MonoBehaviour
     public float speedOfTurningEnemyWhenFocus = 50f;
     [Range(.1f, 50f)]
     public float speedTurningWhenAttacking = 20f;
+    public float SpeedIncreasedWhenEnemyFleeing = 6f;
+    [SerializeField] private float AntiBennyHillCountdown = 3f;
+    public float AntiBennyHillTimer;
 
     #region ATTACK SETTINGS
 

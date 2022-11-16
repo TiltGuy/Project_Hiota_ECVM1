@@ -37,6 +37,10 @@ public class ENM_ACT_CHASE : Action_SO
         {
             ClosingDistance(controller);
             Debug.Log("CLOSING UWU");
+            if(controller.BrainAI.b_WantToAttack)
+            {
+                controller.BrainAI.AntiBennyHillTimer -= Time.deltaTime;
+            }
         }
         else if(DistToEnemy.magnitude < MinDistance)
         {
