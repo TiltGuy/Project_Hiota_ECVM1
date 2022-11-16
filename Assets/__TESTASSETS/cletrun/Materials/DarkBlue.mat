@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DarkBlue
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 6010748a3b9d6184c9b7debc95c20a99, type: 3}
   m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -38,6 +38,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Canvas_N:
+        m_Texture: {fileID: 2800000, guid: 7ad0e904548935f4980cafbfebf050ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -72,7 +76,43 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PlatformArenaLOW_DefaultMaterial_AO:
+        m_Texture: {fileID: 2800000, guid: b18a3f9fb45bd844c820b9ceaef012c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlatformArenaLOW_DefaultMaterial_Albedo:
+        m_Texture: {fileID: 2800000, guid: 280976332a6e2d34fb9223adfed868c8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlatformArenaLOW_DefaultMaterial_Mask2:
+        m_Texture: {fileID: 2800000, guid: ec2c8da72c568cd4a8d4ca79569d6869, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlatformArenaLOW_DefaultMaterial_Metallic:
+        m_Texture: {fileID: 2800000, guid: e8523e5dc38c82349b19688975a2491f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlatformArenaLOW_DefaultMaterial_Normal:
+        m_Texture: {fileID: 2800000, guid: c4fa3f05701b9d349aecd4885b138a37, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlatformTop_Text:
+        m_Texture: {fileID: 2800000, guid: 3b89c3cabecee0148a13f7378bb65303, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlatformTop_Text1:
+        m_Texture: {fileID: 2800000, guid: 2bfcd02e5ed44a14caeb25e25e92d36e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: ec2c8da72c568cd4a8d4ca79569d6869, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -88,7 +128,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
@@ -100,14 +139,19 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeLength: 3.6
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Grow: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalScale: 0.6285164
+    - _NormalScale_Canvas: 0.5497602
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _PushPull: -0.1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -118,9 +162,9 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
     - _BaseColor: {r: 0.07767868, g: 0.05833927, b: 0.1792453, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-  m_BuildTextureStacks: []
