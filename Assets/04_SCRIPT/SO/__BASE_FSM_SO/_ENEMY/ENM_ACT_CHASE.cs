@@ -36,22 +36,30 @@ public class ENM_ACT_CHASE : Action_SO
         if ( DistToEnemy.magnitude > MaxDistance )
         {
             ClosingDistance(controller);
-            Debug.Log("CLOSING UWU");
+           // Debug.Log("CLOSING UWU");
             if(controller.BrainAI.b_WantToAttack)
             {
-                controller.BrainAI.AntiBennyHillTimer -= Time.deltaTime;
+                controller.BrainAI.AntiBennyHillTimer += Time.deltaTime;
+                float bennyHillcount = controller.BrainAI.AntiBennyHillTimer;
+                float bennyHillMax = controller.BrainAI.AntiBennyHillCountdown;
+                controller.currentSpeed = Mathf.Lerp(controller.baseSpeed, controller.BrainAI.SpeedIncreasedWhenEnemyFleeing, bennyHillcount / bennyHillMax);
+            }
+            else
+            {
+                controller.BrainAI.AntiBennyHillTimer = 0;
             }
         }
         else if(DistToEnemy.magnitude < MinDistance)
         {
             IncreaseDistance(controller, DistToEnemy);
-            Debug.Log("REtreat YAMETE !!!");
+          //  Debug.Log("Retreat YAMETE !!!");
         }
         else 
         {
             Strafing(controller, dir);
-            Debug.Log("NIGERUNDAYOO !!!");
+          //  Debug.Log("NIGERUNDAYOO !!!");
         }
+        //Debug.Log(controller.BrainAI.AntiBennyHillTimer, this);
     }
 
     private static void ClosingDistance( Controller_FSM controller )

@@ -321,21 +321,10 @@
                 },
                 {
                     "name": "",
-                    "id": "601d1cc7-8976-4409-b59b-f1089ae7646d",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "StickDeadzone(max=1),NormalizeVector2",
-                    "groups": "KeyB&Mouse",
-                    "action": "LookCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9c781407-cc3c-44ed-9722-221186b87d79",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(y=0.5)",
                     "groups": "Gamepad",
                     "action": "LookCamera",
                     "isComposite": false,
@@ -346,7 +335,7 @@
                     "id": "3b67c70c-4d06-41c0-b071-0a6b4b464273",
                     "path": "<DualShockGamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(y=0.5)",
                     "groups": "PS4_Scheme",
                     "action": "LookCamera",
                     "isComposite": false,
@@ -357,8 +346,19 @@
                     "id": "3f2f9fec-1b63-4479-a3d3-8e6190d26257",
                     "path": "<XInputController>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.5)",
                     "groups": "XBOX360_Scheme",
+                    "action": "LookCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4ce8e1b-d655-4e88-b8a6-17d36d26d7f6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "StickDeadzone,NormalizeVector2,ScaleVector2(x=2)",
+                    "groups": "",
                     "action": "LookCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -603,6 +603,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "EscapeUI",
+                    "type": "Button",
+                    "id": "cac46fe7-09ca-49f1-b831-f24aed40a186",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -966,6 +975,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45f3e066-198e-439e-974d-42fdb23ed0cc",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscapeUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

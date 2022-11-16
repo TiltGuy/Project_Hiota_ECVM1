@@ -16,7 +16,7 @@ public class Player_InputScript : MonoBehaviour
 
     [Header(" -- INPUT SETTINGS -- ")]
 
-    private InputMaster controls;
+    static public InputMaster controls;
 
     private bool b_CursorInvisible = true;
 

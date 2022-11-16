@@ -220,7 +220,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public MultiDelegate OnChangeCurrentPlayerTarget;
 
     public delegate void MultiDelegateWithfloat(float something);
-    public MultiDelegateWithfloat LoseHPDelegate;
+    //public MultiDelegateWithfloat LoseHPDelegate;
     public MultiDelegateWithfloat UpdateGuardAmountDelegate;
 
     public delegate void OnEventCombatSystem();
@@ -489,7 +489,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     private void LoseHP(float damageTaken)
     {
         charSpecs.Health -= damageTaken;
-        LoseHPDelegate(charSpecs.Health);
+        //LoseHPDelegate(charSpecs.Health);
     }
 
     private void TestGuard(float damageTaken, Transform striker)

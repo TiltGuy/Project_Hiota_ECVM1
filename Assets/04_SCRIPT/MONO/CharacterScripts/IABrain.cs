@@ -8,6 +8,9 @@ public class IABrain : MonoBehaviour
 
     private Controller_FSM controller_FSM;
     private TargetGatherer targetGatherer;
+
+    
+
     [HideInInspector] public float factorStrafecrossDirection = 1f;
     private bool b_IsEnemyInFight = false;
     [SerializeField] private float timeToInvertStrafeDirection = 4f;
@@ -16,7 +19,7 @@ public class IABrain : MonoBehaviour
     [Range(.1f, 50f)]
     public float speedTurningWhenAttacking = 20f;
     public float SpeedIncreasedWhenEnemyFleeing = 6f;
-    [SerializeField] private float AntiBennyHillCountdown = 3f;
+    public float AntiBennyHillCountdown = 3f;
     public float AntiBennyHillTimer;
 
     #region ATTACK SETTINGS
@@ -108,10 +111,17 @@ public class IABrain : MonoBehaviour
         StartCoroutine("TimerBetweenAttacks_Coroutine");
     }
 
-    //private void Update()
-    //{
-    //    Debug.Log(b_WantToAttack);
-    //}
+    public void LaunchBennyHillTimer()
+    {
+        //Launch Coroutine
+    }
+
+    private IEnumerator BennyHillTimer_Couroutine()
+    {
+        yield return new WaitForSeconds(AntiBennyHillTimer);
+    }
+
+
 
 
 }

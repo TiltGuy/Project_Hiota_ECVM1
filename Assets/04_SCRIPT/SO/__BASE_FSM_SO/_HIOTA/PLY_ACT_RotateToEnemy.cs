@@ -25,7 +25,11 @@ public class PLY_ACT_RotateToEnemy : Action_SO
 
         Vector3 lookPos = -DistToEnemy;
         lookPos.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, rotation, Time.deltaTime * controller.m_speedTurnWhenAttack);
+       if(lookPos.magnitude > 0f)
+        {
+            Quaternion rotation = Quaternion.LookRotation(lookPos);
+            controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, rotation, Time.deltaTime * controller.m_speedTurnWhenAttack);
+
+        }
     }
 }

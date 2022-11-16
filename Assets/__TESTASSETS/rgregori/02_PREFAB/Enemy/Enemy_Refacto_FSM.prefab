@@ -281,6 +281,20 @@ MonoBehaviour:
   FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
   BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
   ParryAttackStats: {fileID: 11400000, guid: 634ab48e56c8412459bc02f8b362913e, type: 2}
+  onKilled:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 39000561153551387}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   healthBar: {fileID: 39000560671697348}
   healthPointBarFillAmount: 0
   guardBarImage: {fileID: 512061180034281470}
@@ -388,6 +402,9 @@ MonoBehaviour:
   timeToInvertStrafeDirection: 4
   speedOfTurningEnemyWhenFocus: 25.7
   speedTurningWhenAttacking: 5.7
+  SpeedIncreasedWhenEnemyFleeing: 6
+  AntiBennyHillCountdown: 3
+  AntiBennyHillTimer: 0
   b_WantToAttack: 0
   timerBetweenATK: 3
   TimeBtwATKRandomize: 1

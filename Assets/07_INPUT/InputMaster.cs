@@ -343,21 +343,10 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""601d1cc7-8976-4409-b59b-f1089ae7646d"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": ""StickDeadzone(max=1),NormalizeVector2"",
-                    ""groups"": ""KeyB&Mouse"",
-                    ""action"": ""LookCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9c781407-cc3c-44ed-9722-221186b87d79"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(y=0.5)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,
@@ -368,7 +357,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""id"": ""3b67c70c-4d06-41c0-b071-0a6b4b464273"",
                     ""path"": ""<DualShockGamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(y=0.5)"",
                     ""groups"": ""PS4_Scheme"",
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,
@@ -379,8 +368,19 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""id"": ""3f2f9fec-1b63-4479-a3d3-8e6190d26257"",
                     ""path"": ""<XInputController>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=0.5)"",
                     ""groups"": ""XBOX360_Scheme"",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4ce8e1b-d655-4e88-b8a6-17d36d26d7f6"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone,NormalizeVector2,ScaleVector2(x=2)"",
+                    ""groups"": """",
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -625,6 +625,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""EscapeUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""cac46fe7-09ca-49f1-b831-f24aed40a186"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -990,6 +999,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45f3e066-198e-439e-974d-42fdb23ed0cc"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscapeUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1068,6 +1088,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+        m_UI_EscapeUI = m_UI.FindAction("EscapeUI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1233,6 +1254,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_Point;
+    private readonly InputAction m_UI_EscapeUI;
     public struct UIActions
     {
         private @InputMaster m_Wrapper;
@@ -1246,6 +1268,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @Point => m_Wrapper.m_UI_Point;
+        public InputAction @EscapeUI => m_Wrapper.m_UI_EscapeUI;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1282,6 +1305,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @EscapeUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
+                @EscapeUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
+                @EscapeUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1313,6 +1339,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
+                @EscapeUI.started += instance.OnEscapeUI;
+                @EscapeUI.performed += instance.OnEscapeUI;
+                @EscapeUI.canceled += instance.OnEscapeUI;
             }
         }
     }
@@ -1376,5 +1405,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
+        void OnEscapeUI(InputAction.CallbackContext context);
     }
 }

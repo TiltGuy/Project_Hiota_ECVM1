@@ -16,7 +16,11 @@ public class ActionCameraPlayer : MonoBehaviour
     public Transform currentHiotaTarget;
 
     [SerializeField]
+    private bool shakeFocusCamera;
+    [SerializeField]
     private GameObject GO_FocusCamera;
+    [SerializeField]
+    private bool shakeFreeLookCamera;
     [SerializeField]
     private GameObject GO_CameraFreeLook;
 
@@ -51,7 +55,6 @@ public class ActionCameraPlayer : MonoBehaviour
 
                 controller_FSM.b_CanChangeFocusTarget = false;
             }
-
         }
         
     }
@@ -85,6 +88,7 @@ public class ActionCameraPlayer : MonoBehaviour
                 OnChangeTargetPlayerPosition();
                 GO_FocusCamera.SetActive(true);
                 GO_CameraFreeLook.SetActive(false);
+                WaitForFocusLoose();
                 //Debug.Log(currentHiotaTarget, this);
             }
             
@@ -97,14 +101,30 @@ public class ActionCameraPlayer : MonoBehaviour
         }
     }
 
+    //TODO: scotch
+    private void WaitForFocusLoose()
+    {
+        if ( !GO_FocusCamera.activeInHierarchy )
+            return;
+
+        if(currentHiotaTarget == null || currentHiotaTarget.gameObject.activeInHierarchy == false)
+        {
+            ToggleCameraMode();
+        }
+        else
+        {
+            Invoke("WaitForFocusLoose", .1f);
+        }
+    }
+
     private void CommandShakeCameraWhenTouchingEnemy()
     {
         //Debug.Log("SHAKE CAMERA TOUCHED !!!");
-        if ( GO_CameraFreeLook )
+        if ( GO_CameraFreeLook != null && shakeFocusCamera )
         {
             GO_CameraFreeLook.GetComponent<CinemachineCameraShake>().ShakeCamera(.5f, .1f);
         }
-        if ( GO_FocusCamera )
+        if ( GO_FocusCamera != null && shakeFreeLookCamera )
         {
             GO_FocusCamera.GetComponent<CinemachineCameraShake>().ShakeCamera(1f, .25f);
         }
@@ -114,11 +134,11 @@ public class ActionCameraPlayer : MonoBehaviour
     private void CommandShakeCameraWhenBeingTouched()
     {
         //Debug.Log("SHAKE CAMERA HITTEN !!!");
-        if ( GO_CameraFreeLook )
+        if ( GO_CameraFreeLook != null && shakeFocusCamera )
         {
             GO_CameraFreeLook.GetComponent<CinemachineCameraShake>().ShakeCamera(1f, .25f);
         }
-        if ( GO_FocusCamera )
+        if ( GO_FocusCamera != null && shakeFreeLookCamera )
         {
             GO_FocusCamera.GetComponent<CinemachineCameraShake>().ShakeCamera(2, .5f);
         }

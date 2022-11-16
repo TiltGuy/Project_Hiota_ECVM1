@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Controller_FSM))]
@@ -54,9 +55,12 @@ public class CharacterSpecs : MonoBehaviour
     #region GLOBAL SETTINGS
     [Header(" -- GLOBAL SETTINGS -- ")]
 
-    [HideInInspector]
+    public System.Action<CharacterSpecs> onHealthDepleted;
+    public UnityEvent onKilled;
+
+    //[HideInInspector]
     private float health;
-    [HideInInspector]
+   // [HideInInspector]
     private float currentGuard;
     private float _maxHealth;
 	private float _maxGuard;
@@ -65,24 +69,17 @@ public class CharacterSpecs : MonoBehaviour
 	{
 		get => health;
 		set
-		{
-			if (health < 0)
-			{
-				health = 0;
-				if(healthBar)
-				{
-					UpdateHPFillBar(health);
-				}
-			}
-			else
-			{
-				health = value;
-				if (healthBar)
-				{
-					UpdateHPFillBar(health);
-				}
-			}
-		}
+        {
+            health = Mathf.Clamp(value, 0, _maxHealth);
+            healthPointBarFillAmount = health / _maxHealth;
+            healthBar.fillAmount = healthPointBarFillAmount;
+            if ( health <= 0f )
+            {
+                Debug.Log(this + " => Killed");
+                onHealthDepleted?.Invoke(this);
+                onKilled?.Invoke();
+            }
+        }
 	}
 
 	public float CurrentGuard
@@ -218,13 +215,11 @@ public class CharacterSpecs : MonoBehaviour
 
     private void OnEnable()
     {
-		controller.LoseHPDelegate += UpdateHPFillBar;
 		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
 	}
 
     private void OnDisable()
     {
-		controller.LoseHPDelegate -= UpdateHPFillBar;
 		controller.UpdateGuardAmountDelegate -= UpdateGuardBar;
 	}
 
@@ -269,21 +264,17 @@ public class CharacterSpecs : MonoBehaviour
 			Instantiate(targetFX, transform.position, Quaternion.identity);
 	}
 
-	void UpdateHPFillBar(float currentHpToUpdate)
-    {
-		health = currentHpToUpdate;
-		healthPointBarFillAmount = health / _maxHealth;
-		healthBar.fillAmount = healthPointBarFillAmount;
-		//print("J'update mes HPs");
-	}
-
 	void UpdateGuardBar(float currentGuardPointToUpdate)
     {
 		currentGuard = currentGuardPointToUpdate;
 		guardPointBarFillAmount = currentGuard / _maxGuard;
 		guardBarImage.fillAmount = guardPointBarFillAmount;
-
-
 	}
+
+    [ContextMenu("Kill")]
+    public void Kill()
+    {
+        this.Health = 0;
+    }
 	
 }
