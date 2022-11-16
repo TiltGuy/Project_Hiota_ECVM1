@@ -33,7 +33,7 @@ public class ATT_OnAttackBegin : Action_SO
         }
         else
         {
-            Debug.LogWarning("Try to acces to current Hiota Target but Nobody's here", this);
+            //Debug.LogWarning("Try to acces to current Hiota Target but Nobody's here", this);
             _currentTarget = null;
         }
     }

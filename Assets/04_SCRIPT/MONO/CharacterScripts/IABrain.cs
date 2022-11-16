@@ -97,7 +97,7 @@ public class IABrain : MonoBehaviour
         float finalTimer;
         TimeBtwATKRandomize = Random.Range(timerBetweenATK - TimeBtwATKRandomize, timerBetweenATK + TimeBtwATKRandomize);
         finalTimer = timerBetweenATK + TimeBtwATKRandomize;
-        print(finalTimer);
+        //print(finalTimer);
 
         yield return new WaitForSeconds(finalTimer);
         

@@ -5,8 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableStateMachine/Actions/Enemy/ACT_CHASE")]
 public class ENM_ACT_CHASE : Action_SO
 {
-    public float stopDistance = 2f;
+    public float MaxDistance = 2f;
+    public float MinDistance;
     public bool b_CanStrafeifCloseEnough = true;
+
     public override void Act( Controller_FSM controller )
     {
 
@@ -31,24 +33,45 @@ public class ENM_ACT_CHASE : Action_SO
         //Debug.Log(controller.GetLocalVelocity().normalized, controller);
         UpdateInputMoveVectorAnimator(controller);
         controller.NavAgent.updatePosition = true;
-        if ( DistToEnemy.magnitude > stopDistance )
+        if ( DistToEnemy.magnitude > MaxDistance )
         {
+            ClosingDistance(controller);
+            Debug.Log("CLOSING UWU");
+        }
+        else if(DistToEnemy.magnitude < MinDistance)
+        {
+            IncreaseDistance(controller, DistToEnemy);
+            Debug.Log("REtreat YAMETE !!!");
+        }
+        else 
+        {
+            Strafing(controller, dir);
+            Debug.Log("NIGERUNDAYOO !!!");
+        }
+    }
 
-            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
-            controller.NavAgent.SetDestination(controller.currentCharacterTarget.position);
+    private static void ClosingDistance( Controller_FSM controller )
+    {
+        controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
+        controller.NavAgent.SetDestination(controller.currentCharacterTarget.position);
+    }
+    private static void IncreaseDistance( Controller_FSM controller, Vector3 dir)
+    {
+        controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
+        controller.NavAgent.SetDestination(controller.transform.position + dir);
+    }
+
+    private void Strafing( Controller_FSM controller, Vector3 dir )
+    {
+        if ( b_CanStrafeifCloseEnough )
+        {
+            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeedWhenStrafing;
+            controller.NavAgent.SetDestination(controller.transform.position + dir);
         }
         else
         {
-            if(b_CanStrafeifCloseEnough)
-            {
-                controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeedWhenStrafing;
-                controller.NavAgent.SetDestination(controller.transform.position + dir);
-            }
-            else
-            {
-                controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
-                controller.NavAgent.SetDestination(controller.transform.position);
-            }
+            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
+            controller.NavAgent.SetDestination(controller.transform.position);
         }
     }
 
