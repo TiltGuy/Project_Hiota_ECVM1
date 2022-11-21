@@ -42,7 +42,7 @@ public class ENM_ACT_CHASE : Action_SO
                 controller.BrainAI.AntiBennyHillTimer += Time.deltaTime;
                 float bennyHillcount = controller.BrainAI.AntiBennyHillTimer;
                 float bennyHillMax = controller.BrainAI.AntiBennyHillCountdown;
-                controller.currentSpeed = Mathf.Lerp(controller.baseSpeed, controller.BrainAI.SpeedIncreasedWhenEnemyFleeing, bennyHillcount / bennyHillMax);
+                controller.CurrentSpeed = Mathf.Lerp(controller.baseSpeed, controller.BrainAI.SpeedIncreasedWhenEnemyFleeing, bennyHillcount / bennyHillMax);
             }
             else
             {

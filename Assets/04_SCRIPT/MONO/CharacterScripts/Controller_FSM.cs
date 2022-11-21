@@ -89,7 +89,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public float baseSpeed = 5f;
 
     [Tooltip("The current speed used by the FSM")]
-    public float currentSpeed = 5f;
+    private float currentSpeed = 5f;
 
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
     [HideInInspector] public float m_turnSpeed = 20;
@@ -266,6 +266,19 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
     }
 
+    public float CurrentSpeed
+    {
+        get => currentSpeed;
+        set
+        {
+            currentSpeed = value;
+            if(NavAgent)
+            {
+                NavAgent.speed = value;
+            }
+        }
+    }
+
     private void Awake()
     {
         characontroller = GetComponent<CharacterController>();
@@ -320,7 +333,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         if ( charSpecs.CharStats_SO )
         {
             baseSpeed = charSpecs.CharStats_SO.BaseSpeed;
-            currentSpeed = baseSpeed;
+            CurrentSpeed = baseSpeed;
         }
         else
         {
@@ -362,7 +375,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         //fDebug.Log(this + " current state = " + currentState, this);
         if ( CharRigidbody )
         {
-            //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
+            Debug.Log(CurrentSpeed, this);
         }
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
 
