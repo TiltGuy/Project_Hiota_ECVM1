@@ -90,8 +90,11 @@ public class CinemachineCameraShake : MonoBehaviour
                 cinemachineBasicMultiChannelPerlin =
                 FocusCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
                 //print("Facus");
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-                shakerTimer = shakeTime;
+                if(cinemachineBasicMultiChannelPerlin != null)
+                {
+                    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+                    shakerTimer = shakeTime;
+                }
                 break;
             }
 
@@ -100,8 +103,11 @@ public class CinemachineCameraShake : MonoBehaviour
                 cinemachineBasicMultiChannelPerlin =
             NormalCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
                 //print("Normal");
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-                shakerTimer = shakeTime;
+                if( cinemachineBasicMultiChannelPerlin != null )
+                {
+                    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+                    shakerTimer = shakeTime;
+                }
                 break;
             }
         }
