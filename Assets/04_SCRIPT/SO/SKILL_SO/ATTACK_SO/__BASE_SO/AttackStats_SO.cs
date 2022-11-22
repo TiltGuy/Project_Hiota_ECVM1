@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Stats/AttackStats")]
 public class AttackStats_SO : ScriptableObject
 {
+    public bool b_IsAHook = false;
     public float damages;
     public Transform hitBoxPrefab;
     public float AnimID_Anticipation = 0f;

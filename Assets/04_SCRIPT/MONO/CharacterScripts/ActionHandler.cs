@@ -33,6 +33,9 @@ public class ActionHandler : MonoBehaviour
     [Tooltip("the Boolean that if the character is stunned")]
     public bool b_Stunned = false;
 
+    [Tooltip("the Boolean that if the character is hooked")]
+    public bool b_Hooked = false;
+
     [Tooltip("the Boolean that check the input")]
     public bool b_AttackInput = false;
 

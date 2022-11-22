@@ -17,7 +17,6 @@ public class PlayerController_Animator : MonoBehaviour
     public Controller_FSM controller_FSM;
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;
-    [HideInInspector]
     public Transform currentAttackHitbox;
     //public int nbHitBoxTrue = 0;
 

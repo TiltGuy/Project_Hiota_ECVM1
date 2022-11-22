@@ -18,7 +18,7 @@ public class TrapScript : MonoBehaviour
                 //Debug.Log(other.gameObject.name, this);
                 if ( damageable != null )
                 {
-                    damageable.TakeDamages(damages, transform);
+                    damageable.TakeDamages(damages, transform, false);
                 }
             }
         }

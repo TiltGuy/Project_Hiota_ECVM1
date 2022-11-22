@@ -127,4 +127,9 @@ public class StaticEnemyAI : MonoBehaviour, IDamageable
             Instantiate(lifeLoot, transform.position, transform.rotation);
         }
     }
+
+    public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
+    {
+        throw new System.NotImplementedException();
+    }
 }

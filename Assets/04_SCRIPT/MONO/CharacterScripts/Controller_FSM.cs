@@ -460,7 +460,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
     }
 
-    public void TakeDamages(float damageTaken, Transform striker)
+    public void TakeDamages(float damageTaken, Transform striker, bool isAHook)
     {
 
         if ( b_isParrying )
@@ -471,7 +471,14 @@ public class Controller_FSM : ActionHandler, IDamageable
             }
             else
             {
-                HitTaken(damageTaken, striker);
+                if(!isAHook)
+                {
+                    HitTaken(damageTaken, striker);
+                }
+                else
+                {
+                    HitByHook(damageTaken, striker);
+                }
             }
         }
         else if ( b_IsDashing )
@@ -480,9 +487,15 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
         if (!b_isParrying && !b_IsDashing)
         {
-            HitTaken(damageTaken, striker);
+            if ( !isAHook )
+            {
+                HitTaken(damageTaken, striker);
+            }
+            else
+            {
+                HitByHook(damageTaken, striker);
+            }
             //print(DirectionHitReact);
-
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
     }
@@ -491,7 +504,19 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
         LoseHP(damageOuput);
+
         b_Stunned = true;
+        SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
+        DirectionHitReact = GetBoolnDirHitReact(striker);
+        OnHittenByEnemy?.Invoke();
+    }
+
+    private void HitByHook( float damageTaken, Transform striker )
+    {
+        float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
+        LoseHP(damageOuput);
+
+        b_Hooked = true;
         SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
         DirectionHitReact = GetBoolnDirHitReact(striker);
         OnHittenByEnemy?.Invoke();
@@ -501,7 +526,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         Vector3 directionToStriker = striker.position - transform.position;
         float dot = Vector3.Dot(transform.forward,directionToStriker.normalized);
-        Debug.Log("dot product guard = " + dot, this);
+        //Debug.Log("dot product guard = " + dot, this);
         return dot;
     }
 
@@ -652,5 +677,8 @@ public class Controller_FSM : ActionHandler, IDamageable
         return GetLocalVelocity;
     }
 
-
+    public void TakeDamages( float damageTaken, Transform striker )
+    {
+        throw new NotImplementedException();
+    }
 }

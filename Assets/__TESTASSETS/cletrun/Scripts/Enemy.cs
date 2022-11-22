@@ -290,5 +290,8 @@ public class Enemy : MonoBehaviour, IDamageable
         b_CanMove = false;
     }
 
-
+    public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -15,10 +15,10 @@ public class ACT_HOOKED :Action_SO
         //do the push Dummy
         if ( controller.B_IsTouched )
         {
+            Debug.Log("Touched by hook");
             HookedDirection = -controller.DirectionHitReact;
             if(controller.characontroller)
             {
-
                 controller.characontroller.Move(HookedDirection * Time.deltaTime * speedMovementAction);
             }
             else if(controller.NavAgent)

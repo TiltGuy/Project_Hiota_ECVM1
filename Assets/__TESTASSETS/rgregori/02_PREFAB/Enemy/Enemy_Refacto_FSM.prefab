@@ -321,6 +321,7 @@ MonoBehaviour:
   b_CanChangeFocusTarget: 1
   b_IsInputParry: 0
   b_Stunned: 0
+  b_Hooked: 0
   b_AttackInput: 0
   b_IsPerfectlyParrying: 0
   b_CanChangeFocusCameraTarget: 1
@@ -348,7 +349,6 @@ MonoBehaviour:
   BrainAI: {fileID: 1897634448}
   b_IsInvicible: 0
   baseSpeed: 5
-  currentSpeed: 5
   m_turnSpeed: 20
   _isGrounded: 0
   distanceCheckGround: 0.25
@@ -402,7 +402,7 @@ MonoBehaviour:
   timeToInvertStrafeDirection: 4
   speedOfTurningEnemyWhenFocus: 25.7
   speedTurningWhenAttacking: 5.7
-  SpeedIncreasedWhenEnemyFleeing: 6
+  SpeedIncreasedWhenEnemyFleeing: 10
   AntiBennyHillCountdown: 3
   AntiBennyHillTimer: 0
   b_WantToAttack: 0

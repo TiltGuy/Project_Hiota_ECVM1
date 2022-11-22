@@ -10,7 +10,11 @@ public class ACT_UpdateHitBoxStatut : Action_SO
 
     public override void Act(Controller_FSM controller)
     {
-        if(controller.controllerAnim.currentAttackHitbox)
+        if (controller.NavAgent)
+        {
+            Debug.Log(controller.controllerAnim.currentAttackHitbox, controller);
+        }
+        if(controller.controllerAnim.currentAttackHitbox != null)
         {
             base.SetCurrentHitBoxStatut(controller, b_BooleanValue);
         }

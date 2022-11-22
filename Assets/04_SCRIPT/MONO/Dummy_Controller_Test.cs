@@ -53,5 +53,8 @@ public class Dummy_Controller_Test : MonoBehaviour, IDamageable
         Debug.Log("il ne me reste plus que " + currentHealth + " d'HP", this);
     }
 
-    
+    public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
+    {
+        throw new System.NotImplementedException();
+    }
 }
