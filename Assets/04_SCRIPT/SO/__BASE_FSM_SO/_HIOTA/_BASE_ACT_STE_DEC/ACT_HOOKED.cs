@@ -18,11 +18,12 @@ public class ACT_HOOKED :Action_SO
             HookedDirection = -controller.DirectionHitReact;
             if(controller.characontroller)
             {
+
                 controller.characontroller.Move(HookedDirection * Time.deltaTime * speedMovementAction);
             }
             else if(controller.NavAgent)
             {
-
+                controller.NavAgent.Move(HookedDirection * Time.deltaTime * speedMovementAction);
             }
 
         }

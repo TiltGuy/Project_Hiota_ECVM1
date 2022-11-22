@@ -10,6 +10,8 @@ public class Touch : MonoBehaviour
     [HideInInspector] PlayerController_Animator instigatorAnimator;
     Controller_FSM controllerFSM;
 
+    public bool b_StunEnemyOnHit;
+
     public PlayerController_Animator InstigatorAnimator 
     { 
         get => instigatorAnimator; 

@@ -48,7 +48,10 @@ public class PlayerController_Animator : MonoBehaviour
         //swordHitBox.enabled = true;
         if (currentAttackHitboxPrefab)
         {
-
+            if ( controller_FSM.CurrentAttackStats )
+            {
+                currentAttackHitboxPrefab = controller_FSM.CurrentAttackStats.hitBoxPrefab;
+            }
             currentAttackHitbox = Instantiate(currentAttackHitboxPrefab, controller_FSM.transform.position, Quaternion.identity);
             Touch currentInstance = currentAttackHitbox.GetComponent<Touch>();
             currentInstance.ControllerFSM = controller_FSM;
@@ -57,6 +60,7 @@ public class PlayerController_Animator : MonoBehaviour
             currentAttackHitbox.SetParent(controller_FSM.transform);
             currentAttackHitbox.transform.localPosition = Vector3.zero;
             currentAttackHitbox.transform.localRotation = Quaternion.identity;
+            //Debug.Log(currentInstance.transform.localScale);
         }
         //Debug.Log("Basic Attack HitBox is : " + currentAttackHitbox, this);
         

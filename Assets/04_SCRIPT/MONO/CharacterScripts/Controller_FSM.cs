@@ -375,7 +375,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         //fDebug.Log(this + " current state = " + currentState, this);
         if ( CharRigidbody )
         {
-            Debug.Log(CurrentSpeed, this);
+            //Debug.Log(CurrentSpeed, this);
         }
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
 
@@ -462,26 +462,47 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public void TakeDamages(float damageTaken, Transform striker)
     {
-        if (!b_isParrying && !b_IsDashing)
-        {
-            float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
-            LoseHP(damageOuput);
-            b_Stunned = true;
-            SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
-            DirectionHitReact = GetBoolnDirHitReact(striker);
-            OnHittenByEnemy?.Invoke();
-            //print(DirectionHitReact);
 
-            //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
-        }
         if ( b_isParrying )
         {
-            TestGuard(damageTaken, striker);
+            if ( this.ControllerTargetGetDot(striker) > .25f)
+            {
+                TestGuard(damageTaken, striker);
+            }
+            else
+            {
+                HitTaken(damageTaken, striker);
+            }
         }
         else if ( b_IsDashing )
         {
             // do Something
         }
+        if (!b_isParrying && !b_IsDashing)
+        {
+            HitTaken(damageTaken, striker);
+            //print(DirectionHitReact);
+
+            //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
+        }
+    }
+
+    private void HitTaken( float damageTaken, Transform striker )
+    {
+        float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
+        LoseHP(damageOuput);
+        b_Stunned = true;
+        SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
+        DirectionHitReact = GetBoolnDirHitReact(striker);
+        OnHittenByEnemy?.Invoke();
+    }
+
+    private float ControllerTargetGetDot( Transform striker)
+    {
+        Vector3 directionToStriker = striker.position - transform.position;
+        float dot = Vector3.Dot(transform.forward,directionToStriker.normalized);
+        Debug.Log("dot product guard = " + dot, this);
+        return dot;
     }
 
     private Vector3 GetBoolnDirHitReact(Transform striker)
