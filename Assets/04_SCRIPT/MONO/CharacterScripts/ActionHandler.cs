@@ -76,7 +76,7 @@ public class ActionHandler : MonoBehaviour
 
     private void toggleStunnedValue(bool b_value)
     {
-        b_Stunned = b_value;
+        b_Hooked = b_value;
     }
 
     public void TakeAttackInputInBuffer()
