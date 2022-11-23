@@ -26,8 +26,9 @@ public class ACT_HOOKED :Action_SO
             }
             else if(controller.NavAgent)
             {
+                controller.NavAgent.speed = controller.BrainAI.SpeedIncreasedWhenEnemyFleeing * (1 / controller.TimerOfHook / TimeOfHook);
                 Debug.Log(lastHooker.name, controller);
-                Vector3 offset = Vector3.Slerp(controller.transform.position, lastHooker.transform.position, controller.TimerOfHook / TimeOfHook);
+                Vector3 offset = Vector3.Slerp(controller.transform.position, lastHooker.GetComponent<Controller_FSM>().eyes.position, controller.TimerOfHook / TimeOfHook);
                 controller.NavAgent.SetDestination(offset);
             }
 
