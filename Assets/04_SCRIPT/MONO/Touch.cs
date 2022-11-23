@@ -39,7 +39,7 @@ public class Touch : MonoBehaviour
             if (damageable != null)
             {
                 AttackStats_SO currentAttackToUse = controllerFSM.CurrentAttackStats;
-                damageable.TakeDamages(currentAttackToUse.damages, transform, currentAttackToUse.b_IsAHook);
+                damageable.TakeDamages(currentAttackToUse.damages, ControllerFSM.transform, currentAttackToUse.b_IsAHook);
                 //Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
                 //Debug.Log("Dégats : " + AttackStats.damages, this);
                 controllerFSM.characterAnimator.SetBool("b_Attack", false);

@@ -211,6 +211,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public Transform eyes;
     public bool b_HaveFinishedRecoveringAnimation;
     public bool b_HaveSuccessfullyHitten;
+    private Transform lastHooker;
 
     #endregion
 
@@ -277,6 +278,19 @@ public class Controller_FSM : ActionHandler, IDamageable
                 NavAgent.speed = value;
             }
         }
+    }
+
+    private float timerOfHook;
+
+    public Transform LastHooker
+    {
+        get => lastHooker;
+        set => lastHooker = value;
+    }
+    public float TimerOfHook
+    {
+        get => timerOfHook;
+        set => timerOfHook = value;
     }
 
     private void Awake()
@@ -513,12 +527,15 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     private void HitByHook( float damageTaken, Transform striker )
     {
+        TimerOfHook = 0f;
+        LastHooker = striker;
+        Debug.Log(LastHooker, this);
+        DirectionHitReact = GetBoolnDirHitReact(LastHooker);
         float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
         LoseHP(damageOuput);
 
         b_Hooked = true;
         SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
-        DirectionHitReact = GetBoolnDirHitReact(striker);
         OnHittenByEnemy?.Invoke();
     }
 
@@ -530,7 +547,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         return dot;
     }
 
-    private Vector3 GetBoolnDirHitReact(Transform striker)
+    public Vector3 GetBoolnDirHitReact(Transform striker)
     {
         B_IsTouched = true;
         Vector3 pos = transform.position;
