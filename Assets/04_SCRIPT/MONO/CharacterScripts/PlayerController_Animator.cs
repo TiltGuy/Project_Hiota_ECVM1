@@ -105,4 +105,10 @@ public class PlayerController_Animator : MonoBehaviour
         Debug.Log("Bob ! Do something ! ",this);
     }
 
+    public void WindUpGlow(GameObject targetFX)
+    {
+        Transform glowingSword = Instantiate(targetFX.transform, transform.position, Quaternion.identity);
+        glowingSword.SetParent(Sword_GO.transform);
+    }
+
 }
