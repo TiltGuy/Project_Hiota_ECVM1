@@ -78,6 +78,7 @@ public class CharacterSpecs : MonoBehaviour
                 Debug.Log(this + " => Killed");
                 onHealthDepleted?.Invoke(this);
                 onKilled?.Invoke();
+
             }
         }
 	}

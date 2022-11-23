@@ -1065,6 +1065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tag: Enemy
   AttackStats: {fileID: 0}
+  b_StunEnemyOnHit: 0
 --- !u!1 &885035562724162876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1365,7 @@ MonoBehaviour:
   b_CanChangeFocusTarget: 0
   b_IsInputParry: 0
   b_Stunned: 0
+  b_Hooked: 0
   b_AttackInput: 0
   b_IsPerfectlyParrying: 0
   b_CanChangeFocusCameraTarget: 1
@@ -1391,7 +1393,6 @@ MonoBehaviour:
   BrainAI: {fileID: 0}
   b_IsInvicible: 0
   baseSpeed: 5
-  currentSpeed: 5
   m_turnSpeed: 20
   _isGrounded: 0
   distanceCheckGround: 0.25
@@ -1447,7 +1448,7 @@ MonoBehaviour:
   BasicAttackStats: {fileID: 11400000, guid: 8ba78e8f4a1fad5468fdedac4e77c4ff, type: 2}
   SideAttackStats: {fileID: 11400000, guid: ea5de9ab7d762ba4690aee1ed4e21e4e, type: 2}
   FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
-  BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
+  BackAttackStats: {fileID: 11400000, guid: 04d350835f592b347ae3871db842629e, type: 2}
   ParryAttackStats: {fileID: 11400000, guid: 634ab48e56c8412459bc02f8b362913e, type: 2}
   onKilled:
     m_PersistentCalls:

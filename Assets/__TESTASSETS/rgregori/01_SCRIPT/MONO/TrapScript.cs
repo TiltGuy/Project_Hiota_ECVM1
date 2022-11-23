@@ -6,7 +6,7 @@ public class TrapScript : MonoBehaviour
 {
     [SerializeField] private List<string> TargetTag = new List<string>();
     private Animator animator;
-    private float damages;
+    public float damages;
 
     private void OnTriggerEnter( Collider other )
     {
