@@ -64,6 +64,7 @@ public class CharacterSpecs : MonoBehaviour
     private float currentGuard;
     private float _maxHealth;
 	private float _maxGuard;
+    private float startArmor;
 	private float currentArmor;
 	public float Health
 	{
@@ -158,15 +159,9 @@ public class CharacterSpecs : MonoBehaviour
 	{ 
 		get => currentArmor;
 		set 
-		{ 
-			if(currentArmor<0)
-            {
-				currentArmor = 0;
-            }
-			else
-			{
-				currentArmor = value;
-			}
+		{
+            currentArmor = value;
+            currentArmor = Mathf.Clamp(value, 0f, value);
 		}
 	}
 
@@ -205,10 +200,11 @@ public class CharacterSpecs : MonoBehaviour
 
 		MaxGuard = CharStats_SO.maxGuard;
 		CurrentGuard = CharStats_SO.baseGuard;
-		//guardPointBarFillAmount = CurrentGuard / MaxGuard;
-		//guardBarImage.fillAmount = guardPointBarFillAmount;
+        //guardPointBarFillAmount = CurrentGuard / MaxGuard;
+        //guardBarImage.fillAmount = guardPointBarFillAmount;
 
-		CurrentArmor = CharStats_SO.baseArmor;
+        startArmor = CharStats_SO.baseArmor;
+        CurrentArmor = startArmor;
 
 		
 		//UPDATE DELEGATE
