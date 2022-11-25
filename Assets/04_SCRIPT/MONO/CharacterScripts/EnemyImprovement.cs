@@ -42,7 +42,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
 
     public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
     {
-        print("Take FUCKING Damages");
         AssignNewSkillCard();
         _animator.SetTrigger("t_Activated");
         OnSelectSkillCard?.Invoke();

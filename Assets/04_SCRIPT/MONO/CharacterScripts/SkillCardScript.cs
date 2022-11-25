@@ -8,6 +8,7 @@ public class SkillCardScript : MonoBehaviour
 {
     private Controller_FSM controller;
     private CharacterSpecs characterSpecs;
+    public SkillCard_SO CurrentSkillCard;
 
     public float ArmorImprove = 2f;
 
@@ -19,7 +20,12 @@ public class SkillCardScript : MonoBehaviour
 
     private void Start()
     {
-        characterSpecs.CurrentArmor += ArmorImprove;
-        Debug.Log(characterSpecs.CurrentArmor,this);
+        ApplyEffectsOfSkillCardSO(controller, characterSpecs);
+    }
+
+    private void ApplyEffectsOfSkillCardSO(Controller_FSM controller, CharacterSpecs characterSpecs)
+    {
+        CurrentSkillCard.ApplyEffects(controller, characterSpecs);
+        Debug.Log("Component of the Enemy try to apply effects");
     }
 }
