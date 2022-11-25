@@ -7,6 +7,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
 {
     private Animator _animator;
     public List<string> TargetTags = new List<string>();
+    public List<SkillCard_SO> SkillCards = new List<SkillCard_SO>();
     public string EnemyTag;
     public List<Transform> Enemies = new List<Transform>();
     public UnityEvent OnSelectSkillCard;
@@ -35,7 +36,11 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         {
             if(enemy.gameObject.activeInHierarchy)
             {
-                enemy.gameObject.AddComponent<SkillCardScript>();
+                if(SkillCards.Count > 0)
+                {
+                    SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
+                    CurrentInstance.CurrentSkillCard = SkillCards[Random.Range(0, SkillCards.Count)];
+                }
             }
         }
     }
