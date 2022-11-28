@@ -107,8 +107,10 @@ public class PlayerController_Animator : MonoBehaviour
 
     public void WindUpGlow(GameObject targetFX)
     {
-        Transform glowingSword = Instantiate(targetFX.transform, transform.position, Quaternion.identity);
+        Transform glowingSword = Instantiate(targetFX.transform, Sword_GO.transform.position, Quaternion.identity);
         glowingSword.SetParent(Sword_GO.transform);
+        glowingSword.transform.localRotation = Quaternion.identity;
+        glowingSword.transform.localPosition = Vector3.zero;
     }
 
 }
