@@ -89,7 +89,7 @@ public class Player_InputScript : MonoBehaviour
     void WantToChangeTarget()
     {
         Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
-        actionCameraPlayer.ChangeTargetOfPlayer(input);
+        actionCameraPlayer.InputCommandToChangeTargetOfPlayer(input);
     }
 
     void ToggleHiotaFocusMode()

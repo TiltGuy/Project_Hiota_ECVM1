@@ -30,7 +30,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     private void OnEnable()
     {
         controller.OnChangeCurrentPlayerTarget += UpdateMyPlayerCurrentTargetGroup;
-        actionCameraPlayer.OnChangeTargetPlayerPosition += UpdateMyPlayerCurrentTargetGroup;
+        actionCameraPlayer.OnChangeTargetPlayerPositionForTargetGroup += UpdateMyPlayerCurrentTargetGroup;
 
 
     }
@@ -38,7 +38,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     private void OnDisable()
     {
         controller.OnChangeCurrentPlayerTarget -= UpdateMyPlayerCurrentTargetGroup;
-        actionCameraPlayer.OnChangeTargetPlayerPosition -= UpdateMyPlayerCurrentTargetGroup;
+        actionCameraPlayer.OnChangeTargetPlayerPositionForTargetGroup -= UpdateMyPlayerCurrentTargetGroup;
     }
 
     private void Update()

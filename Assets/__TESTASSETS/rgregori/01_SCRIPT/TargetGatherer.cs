@@ -71,7 +71,8 @@ public class TargetGatherer : MonoBehaviour
     {
         if (other.CompareTag(TargetTag) )
         {
-            if(PotentialEnemies.Contains(other.transform))
+            if(PotentialEnemies.Contains(other.transform)
+                || (PotentialEnemies.Contains(other.transform) && !other.gameObject.activeInHierarchy) )
             {
                 RemoveEnemyToList?.Invoke(other.transform);
                 TargetableEnemies.Remove(other.transform);
@@ -114,7 +115,7 @@ public class TargetGatherer : MonoBehaviour
                     {
 
                         // if True then add to another List of Targetable Enemies
-                        if (!TargetableEnemies.Contains(enemy.transform))
+                        if (!TargetableEnemies.Contains(enemy.transform) && enemy.gameObject.activeInHierarchy)
                         {
                             TargetableEnemies.Add(enemy.transform);
                         }
@@ -122,7 +123,7 @@ public class TargetGatherer : MonoBehaviour
                     else
                     {
                         Debug.DrawRay(transform.position, dir, Color.red);
-                        if (TargetableEnemies.Contains(enemy.transform))
+                        if (TargetableEnemies.Contains(enemy.transform) && !enemy.gameObject.activeInHierarchy)
                         {
                             TargetableEnemies.Remove(enemy.transform);
 

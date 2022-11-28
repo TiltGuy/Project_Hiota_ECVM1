@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Controller_FSM))]
 public class CharacterSpecs : MonoBehaviour
@@ -57,6 +58,8 @@ public class CharacterSpecs : MonoBehaviour
 
     public System.Action<CharacterSpecs> onHealthDepleted;
     public UnityEvent onKilled;
+    public delegate void MultiCastDelegate();
+    public MultiCastDelegate OnSomethingKilledMe;
 
     //[HideInInspector]
     private float health;
@@ -76,9 +79,15 @@ public class CharacterSpecs : MonoBehaviour
             healthBar.fillAmount = healthPointBarFillAmount;
             if ( health <= 0f )
             {
+                if(this.CompareTag("Player"))
+                {
+                    Scene scene = SceneManager.GetActiveScene();
+                    SceneManager.LoadScene(scene.name);
+                }
                 Debug.Log(this + " => Killed");
                 onHealthDepleted?.Invoke(this);
                 onKilled?.Invoke();
+                OnSomethingKilledMe?.Invoke();
 
             }
         }

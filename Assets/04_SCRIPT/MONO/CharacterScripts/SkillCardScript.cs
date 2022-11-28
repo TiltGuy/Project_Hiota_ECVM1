@@ -26,6 +26,6 @@ public class SkillCardScript : MonoBehaviour
     private void ApplyEffectsOfSkillCardSO(Controller_FSM controller, CharacterSpecs characterSpecs)
     {
         CurrentSkillCard.ApplyEffects(controller, characterSpecs);
-        Debug.Log("Component of the Enemy try to apply effects");
+        //Debug.Log("Component of the Enemy try to apply effects");
     }
 }

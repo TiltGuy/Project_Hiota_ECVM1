@@ -8,7 +8,7 @@ public class ActionCameraPlayer : MonoBehaviour
     Player_InputScript player_InputScript;
 
     public delegate void MultiDelegate();
-    public MultiDelegate OnChangeTargetPlayerPosition;
+    public MultiDelegate OnChangeTargetPlayerPositionForTargetGroup;
 
     [SerializeField]
     private TargetGatherer targetGatherer;
@@ -23,6 +23,9 @@ public class ActionCameraPlayer : MonoBehaviour
     private bool shakeFreeLookCamera;
     [SerializeField]
     private GameObject GO_CameraFreeLook;
+
+    public bool b_CameraGoToNextEnemyIfPreviousDead;
+
 
 
     private void Awake()
@@ -42,7 +45,28 @@ public class ActionCameraPlayer : MonoBehaviour
         controller_FSM.OnHittenByEnemy -= CommandShakeCameraWhenBeingTouched;
     }
 
-    public void ChangeTargetOfPlayer(Vector2 input)
+    public void DoSomethingWhenCurrentTargetGetKilled()
+    {
+        print("ALED!!!");
+        if(targetGatherer.TargetableEnemies.Count >1)
+        {
+            Transform tempTarget = currentHiotaTarget;
+            currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
+
+            controller_FSM.currentCharacterTarget = currentHiotaTarget;
+            OnChangeTargetPlayerPositionForTargetGroup();
+        }
+        else
+        {
+            ToggleCameraMode();
+            controller_FSM.b_IsFocusing = false;
+            controller_FSM.characterAnimator.SetBool("Is_Focusing", false);
+            controller_FSM.currentCharacterTarget = null;
+        }
+        currentHiotaTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
+    }
+
+    public void InputCommandToChangeTargetOfPlayer(Vector2 input)
     {
         if (controller_FSM.b_IsFocusing)
         {
@@ -51,7 +75,7 @@ public class ActionCameraPlayer : MonoBehaviour
                 print("Change");
 
                 UpdateHiotaCurrentTarget(input);
-                OnChangeTargetPlayerPosition();
+                OnChangeTargetPlayerPositionForTargetGroup();
 
                 controller_FSM.b_CanChangeFocusTarget = false;
             }
@@ -83,12 +107,15 @@ public class ActionCameraPlayer : MonoBehaviour
             if(targetGatherer.TargetableEnemies.Count > 0)
             {
                 currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
+                CharacterSpecs targetSpecsScript = currentHiotaTarget.GetComponent<CharacterSpecs>();
+                targetSpecsScript.OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
+
                 //Debug.Log(currentHiotaTarget, this);
                 controller_FSM.currentCharacterTarget = currentHiotaTarget;
-                OnChangeTargetPlayerPosition();
+                OnChangeTargetPlayerPositionForTargetGroup();
                 GO_FocusCamera.SetActive(true);
                 GO_CameraFreeLook.SetActive(false);
-                WaitForFocusLoose();
+                //WaitForFocusLoose();
                 //Debug.Log(currentHiotaTarget, this);
             }
             

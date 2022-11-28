@@ -20,12 +20,14 @@ public class PLY_ACT_RotateToEnemy : Action_SO
         else
         {
             Vector3 inputToPlane = new Vector3(controller.m_InputMoveVector.x,0, controller.m_InputMoveVector.y);
-            DistToEnemy = controller.transform.position - (controller.transform.position + inputToPlane);
+            //DistToEnemy = controller.transform.forward - (controller.transform.forward + inputToPlane);
+            DistToEnemy = controller.m_camF * controller.m_InputMoveVector.y + controller.m_camR * controller.m_InputMoveVector.x;
+            DistToEnemy *= -1f ;
         }
 
         Vector3 lookPos = -DistToEnemy;
         lookPos.y = 0;
-       if(lookPos.magnitude > 0f)
+        if(lookPos.magnitude > 0f)
         {
             Quaternion rotation = Quaternion.LookRotation(lookPos);
             controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, rotation, Time.deltaTime * controller.m_speedTurnWhenAttack);
