@@ -48,22 +48,36 @@ public class ActionCameraPlayer : MonoBehaviour
     public void DoSomethingWhenCurrentTargetGetKilled()
     {
         print("ALED!!!");
-        if(targetGatherer.TargetableEnemies.Count >1)
-        {
-            Transform tempTarget = currentHiotaTarget;
-            currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
+        //if(targetGatherer.TargetableEnemies.Count >1 && b_CameraGoToNextEnemyIfPreviousDead)
+        //{
+        //    Transform tempTarget = currentHiotaTarget;
+        //    currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
 
-            controller_FSM.currentCharacterTarget = currentHiotaTarget;
-            OnChangeTargetPlayerPositionForTargetGroup();
-        }
-        else
+        //    controller_FSM.currentCharacterTarget = currentHiotaTarget;
+        //    OnChangeTargetPlayerPositionForTargetGroup();
+        //}
+        //else if ( !b_CameraGoToNextEnemyIfPreviousDead && targetGatherer.TargetableEnemies.Count <= 1 )
+        //{
+        //    ToggleCameraMode();
+        //    controller_FSM.b_IsFocusing = false;
+        //    controller_FSM.characterAnimator.SetBool("Is_Focusing", false);
+        //    controller_FSM.currentCharacterTarget = null;
+        //}
+        //else
+        //{
+
+        //}
+
+        Transform temptarget = currentHiotaTarget;
+        ToggleCameraMode();
+        controller_FSM.b_IsFocusing = false;
+        controller_FSM.characterAnimator.SetBool("Is_Focusing", false);
+        //controller_FSM.currentCharacterTarget = null;
+        if( temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe != null )
         {
-            ToggleCameraMode();
-            controller_FSM.b_IsFocusing = false;
-            controller_FSM.characterAnimator.SetBool("Is_Focusing", false);
-            controller_FSM.currentCharacterTarget = null;
+            temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
         }
-        currentHiotaTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
+
     }
 
     public void InputCommandToChangeTargetOfPlayer(Vector2 input)
@@ -124,6 +138,9 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             GO_FocusCamera.SetActive(false);
             GO_CameraFreeLook.SetActive(true);
+            controller_FSM.currentCharacterTarget = null;
+            currentHiotaTarget = null;
+            Debug.Log("Tamere", this);
             //Debug.Log("FreeLook Mode Camera Activated", this);
         }
     }

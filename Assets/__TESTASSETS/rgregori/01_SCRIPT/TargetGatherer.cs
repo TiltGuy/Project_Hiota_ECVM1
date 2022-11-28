@@ -240,7 +240,7 @@ public class TargetGatherer : MonoBehaviour
             return angle;
         }).ToList();
 
-        print(input);
+        //print(input);
         if (input.x>.7f)
         {
             if(SortedListOfEnemies.IndexOf(currentHiotaTarget) - 1 >=0 )
