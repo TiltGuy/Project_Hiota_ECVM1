@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Touch : MonoBehaviour
@@ -42,7 +43,11 @@ public class Touch : MonoBehaviour
                 damageable.TakeDamages(currentAttackToUse.damages, ControllerFSM.transform, currentAttackToUse.b_IsAHook);
                 //Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
                 //Debug.Log("Dégats : " + AttackStats.damages, this);
-                controllerFSM.characterAnimator.SetBool("b_Attack", false);
+                bool exists = controllerFSM.characterAnimator.parameters.Any(x => x.name == "input");
+                if (exists)
+                {
+                    controllerFSM.characterAnimator.SetBool("b_Attack", false);
+                }
                 controllerFSM.B_HaveSuccessfullyHitten = true;
                 controllerFSM.OnTouchedEnemy?.Invoke();
                 //InstigatorAnimator.animator.SetTrigger("t_SuccessfullyHitten");

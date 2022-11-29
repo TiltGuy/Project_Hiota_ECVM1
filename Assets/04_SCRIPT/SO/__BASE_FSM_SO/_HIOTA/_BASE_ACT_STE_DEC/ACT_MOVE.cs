@@ -64,10 +64,13 @@ public class ACT_MOVE : Action_SO
             //Update of the Orientation of Hiota
             if (controller.b_IsFocusing)
             {
-                Vector3 hiotaPos = controller.transform.position;
-                Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
-                dir.y = 0;
-                controller.directionToFocus = dir;
+                if(controller.CurrentCharacterTarget != null)
+                {
+                    Vector3 hiotaPos = controller.transform.position;
+                    Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
+                    dir.y = 0;
+                    controller.directionToFocus = dir;
+                }
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
                 controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);
@@ -85,10 +88,13 @@ public class ACT_MOVE : Action_SO
         {
             if (controller.b_IsFocusing)
             {
-                Vector3 hiotaPos = controller.transform.position;
-                Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
-                dir.y = 0;
-                controller.directionToFocus = dir;
+                if(controller.CurrentCharacterTarget != null)
+                {
+                    Vector3 hiotaPos = controller.transform.position;
+                    Vector3 dir = (controller.currentCharacterTarget.position - hiotaPos).normalized;
+                    dir.y = 0;
+                    controller.directionToFocus = dir;
+                }
                 //Debug.DrawLine(hiotaPos, hiotaPos + dir * 10, Color.red, Mathf.Infinity);
                 Quaternion finalrot = Quaternion.LookRotation(controller.directionToFocus, Vector3.up);
                 controller.transform.rotation = Quaternion.Lerp(controller.transform.rotation, finalrot, controller.m_turnSpeed * Time.deltaTime);

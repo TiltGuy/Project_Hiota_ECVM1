@@ -51,7 +51,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
 
     void UpdateMyPlayerCurrentTargetGroup()
     {
-        currentPlayerTarget = actionCameraPlayer.currentHiotaTarget;
+        currentPlayerTarget = actionCameraPlayer.currentHiotaActionCameraTarget;
         //Debug.Log("I want to update my current Target", this);
     }
 }

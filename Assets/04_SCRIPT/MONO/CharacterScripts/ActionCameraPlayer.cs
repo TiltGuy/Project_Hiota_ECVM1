@@ -13,7 +13,7 @@ public class ActionCameraPlayer : MonoBehaviour
     [SerializeField]
     private TargetGatherer targetGatherer;
 
-    public Transform currentHiotaTarget;
+    public Transform currentHiotaActionCameraTarget;
 
     [SerializeField]
     private bool shakeFocusCamera;
@@ -68,10 +68,9 @@ public class ActionCameraPlayer : MonoBehaviour
 
         //}
 
-        Transform temptarget = currentHiotaTarget;
+        //Debug.Log("currentHiotaActionCameraTarget" + currentHiotaActionCameraTarget);
+        Transform temptarget = currentHiotaActionCameraTarget;
         ToggleCameraMode();
-        controller_FSM.b_IsFocusing = false;
-        controller_FSM.characterAnimator.SetBool("Is_Focusing", false);
         //controller_FSM.currentCharacterTarget = null;
         if( temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe != null )
         {
@@ -101,9 +100,15 @@ public class ActionCameraPlayer : MonoBehaviour
     {
         if (targetGatherer.CheckoutNextTargetedEnemy(input) != null)
         {
-            currentHiotaTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
-            controller_FSM.currentCharacterTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
-            Debug.Log(currentHiotaTarget, currentHiotaTarget);
+            Transform tempTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
+            if(tempTarget != currentHiotaActionCameraTarget && tempTarget!= null)
+            {
+                currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
+                currentHiotaActionCameraTarget = tempTarget;
+                currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
+                controller_FSM.CurrentCharacterTarget = currentHiotaActionCameraTarget;
+            }
+            Debug.Log(currentHiotaActionCameraTarget, currentHiotaActionCameraTarget);
         }
     }
 
@@ -120,12 +125,12 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             if(targetGatherer.TargetableEnemies.Count > 0)
             {
-                currentHiotaTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
-                CharacterSpecs targetSpecsScript = currentHiotaTarget.GetComponent<CharacterSpecs>();
+                currentHiotaActionCameraTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
+                CharacterSpecs targetSpecsScript = currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>();
                 targetSpecsScript.OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
 
                 //Debug.Log(currentHiotaTarget, this);
-                controller_FSM.currentCharacterTarget = currentHiotaTarget;
+                controller_FSM.CurrentCharacterTarget = currentHiotaActionCameraTarget;
                 OnChangeTargetPlayerPositionForTargetGroup();
                 GO_FocusCamera.SetActive(true);
                 GO_CameraFreeLook.SetActive(false);
@@ -138,9 +143,8 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             GO_FocusCamera.SetActive(false);
             GO_CameraFreeLook.SetActive(true);
-            controller_FSM.currentCharacterTarget = null;
-            currentHiotaTarget = null;
-            Debug.Log("Tamere", this);
+            controller_FSM.CurrentCharacterTarget = null;
+            currentHiotaActionCameraTarget = null;
             //Debug.Log("FreeLook Mode Camera Activated", this);
         }
     }
@@ -151,7 +155,7 @@ public class ActionCameraPlayer : MonoBehaviour
         if ( !GO_FocusCamera.activeInHierarchy )
             return;
 
-        if(currentHiotaTarget == null || currentHiotaTarget.gameObject.activeInHierarchy == false)
+        if(currentHiotaActionCameraTarget == null || currentHiotaActionCameraTarget.gameObject.activeInHierarchy == false)
         {
             ToggleCameraMode();
         }

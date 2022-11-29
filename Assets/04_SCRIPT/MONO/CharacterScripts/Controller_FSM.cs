@@ -318,6 +318,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     private void OnEnable()
     {
         OnAttackBegin += DebugOnEventCombatSystem;
+        OnTargetNull += SettingCharTargetNull;
         ///TO REFACTO (OnDeathEnemy)
         //OnDeathEnemy += ToggleFocusTarget;
     }
@@ -325,6 +326,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     private void OnDisable()
     {
         OnAttackBegin -= DebugOnEventCombatSystem;
+        OnTargetNull -= SettingCharTargetNull;
         //OnDeathEnemy -= ToggleFocusTarget;
     }
 
@@ -394,6 +396,13 @@ public class Controller_FSM : ActionHandler, IDamageable
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
 
 
+    }
+
+    private void SettingCharTargetNull()
+    {
+        b_IsFocusing = false;
+        characterAnimator.SetBool("Is_Focusing", false);
+        Debug.Log("Target to Null", this);
     }
 
     private void UpdateGuardVariable()

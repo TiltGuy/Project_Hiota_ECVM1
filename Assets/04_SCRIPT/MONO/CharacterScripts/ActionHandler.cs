@@ -54,6 +54,33 @@ public class ActionHandler : MonoBehaviour
 
     public delegate void MultiDelegateWithVector2(Vector2 vector);
     public MultiDelegateWithVector2 OnChangeTargetFocus;
+    public delegate void MultiDelegate();
+    public MultiDelegate OnTargetNull;
+
+
+    public Transform CurrentCharacterTarget
+    {
+        get => currentCharacterTarget;
+        set
+        {
+            
+            if(value == null)
+            {
+                b_IsFocusing = false;
+                characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
+                OnTargetNull();
+            }
+            else
+            {
+                b_IsFocusing = true;
+                characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
+            }
+            currentCharacterTarget = value;
+            //Debug.Log(" CurrentCharTarget of Hiota = " + currentCharacterTarget);
+            //Debug.Log("b_IsFocusing = " + b_IsFocusing);
+            //Debug.Log("Anim IsFocusing = " + characterAnimator.GetBool("Is_Focusing"));
+        }
+    }
 
     public void ChangeCharTargetFocus(Transform newTarget)
     {

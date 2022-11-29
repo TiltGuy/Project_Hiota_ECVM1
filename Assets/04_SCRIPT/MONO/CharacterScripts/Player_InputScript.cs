@@ -97,7 +97,7 @@ public class Player_InputScript : MonoBehaviour
         //appeler la fonction dans la cameraAction script pour changer le comportement camera
         actionCameraPlayer.ToggleCameraMode();
         //appeler la fonction dans l'action handler qui va changer le comportement SM et behaviour anim
-        controller_FSM.ToggleFocusTarget();
+        //controller_FSM.ToggleFocusTarget();
         //print(controller_FSM.b_IsFocusing);
         
     }
