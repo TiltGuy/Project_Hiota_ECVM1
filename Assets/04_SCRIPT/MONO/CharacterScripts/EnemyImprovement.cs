@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class EnemyImprovement : MonoBehaviour, IDamageable
 {
     private Animator _animator;
+    public float _NumberOfUses;
     public List<string> TargetTags = new List<string>();
     public List<SkillCard_SO> SkillCards = new List<SkillCard_SO>();
     public string EnemyTag;
@@ -43,13 +44,18 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
                 }
             }
         }
+        OnSelectSkillCard?.Invoke();
     }
 
     public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
     {
-        AssignNewSkillCard();
-        _animator.SetTrigger("t_Activated");
-        OnSelectSkillCard?.Invoke();
+        if(_NumberOfUses>0)
+        {
+            print("Assign");
+            AssignNewSkillCard();
+            _animator.SetTrigger("t_Activated");
+            _NumberOfUses--;
+        }
     }
 
 }
