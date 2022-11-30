@@ -78,6 +78,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public bool b_IsInvicible = false;
 
     [HideInInspector] private bool b_IsTouched = false;
+    private bool b_IsDead = false;
 
     #endregion
 
@@ -293,6 +294,16 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         get => timerOfHook;
         set => timerOfHook = value;
+    }
+    public bool B_IsDead
+    {
+        get => b_IsDead;
+        set
+        {
+            b_IsDead = value;
+
+            //characterAnimator.SetBool("b_IsDead", value);
+        }
     }
 
     private void Awake()

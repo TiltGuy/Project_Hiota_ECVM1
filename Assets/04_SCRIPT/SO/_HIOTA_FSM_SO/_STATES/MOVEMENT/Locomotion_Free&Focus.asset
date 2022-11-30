@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
   m_Name: Locomotion_Free&Focus
   m_EditorClassIdentifier: 
-  Name: Locomotion_F&F
   actionsEnter:
   - {fileID: 11400000, guid: 13a5136bc00afd64b918a3ddfa19ef2e, type: 2}
   - {fileID: 11400000, guid: e406c9da829750045ab9acd4b9896c8c, type: 2}
@@ -35,6 +34,9 @@ MonoBehaviour:
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   - decision: {fileID: 11400000, guid: cb6b04dcd9852cb43ad4e7459f89f9ab, type: 2}
     true_State: {fileID: 11400000, guid: ac779c6dbfd8f214aa2266f8cbd416db, type: 2}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  - decision: {fileID: 11400000, guid: f7221bda06f0790438a31c237ab03180, type: 2}
+    true_State: {fileID: 11400000, guid: 32ef83694b0e1794a8b68d32a9ab9943, type: 2}
     False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   transitionsAfterCountdown: []
   b_NormalTransitions: 1

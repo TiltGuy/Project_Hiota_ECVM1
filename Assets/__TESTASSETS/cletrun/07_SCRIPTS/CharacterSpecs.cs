@@ -82,8 +82,8 @@ public class CharacterSpecs : MonoBehaviour
             {
                 if(this.CompareTag("Player"))
                 {
-                    Scene scene = SceneManager.GetActiveScene();
-                    SceneManager.LoadScene(scene.name);
+                    //Scene scene = SceneManager.GetActiveScene();
+                    //SceneManager.LoadScene(scene.name);
                 }
                 Debug.Log(this + " => Killed");
                 onHealthDepleted?.Invoke(this);
