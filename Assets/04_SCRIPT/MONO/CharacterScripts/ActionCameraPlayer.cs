@@ -70,12 +70,13 @@ public class ActionCameraPlayer : MonoBehaviour
 
         //Debug.Log("currentHiotaActionCameraTarget" + currentHiotaActionCameraTarget);
         Transform temptarget = currentHiotaActionCameraTarget;
-        ToggleCameraMode();
-        //controller_FSM.currentCharacterTarget = null;
-        if( temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe != null )
+        if ( currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe != null )
         {
             temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
         }
+        ToggleCameraMode();
+        //controller_FSM.currentCharacterTarget = null;
+        
 
     }
 
