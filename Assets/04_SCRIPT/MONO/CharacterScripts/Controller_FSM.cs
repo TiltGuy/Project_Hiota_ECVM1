@@ -91,6 +91,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     [Tooltip("The current speed used by the FSM")]
     private float currentSpeed = 5f;
 
+    public float currentSpeedModifier = 0f;
+
     [Tooltip("the speed of the rotation between the forward of the character and the direction to go")]
     [HideInInspector] public float m_turnSpeed = 20;
 

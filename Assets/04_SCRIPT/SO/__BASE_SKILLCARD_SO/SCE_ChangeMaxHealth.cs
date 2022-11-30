@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Assets/04_SCRIPT/SO/SKILLCARD_SO/EFCT_SO", menuName = "SkillCard/SCE_ChangeMaxHealth")]
+[CreateAssetMenu(fileName = "Assets/04_SCRIPT/SO/SKILLCARD_SO/_EFFECTS/EFCT_SO", menuName = "SkillCard/SCE_ChangeMaxHealth")]
 public class SCE_ChangeMaxHealth : Effect_SO
 {
     public float targetValue;

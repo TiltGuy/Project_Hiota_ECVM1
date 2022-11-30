@@ -64,12 +64,12 @@ public class ENM_ACT_CHASE : Action_SO
 
     private static void ClosingDistance( Controller_FSM controller )
     {
-        controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
+        controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed + controller.currentSpeedModifier;
         controller.NavAgent.SetDestination(controller.currentCharacterTarget.position);
     }
     private static void IncreaseDistance( Controller_FSM controller, Vector3 dir)
     {
-        controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
+        controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed + controller.currentSpeedModifier;
         controller.NavAgent.SetDestination(controller.transform.position + dir);
     }
 
@@ -77,12 +77,12 @@ public class ENM_ACT_CHASE : Action_SO
     {
         if ( b_CanStrafeifCloseEnough )
         {
-            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeedWhenStrafing;
+            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeedWhenStrafing + controller.currentSpeedModifier;
             controller.NavAgent.SetDestination(controller.transform.position + dir);
         }
         else
         {
-            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed;
+            controller.NavAgent.speed = controller.charSpecs.CharStats_SO.BaseSpeed + controller.currentSpeedModifier;
             controller.NavAgent.SetDestination(controller.transform.position);
         }
     }

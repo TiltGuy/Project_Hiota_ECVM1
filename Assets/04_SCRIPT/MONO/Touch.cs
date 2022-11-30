@@ -39,8 +39,9 @@ public class Touch : MonoBehaviour
             //Debug.Log(other.gameObject.name, this);
             if (damageable != null)
             {
+                CharacterSpecs tempCharSpecs = controllerFSM.GetComponent<CharacterSpecs>();
                 AttackStats_SO currentAttackToUse = controllerFSM.CurrentAttackStats;
-                damageable.TakeDamages(currentAttackToUse.damages, ControllerFSM.transform, currentAttackToUse.b_IsAHook);
+                damageable.TakeDamages(currentAttackToUse.damages + tempCharSpecs.currentDamagesModifier, ControllerFSM.transform, currentAttackToUse.b_IsAHook);
                 //Debug.Log("Moi : " + gameObject.name + "Je TOUCHE!!! " + other.gameObject.name, this);
                 //Debug.Log("Dégats : " + AttackStats.damages, this);
                 bool exists = controllerFSM.characterAnimator.parameters.Any(x => x.name == "input");
