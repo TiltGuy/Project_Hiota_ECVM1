@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EnemyImprovement : MonoBehaviour, IDamageable
 {
@@ -12,6 +13,8 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     public string EnemyTag;
     public List<Transform> Enemies = new List<Transform>();
     public UnityEvent OnSelectSkillCard;
+    public bool saveToPlayerPrefs = false;
+
     private void Awake()
     {
         UpdateListOfEnemies();
@@ -29,6 +32,11 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     private void Start()
     {
         //AssignNewSkillCard();
+
+        if ( saveToPlayerPrefs && PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated") == 1 )
+        {
+            TakeDamages(0, null, false);
+        }
     }
 
     private void AssignNewSkillCard()
@@ -55,6 +63,11 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
             AssignNewSkillCard();
             _animator.SetTrigger("t_Activated");
             _NumberOfUses--;
+
+            if ( saveToPlayerPrefs )
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
+            }
         }
     }
 

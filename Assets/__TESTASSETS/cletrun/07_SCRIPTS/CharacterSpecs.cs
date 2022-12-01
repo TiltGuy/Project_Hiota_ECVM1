@@ -80,16 +80,10 @@ public class CharacterSpecs : MonoBehaviour
             healthBar.fillAmount = healthPointBarFillAmount;
             if ( health <= 0f )
             {
-                if(this.CompareTag("Player"))
-                {
-                    //Scene scene = SceneManager.GetActiveScene();
-                    //SceneManager.LoadScene(scene.name);
-                }
                 Debug.Log(this + " => Killed");
                 onHealthDepleted?.Invoke(this);
                 onKilled?.Invoke();
                 OnSomethingKilledMe?.Invoke();
-
             }
         }
 	}

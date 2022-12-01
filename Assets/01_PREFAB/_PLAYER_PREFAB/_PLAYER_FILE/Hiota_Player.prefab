@@ -1263,6 +1263,7 @@ GameObject:
   - component: {fileID: 849633942}
   - component: {fileID: 1712430858}
   - component: {fileID: 3568774824817992259}
+  - component: {fileID: 8993273744164734514}
   m_Layer: 8
   m_Name: Hiota_Player
   m_TagString: Player
@@ -1393,6 +1394,7 @@ MonoBehaviour:
   BrainAI: {fileID: 0}
   b_IsInvicible: 0
   baseSpeed: 5
+  currentSpeedModifier: 0
   m_turnSpeed: 20
   _isGrounded: 0
   distanceCheckGround: 0.25
@@ -1452,7 +1454,19 @@ MonoBehaviour:
   ParryAttackStats: {fileID: 11400000, guid: 634ab48e56c8412459bc02f8b362913e, type: 2}
   onKilled:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8993273744164734514}
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  currentDamagesModifier: 0
   healthBar: {fileID: 0}
   healthPointBarFillAmount: 0
   guardBarImage: {fileID: 0}
@@ -1488,11 +1502,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGatherer: {fileID: 7018018961163401237}
-  currentHiotaTarget: {fileID: 0}
+  currentHiotaActionCameraTarget: {fileID: 0}
   shakeFocusCamera: 1
   GO_FocusCamera: {fileID: 0}
   shakeFreeLookCamera: 0
   GO_CameraFreeLook: {fileID: 0}
+  b_CameraGoToNextEnemyIfPreviousDead: 0
+--- !u!114 &8993273744164734514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163913624370452317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086b153d224aee840a3fe34520194ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1208566196589230477
 GameObject:
   m_ObjectHideFlags: 0
@@ -9634,12 +9661,6 @@ PrefabInstance:
       objectReference: {fileID: 1645655096204719503}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fbca7cbaeb32ac4a819f6c9036e956e, type: 3}
---- !u!4 &1001982654685172471 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 547949701324129369, guid: 4fbca7cbaeb32ac4a819f6c9036e956e,
-    type: 3}
-  m_PrefabInstance: {fileID: 755888628066424494}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7018018961163401237 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7717049611553189563, guid: 4fbca7cbaeb32ac4a819f6c9036e956e,
@@ -9652,3 +9673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34209f08f89486948a09b1b137f76535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1001982654685172471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 547949701324129369, guid: 4fbca7cbaeb32ac4a819f6c9036e956e,
+    type: 3}
+  m_PrefabInstance: {fileID: 755888628066424494}
+  m_PrefabAsset: {fileID: 0}
