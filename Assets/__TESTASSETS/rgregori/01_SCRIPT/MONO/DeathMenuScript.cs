@@ -21,13 +21,19 @@ public class DeathMenuScript : MonoBehaviour
     private void OnEnable()
     {
         actions.Enable();
-        refPlayer.GetComponent<CharacterSpecs>().OnSomethingKilledMe += setMenu;
+        if(refPlayer != null)
+        {
+            refPlayer.GetComponent<CharacterSpecs>().OnSomethingKilledMe += setMenu;
+        }
     }
 
     private void OnDisable()
     {
         actions.Disable();
-        refPlayer.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= setMenu;
+        if(refPlayer != null)
+        {
+            refPlayer.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= setMenu;
+        }
     }
 
     public void LoadMenu()

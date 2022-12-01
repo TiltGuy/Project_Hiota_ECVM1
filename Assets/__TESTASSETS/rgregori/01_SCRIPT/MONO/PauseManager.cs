@@ -84,7 +84,8 @@ public class PauseManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        ResumeGame();
+        SceneManager.LoadScene(0);
         print("Go Main Menu");
     }
 }
