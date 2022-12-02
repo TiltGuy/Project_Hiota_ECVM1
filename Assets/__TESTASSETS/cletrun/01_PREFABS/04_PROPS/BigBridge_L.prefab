@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6480522596402981346}
   - component: {fileID: 5901845706975462761}
   - component: {fileID: 5689330484615469925}
+  - component: {fileID: 8661684628881199511}
   m_Layer: 0
   m_Name: _BigBridge02_L
   m_TagString: Untagged
@@ -111,6 +112,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8661684628881199511
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010348712082884972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1597245604901564308, guid: d6017126590ca7e4994ccfed4b167101, type: 3}
 --- !u!1 &5017477824473103637
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +137,7 @@ GameObject:
   - component: {fileID: 8765402036637506182}
   - component: {fileID: 7692328640154645729}
   - component: {fileID: 3299414372566573404}
+  - component: {fileID: 3937125583986354274}
   m_Layer: 0
   m_Name: _BigBridge01_L
   m_TagString: Untagged
@@ -190,3 +206,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3937125583986354274
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5017477824473103637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -789839184985592254, guid: d6017126590ca7e4994ccfed4b167101, type: 3}
