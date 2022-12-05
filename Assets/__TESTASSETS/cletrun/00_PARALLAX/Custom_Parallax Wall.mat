@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_Parallax Wall
+  m_Shader: {fileID: 4800000, guid: 5d4cf77277fa9144b98ec6cc85c0e060, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _01:
+        m_Texture: {fileID: 2800000, guid: 7dc4371147da39841a61c173a31e879f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _02:
+        m_Texture: {fileID: 2800000, guid: 45ba13e82c20e3d44b7ea864b6395803, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _02_mask:
+        m_Texture: {fileID: 2800000, guid: a963d8112a1211c4980aa5b81a1f4d22, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _03:
+        m_Texture: {fileID: 2800000, guid: e2f6f6101ecef3c4da1059d03ae8e991, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _03_mask:
+        m_Texture: {fileID: 2800000, guid: 2c5f59f2bac4c9c4d8d48c50157a8586, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _04:
+        m_Texture: {fileID: 2800000, guid: 0a4607fe21262a848a00723c46ba5141, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _04_Mask:
+        m_Texture: {fileID: 2800000, guid: f57652a3e6fc83145b888f09cc5da2c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - __dirty: 0
+    m_Colors: []
