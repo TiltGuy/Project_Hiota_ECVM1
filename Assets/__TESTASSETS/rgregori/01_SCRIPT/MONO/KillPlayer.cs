@@ -11,8 +11,8 @@ public class KillPlayer : MonoBehaviour
         {
             CharacterSpecs tempSpecs = other.GetComponent<CharacterSpecs>();
             tempSpecs.OnSomethingKilledMe();
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            //Scene scene = SceneManager.GetActiveScene();
+            //SceneManager.LoadScene(scene.name);
         }
     }
 }
