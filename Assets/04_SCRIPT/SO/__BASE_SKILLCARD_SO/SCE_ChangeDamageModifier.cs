@@ -6,12 +6,11 @@ using UnityEngine;
 public class SCE_ChangeDamageModifier : Effect_SO
 {
     public float DamageModiferValue;
-    public string cardMessage;
 
     public override void AddEffect( Controller_FSM controller, CharacterSpecs characterSpecs )
     {
         characterSpecs.currentDamagesModifier += DamageModiferValue;
-        cardMessage = cardMessage + DamageModiferValue;
+        //cardMessage = cardMessage + DamageModiferValue;
         //Debug.Log("Replenish All HP", this);
     }
 }
