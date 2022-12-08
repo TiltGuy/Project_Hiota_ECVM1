@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using System;
+using TMPro;
+
 
 public class EnemyImprovement : MonoBehaviour, IDamageable
 {
@@ -14,6 +17,10 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     public List<Transform> Enemies = new List<Transform>();
     public UnityEvent OnSelectSkillCard;
     public bool saveToPlayerPrefs = false;
+    //put the ref in the editor
+    public TMP_Text Bonus_Text;
+    //put the ref in the editor
+    public TMP_Text Malus_Text;
 
     private void Awake()
     {
@@ -27,6 +34,11 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         {
             Enemies.Add(enemy.GetComponent<Transform>());
         }
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     private void Start()
@@ -48,7 +60,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
                 if(SkillCards.Count > 0)
                 {
                     SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
-                    CurrentInstance.CurrentSkillCard = SkillCards[Random.Range(0, SkillCards.Count)];
+                    CurrentInstance.CurrentSkillCard = SkillCards[UnityEngine.Random.Range(0, SkillCards.Count)];
                 }
             }
         }

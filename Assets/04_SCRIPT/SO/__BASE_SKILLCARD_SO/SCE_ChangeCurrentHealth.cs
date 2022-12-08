@@ -6,10 +6,12 @@ using UnityEngine;
 public class SCE_ChangeCurrentHealth : Effect_SO
 {
     public float targetValue;
+    public string cardMessage;
 
     public override void AddEffect( Controller_FSM controller, CharacterSpecs characterSpecs )
     {
         characterSpecs.Health = targetValue;
+        cardMessage = cardMessage;
         //Debug.Log("Replenish All HP", this);
     }
 }
