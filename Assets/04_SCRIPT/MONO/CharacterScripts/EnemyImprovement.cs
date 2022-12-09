@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using System;
-using TMPro;
-
 
 public class EnemyImprovement : MonoBehaviour, IDamageable
 {
@@ -17,10 +14,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     public List<Transform> Enemies = new List<Transform>();
     public UnityEvent OnSelectSkillCard;
     public bool saveToPlayerPrefs = false;
-    //put the ref in the editor
-    public TMP_Text Bonus_Text;
-    //put the ref in the editor
-    public TMP_Text Malus_Text;
 
     private void Awake()
     {
@@ -36,13 +29,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         }
     }
 
-    
-
-    private void OnEnable()
-    {
-        
-    }
-
     private void Start()
     {
         //AssignNewSkillCard();
@@ -51,9 +37,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         {
             TakeDamages(0, null, false);
         }
-
-        UpdateCardMessages(Bonus_Text, SkillCards, true);
-        UpdateCardMessages(Malus_Text, SkillCards, false);
     }
 
     private void AssignNewSkillCard()
@@ -65,7 +48,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
                 if(SkillCards.Count > 0)
                 {
                     SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
-                    CurrentInstance.CurrentSkillCard = SkillCards[UnityEngine.Random.Range(0, SkillCards.Count)];
+                    CurrentInstance.CurrentSkillCard = SkillCards[Random.Range(0, SkillCards.Count)];
                 }
             }
         }
@@ -84,44 +67,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
             if ( saveToPlayerPrefs )
             {
                 PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
-            }
-        }
-    }
-
-    private void UpdateCardMessages(TMP_Text textToUpdate, List<SkillCard_SO> skillCards, bool b_BonusDisplay)
-    {
-        for (int i = 0; i < skillCards.Count; i++)
-        {
-            string newLine = Environment.NewLine;
-            if (b_BonusDisplay)
-            {
-                for ( int j = 0; j < skillCards[i].Bonus.Count; j++ )
-                {
-                    // first Line of Text
-                    if ( i == 0 && j == 0)
-                    {
-                        textToUpdate.text += skillCards[i].Bonus[j].cardMessage;
-                    }
-                    else
-                    {
-                        textToUpdate.text += newLine + skillCards[i].Bonus[j].cardMessage;
-                    }
-                }
-            }
-            else
-            {
-                for ( int j = 0; j < skillCards[i].Malus.Count; j++ )
-                {
-                    // first Line of Text
-                    if ( i == 0 && j == 0 )
-                    {
-                        textToUpdate.text += skillCards[i].Malus[j].cardMessage;
-                    }
-                    else
-                    {
-                        textToUpdate.text += newLine + skillCards[i].Malus[j].cardMessage;
-                    }
-                }
             }
         }
     }

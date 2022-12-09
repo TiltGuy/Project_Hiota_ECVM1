@@ -12,7 +12,6 @@ public class SCE_ChangeMaxHealth : Effect_SO
         //base.AddEffect( controller, characterSpecs );
         //Debug.Log(characterSpecs.MaxHealth, controller);
         characterSpecs.MaxHealth += targetValue;
-        //cardMessage = cardMessage + targetValue;
         //Debug.Log(characterSpecs.MaxHealth, controller);
     }
 }

@@ -10,7 +10,6 @@ public class SCE_ChangeSpeedModifier : Effect_SO
     public override void AddEffect( Controller_FSM controller, CharacterSpecs characterSpecs )
     {
         controller.currentSpeedModifier += SpeedModiferValue;
-        //cardMessage = cardMessage + SpeedModiferValue;
         //Debug.Log("Replenish All HP", this);
     }
 }
