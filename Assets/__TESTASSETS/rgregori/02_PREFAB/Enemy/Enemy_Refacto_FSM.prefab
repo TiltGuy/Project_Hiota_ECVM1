@@ -197,7 +197,6 @@ GameObject:
   - component: {fileID: 1897634448}
   - component: {fileID: 1912565262}
   - component: {fileID: 1241458844}
-  - component: {fileID: 1912329442}
   m_Layer: 9
   m_Name: Enemy_Refacto_FSM
   m_TagString: Enemy
@@ -275,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6582034d29117e147a26ba70fa632f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharStats_SO: {fileID: 11400000, guid: 5cfaa7c1c74cc744bbe08d0573bb4e94, type: 2}
+  CharStats_SO: {fileID: 11400000, guid: fa403678eb5fe1b49b598b8835dbeb1a, type: 2}
   m_speedTurnWhenAttack: 5
   m_turnSpeedWhenFocused: 20
   BasicAttackStats: {fileID: 11400000, guid: fb9eed3954901ad47ad9fa6f6f3c8aa6, type: 2}
@@ -352,7 +351,6 @@ MonoBehaviour:
   BrainAI: {fileID: 1897634448}
   b_IsInvicible: 0
   baseSpeed: 5
-  currentSpeedModifier: 0
   m_turnSpeed: 20
   _isGrounded: 0
   distanceCheckGround: 0.25
@@ -440,18 +438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentSkillCard: {fileID: 11400000, guid: af9c4f4c65592a844bb4a6bd440e0ff1, type: 2}
   ArmorImprove: 2
---- !u!114 &1912329442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39000561153551387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a19d5a7ba59494eb5724a47b30d752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &39000561188572071
 GameObject:
   m_ObjectHideFlags: 0
