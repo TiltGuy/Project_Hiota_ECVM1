@@ -12,7 +12,8 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     private Animator _animator;
     public float _NumberOfUses;
     public List<string> TargetTags = new List<string>();
-    public List<SkillCard_SO> SkillCards = new List<SkillCard_SO>();
+    //public List<SkillCard_SO> SkillCards = new List<SkillCard_SO>();
+    public SkillCard_SO SkillCard;
     public string EnemyTag;
     public List<Transform> Enemies = new List<Transform>();
     public UnityEvent OnSelectSkillCard;
@@ -52,22 +53,30 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
             TakeDamages(0, null, false);
         }
 
-        UpdateCardMessages(Bonus_Text, SkillCards, true);
-        UpdateCardMessages(Malus_Text, SkillCards, false);
+        UpdateCardMessages(Bonus_Text, SkillCard, true);
+        UpdateCardMessages(Malus_Text, SkillCard, false);
     }
 
     private void AssignNewSkillCard()
     {
-        foreach ( Transform enemy in Enemies )
+        //foreach ( Transform enemy in Enemies )
+        //{
+        //    if(enemy.gameObject.activeInHierarchy)
+        //    {
+        //        if(SkillCard != null)
+        //        {
+        //           //SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
+        //            //CurrentInstance.CurrentSkillCard = SkillCard;
+        //            DeckManager.instance.AddCardToEnnemyDeck(SkillCard);
+        //        }
+        //    }
+        //}
+
+        if ( SkillCard != null )
         {
-            if(enemy.gameObject.activeInHierarchy)
-            {
-                if(SkillCards.Count > 0)
-                {
-                    SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
-                    CurrentInstance.CurrentSkillCard = SkillCards[UnityEngine.Random.Range(0, SkillCards.Count)];
-                }
-            }
+            //SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
+            //CurrentInstance.CurrentSkillCard = SkillCard;
+            DeckManager.instance.AddCardToEnnemyDeck(SkillCard);
         }
         OnSelectSkillCard?.Invoke();
     }
@@ -88,42 +97,46 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         }
     }
 
-    private void UpdateCardMessages(TMP_Text textToUpdate, List<SkillCard_SO> skillCards, bool b_BonusDisplay)
+    private void UpdateCardMessages(TMP_Text textToUpdate, SkillCard_SO skillCard, bool b_BonusDisplay)
     {
-        for (int i = 0; i < skillCards.Count; i++)
+        string newLine = Environment.NewLine;
+        if (b_BonusDisplay)
         {
-            string newLine = Environment.NewLine;
-            if (b_BonusDisplay)
+            if( skillCard.Bonus.Count > 0)
             {
-                for ( int j = 0; j < skillCards[i].Bonus.Count; j++ )
+                for ( int j = 0; j < skillCard.Bonus.Count; j++ )
                 {
                     // first Line of Text
-                    if ( i == 0 && j == 0)
+                    if ( j == 0 )
                     {
-                        textToUpdate.text += skillCards[i].Bonus[j].cardMessage;
+                        textToUpdate.text += skillCard.Bonus[j].cardMessage;
                     }
                     else
                     {
-                        textToUpdate.text += newLine + skillCards[i].Bonus[j].cardMessage;
-                    }
-                }
-            }
-            else
-            {
-                for ( int j = 0; j < skillCards[i].Malus.Count; j++ )
-                {
-                    // first Line of Text
-                    if ( i == 0 && j == 0 )
-                    {
-                        textToUpdate.text += skillCards[i].Malus[j].cardMessage;
-                    }
-                    else
-                    {
-                        textToUpdate.text += newLine + skillCards[i].Malus[j].cardMessage;
+                        textToUpdate.text += newLine + skillCard.Bonus[j].cardMessage;
                     }
                 }
             }
         }
+        else
+        {
+            if( skillCard.Malus.Count > 0 )
+            {
+                for ( int j = 0; j < skillCard.Malus.Count; j++ )
+                {
+                    // first Line of Text
+                    if ( j == 0 )
+                    {
+                        textToUpdate.text += skillCard.Malus[j].cardMessage;
+                    }
+                    else
+                    {
+                        textToUpdate.text += newLine + skillCard.Malus[j].cardMessage;
+                    }
+                }
+            }
+        }
+        
     }
 
 }
