@@ -85,7 +85,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     {
         if(_NumberOfUses>0)
         {
-            print("Assign");
+            //print("Assign");
             AssignNewSkillCard();
             _animator.SetTrigger("t_Activated");
             _NumberOfUses--;

@@ -22,16 +22,18 @@ public class PlayerRespawn : MonoBehaviour
     private IEnumerator RespawnCoroutine()
     {
         Camera.main.FadeOut(fadeDuration);
-        yield return new WaitForSeconds(fadeDuration);
+        GetComponent<Controller_FSM>().gravity = 0;
+        yield return new WaitForSecondsRealtime(fadeDuration);
 
         // reload level
         var activeScene = SceneManager.GetActiveScene();
-        var asyncOp = SceneManager.LoadSceneAsync(activeScene.name);
-        while(!asyncOp.isDone)
-        {
-            Debug.Log(asyncOp.progress);
-            yield return null;
-        }
+        //var asyncOp = SceneManager.LoadSceneAsync(activeScene.name);
+        SceneManager.LoadScene(activeScene.name);
+        //while (!asyncOp.isDone)
+        //{
+        //    Debug.Log(asyncOp.progress);
+        //    yield return null;
+        //}
     }
 
     private IEnumerator Start()
@@ -53,7 +55,7 @@ public class PlayerRespawn : MonoBehaviour
 
         if ( lastCheckpoint != null )
         {
-            Debug.Log("Reload checkpoint: " + lastCheckpoint.checkpointIndex);
+            //Debug.Log("Reload checkpoint: " + lastCheckpoint.checkpointIndex);
             transform.position = lastCheckpoint.respawnTarget.position;
         }
 

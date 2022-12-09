@@ -28,7 +28,7 @@ public class SpawnCardManager : MonoBehaviour
             if ( SteleSkilCards[i] != null )
             {
                 SteleSkilCards[i].SkillCard = skillCard_SOsToAssign[i];
-                Debug.Log(skillCard_SOsToAssign[i], SteleSkilCards[i]);
+                //Debug.Log(skillCard_SOsToAssign[i], SteleSkilCards[i]);
             }
         }
         //Debug.Log(skillCard_SOs);

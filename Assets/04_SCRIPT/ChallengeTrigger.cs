@@ -17,7 +17,7 @@ public class ChallengeTrigger : MonoBehaviour
         {
             if ( PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "." + name + ".completed") == 1 )
             {
-                Debug.Log("CompleteChallenge => " + this);
+                //Debug.Log("CompleteChallenge => " + this);
                 enemiesToKill.ForEach(e => e.gameObject.SetActive(false));
                 enemiesToKill.Clear();
             }

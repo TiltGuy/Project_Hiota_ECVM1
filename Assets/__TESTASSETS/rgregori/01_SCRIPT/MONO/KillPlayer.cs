@@ -10,7 +10,8 @@ public class KillPlayer : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             CharacterSpecs tempSpecs = other.GetComponent<CharacterSpecs>();
-            tempSpecs.OnSomethingKilledMe();
+            //tempSpecs.OnSomethingKilledMe();
+            tempSpecs.Kill();
             //Scene scene = SceneManager.GetActiveScene();
             //SceneManager.LoadScene(scene.name);
         }
