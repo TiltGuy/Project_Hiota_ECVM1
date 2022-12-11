@@ -379,7 +379,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""id"": ""b4ce8e1b-d655-4e88-b8a6-17d36d26d7f6"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone(min=0.5),NormalizeVector2,ScaleVector2(x=10)"",
+                    ""processors"": ""StickDeadzone(min=0.25),NormalizeVector2,ScaleVector2(x=5)"",
                     ""groups"": """",
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,
