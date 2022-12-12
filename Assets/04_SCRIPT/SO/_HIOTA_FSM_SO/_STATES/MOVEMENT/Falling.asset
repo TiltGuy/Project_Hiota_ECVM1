@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
   m_Name: Falling
   m_EditorClassIdentifier: 
-  Name: Falling
   actionsEnter:
   - {fileID: 11400000, guid: e406c9da829750045ab9acd4b9896c8c, type: 2}
+  - {fileID: 11400000, guid: f0318ce2e3776d247a154eee76975a0f, type: 2}
   actionsUpdate:
   - {fileID: 11400000, guid: 2bd6bfbcdbab2224c8a9f9a540bdf619, type: 2}
-  actionsExit: []
+  actionsExit:
+  - {fileID: 11400000, guid: c49ab79f836cddd4186bf6da4bd9468e, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: bdd3283f0c776764cb9b03b845becfc3, type: 2}
     true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
