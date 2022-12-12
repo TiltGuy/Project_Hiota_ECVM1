@@ -357,7 +357,7 @@
                     "id": "b4ce8e1b-d655-4e88-b8a6-17d36d26d7f6",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "StickDeadzone(min=0.25),NormalizeVector2,ScaleVector2(x=5)",
+                    "processors": "StickDeadzone(min=0.15),NormalizeVector2,ScaleVector2(x=10)",
                     "groups": "",
                     "action": "LookCamera",
                     "isComposite": false,
@@ -655,6 +655,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XBOX360_Scheme",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6560253-eca6-4fdb-8f05-1f8e87b407b7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false

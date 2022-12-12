@@ -115,7 +115,7 @@ public class State_SO : ScriptableObject
         {
             stateTimer = 0;
         }
-        //Debug.Log(controller.currentState + "ENTER");
+        Debug.Log(controller.currentState + "ENTER");
         DoActions(controller, actionsEnter);
     }
 
