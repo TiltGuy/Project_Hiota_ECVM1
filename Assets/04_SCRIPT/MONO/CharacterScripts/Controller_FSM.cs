@@ -101,7 +101,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     [HideInInspector] public bool _isGrounded = false;
 
     [Tooltip("it's the radius of the sphere checking the IsGrounded function")]
-    [HideInInspector] public float distanceCheckGround = 0.25f;
+    public float distanceCheckGround = 0.56f;
 
     [Tooltip("it catches Hiota when he falls")]
     [SerializeField] public float gravity = -9.17f;
@@ -384,10 +384,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             lastDirectionInput = directionToGo;
         }
 
-        if(characontroller)
-        {
-            IsDetectingGround();
-        }
+        
 
         Debug.DrawRay(transform.position, directionToFocus, Color.red);
         if (charSpecs.CurrentGuard> 0)
@@ -409,6 +406,16 @@ public class Controller_FSM : ActionHandler, IDamageable
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if ( characontroller )
+        {
+            IsDetectingGround();
+            Debug.Log(_isGrounded, this);
+        }
+        
     }
 
     private void SettingCharTargetNull()
@@ -451,25 +458,24 @@ public class Controller_FSM : ActionHandler, IDamageable
     //Detection ground with a sphere
     public void IsDetectingGround()
     {
-        if (characontroller.isGrounded)
-        {
-            _isGrounded = true;
-        }
-        else
-        {
-            _isGrounded = false;
-        }
-        //Debug.DrawLine(transform.position,)
-        //return coyoteTime < maxCoyoteTime;
+        _isGrounded = Physics.CheckSphere(_groundChecker.position, distanceCheckGround, Ground);
     }
 
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
-        if(_groundChecker)
+        if (_groundChecker)
         {
             Gizmos.DrawWireSphere(_groundChecker.position, distanceCheckGround);
+            if(_isGrounded)
+            {
+                Gizmos.color = Color.yellow;
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+            }
         }
     }
 

@@ -101,7 +101,7 @@ public class ACT_MOVE : Action_SO
                 controller.characterAnimator.SetFloat("Input_Move_VectorX", controller.m_InputMoveVector.x);
                 controller.characterAnimator.SetFloat("Input_Move_VectorZ", controller.m_InputMoveVector.y);
             }
-
+            controller.dashDirection = controller.transform.forward;
             Vector3 fallGravity = new Vector3(0, controller.gravity, 0);
             controller.characontroller.Move(fallGravity * Time.deltaTime);
         }

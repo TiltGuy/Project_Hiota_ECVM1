@@ -22,7 +22,7 @@ public class PlayerRespawn : MonoBehaviour
     private IEnumerator RespawnCoroutine()
     {
         Camera.main.FadeOut(fadeDuration);
-        GetComponent<Controller_FSM>().gravity = 0;
+        //GetComponent<Controller_FSM>().gravity = 0;
         yield return new WaitForSecondsRealtime(fadeDuration);
 
         // reload level
