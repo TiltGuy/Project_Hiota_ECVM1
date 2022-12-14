@@ -39,8 +39,8 @@ public class MainMenu : MonoBehaviour
 
         optionsWindow.SetActive(false);
 
-        action.UI.SwitchWindow.started += ctx => SwitchLeftWindow();
-        action.UI.SwitchWindow.started += ctx => SwitchRightWindow();
+        action.UI.SwitchShortcut.started += ctx => SwitchLeftWindow();
+        action.UI.SwitchShortcut.started += ctx => SwitchRightWindow();
     }
 
     private void SwitchLeftWindow()

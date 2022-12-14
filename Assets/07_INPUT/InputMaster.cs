@@ -636,9 +636,18 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwitchWindow"",
+                    ""name"": ""SwitchShortcut"",
                     ""type"": ""Button"",
                     ""id"": ""b9d03dd0-10f9-4c55-bd15-6246a53ecdbf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c23d7a6-6dd3-402e-8e47-1f17bcbd58aa"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1049,7 +1058,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""SwitchWindow"",
+                    ""action"": ""SwitchShortcut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1059,7 +1068,73 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""SwitchShortcut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e201b64e-47af-4ec2-b8f2-d41e43116a91"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchShortcut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8652d0ac-0ffa-4dcc-a1d3-cb6327bf612d"",
+                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""SwitchShortcut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9fe04cb-e33d-4903-8e68-220f699a8d0e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""SwitchShortcut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5689a3d6-92d9-44eb-a3b0-c4f0c3baa9b8"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""SwitchShortcut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""034b2d38-9109-47bb-9806-f24cd3860199"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fea503a1-f892-44ad-b3b1-735f54a65b8c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""SwitchWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1070,18 +1145,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchWindow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e201b64e-47af-4ec2-b8f2-d41e43116a91"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyB&Mouse"",
                     ""action"": ""SwitchWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1092,18 +1156,29 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyB&Mouse"",
                     ""action"": ""SwitchWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8652d0ac-0ffa-4dcc-a1d3-cb6327bf612d"",
-                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""id"": ""0a5c5280-233b-4957-ba17-83d627686281"",
+                    ""path"": ""<DualShockGamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6f84fbc-8e03-4329-b079-0363efcf7de9"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
                     ""action"": ""SwitchWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1186,6 +1261,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_EscapeUI = m_UI.FindAction("EscapeUI", throwIfNotFound: true);
+        m_UI_SwitchShortcut = m_UI.FindAction("SwitchShortcut", throwIfNotFound: true);
         m_UI_SwitchWindow = m_UI.FindAction("SwitchWindow", throwIfNotFound: true);
     }
 
@@ -1353,6 +1429,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_EscapeUI;
+    private readonly InputAction m_UI_SwitchShortcut;
     private readonly InputAction m_UI_SwitchWindow;
     public struct UIActions
     {
@@ -1368,6 +1445,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @EscapeUI => m_Wrapper.m_UI_EscapeUI;
+        public InputAction @SwitchShortcut => m_Wrapper.m_UI_SwitchShortcut;
         public InputAction @SwitchWindow => m_Wrapper.m_UI_SwitchWindow;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
@@ -1408,6 +1486,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @EscapeUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
                 @EscapeUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
                 @EscapeUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
+                @SwitchShortcut.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchShortcut;
+                @SwitchShortcut.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchShortcut;
+                @SwitchShortcut.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchShortcut;
                 @SwitchWindow.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
                 @SwitchWindow.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
                 @SwitchWindow.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
@@ -1445,6 +1526,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @EscapeUI.started += instance.OnEscapeUI;
                 @EscapeUI.performed += instance.OnEscapeUI;
                 @EscapeUI.canceled += instance.OnEscapeUI;
+                @SwitchShortcut.started += instance.OnSwitchShortcut;
+                @SwitchShortcut.performed += instance.OnSwitchShortcut;
+                @SwitchShortcut.canceled += instance.OnSwitchShortcut;
                 @SwitchWindow.started += instance.OnSwitchWindow;
                 @SwitchWindow.performed += instance.OnSwitchWindow;
                 @SwitchWindow.canceled += instance.OnSwitchWindow;
@@ -1512,6 +1596,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnEscapeUI(InputAction.CallbackContext context);
+        void OnSwitchShortcut(InputAction.CallbackContext context);
         void OnSwitchWindow(InputAction.CallbackContext context);
     }
 }

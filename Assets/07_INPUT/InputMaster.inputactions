@@ -614,9 +614,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchWindow",
+                    "name": "SwitchShortcut",
                     "type": "Button",
                     "id": "b9d03dd0-10f9-4c55-bd15-6246a53ecdbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchWindow",
+                    "type": "Button",
+                    "id": "8c23d7a6-6dd3-402e-8e47-1f17bcbd58aa",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1027,7 +1036,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "SwitchWindow",
+                    "action": "SwitchShortcut",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1037,7 +1046,73 @@
                     "path": "<DualShockGamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PS4_Scheme",
+                    "action": "SwitchShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e201b64e-47af-4ec2-b8f2-d41e43116a91",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SwitchShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8652d0ac-0ffa-4dcc-a1d3-cb6327bf612d",
+                    "path": "<DualShockGamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4_Scheme",
+                    "action": "SwitchShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9fe04cb-e33d-4903-8e68-220f699a8d0e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyB&Mouse",
+                    "action": "SwitchShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5689a3d6-92d9-44eb-a3b0-c4f0c3baa9b8",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyB&Mouse",
+                    "action": "SwitchShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "034b2d38-9109-47bb-9806-f24cd3860199",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SwitchWindow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fea503a1-f892-44ad-b3b1-735f54a65b8c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "SwitchWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1048,18 +1123,7 @@
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "SwitchWindow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e201b64e-47af-4ec2-b8f2-d41e43116a91",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": "KeyB&Mouse",
                     "action": "SwitchWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1070,18 +1134,29 @@
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyB&Mouse",
                     "action": "SwitchWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8652d0ac-0ffa-4dcc-a1d3-cb6327bf612d",
-                    "path": "<DualShockGamepad>/rightShoulder",
+                    "id": "0a5c5280-233b-4957-ba17-83d627686281",
+                    "path": "<DualShockGamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PS4_Scheme",
+                    "action": "SwitchWindow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6f84fbc-8e03-4329-b079-0363efcf7de9",
+                    "path": "<DualShockGamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4_Scheme",
                     "action": "SwitchWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
