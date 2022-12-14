@@ -182,5 +182,6 @@ public class PauseManager : MonoBehaviour
     public void ResetSave()
     {
         PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
