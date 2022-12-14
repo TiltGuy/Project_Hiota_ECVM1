@@ -801,6 +801,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""8aa3f1e0-96ee-46e1-a47a-3e9ed91a7b07"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyB&Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D VectorZQSD"",
                     ""id"": ""b68f3c1c-5025-49e1-9831-c58f56f97fb0"",
                     ""path"": ""2DVector"",
