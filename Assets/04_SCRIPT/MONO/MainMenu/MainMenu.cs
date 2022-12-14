@@ -8,7 +8,9 @@ public class MainMenu : MonoBehaviour
 {
 	public string firstLevel;
 
-	private InputMaster action;
+    public string artMap;
+
+    private InputMaster action;
 
 	public GameObject pauseMenu, optionsWindow;
 
@@ -92,6 +94,11 @@ public class MainMenu : MonoBehaviour
 	{
 		SceneManager.LoadScene(firstLevel);
 	}
+
+    public void ArtMap()
+    {
+        SceneManager.LoadScene(artMap);
+    }
 
 	public void OpenOptions()
 	{
