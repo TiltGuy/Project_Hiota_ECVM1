@@ -634,6 +634,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9d03dd0-10f9-4c55-bd15-6246a53ecdbf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1021,6 +1030,72 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""EscapeUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d277589d-15ba-4e21-96b2-b6b635758440"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a332eb8a-2b5e-4824-a4c5-938e7f591f5b"",
+                    ""path"": ""<DualShockGamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17292f5c-5db6-4b7f-8c40-158b79bba40a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e201b64e-47af-4ec2-b8f2-d41e43116a91"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f54cec1-f671-4958-827d-6c93ce383e32"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8652d0ac-0ffa-4dcc-a1d3-cb6327bf612d"",
+                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1100,6 +1175,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_EscapeUI = m_UI.FindAction("EscapeUI", throwIfNotFound: true);
+        m_UI_SwitchWindow = m_UI.FindAction("SwitchWindow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1266,6 +1342,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_EscapeUI;
+    private readonly InputAction m_UI_SwitchWindow;
     public struct UIActions
     {
         private @InputMaster m_Wrapper;
@@ -1280,6 +1357,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @EscapeUI => m_Wrapper.m_UI_EscapeUI;
+        public InputAction @SwitchWindow => m_Wrapper.m_UI_SwitchWindow;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1319,6 +1397,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @EscapeUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
                 @EscapeUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
                 @EscapeUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeUI;
+                @SwitchWindow.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
+                @SwitchWindow.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
+                @SwitchWindow.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1353,6 +1434,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @EscapeUI.started += instance.OnEscapeUI;
                 @EscapeUI.performed += instance.OnEscapeUI;
                 @EscapeUI.canceled += instance.OnEscapeUI;
+                @SwitchWindow.started += instance.OnSwitchWindow;
+                @SwitchWindow.performed += instance.OnSwitchWindow;
+                @SwitchWindow.canceled += instance.OnSwitchWindow;
             }
         }
     }
@@ -1417,5 +1501,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnEscapeUI(InputAction.CallbackContext context);
+        void OnSwitchWindow(InputAction.CallbackContext context);
     }
 }

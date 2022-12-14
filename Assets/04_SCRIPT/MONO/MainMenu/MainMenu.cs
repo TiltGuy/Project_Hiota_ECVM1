@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,9 +12,16 @@ public class MainMenu : MonoBehaviour
 
 	public GameObject pauseMenu, optionsWindow;
 
+    public GameObject keyboard, controller;
+
 	private bool b_CursorInvisible = true;
 
-	private void Awake()
+    private bool leftWindowSwitched = true;
+
+    private bool rightWindowSwitched = true;
+
+
+    private void Awake()
     {
 		action = new InputMaster();
 	}
@@ -26,7 +34,49 @@ public class MainMenu : MonoBehaviour
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-	}
+
+        optionsWindow.SetActive(false);
+
+        action.UI.SwitchWindow.started += ctx => SwitchLeftWindow();
+        action.UI.SwitchWindow.started += ctx => SwitchRightWindow();
+    }
+
+    private void SwitchLeftWindow()
+    {  
+
+            if (leftWindowSwitched)
+        {
+            controller.SetActive(false);
+            keyboard.SetActive(true);
+
+            leftWindowSwitched = !leftWindowSwitched;
+        }
+            else if (!leftWindowSwitched)
+        {
+            controller.SetActive(true);
+            keyboard.SetActive(false);
+
+            leftWindowSwitched = !leftWindowSwitched;
+        }
+    }
+    private void SwitchRightWindow()
+    {
+
+        if ( rightWindowSwitched )
+        {
+            controller.SetActive(false);
+            keyboard.SetActive(true);
+
+            rightWindowSwitched = !rightWindowSwitched;
+        }
+        else if ( !rightWindowSwitched )
+        {
+            controller.SetActive(true);
+            keyboard.SetActive(false);
+
+            rightWindowSwitched = !rightWindowSwitched;
+        }
+    }
 
     private void OnEnable()
     {
@@ -48,6 +98,7 @@ public class MainMenu : MonoBehaviour
         if(!optionsWindow)
         {
             optionsWindow.SetActive(true);
+            Debug.Log("OptionsWindow open");
         }
 	}
 
