@@ -1361,7 +1361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCharacterTarget: {fileID: 0}
   m_InputMoveVector: {x: 0, y: 0}
-  b_WantDash: 0
+  b_WantDash: 1
   b_IsFocusing: 0
   b_CanChangeFocusTarget: 0
   b_IsInputParry: 0
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   controllerAnim: {fileID: 8612992019270528409}
   Ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   _groundChecker: {fileID: 6188173131968936273}
   characontroller: {fileID: 6634799758529909337}
   charSpecs: {fileID: 0}
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   currentSpeedModifier: 0
   m_turnSpeed: 20
   _isGrounded: 0
-  distanceCheckGround: 0.25
+  distanceCheckGround: 0.3
   gravity: -9.17
   dashCooldown: 0.75
   dashDirection: {x: 0, y: 0, z: 0}
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   guardIncreaseSpeedWhenGuarding: 0.15
   b_CanRecoverParry: 1
   b_isParrying: 0
-  currentState: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+  currentState: {fileID: 11400000, guid: 9c6c47fd8bbc30341a5f1b0d5614c0b8, type: 2}
   remainState: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
   eyes: {fileID: 6425963666598805639}
   b_HaveFinishedRecoveringAnimation: 0
@@ -2786,7 +2786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6188173131968936273
 Transform:
   m_ObjectHideFlags: 0
@@ -2795,7 +2795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2259976099588534955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.335, z: 0}
+  m_LocalPosition: {x: 0, y: 0.173, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1163913624370452289}
