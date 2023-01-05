@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fog_Nuage
+  m_Shader: {fileID: 4800000, guid: 0bdcd1c746835594f83224a78b801058, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DisplacementTxt:
+        m_Texture: {fileID: 2800000, guid: 6dafabc65904ef64f9b2921fe6d5105c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GodRay:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseDisplacementTxt:
+        m_Texture: {fileID: 2800000, guid: 8d1efb6804f894441a74456065561c01, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RenderTexture:
+        m_Texture: {fileID: 8400000, guid: da053593210106347ba93a31537d2664, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VoronoiTxt:
+        m_Texture: {fileID: 2800000, guid: c773c030703f55247ae062c1029bc681, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _displacementmask:
+        m_Texture: {fileID: 2800000, guid: 9404eb36b5f16d847bd14d71ae6dcb19, type: 3}
+        m_Scale: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0}
+    - _displcementnoise:
+        m_Texture: {fileID: 2800000, guid: 8d1efb6804f894441a74456065561c01, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _DisplacementMapscale: 1.56
+    - _Distance: 1
+    - _EdgeLength: 2
+    - _Float0: 2.63
+    - _Float1: 0.83
+    - _Smoothness: 0.11
+    - _TessPhongStrength: 0.167
+    - _VertexOffset: 0.39
+    - _VoronoidTilling: 3.29
+    - __dirty: 0
+    - _dispalcmenetmapscale: 1
+    - _displacemenbtamout: 1
+    - _gradientlenght: -0.69
+    - _offset: -3.84
+    - _scale: 0.03
+    m_Colors:
+    - _Color0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1: {r: 0.07075471, g: 0.710365, b: 1, a: 1}
+    - _Color2: {r: 0, g: 0.047498327, b: 0.48819214, a: 0}
+    - _Speed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Vector1: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _VoronoidSpeed: {r: 1.34, g: 0.43, b: 0, a: 0}
+    - _strength: {r: 0, g: 0.21, b: 0, a: 0}
