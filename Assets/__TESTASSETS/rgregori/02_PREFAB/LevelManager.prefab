@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4672941079063476305}
-  m_LocalRotation: {x: -0, y: 0.9004362, z: -0, w: 0.43498802}
+  m_LocalRotation: {x: 0, y: 0.90043646, z: 0, w: 0.43498757}
   m_LocalPosition: {x: -10.23, y: 8.3, z: 8.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 128.431, z: 0}
 --- !u!114 &4672941079063476304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,7 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554a9f1033000b148ace8447eed4a095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Props: []
-  nbTotalRooms: 20
-  minProbability: 25
-  maxProbability: 75
+  palierRoomIndex: 3
+  palierSceneName: Blockout-Scene_EnemyTweak
+  sceneNames:
+  - Blockout-Scene_EnemyTweak_Correction
+  Props:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nbTotalRooms: 100

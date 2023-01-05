@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnCardManager : MonoBehaviour
 {
-    public int numberofCardstoDraw = 0;
+    //public int numberofCardstoDraw = 0;
     public List<EnemyImprovement> SteleSkilCards = new List<EnemyImprovement>();
 
     private void Start()

@@ -25,6 +25,7 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
+        b_IsPaused = false;
         action = new InputMaster();
     }
 

@@ -7,7 +7,12 @@ public class LevelManager : MonoBehaviour
 
     public static float currentRoomIndex;
 
+    public static LevelManager instance;
 
+    public float palierRoomIndex = 10;
+    public string palierSceneName;
+
+    public string[] sceneNames;
 
     [SerializeField]
     private GameObject[] Props;
@@ -17,14 +22,19 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private float nbTotalRooms;
 
-    [SerializeField]
-    private float minProbability = 25;
-    [SerializeField]
-    private float maxProbability = 75;
+    //[SerializeField]
+    //private float minProbability = 25;
+    //[SerializeField]
+    //private float maxProbability = 75;
 
     public float NbTotalRooms
     {
         get => nbTotalRooms;
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 
     private void Start()
@@ -39,32 +49,44 @@ public class LevelManager : MonoBehaviour
 
         int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRooms * (Props.Length - 1));
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
-        for (int i = 0; i < nbToBeSpawned; i++)
+
+        if(Props.Length != 0)
         {
-            int security = 0;
-            int randomIndex = Random.Range(0, Props.Length);
-            //Debug.Log("1er Random Index = " + randomIndex);
-            while (Props[randomIndex].activeInHierarchy)
+            for ( int i = 0; i < nbToBeSpawned; i++ )
             {
-                randomIndex = Random.Range(0, Props.Length);
-                //Debug.Log("2ème Random Index = " + randomIndex);
-                security++;
-                if(security>1000)
+                int security = 0;
+                int randomIndex = Random.Range(0, Props.Length);
+                //Debug.Log("1er Random Index = " + randomIndex);
+                while ( Props[randomIndex].activeInHierarchy )
                 {
-                    //Debug.LogError("Boucle fini sale vilain !!! ", this);
-                    break;
+                    randomIndex = Random.Range(0, Props.Length);
+                    //Debug.Log("2ème Random Index = " + randomIndex);
+                    security++;
+                    if ( security > 1000 )
+                    {
+                        //Debug.LogError("Boucle fini sale vilain !!! ", this);
+                        break;
+                    }
                 }
+                Props[randomIndex].SetActive(true);
             }
-            Props[randomIndex].SetActive(true);
         }
+
     }
 
     public void LoadNextLevel()
     {
         currentRoomIndex ++;
+        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRooms);
         Debug.Log("currentroomIndex = " + currentRoomIndex);
         Debug.Log("nbTotalRooms = " + nbTotalRooms);
-        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRooms);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(currentRoomIndex == palierRoomIndex)
+        {
+            SceneManager.LoadScene(palierSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Length)]);
+        }
     }
 }

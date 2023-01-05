@@ -5,6 +5,10 @@ using UnityEngine;
 public class SpawnTroup : MonoBehaviour
 {
 
+    public static SpawnTroup instance;
+
+    public static int nextTroopIndex = -1;
+
     public Troup_SO[] Troups;
     public float distToSpawn;
 
@@ -15,22 +19,24 @@ public class SpawnTroup : MonoBehaviour
     [SerializeField]
     private float arrayFraction = .33f;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         if(Troups != null)
         {
+
             SortTroupsByDifficulty();
-            int min = Mathf.FloorToInt(0 + LevelManager.currentRoomIndex/levelManager.NbTotalRooms * (Troups.Length - 1));
-            float maxBase = (Troups.Length - 1) * arrayFraction;
-            Debug.Log("min = " + min);
-            Debug.Log("maxBase = " + maxBase);
-            min = Mathf.Clamp(min, 0, Mathf.RoundToInt(Troups.Length - 1 -maxBase));
-            int max = Mathf.RoundToInt( maxBase + min);
-            //max = Mathf.Clamp(max, 2, Troups.Length - 1);
-            int troopIndex = Random.Range(min, max);
-            Debug.Log("troupIndex = " + troopIndex);
-            foreach ( GameObject enemy in Troups[troopIndex].Enemies )
+            if (nextTroopIndex == -1)
+            {
+                DefineNextTroopIndex();
+                Debug.Log("ALED!!");
+            }
+            foreach ( GameObject enemy in Troups[nextTroopIndex].Enemies )
             {
                 Vector2 randomPointInCircle = Random.insideUnitCircle;
                 Vector3 randomPosition = new Vector3(randomPointInCircle.x * distToSpawn, 0, randomPointInCircle.y * distToSpawn);
@@ -62,5 +68,19 @@ public class SpawnTroup : MonoBehaviour
                 }
             }
         } while ( itemMoved );
+    }
+
+    public void DefineNextTroopIndex()
+    {
+        int min = Mathf.FloorToInt(0 + LevelManager.currentRoomIndex / levelManager.NbTotalRooms * (Troups.Length - 1));
+        float maxBase = (Troups.Length - 1) * arrayFraction;
+        //Debug.Log("min = " + min);
+        //Debug.Log("maxBase = " + maxBase);
+        min = Mathf.Clamp(min, 0, Mathf.RoundToInt(Troups.Length - 1 - maxBase));
+        int max = Mathf.RoundToInt(maxBase + min);
+        //max = Mathf.Clamp(max, 2, Troups.Length - 1);
+        nextTroopIndex = Random.Range(min, max);
+        Debug.Log(Troups[nextTroopIndex].Enemies.ToString());
+        //Debug.Log("troupIndex = " + troopIndex);
     }
 }

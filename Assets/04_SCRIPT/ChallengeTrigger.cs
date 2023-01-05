@@ -10,9 +10,19 @@ public class ChallengeTrigger : MonoBehaviour
     public List<CharacterSpecs> enemiesToKill = new List<CharacterSpecs>();
     public UnityEvent onAllEnemiesKilled;
     public bool saveToPlayerPrefs = true;
+    public bool b_ListIsDynamic = false;
+    public bool b_CanCheckWinCondition = true;
+    public static ChallengeTrigger instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
+        
+
         if ( saveToPlayerPrefs )
         {
             if ( PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "." + name + ".completed") == 1 )
@@ -48,9 +58,13 @@ public class ChallengeTrigger : MonoBehaviour
 
     private void Update()
     {
-        if(enemiesToKill.Count == 0)
+        if(enemiesToKill.Count == 0 && b_CanCheckWinCondition)
         {
             onAllEnemiesKilled?.Invoke();
+            if(SpawnTroup.instance != null)
+            {
+                SpawnTroup.instance.DefineNextTroopIndex();
+            }
             enabled = false;
 
             if ( saveToPlayerPrefs )
@@ -70,5 +84,15 @@ public class ChallengeTrigger : MonoBehaviour
                 Gizmos.DrawLine(transform.position, e.transform.position);
             }
         });
+    }
+
+    public void RegisterEnemy(CharacterSpecs enemy)
+    {
+        if(b_ListIsDynamic)
+        {
+            enemiesToKill.Add(enemy);
+            b_CanCheckWinCondition = true;
+            enemy.onHealthDepleted += OnEnemyHealthDepleted;
+        }
     }
 }
