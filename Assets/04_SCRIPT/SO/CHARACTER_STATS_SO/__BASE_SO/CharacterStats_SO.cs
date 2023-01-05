@@ -19,4 +19,7 @@ public class CharacterStats_SO : ScriptableObject
     [Header("--- MOVEMENT SETTINGS ---")]
     public float BaseSpeed;
     public float BaseSpeedWhenStrafing;
+
+    [Header("--- DIFFICULTY SETTINGS ---")]
+    public float difficultyNumber;
 }

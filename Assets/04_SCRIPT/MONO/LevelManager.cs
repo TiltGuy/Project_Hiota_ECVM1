@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
     public static float currentRoomIndex;
 
+
+
     [SerializeField]
     private GameObject[] Props;
 
-    [SerializeField]
-    private GameObject[] Troups;
+    //[SerializeField]
+    //private GameObject[] Troups;
     [SerializeField]
     private float nbTotalRooms;
 
@@ -20,9 +22,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private float maxProbability = 75;
 
+    public float NbTotalRooms
+    {
+        get => nbTotalRooms;
+    }
+
     private void Start()
     {
-        currentRoomIndex = 1;
         //foreach (GameObject prop in Props)
         //{
         //    if (Random.Range(0,100) > minProbability + currentRoomIndex/nbTotalRooms * (maxProbability - minProbability) )
@@ -32,7 +38,7 @@ public class LevelManager : MonoBehaviour
         //}
 
         int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRooms * (Props.Length - 1));
-        Debug.Log(nbToBeSpawned);
+        //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
         for (int i = 0; i < nbToBeSpawned; i++)
         {
             int security = 0;
@@ -45,11 +51,20 @@ public class LevelManager : MonoBehaviour
                 security++;
                 if(security>1000)
                 {
-                    Debug.LogError("Boucle fini sale vilain !!! ", this);
+                    //Debug.LogError("Boucle fini sale vilain !!! ", this);
                     break;
                 }
             }
             Props[randomIndex].SetActive(true);
         }
+    }
+
+    public void LoadNextLevel()
+    {
+        currentRoomIndex ++;
+        Debug.Log("currentroomIndex = " + currentRoomIndex);
+        Debug.Log("nbTotalRooms = " + nbTotalRooms);
+        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRooms);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
