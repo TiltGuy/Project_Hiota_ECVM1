@@ -61,9 +61,9 @@ public class ChallengeTrigger : MonoBehaviour
         if(enemiesToKill.Count == 0 && b_CanCheckWinCondition)
         {
             onAllEnemiesKilled?.Invoke();
-            if(SpawnTroup.instance != null)
+            if(LevelManager.instance != null)
             {
-                SpawnTroup.instance.DefineNextTroopIndex();
+                LevelManager.instance.DefineNextTroopIndex();
             }
             enabled = false;
 

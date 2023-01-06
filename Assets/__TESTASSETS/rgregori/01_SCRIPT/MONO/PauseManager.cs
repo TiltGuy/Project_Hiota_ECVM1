@@ -33,7 +33,7 @@ public class PauseManager : MonoBehaviour
     {
         action.UI.Cancel.started += ctx => HideSettings();
         action.UI.Pause.performed += _ => DetermineGamePauseStatut();
-        Debug.Log(b_IsPaused);
+        //Debug.Log(b_IsPaused);
 
         action.UI.SwitchWindow.started += ctx => SwitchLeftWindow();
         action.UI.SwitchWindow.started += ctx => SwitchRightWindow();

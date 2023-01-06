@@ -43,14 +43,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554a9f1033000b148ace8447eed4a095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platform: {fileID: 0}
+  surfaces: []
   palierRoomIndex: 3
   palierSceneName: Blockout-Scene_EnemyTweak
   sceneNames:
-  - Blockout-Scene_EnemyTweak_Correction
+  - Blockout_Level_01
+  - Blockout_Level_02
   Props:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  nbTotalRooms: 100
+  troups:
+  - {fileID: 11400000, guid: 077194a762577ae4eb6c2d60cef5a916, type: 2}
+  - {fileID: 11400000, guid: d87ba03c8cdf450459d71b4193470324, type: 2}
+  - {fileID: 11400000, guid: d87ba03c8cdf450459d71b4193470324, type: 2}
+  - {fileID: 11400000, guid: 077194a762577ae4eb6c2d60cef5a916, type: 2}
+  - {fileID: 11400000, guid: 66bf808f8413b604b8753d0d11e6a30f, type: 2}
+  - {fileID: 11400000, guid: d87ba03c8cdf450459d71b4193470324, type: 2}
+  - {fileID: 11400000, guid: 077194a762577ae4eb6c2d60cef5a916, type: 2}
+  - {fileID: 11400000, guid: d87ba03c8cdf450459d71b4193470324, type: 2}
+  - {fileID: 11400000, guid: d87ba03c8cdf450459d71b4193470324, type: 2}
+  nbTotalRooms: 2
+  arrayFraction: 0.33

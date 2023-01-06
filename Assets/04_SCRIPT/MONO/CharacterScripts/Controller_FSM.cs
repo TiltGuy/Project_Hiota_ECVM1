@@ -413,7 +413,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         if ( characontroller )
         {
             IsDetectingGround();
-            Debug.Log(_isGrounded, this);
+            //Debug.Log(_isGrounded, this);
         }
         
     }
@@ -422,7 +422,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     {
         b_IsFocusing = false;
         characterAnimator.SetBool("Is_Focusing", false);
-        Debug.Log("Target to Null", this);
+        //Debug.Log("Target to Null", this);
     }
 
     private void UpdateGuardVariable()

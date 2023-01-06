@@ -236,6 +236,11 @@ public class CharacterSpecs : MonoBehaviour
 		
 	//}
 
+    public void UnRegisterSelf()
+    {
+        DeckManager.instance.UnRegisterEnemy(this.gameObject);
+    }
+
 	void OnTriggerEnter (Collider other)
 	{
 		if(other.tag == "LifeLoot")

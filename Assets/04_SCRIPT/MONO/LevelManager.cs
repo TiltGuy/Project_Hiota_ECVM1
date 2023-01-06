@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
+
 public class LevelManager : MonoBehaviour
 {
 
     public static float currentRoomIndex;
 
     public static LevelManager instance;
+
+    public GameObject platform;
+    public NavMeshSurface[] surfaces;
 
     public float palierRoomIndex = 10;
     public string palierSceneName;
@@ -17,10 +23,20 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private GameObject[] Props;
 
+    [SerializeField]
+    private Troup_SO[] troups;
+
     //[SerializeField]
     //private GameObject[] Troups;
     [SerializeField]
     private float nbTotalRooms;
+
+    public static int nextTroopIndex = -1;
+
+    [Header("--- DIFFICULTY SETTINGS ---")]
+
+    [SerializeField]
+    private float arrayFraction = .33f;
 
     //[SerializeField]
     //private float minProbability = 25;
@@ -31,10 +47,15 @@ public class LevelManager : MonoBehaviour
     {
         get => nbTotalRooms;
     }
+    public Troup_SO[] Troups
+    {
+        get => troups;
+    }
 
     private void Awake()
     {
         instance = this;
+        surfaces = platform.GetComponents<NavMeshSurface>();
     }
 
     private void Start()
@@ -46,6 +67,12 @@ public class LevelManager : MonoBehaviour
         //        prop.SetActive(true);
         //    }
         //}
+
+        if ( nextTroopIndex == -1 )
+        {
+            DefineNextTroopIndex();
+            Debug.Log("ALED!!");
+        }
 
         int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRooms * (Props.Length - 1));
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
@@ -72,6 +99,15 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+        foreach (NavMeshSurface surface in surfaces)
+        {
+        }
+
+        for (int i = 0; i < surfaces.Length; i++)
+        {
+            surfaces[i].BuildNavMesh();
+        }
+
     }
 
     public void LoadNextLevel()
@@ -88,5 +124,21 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Length)]);
         }
+    }
+
+
+    public void DefineNextTroopIndex()
+    {
+        Troup_SO[] troups = LevelManager.instance.Troups;
+        int min = Mathf.FloorToInt(0 + currentRoomIndex / NbTotalRooms * (troups.Length - 1));
+        float maxBase = (troups.Length - 1) * arrayFraction;
+        //Debug.Log("min = " + min);
+        //Debug.Log("maxBase = " + maxBase);
+        min = Mathf.Clamp(min, 0, Mathf.RoundToInt(troups.Length - 1 - maxBase));
+        int max = Mathf.RoundToInt(maxBase + min);
+        //max = Mathf.Clamp(max, 2, Troups.Length - 1);
+        nextTroopIndex = Random.Range(min, max);
+        Debug.Log(troups[nextTroopIndex].Enemies.ToString());
+        //Debug.Log("troupIndex = " + troopIndex);
     }
 }
