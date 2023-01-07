@@ -56,6 +56,12 @@ public class LevelManager : MonoBehaviour
     {
         instance = this;
         surfaces = platform.GetComponents<NavMeshSurface>();
+
+        if ( nextTroopIndex == -1 )
+        {
+            DefineNextTroopIndex();
+            Debug.Log("ALED!!");
+        }
     }
 
     private void Start()
@@ -68,11 +74,7 @@ public class LevelManager : MonoBehaviour
         //    }
         //}
 
-        if ( nextTroopIndex == -1 )
-        {
-            DefineNextTroopIndex();
-            Debug.Log("ALED!!");
-        }
+        
 
         int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRooms * (Props.Length - 1));
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);

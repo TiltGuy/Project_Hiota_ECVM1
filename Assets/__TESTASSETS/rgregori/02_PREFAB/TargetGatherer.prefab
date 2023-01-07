@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 547949701324129369}
   - component: {fileID: 718060140552122}
   - component: {fileID: 7717049611553189563}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: TargetGatherer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34209f08f89486948a09b1b137f76535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_IsPlayer: 0
   TargetTag: Enemy
   controller: {fileID: 0}
   layerMask:

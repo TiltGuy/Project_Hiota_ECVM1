@@ -12,16 +12,20 @@ public class TrapScript : MonoBehaviour
     {
         foreach( string tag in TargetTag )
         {
-            if(other.CompareTag(tag))
-            {
-                IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
-                //Debug.Log(other.gameObject.name, this);
-                if ( damageable != null )
-                {
-                    damageable.TakeDamages(damages, transform, false);
-                }
-            }
+            DoDamages(other, tag);
         }
     }
 
+    private void DoDamages( Collider other, string tag )
+    {
+        if ( other.CompareTag(tag) )
+        {
+            IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
+            //Debug.Log(other.gameObject.name, this);
+            if ( damageable != null )
+            {
+                damageable.TakeDamages(damages, transform, false);
+            }
+        }
+    }
 }

@@ -8,7 +8,6 @@ public class SpawnTroup : MonoBehaviour
     public static SpawnTroup instance;
 
 
-    public Troup_SO[] Troups;
     public float distToSpawn;
 
     public LevelManager levelManager;
@@ -43,7 +42,7 @@ public class SpawnTroup : MonoBehaviour
 
     private void InstantiateEnemiesInsideCircle( Troup_SO[] troups )
     {
-        foreach ( GameObject enemy in troups[LevelManager.nextTroopIndex].Enemies )
+        foreach ( GameObject enemy in troups[LevelManager.nextTroopIndex ].Enemies )
         {
             Vector2 randomPointInCircle = Random.insideUnitCircle;
             Vector3 randomPosition = new Vector3(randomPointInCircle.x * distToSpawn, 0, randomPointInCircle.y * distToSpawn);
