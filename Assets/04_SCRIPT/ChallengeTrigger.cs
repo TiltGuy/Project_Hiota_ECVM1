@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 public class ChallengeTrigger : MonoBehaviour
 {
     public List<CharacterSpecs> enemiesToKill = new List<CharacterSpecs>();
+    public UnityEvent onPlayerEnterCombatZone;
     public UnityEvent onAllEnemiesKilled;
     public bool saveToPlayerPrefs = true;
     public bool b_ListIsDynamic = false;
     public bool b_CanCheckWinCondition = true;
+    private bool b_CombatDone = false;
     public static ChallengeTrigger instance;
 
     private void Awake()
@@ -93,6 +95,29 @@ public class ChallengeTrigger : MonoBehaviour
             enemiesToKill.Add(enemy);
             b_CanCheckWinCondition = true;
             enemy.onHealthDepleted += OnEnemyHealthDepleted;
+        }
+    }
+
+    private void OnTriggerEnter( Collider other )
+    {
+        if(other.CompareTag("Player") && !b_CombatDone )
+        {
+            ApplyCardEffectsToAllEnemiesInCombat();
+            onPlayerEnterCombatZone?.Invoke();
+            b_CombatDone = true;
+        }
+
+    }
+
+    private void ApplyCardEffectsToAllEnemiesInCombat()
+    {
+        foreach ( CharacterSpecs enemy in enemiesToKill )
+        {
+            DeckManager.instance.ApplyCardEffectsToEnemy(
+                enemy.GetComponent<Controller_FSM>(),
+                enemy
+                );
+            Debug.Log("Power ++ " + enemy.MaxHealth, enemy);
         }
     }
 }

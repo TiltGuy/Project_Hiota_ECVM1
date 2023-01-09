@@ -9,7 +9,7 @@ public class SpawnCardManager : MonoBehaviour
 
     private void Start()
     {
-        DrawCardsForSpawner();
+        //DrawCardsForSpawner();
         //for(int i = 0; i < numberofCardstoDraw; i++)
         //{
         //    SkillCard_SO newcard = DeckManager.instance.DrawOneCard();
@@ -17,7 +17,7 @@ public class SpawnCardManager : MonoBehaviour
         //}
     }
 
-    private void DrawCardsForSpawner()
+    public void DrawCardsForSpawner()
     {
         if ( SteleSkilCards.Count <= 0 )
             return;

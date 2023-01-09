@@ -196,7 +196,6 @@ GameObject:
   - component: {fileID: 1273245036896107738}
   - component: {fileID: 1897634448}
   - component: {fileID: 1912565262}
-  - component: {fileID: 1241458844}
   - component: {fileID: 1912329442}
   m_Layer: 9
   m_Name: Enemy_Refacto_FSM
@@ -437,20 +436,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0662711, y: 2.0192354, z: 1.2194542}
   m_Center: {x: 7.4786577e-10, y: 1.0024346, z: 0.08564368}
---- !u!114 &1241458844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39000561153551387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca16f2a193e38b4291a13836bac51aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentSkillCard: {fileID: 11400000, guid: af9c4f4c65592a844bb4a6bd440e0ff1, type: 2}
-  ArmorImprove: 2
 --- !u!114 &1912329442
 MonoBehaviour:
   m_ObjectHideFlags: 0

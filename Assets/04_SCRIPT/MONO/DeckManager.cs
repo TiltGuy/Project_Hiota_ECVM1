@@ -85,14 +85,30 @@ public class DeckManager : MonoBehaviour
     public void AddCardToEnnemyDeck(SkillCard_SO newCard)
     {
         _EnemiesDeck.Add(newCard);
-        foreach (EnemyHolder enemy in _EnemyList)
+        //ApplyCardEffectForAllEnemies(newCard);
+    }
+
+    private void ApplyCardEffectForAllEnemies( SkillCard_SO newCard )
+    {
+        foreach ( EnemyHolder enemy in _EnemyList )
         {
-            if(!enemy.controllerFSM.gameObject.activeInHierarchy || enemy.controllerFSM == null)
+            if ( !enemy.controllerFSM.gameObject.activeInHierarchy || enemy.controllerFSM == null )
             {
                 Debug.LogWarning("There Isn't any enemy to receive a card !!!");
                 return;
             }
             newCard.ApplyEffects(enemy.controllerFSM, enemy.characterSpecs);
+        }
+    }
+
+    public void ApplyCardEffectsToEnemy(Controller_FSM targetController, CharacterSpecs targetSpecs)
+    {
+        if(_EnemiesDeck.Count != 0)
+        {
+            foreach ( SkillCard_SO targetCard in _EnemiesDeck )
+            {
+                targetCard.ApplyEffects(targetController, targetSpecs);
+            }
         }
     }
 

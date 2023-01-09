@@ -85,6 +85,12 @@ public class IABrain : MonoBehaviour
         //Debug.Log(transform, targetGatherer.transform);
     }
 
+    public void AddPlayerToCurrentControllerTarget()
+    {
+        controller_FSM.currentCharacterTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        B_IsEnemyInFight = true;
+    }
+
     private void RemoveCurrentControllerTarget(Transform transform)
     {
         controller_FSM.currentCharacterTarget = null;

@@ -53,8 +53,11 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
             TakeDamages(0, null, false);
         }
 
-        UpdateCardMessages(Bonus_Text, SkillCard, true);
-        UpdateCardMessages(Malus_Text, SkillCard, false);
+        if(SkillCard != null)
+        {
+            UpdateCardMessages(Bonus_Text, SkillCard, true);
+            UpdateCardMessages(Malus_Text, SkillCard, false);
+        }
     }
 
     private void AssignNewSkillCard()
