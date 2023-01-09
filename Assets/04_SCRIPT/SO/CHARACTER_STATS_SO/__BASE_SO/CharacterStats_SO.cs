@@ -9,6 +9,9 @@ public class CharacterStats_SO : ScriptableObject
     public float maxHealth;
     public float StartHealth;
 
+    [Header("--- REGENERATION SETTINGS ---")]
+    public float healthGainedWhenPGuarding;
+
     [Header("--- ARMOR SETTINGS ---")]
     public float baseArmor;
 

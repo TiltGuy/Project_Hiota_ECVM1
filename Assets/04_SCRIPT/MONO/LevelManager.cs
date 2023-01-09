@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
-    public GameObject platform;
     public NavMeshSurface[] surfaces;
 
     public float palierRoomIndex = 10;
@@ -55,7 +54,11 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        surfaces = platform.GetComponents<NavMeshSurface>();
+        if(!CheckSurfacesNullGameObject(surfaces))
+        {
+            Debug.LogError("Pas de platforme ou de surfaces ! ",this);
+            //surfaces = platform.GetComponents<NavMeshSurface>();
+        }
 
         if ( nextTroopIndex == -1 )
         {
@@ -74,42 +77,80 @@ public class LevelManager : MonoBehaviour
         //    }
         //}
 
-        
+
 
         int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRooms * (Props.Length - 1));
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
 
-        if(Props.Length != 0)
+        SpawnAllTheProps(nbToBeSpawned);
+
+        InitializeNavMeshData();
+
+    }
+
+    private void InitializeNavMeshData()
+    {
+        ClearAllNavMeshData();
+
+        BuildNavMeshForAllSurfaces();
+    }
+
+    private bool CheckSurfacesNullGameObject(NavMeshSurface[] array)
+    {
+        foreach(var obj in array)
+        {
+            if(obj == null)
+                return false;
+        }
+
+        return true;
+    }
+
+    private void SpawnAllTheProps( int nbToBeSpawned )
+    {
+        if ( Props.Length != 0 )
         {
             for ( int i = 0; i < nbToBeSpawned; i++ )
             {
-                int security = 0;
-                int randomIndex = Random.Range(0, Props.Length);
-                //Debug.Log("1er Random Index = " + randomIndex);
-                while ( Props[randomIndex].activeInHierarchy )
-                {
-                    randomIndex = Random.Range(0, Props.Length);
-                    //Debug.Log("2ème Random Index = " + randomIndex);
-                    security++;
-                    if ( security > 1000 )
-                    {
-                        //Debug.LogError("Boucle fini sale vilain !!! ", this);
-                        break;
-                    }
-                }
-                Props[randomIndex].SetActive(true);
+                SpawnProp();
             }
         }
+    }
 
-        foreach (NavMeshSurface surface in surfaces)
+    private void SpawnProp()
+    {
+        int security = 0;
+        int randomIndex = Random.Range(0, Props.Length);
+        //Debug.Log("1er Random Index = " + randomIndex);
+        while ( Props[randomIndex].activeInHierarchy )
         {
+            randomIndex = Random.Range(0, Props.Length);
+            //Debug.Log("2ème Random Index = " + randomIndex);
+            security++;
+            if ( security > 1000 )
+            {
+                Debug.LogError("Boucle fini sale vilain !!! ", this);
+                break;
+            }
         }
+        Props[randomIndex].SetActive(true);
+    }
 
-        for (int i = 0; i < surfaces.Length; i++)
+    private void ClearAllNavMeshData()
+    {
+
+        foreach ( var surface in surfaces )
         {
-            surfaces[i].BuildNavMesh();
+            surface.RemoveData();
         }
+    }
 
+    private void BuildNavMeshForAllSurfaces()
+    {
+        foreach( var surface in surfaces )
+        {
+            surface.BuildNavMesh();
+        }
     }
 
     public void LoadNextLevel()

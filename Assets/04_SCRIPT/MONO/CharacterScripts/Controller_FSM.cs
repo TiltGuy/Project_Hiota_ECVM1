@@ -220,7 +220,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     #region DELEGATE INSTANCIATION
 
-    public delegate void MultiDelegate();
+    public new delegate void MultiDelegate();
     public MultiDelegate OnChangeCurrentPlayerTarget;
 
     public delegate void MultiDelegateWithfloat(float something);
@@ -238,6 +238,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     public OnEventCombatSystem OnTouchedEnemy;
     public OnEventCombatSystem OnHittenByEnemy;
+    public OnEventCombatSystem OnPerfectGuard;
 
     #endregion
 
@@ -606,6 +607,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             {
                 SpawnFXAtPosition(FX_PerfectParry, eyes.transform.position);
             }
+            OnPerfectGuard?.Invoke();
         }
         else if(!b_PerfectParry)
         {

@@ -40,6 +40,7 @@ public class PauseManager : MonoBehaviour
 
         action.UI.SwitchShortcut.started += ctx => SwitchLeftShortcut();
         action.UI.SwitchShortcut.started += ctx => SwitchRightShortcut();
+        ResumeGame();
     }
 
     private void OnEnable()

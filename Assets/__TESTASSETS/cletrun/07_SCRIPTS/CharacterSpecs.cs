@@ -217,12 +217,14 @@ public class CharacterSpecs : MonoBehaviour
     private void OnEnable()
     {
 		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
+        controller.OnPerfectGuard += RegenerateLife;
 	}
 
     private void OnDisable()
     {
 		controller.UpdateGuardAmountDelegate -= UpdateGuardBar;
-	}
+        controller.OnPerfectGuard -= RegenerateLife;
+    }
 
 
 	//public void Hurt(float attackDamage)
@@ -281,6 +283,14 @@ public class CharacterSpecs : MonoBehaviour
     public void Kill()
     {
         this.Health = 0;
+    }
+
+    private void RegenerateLife()
+    {
+        float valueToGain = CharStats_SO.healthGainedWhenPGuarding;
+        Health += valueToGain;
+        Instantiate(Particle_Health_Recovered, this.gameObject.transform.position, Quaternion.identity);
+        Debug.Log("REGENERATE", this);
     }
 	
 }
