@@ -69,12 +69,16 @@ public class ActionCameraPlayer : MonoBehaviour
         //}
 
         //Debug.Log("currentHiotaActionCameraTarget" + currentHiotaActionCameraTarget);
-        Transform temptarget = currentHiotaActionCameraTarget;
-        if ( currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe != null )
+        if(currentHiotaActionCameraTarget != null)
         {
-            temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
+            Transform temptarget = currentHiotaActionCameraTarget;
+            if ( temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe != null
+                && temptarget != null )
+            {
+                temptarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
+            }
+            ToggleCameraMode();
         }
-        ToggleCameraMode();
         //controller_FSM.currentCharacterTarget = null;
         
 
@@ -151,20 +155,20 @@ public class ActionCameraPlayer : MonoBehaviour
     }
 
     //TODO: scotch
-    private void WaitForFocusLoose()
-    {
-        if ( !GO_FocusCamera.activeInHierarchy )
-            return;
+    //private void WaitForFocusLoose()
+    //{
+    //    if ( !GO_FocusCamera.activeInHierarchy )
+    //        return;
 
-        if(currentHiotaActionCameraTarget == null || currentHiotaActionCameraTarget.gameObject.activeInHierarchy == false)
-        {
-            ToggleCameraMode();
-        }
-        else
-        {
-            Invoke("WaitForFocusLoose", .1f);
-        }
-    }
+    //    if(currentHiotaActionCameraTarget == null || currentHiotaActionCameraTarget.gameObject.activeInHierarchy == false)
+    //    {
+    //        ToggleCameraMode();
+    //    }
+    //    else
+    //    {
+    //        Invoke("WaitForFocusLoose", .1f);
+    //    }
+    //}
 
     private void CommandShakeCameraWhenTouchingEnemy()
     {

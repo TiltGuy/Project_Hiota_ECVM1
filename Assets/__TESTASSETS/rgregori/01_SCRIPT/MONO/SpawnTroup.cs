@@ -10,7 +10,6 @@ public class SpawnTroup : MonoBehaviour
 
     public float distToSpawn;
 
-    public LevelManager levelManager;
 
     public struct EnemyHolder
     {
@@ -50,10 +49,11 @@ public class SpawnTroup : MonoBehaviour
             EnemyHolder currentHolder;
             currentHolder.controllerFSM = currentEnemey.GetComponent<Controller_FSM>();
             currentHolder.characterSpecs = currentEnemey.GetComponent<CharacterSpecs>();
-            foreach( SkillCard_SO skillCard in DeckManager.instance._EnemiesDeck)
-            {
-                skillCard.ApplyEffects(currentHolder.controllerFSM, currentHolder.characterSpecs);
-            }
+            //foreach( SkillCard_SO skillCard in DeckManager.instance._EnemiesDeck)
+            //{
+            //    print(skillCard.name);
+            //    skillCard.ApplyEffects(currentHolder.controllerFSM, currentHolder.characterSpecs);
+            //}
         }
     }
 

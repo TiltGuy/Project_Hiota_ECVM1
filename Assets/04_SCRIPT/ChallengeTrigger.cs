@@ -9,6 +9,8 @@ public class ChallengeTrigger : MonoBehaviour
 {
     public List<CharacterSpecs> enemiesToKill = new List<CharacterSpecs>();
     public UnityEvent onPlayerEnterCombatZone;
+    public delegate void OnMultiDelegate();
+    public OnMultiDelegate OnStartCombatDelegate;
     public UnityEvent onAllEnemiesKilled;
     public bool saveToPlayerPrefs = true;
     public bool b_ListIsDynamic = false;
@@ -62,6 +64,7 @@ public class ChallengeTrigger : MonoBehaviour
     {
         if(enemiesToKill.Count == 0 && b_CanCheckWinCondition)
         {
+            print("Pass");
             onAllEnemiesKilled?.Invoke();
             if(LevelManager.instance != null)
             {
@@ -95,6 +98,7 @@ public class ChallengeTrigger : MonoBehaviour
             enemiesToKill.Add(enemy);
             b_CanCheckWinCondition = true;
             enemy.onHealthDepleted += OnEnemyHealthDepleted;
+            OnStartCombatDelegate += enemy.GetComponent<IABrain>().AddPlayerToCurrentControllerTarget;
         }
     }
 
@@ -104,6 +108,7 @@ public class ChallengeTrigger : MonoBehaviour
         {
             ApplyCardEffectsToAllEnemiesInCombat();
             onPlayerEnterCombatZone?.Invoke();
+            OnStartCombatDelegate?.Invoke();
             b_CombatDone = true;
         }
 

@@ -19,8 +19,11 @@ public class SpawnCardManager : MonoBehaviour
 
     public void DrawCardsForSpawner()
     {
-        if ( SteleSkilCards.Count <= 0 )
+        if ( SteleSkilCards.Count == 0 )
+        {
+            Debug.LogError("Il n'y a pas de stèle raccordées!!!!!", this);
             return;
+        }
         List<SkillCard_SO> skillCard_SOsToAssign = new List<SkillCard_SO>();
         skillCard_SOsToAssign = DeckManager.instance.DrawCards(SteleSkilCards.Count);
         for ( int i = 0; i < SteleSkilCards.Count; i++ )

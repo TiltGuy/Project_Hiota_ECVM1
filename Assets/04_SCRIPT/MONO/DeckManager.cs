@@ -40,7 +40,7 @@ public class DeckManager : MonoBehaviour
 
     private void Start()
     {
-        _RunDeck = _PlayerDeck;
+        _RunDeck = new List<SkillCard_SO>(_PlayerDeck);
     }
 
     public List<SkillCard_SO> DrawCards(float numberCardsToDraw)
@@ -66,8 +66,8 @@ public class DeckManager : MonoBehaviour
         if(UnityEngine.Random.value < .5f && _HiddenDeck.Count > 0)
         {
             SkillCard_SO newCard = _HiddenDeck[UnityEngine.Random.Range(0, _HiddenDeck.Count)];
-            _HiddenDeck.Remove(newCard);
-            _PlayerDeck.Add(newCard);
+            //_HiddenDeck.Remove(newCard);
+            //_PlayerDeck.Add(newCard);
             return newCard;
         }
         else
@@ -77,7 +77,7 @@ public class DeckManager : MonoBehaviour
                 _RunDeck = _PlayerDeck;
             }
             SkillCard_SO newCard = _RunDeck[UnityEngine.Random.Range(0, _RunDeck.Count)];
-            _RunDeck.Remove(newCard);
+            //_RunDeck.Remove(newCard);
             return newCard;
         }
     }
@@ -85,6 +85,15 @@ public class DeckManager : MonoBehaviour
     public void AddCardToEnnemyDeck(SkillCard_SO newCard)
     {
         _EnemiesDeck.Add(newCard);
+        if ( _RunDeck.Contains(newCard))
+        {
+            _RunDeck.Remove(newCard);
+        }
+        if( _HiddenDeck.Contains(newCard))
+        {
+            _HiddenDeck.Remove(newCard);
+            _PlayerDeck.Add(newCard);
+        }
         //ApplyCardEffectForAllEnemies(newCard);
     }
 
@@ -103,7 +112,7 @@ public class DeckManager : MonoBehaviour
 
     public void ApplyCardEffectsToEnemy(Controller_FSM targetController, CharacterSpecs targetSpecs)
     {
-        if(_EnemiesDeck.Count != 0)
+        if(_EnemiesDeck.Count > 0)
         {
             foreach ( SkillCard_SO targetCard in _EnemiesDeck )
             {

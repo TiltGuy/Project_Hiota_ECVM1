@@ -13,9 +13,6 @@ public class CheckHPbelowZero : Decision_SO
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 }

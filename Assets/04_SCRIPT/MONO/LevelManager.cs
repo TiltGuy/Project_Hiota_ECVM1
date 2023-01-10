@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
     //[SerializeField]
     //private GameObject[] Troups;
     [SerializeField]
-    private float nbTotalRooms;
+    private float nbTotalRoomPalier;
 
     public static int nextTroopIndex = -1;
 
@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
 
     public float NbTotalRooms
     {
-        get => nbTotalRooms;
+        get => nbTotalRoomPalier;
     }
     public Troup_SO[] Troups
     {
@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
 
 
-        int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRooms * (Props.Length - 1));
+        int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRoomPalier * (Props.Length - 1));
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
 
         SpawnAllTheProps(nbToBeSpawned);
@@ -156,9 +156,9 @@ public class LevelManager : MonoBehaviour
     public void LoadNextLevel()
     {
         currentRoomIndex ++;
-        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRooms);
+        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRoomPalier);
         Debug.Log("currentroomIndex = " + currentRoomIndex);
-        Debug.Log("nbTotalRooms = " + nbTotalRooms);
+        Debug.Log("nbTotalRooms = " + nbTotalRoomPalier);
         if(currentRoomIndex == palierRoomIndex)
         {
             SceneManager.LoadScene(palierSceneName);

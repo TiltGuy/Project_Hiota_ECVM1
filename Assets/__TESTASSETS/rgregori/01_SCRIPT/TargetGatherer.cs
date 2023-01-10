@@ -59,11 +59,17 @@ public class TargetGatherer : MonoBehaviour
     {
         if(other.CompareTag(TargetTag) )
         {
-            if(!PotentialEnemies.Contains(other.transform))
-            {
-                PotentialEnemies.Add(other.transform);
-                AddEnemyToList?.Invoke(other.transform);
-            }
+            AddPotentialAliveEnemies(other);
+        }
+    }
+
+    private void AddPotentialAliveEnemies( Collider other )
+    {
+        bool isDead = other.GetComponent<Controller_FSM>().B_IsDead;
+        if ( !PotentialEnemies.Contains(other.transform) && isDead == false )
+        {
+            PotentialEnemies.Add(other.transform);
+            AddEnemyToList?.Invoke(other.transform);
         }
     }
 
@@ -71,14 +77,20 @@ public class TargetGatherer : MonoBehaviour
     {
         if (other.CompareTag(TargetTag) )
         {
-            if(PotentialEnemies.Contains(other.transform)
-                || (PotentialEnemies.Contains(other.transform) && !other.gameObject.activeInHierarchy) )
-            {
-                RemoveEnemyToList?.Invoke(other.transform);
-                TargetableEnemies.Remove(other.transform);
-                PotentialEnemies.Remove(other.transform);
-                
-            }
+            RemoveEnemyFromTargetableNdPotential(other);
+        }
+    }
+
+    private void RemoveEnemyFromTargetableNdPotential( Collider other )
+    {
+        bool isDead = other.GetComponent<Controller_FSM>().B_IsDead;
+        if ( PotentialEnemies.Contains(other.transform)
+            || (PotentialEnemies.Contains(other.transform)
+            && (!other.gameObject.activeInHierarchy) || isDead == true) )
+        {
+            RemoveEnemyToList?.Invoke(other.transform);
+            TargetableEnemies.Remove(other.transform);
+            PotentialEnemies.Remove(other.transform);
         }
     }
 
@@ -123,7 +135,8 @@ public class TargetGatherer : MonoBehaviour
                     else
                     {
                         Debug.DrawRay(transform.position, dir, Color.red);
-                        if (TargetableEnemies.Contains(enemy.transform) && !enemy.gameObject.activeInHierarchy)
+                        if (TargetableEnemies.Contains(enemy.transform) && (!enemy.gameObject.activeInHierarchy 
+                            || enemy.GetComponent<Controller_FSM>().B_IsDead == true))
                         {
                             TargetableEnemies.Remove(enemy.transform);
 
@@ -175,15 +188,6 @@ public class TargetGatherer : MonoBehaviour
             return false;
         }
 
-    }
-
-    private void UpdateTargetableList(List<Transform> ListToRearrange)
-    {
-        if (ListToRearrange.Count > 0)
-        {
-            // Check Distance to the target Gatherer
-            // check the Scalar of the CurrentTarget with the Camera
-        }
     }
 
     private bool CheckObjectToTheRight(Vector3 Origin, Vector3 target)
