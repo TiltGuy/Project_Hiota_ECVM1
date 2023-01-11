@@ -10,6 +10,8 @@ public class PlayerRespawn : MonoBehaviour
 
     public float fadeDuration = 3f;
 
+    public string hubSceneName;
+
     public void Respawn()
     {
         if ( !isRespawning )
@@ -28,7 +30,7 @@ public class PlayerRespawn : MonoBehaviour
         // reload level
         var activeScene = SceneManager.GetActiveScene();
         //var asyncOp = SceneManager.LoadSceneAsync(activeScene.name);
-        SceneManager.LoadScene(activeScene.name);
+        SceneManager.LoadScene(hubSceneName);
         //while (!asyncOp.isDone)
         //{
         //    Debug.Log(asyncOp.progress);

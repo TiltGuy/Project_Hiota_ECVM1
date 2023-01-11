@@ -92,6 +92,7 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
+        PlayerPrefs.DeleteAll();
 		SceneManager.LoadScene(firstLevel);
 	}
 
