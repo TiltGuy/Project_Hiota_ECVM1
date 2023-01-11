@@ -400,7 +400,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh148638
+  m_Name: pb_Mesh142170
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 189348020}
   - component: {fileID: 189348019}
   - component: {fileID: 189348018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,7 +2672,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh150490
+  m_Name: pb_Mesh143922
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3864,6 +3864,11 @@ PrefabInstance:
       objectReference: {fileID: 1341415457}
     - target: {fileID: 4672941079063476304, guid: 6b89a8ee9eb5a8c4d9ad21a5a6e89d31,
         type: 3}
+      propertyPath: Props.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672941079063476304, guid: 6b89a8ee9eb5a8c4d9ad21a5a6e89d31,
+        type: 3}
       propertyPath: Props.Array.data[0]
       value: 
       objectReference: {fileID: 128161920}
@@ -4879,7 +4884,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh148968
+  m_Name: pb_Mesh142436
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5050,7 +5055,7 @@ GameObject:
   - component: {fileID: 676496024}
   - component: {fileID: 676496023}
   - component: {fileID: 676496022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collision (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42598,7 +42603,7 @@ GameObject:
   - component: {fileID: 884501221}
   - component: {fileID: 884501220}
   - component: {fileID: 884501219}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collision (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44853,7 +44858,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh149648
+  m_Name: pb_Mesh143068
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -45448,7 +45453,7 @@ GameObject:
   - component: {fileID: 1341043550}
   - component: {fileID: 1341043549}
   - component: {fileID: 1341043548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collision (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45829,7 +45834,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 49153
+    m_Bits: 50177
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -45839,7 +45844,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 8226db68417ec794980ba086728b0b2d, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!20 &1346289594 stripped
 Camera:
@@ -50334,7 +50339,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh150718
+  m_Name: pb_Mesh144110
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -51605,7 +51610,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh147920
+  m_Name: pb_Mesh141384
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -52319,7 +52324,7 @@ GameObject:
   - component: {fileID: 1895330213}
   - component: {fileID: 1895330212}
   - component: {fileID: 1895330211}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collision (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54228,7 +54233,7 @@ GameObject:
   - component: {fileID: 2030398193}
   - component: {fileID: 2030398192}
   - component: {fileID: 2030398191}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collision (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55743,6 +55748,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3068084663556393016, guid: eb5592d877b97ca449ceac69093e5f02,
+        type: 3}
+      propertyPath: m_CollideAgainst.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068084663556393016, guid: eb5592d877b97ca449ceac69093e5f02,
+        type: 3}
+      propertyPath: m_TransparentLayers.m_Bits
+      value: 514
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb5592d877b97ca449ceac69093e5f02, type: 3}
 --- !u!1001 &1253787856104639828
@@ -56156,12 +56171,12 @@ PrefabInstance:
     - target: {fileID: 3310869041884832257, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 0.1893775
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3310869041884832257, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -3.427623
+      value: -3.03
       objectReference: {fileID: 0}
     - target: {fileID: 4870640201268557189, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
@@ -56226,22 +56241,22 @@ PrefabInstance:
     - target: {fileID: 6848081650540833613, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 0.1893775
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6848081650540833613, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -3.427623
+      value: -3.03
       objectReference: {fileID: 0}
     - target: {fileID: 7306409796361702919, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 0.1893775
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7306409796361702919, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -3.427623
+      value: -3.03
       objectReference: {fileID: 0}
     - target: {fileID: 8382722297450864766, guid: 5ac1b1ead1c817344aebfce8dc893fa1,
         type: 3}

@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ac117c5055eff74fa398e3fc3336d74, type: 3}
-  m_Name: SC_Fortitude
+  m_Name: SC_UpSpeed+
   m_EditorClassIdentifier: 
-  cardName: Fortitude
-  description: Add Max Health Points and replenish all of the Health of the enemies.
-    Reduce the global Speed
+  cardName: UpSpeed
+  description: Up the Ennemies Speed
   artwork: {fileID: 0}
-  PowerLVL: 1
+  PowerLVL: 2
   Bonus:
-  - {fileID: 11400000, guid: fc3ae3388083b994d975095c888949a1, type: 2}
-  - {fileID: 11400000, guid: ce5544683b020d94c8fd0fa99eaf7dee, type: 2}
+  - {fileID: 11400000, guid: 089b2a3a3aa12e440a2954a6000e590e, type: 2}
   Malus:
-  - {fileID: 11400000, guid: eb15ed9ffebb38845982d3d187b98950, type: 2}
+  - {fileID: 11400000, guid: ae1382bd54d9ad44eb8715ce32d2b35d, type: 2}
