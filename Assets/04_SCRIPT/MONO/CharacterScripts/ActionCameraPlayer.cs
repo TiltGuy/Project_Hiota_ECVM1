@@ -8,7 +8,8 @@ public class ActionCameraPlayer : MonoBehaviour
     Player_InputScript player_InputScript;
 
     public delegate void MultiDelegate();
-    public MultiDelegate OnChangeTargetPlayerPositionForTargetGroup;
+    public MultiDelegate OnSwitchTargetPlayerPositionForTargetGroup;
+    public MultiDelegate OnNewTargetPlayerPositionForTargetGroup;
 
     [SerializeField]
     private TargetGatherer targetGatherer;
@@ -90,10 +91,8 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             if (controller_FSM.b_CanChangeFocusTarget)
             {
-                print("Change");
 
                 UpdateHiotaCurrentTarget(input);
-                OnChangeTargetPlayerPositionForTargetGroup();
 
                 controller_FSM.b_CanChangeFocusTarget = false;
             }
@@ -106,14 +105,22 @@ public class ActionCameraPlayer : MonoBehaviour
         if (targetGatherer.CheckoutNextTargetedEnemy(input) != null)
         {
             Transform tempTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
-            if(tempTarget != currentHiotaActionCameraTarget && tempTarget!= null)
-            {
-                currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
-                currentHiotaActionCameraTarget = tempTarget;
-                currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
-                controller_FSM.CurrentCharacterTarget = currentHiotaActionCameraTarget;
-            }
+            DeSyncDelegateIfCurrentTargetDead(tempTarget);
             Debug.Log(currentHiotaActionCameraTarget, currentHiotaActionCameraTarget);
+            print("Change");
+
+            OnSwitchTargetPlayerPositionForTargetGroup();
+        }
+    }
+
+    private void DeSyncDelegateIfCurrentTargetDead( Transform tempTarget )
+    {
+        if ( tempTarget != currentHiotaActionCameraTarget && tempTarget != null )
+        {
+            currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe -= DoSomethingWhenCurrentTargetGetKilled;
+            currentHiotaActionCameraTarget = tempTarget;
+            currentHiotaActionCameraTarget.GetComponent<CharacterSpecs>().OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
+            controller_FSM.CurrentCharacterTarget = currentHiotaActionCameraTarget;
         }
     }
 
@@ -136,7 +143,7 @@ public class ActionCameraPlayer : MonoBehaviour
 
                 //Debug.Log(currentHiotaTarget, this);
                 controller_FSM.CurrentCharacterTarget = currentHiotaActionCameraTarget;
-                OnChangeTargetPlayerPositionForTargetGroup();
+                OnNewTargetPlayerPositionForTargetGroup();
                 GO_FocusCamera.SetActive(true);
                 GO_CameraFreeLook.SetActive(false);
                 //WaitForFocusLoose();

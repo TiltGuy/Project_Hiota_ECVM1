@@ -223,6 +223,7 @@ public class TargetGatherer : MonoBehaviour
 
     public Transform CheckoutNextTargetedEnemy(Vector2 input)
     {
+        print(input);
         Transform currentHiotaTarget = controller.currentCharacterTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;
@@ -253,8 +254,8 @@ public class TargetGatherer : MonoBehaviour
                 objectToReturn = nextObjectToTheRight;
                 //Debug.Log(nextObjectToTheRight + "Object to the right", nextObjectToTheRight);
             }
-            
-            return objectToReturn;
+            if(objectToReturn != currentHiotaTarget)
+                return objectToReturn;
         }
         else if(input.x < -0.7f)
         {
@@ -265,7 +266,8 @@ public class TargetGatherer : MonoBehaviour
                 //Debug.Log((SortedListOfEnemies.IndexOf(currentHiotaTarget) + 1) + "Object to the Left", nextObjectToTheLeft);
             }
 
-            return objectToReturn;
+            if ( objectToReturn != currentHiotaTarget )
+                return objectToReturn;
         }
         return null;
     }
