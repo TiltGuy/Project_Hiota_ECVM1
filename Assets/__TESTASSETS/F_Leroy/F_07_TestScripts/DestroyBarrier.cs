@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DestroyBarrier : MonoBehaviour
 {
-    //public Animation_Death_Roots anim;
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animation_Death_Roots>();
-        //foreach ( AnimationState state in anim )
-        //{
-        //    state.speed = 0.5F;
-      //  }
+        animator = GetComponent<Animator>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    [ContextMenu("DoSomething")]
+
+    public void DoSomething()
     {
-        
+        animator.SetBool("Destroy", true);
     }
 }
