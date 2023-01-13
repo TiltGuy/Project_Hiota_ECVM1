@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Destroy_Barrier
-  m_Shader: {fileID: 4800000, guid: 0e590b045ac2b1f49a1c0571562287b2, type: 3}
+  m_Name: Glow_V2
+  m_Shader: {fileID: 4800000, guid: 815d9c32d1ce71045929e4a9e90f2c30, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -40,11 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c893e328c1326064cbace00da708c4c7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex1:
-        m_Texture: {fileID: 2800000, guid: c893e328c1326064cbace00da708c4c7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -59,60 +55,37 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 8d864b597abecaa42a89b6f0fe3e57ab, type: 3}
-        m_Scale: {x: 0, y: 0}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: f0a46493ee02b5240b968d01fe8b58c2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _tex4coord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _ASEOutlineWidth: 0.01
-    - _AlphaClipThreshHold: 1
+    - _Bias_Fresnel: 0
+    - _BottomLine: 0
     - _BumpScale: 1
-    - _Cutoff: 0.4
+    - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeLength: 15
-    - _EdgeThickness: 1
-    - _Edge_Width: 0.5
-    - _Fresnel_Power: -3.6
-    - _Fresnel_Scale: 0.91
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Grow: 1
-    - _Grow1: 1
-    - _Mask_Clip_Value: 0
-    - _Metallic: 0
+    - _Metallic: 0.651
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PushPull: 0.1
-    - _PushPull1: -0.1
-    - _RealSmoothStep: 0
-    - _SmoothStep: 0
-    - _SmoothStepAttempt: 0
+    - _Power_Fresnel: 0
+    - _Scale_Fresnel: 1
+    - _Smoothness: 0.336
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TessPhongStrength: 0.5
+    - _TopLine: 0
     - _UVSec: 0
-    - _VertexCoord: 1.04
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Base_Color: {r: 1, g: 0, b: 0.99777555, a: 0}
+    - _Bottom_Color: {r: 0.2144947, g: 0, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Colored_Waves: {r: 0.36658812, g: 0, b: 1, a: 0}
-    - _Contour: {r: 1, g: 0, b: 0.88426065, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Top_Color: {r: 1, g: 0.8726415, b: 0.8726415, a: 0}
