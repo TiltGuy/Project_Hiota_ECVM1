@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ActionCameraPlayer : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class ActionCameraPlayer : MonoBehaviour
     private bool shakeFocusCamera;
     [SerializeField]
     private GameObject GO_FocusCamera;
+    private CinemachineVirtualCamera FocusCamera_cine;
     [SerializeField]
     private bool shakeFreeLookCamera;
     [SerializeField]
     private GameObject GO_CameraFreeLook;
+    private CinemachineFreeLook FreeLookCamera_cine;
 
     public bool b_CameraGoToNextEnemyIfPreviousDead;
 
@@ -33,6 +36,8 @@ public class ActionCameraPlayer : MonoBehaviour
     {
         controller_FSM = GetComponent<Controller_FSM>();
         player_InputScript = GetComponent<Player_InputScript>();
+        FreeLookCamera_cine = GO_CameraFreeLook.GetComponent<CinemachineFreeLook>();
+        FocusCamera_cine = GO_FocusCamera.GetComponent<CinemachineVirtualCamera>();
     }
     private void OnEnable()
     {
@@ -93,7 +98,7 @@ public class ActionCameraPlayer : MonoBehaviour
             {
 
                 UpdateHiotaCurrentTarget(input);
-
+                //Debug.Log("Je passe dedans = " + input.magnitude);
                 controller_FSM.b_CanChangeFocusTarget = false;
             }
         }
@@ -106,10 +111,10 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             Transform tempTarget = targetGatherer.CheckoutNextTargetedEnemy(input);
             DeSyncDelegateIfCurrentTargetDead(tempTarget);
-            Debug.Log(currentHiotaActionCameraTarget, currentHiotaActionCameraTarget);
+            //Debug.Log(currentHiotaActionCameraTarget, currentHiotaActionCameraTarget);
             print("Change");
 
-            OnSwitchTargetPlayerPositionForTargetGroup();
+            OnSwitchTargetPlayerPositionForTargetGroup?.Invoke();
         }
     }
 
@@ -143,9 +148,9 @@ public class ActionCameraPlayer : MonoBehaviour
 
                 //Debug.Log(currentHiotaTarget, this);
                 controller_FSM.CurrentCharacterTarget = currentHiotaActionCameraTarget;
-                OnNewTargetPlayerPositionForTargetGroup();
-                GO_FocusCamera.SetActive(true);
-                GO_CameraFreeLook.SetActive(false);
+                OnNewTargetPlayerPositionForTargetGroup?.Invoke();
+                FocusCamera_cine.Priority = 10;
+                FreeLookCamera_cine.Priority = 0;
                 //WaitForFocusLoose();
                 //Debug.Log(currentHiotaTarget, this);
             }
@@ -153,8 +158,8 @@ public class ActionCameraPlayer : MonoBehaviour
         }
         else
         {
-            GO_FocusCamera.SetActive(false);
-            GO_CameraFreeLook.SetActive(true);
+            FocusCamera_cine.Priority = 0;
+            FreeLookCamera_cine.Priority = 10;
             controller_FSM.CurrentCharacterTarget = null;
             currentHiotaActionCameraTarget = null;
             //Debug.Log("FreeLook Mode Camera Activated", this);

@@ -31,6 +31,7 @@ public class Player_InputScript : MonoBehaviour
 
     public delegate void MultiDelegate();
     public MultiDelegate OnChangeCurrentPlayerTarget;
+    private bool b_ChangeTargetInput;
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class Player_InputScript : MonoBehaviour
         controls.Player.Dash.started += ctx => SetInputDash(true);
         controls.Player.Dash.canceled += ctx => SetInputDash(false);
 
-        controls.Player.ChangeFocusCameraTarget.started += ctx => WantToChangeTarget();
+        controls.Player.ChangeFocusCameraTarget.performed += ctx => WantToChangeTarget(ctx.ReadValue<Vector2>());
         controls.Player.ChangeFocusCameraTarget.canceled += ctx => actionCameraPlayer.ResetFocusCameraTargetFactor();
 
         controls.Player.DebugInput.started += ctx => controller_FSM.DebugAction(true);
@@ -86,10 +87,14 @@ public class Player_InputScript : MonoBehaviour
         controller_FSM.b_WantDash = value;
     }
 
-    void WantToChangeTarget()
+    void WantToChangeTarget(Vector2 value)
     {
         Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
-        actionCameraPlayer.InputCommandToChangeTargetOfPlayer(input);
+        if(input.x > 0.4f || input.x < -0.4f)
+        {
+            actionCameraPlayer.InputCommandToChangeTargetOfPlayer(input);
+            //Debug.Log("Vector2 = " + input.magnitude);
+        }
     }
 
     void ToggleHiotaFocusMode()

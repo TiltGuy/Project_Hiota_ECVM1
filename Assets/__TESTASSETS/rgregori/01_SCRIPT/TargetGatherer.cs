@@ -223,7 +223,7 @@ public class TargetGatherer : MonoBehaviour
 
     public Transform CheckoutNextTargetedEnemy(Vector2 input)
     {
-        print(input);
+        print("Vector to next Target = " + input);
         Transform currentHiotaTarget = controller.currentCharacterTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;
@@ -246,7 +246,7 @@ public class TargetGatherer : MonoBehaviour
         }).ToList();
 
         //print(input);
-        if (input.x>.7f)
+        if (input.x>.1f)
         {
             if(SortedListOfEnemies.IndexOf(currentHiotaTarget) - 1 >=0 )
             {
@@ -257,7 +257,7 @@ public class TargetGatherer : MonoBehaviour
             if(objectToReturn != currentHiotaTarget)
                 return objectToReturn;
         }
-        else if(input.x < -0.7f)
+        else if(input.x < -0.1f)
         {
             if (SortedListOfEnemies.IndexOf(currentHiotaTarget) + 1 < SortedListOfEnemies.Count)
             {

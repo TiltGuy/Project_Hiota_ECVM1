@@ -13,6 +13,9 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     public float timeOfTransition;
     private float currentTransitionTimer;
     private bool b_InTransition =false;
+    public AnimationCurve TransitionCurve;
+    private Vector3 offset;
+    private Vector3 lastOffset;
 
     private void Awake()
     {
@@ -64,19 +67,22 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     {
         if(!b_InTransition)
         {
-            transform.position = currentPlayerTarget.position;
+            transform.position = currentPlayerTarget.position + offset;
+            //UpdateCurrentOffset();
         }
     }
 
     void SwitchMyPlayerCurrentTargetGroup()
     {
+        //Debug.Log("Passe dans le switch");
         lastTargetPostion = currentPlayerTarget;
         currentPlayerTarget = actionCameraPlayer.currentHiotaActionCameraTarget;
         if(b_InTransition)
         {
-            StopCoroutine(TransitionToAnotherTarget(Time.deltaTime));
+            StopAllCoroutines();
+            lastTargetPostion = transform;
         }
-        StartCoroutine(TransitionToAnotherTarget(Time.deltaTime));
+        StartCoroutine(TransitionToAnotherTarget(lastTargetPostion.position));
     }
 
     void NewMyPlayerCurrentTargetGroup()
@@ -85,12 +91,28 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
         //Debug.Log("I want to update my current Target", this);
     }
 
-    private IEnumerator TransitionToAnotherTarget( float StartTime)
+    private IEnumerator TransitionToAnotherTarget( Vector3 LastPos)
     {
+        float elapsed = 0f;
+        float progress = 0f;
         b_InTransition = true;
-        transform.position = Vector3.Lerp(lastTargetPostion.position, currentPlayerTarget.position, (Time.time - StartTime) / timeOfTransition);
-        yield return new WaitForSeconds(timeOfTransition);
+        offset = transform.position - LastPos;
+        while (progress <= timeOfTransition)
+        {
+            elapsed += Time.deltaTime;
+            progress = elapsed / timeOfTransition;
+            transform.position = Vector3.SlerpUnclamped(LastPos + offset, currentPlayerTarget.position, TransitionCurve.Evaluate(progress));
+            yield return null;
+        }
+        offset = transform.position - currentPlayerTarget.position;
+        lastOffset = offset;
         b_InTransition = false;
+    }
+
+    private void UpdateCurrentOffset()
+    {
+
+        offset = Vector3.LerpUnclamped(lastOffset, Vector3.zero, 2.5f);
     }
 
 }
