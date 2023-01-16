@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 453070986201718254}
   - component: {fileID: 8268208639739719513}
-  - component: {fileID: 2486204815861040360}
-  m_Layer: 0
+  - component: {fileID: 8641339656514352053}
+  m_Layer: 14
   m_Name: Trap_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +46,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 1, z: 1.7}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &2486204815861040360
+  m_Size: {x: 2.0957181, y: 0.16772604, z: 2.0745082}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8641339656514352053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,34 +57,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 386323609980402305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2079364914343624d8ecc4f95aa9adc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaunchTrapActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1594627059863440889}
-        m_MethodName: LaunchProjectile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2057381765286214508}
-        m_MethodName: LaunchProjectile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_Size: {x: 2.4338675, y: 1.5012736, z: 2.4267163}
+  m_Center: {x: 0.020041943, y: 0.47922206, z: 0.02216649}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
 --- !u!1 &1841503588232077054
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1853978218974729349}
   - component: {fileID: 1594627059863440889}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpawnProjectiles
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -110,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841503588232077054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0.625, z: -10.22}
+  m_LocalPosition: {x: 0.4, y: 0.625, z: -21.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 453070986201718254}
@@ -141,7 +120,7 @@ GameObject:
   - component: {fileID: 1782804245213198689}
   - component: {fileID: 5810665180532281152}
   - component: {fileID: 8991639908845629586}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +199,7 @@ GameObject:
   - component: {fileID: 6403976164768528717}
   - component: {fileID: 3020604955590778615}
   - component: {fileID: 3155525621644176176}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8855514543387658499}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,8 +312,9 @@ GameObject:
   - component: {fileID: 8332210137354330719}
   - component: {fileID: 3184646801740012733}
   - component: {fileID: 6104122840097015986}
-  - component: {fileID: 878813229958623247}
-  m_Layer: 0
+  - component: {fileID: 6178157259219265654}
+  - component: {fileID: 8641339656514352052}
+  m_Layer: 12
   m_Name: PressurPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +382,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &878813229958623247
+--- !u!65 &6178157259219265654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5977695678187091999}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 9.391414, z: 1.0022897}
+  m_Center: {x: 0.000007638746, y: 4.195708, z: 0.0011522783}
+--- !u!114 &8641339656514352052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -411,13 +404,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 5977695678187091999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Script: {fileID: 11500000, guid: 2079364914343624d8ecc4f95aa9adc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 1.36, y: 6.53, z: 1.26}
-  m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 3
-  m_AffectedAgents: ffffffff
+  LaunchTrapActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1594627059863440889}
+        m_MethodName: LaunchProjectile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2057381765286214508}
+        m_MethodName: LaunchProjectile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7171023937689099749
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724655612658346535}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220523288250813628}
   - component: {fileID: 2057381765286214508}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpawnProjectiles (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -475,7 +489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8355789574027302698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0.625, z: -10.22}
+  m_LocalPosition: {x: -0.4, y: 0.625, z: -21.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 453070986201718254}
@@ -506,7 +520,7 @@ GameObject:
   - component: {fileID: 8251028535408796751}
   - component: {fileID: 5621136819060251915}
   - component: {fileID: 6619789404226905355}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +599,7 @@ GameObject:
   - component: {fileID: 2785926930358489350}
   - component: {fileID: 1969849555264218180}
   - component: {fileID: 3490713136403794035}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
