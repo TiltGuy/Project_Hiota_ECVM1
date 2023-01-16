@@ -50,7 +50,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
 
         if ( saveToPlayerPrefs && PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated") == 1 )
         {
-            TakeDamages(0, null, false);
+            TakeDamagesParriable(0, null, false);
         }
 
         if(SkillCard != null)
@@ -60,20 +60,8 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         }
     }
 
-    private void AssignNewSkillCard()
+    private void AddCurrentSkillCardToEnemyDeck()
     {
-        //foreach ( Transform enemy in Enemies )
-        //{
-        //    if(enemy.gameObject.activeInHierarchy)
-        //    {
-        //        if(SkillCard != null)
-        //        {
-        //           //SkillCardScript CurrentInstance = enemy.gameObject.AddComponent<SkillCardScript>();
-        //            //CurrentInstance.CurrentSkillCard = SkillCard;
-        //            DeckManager.instance.AddCardToEnnemyDeck(SkillCard);
-        //        }
-        //    }
-        //}
 
         if ( SkillCard != null )
         {
@@ -84,19 +72,29 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         OnSelectSkillCard?.Invoke();
     }
 
-    public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
+    public void TakeDamagesParriable( float damageTaken, Transform Striker, bool isAHook )
     {
         if(_NumberOfUses>0)
         {
             //print("Assign");
-            AssignNewSkillCard();
+            AddCurrentSkillCardToEnemyDeck();
             _animator.SetTrigger("t_Activated");
             _NumberOfUses--;
 
-            if ( saveToPlayerPrefs )
-            {
-                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
-            }
+            SaveSteleToPlayerPref();
+        }
+    }
+
+    public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float ForceOfProjection )
+    {
+
+    }
+
+    private void SaveSteleToPlayerPref()
+    {
+        if ( saveToPlayerPrefs )
+        {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
         }
     }
 
@@ -142,4 +140,5 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         
     }
 
+    
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamages(float damageTaken, Transform Striker, bool isAHook);
+    void TakeDamagesParriable(float damageTaken, Transform Striker, bool isAHook);
+
+    void TakeDamagesNonParriable(float damageTaken, Transform Striker, float ForceOfProjection);
 }
 
 public interface ITouchable

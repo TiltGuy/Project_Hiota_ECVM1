@@ -12,6 +12,7 @@ public class TrapScript : MonoBehaviour
     {
         foreach( string tag in TargetTag )
         {
+            
             DoDamages(other, tag);
         }
     }
@@ -24,7 +25,7 @@ public class TrapScript : MonoBehaviour
             //Debug.Log(other.gameObject.name, this);
             if ( damageable != null )
             {
-                damageable.TakeDamages(damages, transform, false);
+                damageable.TakeDamagesNonParriable(damages, transform, 0f);
             }
         }
     }

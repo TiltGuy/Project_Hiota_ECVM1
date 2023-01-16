@@ -69,6 +69,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        if(currentRoomIndex < 0 )
+        {
+            currentRoomIndex = 1;
+        }
         //foreach (GameObject prop in Props)
         //{
         //    if (Random.Range(0,100) > minProbability + currentRoomIndex/nbTotalRooms * (maxProbability - minProbability) )

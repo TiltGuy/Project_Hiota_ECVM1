@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class StaticEnemyAI : MonoBehaviour, IDamageable
+public class StaticEnemyAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Transform player;

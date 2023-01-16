@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private NavMeshAgent agent;
@@ -288,10 +288,5 @@ public class Enemy : MonoBehaviour, IDamageable
     private void SetCanMoveFalse()
     {
         b_CanMove = false;
-    }
-
-    public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
-    {
-        throw new System.NotImplementedException();
     }
 }

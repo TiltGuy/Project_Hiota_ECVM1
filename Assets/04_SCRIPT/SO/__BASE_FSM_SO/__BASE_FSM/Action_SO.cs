@@ -38,7 +38,7 @@ public abstract class Action_SO : ScriptableObject
 
     public void SetDashingBooleanValue(Controller_FSM controller, bool targetValue)
     {
-        controller.b_IsDashing = targetValue;
+        controller.B_IsDashing = targetValue;
     }
 
     public void SetParryingBooleanValue( Controller_FSM controller, bool targetValue )

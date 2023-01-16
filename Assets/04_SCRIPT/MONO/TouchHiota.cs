@@ -14,7 +14,7 @@ public class TouchHiota : MonoBehaviour
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
             if (damageable != null)
             {
-                damageable.TakeDamages(AttackStats.damages, transform, AttackStats.b_IsAHook);
+                damageable.TakeDamagesParriable(AttackStats.damages, transform, AttackStats.b_IsAHook);
                 //Debug.Log("Player prend " + AttackStats.damages + " points de dégâts brut sans calculer son armure",this);
             }
 

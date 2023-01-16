@@ -118,7 +118,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     [HideInInspector] public float scalarVector;
     [HideInInspector] public bool b_CanDash = true;
     [HideInInspector]
-    public bool b_IsDashing = false;
+    private bool b_IsDashing = false;
 
     #endregion
 
@@ -239,6 +239,7 @@ public class Controller_FSM : ActionHandler, IDamageable
     public OnEventCombatSystem OnTouchedEnemy;
     public OnEventCombatSystem OnHittenByEnemy;
     public OnEventCombatSystem OnPerfectGuard;
+    public OnEventCombatSystem OnFinishDash;
 
     #endregion
 
@@ -305,6 +306,19 @@ public class Controller_FSM : ActionHandler, IDamageable
 
             //characterAnimator.SetBool("b_IsDead", value);
         }
+    }
+
+    public bool B_IsDashing
+    {
+        get => b_IsDashing;
+        set 
+        {
+            b_IsDashing = value;
+            if(!b_IsDashing)
+            {
+                OnFinishDash?.Invoke();
+            }
+        } 
     }
 
     private void Awake()
@@ -503,7 +517,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
     }
 
-    public void TakeDamages(float damageTaken, Transform striker, bool isAHook)
+    public void TakeDamagesParriable(float damageTaken, Transform striker, bool isAHook)
     {
 
         if ( b_isParrying )
@@ -524,11 +538,11 @@ public class Controller_FSM : ActionHandler, IDamageable
                 }
             }
         }
-        else if ( b_IsDashing )
+        else if ( B_IsDashing )
         {
             // do Something
         }
-        if (!b_isParrying && !b_IsDashing)
+        if (!b_isParrying && !B_IsDashing)
         {
             if ( !isAHook )
             {
@@ -543,6 +557,13 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
     }
 
+
+    public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float forceOfProjection )
+    {
+        HitTaken(damageTaken, Striker, forceOfProjection);
+
+    }
+
     private void HitTaken( float damageTaken, Transform striker )
     {
         float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
@@ -551,6 +572,16 @@ public class Controller_FSM : ActionHandler, IDamageable
         b_Stunned = true;
         SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
         DirectionHitReact = GetBoolnDirHitReact(striker);
+        OnHittenByEnemy?.Invoke();
+    }
+    private void HitTaken( float damageTaken, Transform striker, float forceOfProjection )
+    {
+        float damageOuput = CalculateFinalDamages(damageTaken, charSpecs.CurrentArmor);
+        LoseHP(damageOuput);
+
+        b_Stunned = true;
+        SpawnFXAtPosition(FX_HitReact, eyes.transform.position);
+        DirectionHitReact = GetBoolnDirHitReact(striker) * forceOfProjection;
         OnHittenByEnemy?.Invoke();
     }
 
@@ -724,8 +755,4 @@ public class Controller_FSM : ActionHandler, IDamageable
         return GetLocalVelocity;
     }
 
-    public void TakeDamages( float damageTaken, Transform striker )
-    {
-        throw new NotImplementedException();
-    }
 }

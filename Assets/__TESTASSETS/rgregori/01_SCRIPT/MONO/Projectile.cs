@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
         //Debug.Log(other.gameObject.name, this);
         if ( damageable != null )
         {
-            damageable.TakeDamages(damages, transform, false);
+            damageable.TakeDamagesParriable(damages, transform, false);
         }
     }
 

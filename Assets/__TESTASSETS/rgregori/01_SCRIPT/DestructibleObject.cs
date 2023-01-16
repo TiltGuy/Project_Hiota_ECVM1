@@ -7,7 +7,7 @@ public class DestructibleObject : MonoBehaviour, IDamageable
     [SerializeField]
     private Transform Prefab_DestroyedObject;
 
-    public void TakeDamages( float damageTaken, Transform Striker, bool isAHook )
+    public void TakeDamagesParriable( float damageTaken, Transform Striker, bool isAHook )
     {
         Transform ObjectToDestroy = Instantiate(Prefab_DestroyedObject, transform.position, Quaternion.identity);
         Rigidbody[] Rbs = Prefab_DestroyedObject.GetComponentsInChildren<Rigidbody>();
@@ -20,8 +20,7 @@ public class DestructibleObject : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    public void TakeDamages( float damageTaken, Transform striker )
+    public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float ForceOfProjection )
     {
-        throw new System.NotImplementedException();
     }
 }
