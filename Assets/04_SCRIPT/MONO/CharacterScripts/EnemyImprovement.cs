@@ -80,14 +80,14 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
             AddCurrentSkillCardToEnemyDeck();
             _animator.SetTrigger("t_Activated");
             _NumberOfUses--;
-
+            CharacterSpecs specs = Striker.GetComponent<CharacterSpecs>();
+            specs.RegenerateLife(specs.MaxHealth);
             SaveSteleToPlayerPref();
         }
     }
 
     public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float ForceOfProjection )
     {
-
     }
 
     private void SaveSteleToPlayerPref()
