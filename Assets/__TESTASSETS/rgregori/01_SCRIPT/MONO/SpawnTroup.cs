@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnTroup : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class SpawnTroup : MonoBehaviour
 
 
     public float distToSpawn;
-
 
     public struct EnemyHolder
     {
@@ -43,24 +43,41 @@ public class SpawnTroup : MonoBehaviour
     {
         foreach ( GameObject enemy in troups[LevelManager.nextTroopIndex ].Enemies )
         {
-            Vector2 randomPointInCircle = Random.insideUnitCircle;
-            Vector3 randomPosition = new Vector3(randomPointInCircle.x * distToSpawn, 0, randomPointInCircle.y * distToSpawn);
+            Vector3 randomPosition = GetARandomPointInCircle();
             GameObject currentEnemey = Instantiate(enemy, transform.position + randomPosition, transform.rotation);
             EnemyHolder currentHolder;
             currentHolder.controllerFSM = currentEnemey.GetComponent<Controller_FSM>();
             currentHolder.characterSpecs = currentEnemey.GetComponent<CharacterSpecs>();
-            //foreach( SkillCard_SO skillCard in DeckManager.instance._EnemiesDeck)
-            //{
-            //    print(skillCard.name);
-            //    skillCard.ApplyEffects(currentHolder.controllerFSM, currentHolder.characterSpecs);
-            //}
+
         }
+    }
+
+    private Vector3 GetARandomPointInCircle()
+    {
+        Vector2 randomPointInCircle = Random.insideUnitCircle;
+        Vector3 randomPosition = new Vector3(
+            randomPointInCircle.x * distToSpawn,
+            0,
+            randomPointInCircle.y * distToSpawn);
+        
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position + randomPosition, out hit, 5f, NavMesh.AllAreas) )
+        {
+            if (hit.mask == NavMesh.GetAreaFromName("Trap") )
+            {
+
+                print(hit.mask);
+            }
+        }
+
+        return randomPosition;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distToSpawn);
+
     }
 
     private void SortTroupsByDifficulty(Troup_SO[] troups)
@@ -81,19 +98,4 @@ public class SpawnTroup : MonoBehaviour
             }
         } while ( itemMoved );
     }
-
-    //public void DefineNextTroopIndex(  )
-    //{
-    //    Troup_SO[] troups = LevelManager.instance.Troups;
-    //    int min = Mathf.FloorToInt(0 + LevelManager.currentRoomIndex / levelManager.NbTotalRooms * (troups.Length - 1));
-    //    float maxBase = (troups.Length - 1) * LevelManager.instance.arrayFraction;
-    //    //Debug.Log("min = " + min);
-    //    //Debug.Log("maxBase = " + maxBase);
-    //    min = Mathf.Clamp(min, 0, Mathf.RoundToInt(troups.Length - 1 - maxBase));
-    //    int max = Mathf.RoundToInt(maxBase + min);
-    //    //max = Mathf.Clamp(max, 2, Troups.Length - 1);
-    //    nextTroopIndex = Random.Range(min, max);
-    //    Debug.Log(troups[nextTroopIndex].Enemies.ToString());
-    //    //Debug.Log("troupIndex = " + troopIndex);
-    //}
 }
