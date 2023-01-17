@@ -69,13 +69,13 @@ public class IABrain : MonoBehaviour
     private void OnEnable()
     {
         targetGatherer.AddEnemyToList += AddCurrentControllerTarget;
-        targetGatherer.RemoveEnemyToList += RemoveCurrentControllerTarget;
+        //targetGatherer.RemoveEnemyToList += RemoveCurrentControllerTarget;
     }
 
     private void OnDisable()
     {
         targetGatherer.AddEnemyToList -= AddCurrentControllerTarget;
-        targetGatherer.RemoveEnemyToList -= RemoveCurrentControllerTarget;
+        //targetGatherer.RemoveEnemyToList -= RemoveCurrentControllerTarget;
     }
 
     private void AddCurrentControllerTarget(Transform transform)

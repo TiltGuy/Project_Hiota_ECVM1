@@ -285,12 +285,19 @@ public class CharacterSpecs : MonoBehaviour
         this.Health = 0;
     }
 
-    private void RegenerateLife()
+    public void RegenerateLife()
     {
         float valueToGain = CharStats_SO.healthGainedWhenPGuarding;
         Health += valueToGain;
         Instantiate(Particle_Health_Recovered, this.gameObject.transform.position, Quaternion.identity);
         Debug.Log("REGENERATE", this);
     }
-	
+
+    public void RegenerateLife(float amountToRegain)
+    {
+        Health += amountToRegain;
+        Instantiate(Particle_Health_Recovered, this.gameObject.transform.position, Quaternion.identity);
+        Debug.Log("REGENERATE", this);
+    }
+
 }

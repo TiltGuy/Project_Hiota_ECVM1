@@ -65,6 +65,12 @@ public class LevelManager : MonoBehaviour
             DefineNextTroopIndex();
             Debug.Log("ALED!!");
         }
+
+        int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRoomPalier * (Props.Length - 1));
+
+        SpawnAllTheProps(nbToBeSpawned);
+
+        InitializeNavMeshData();
     }
 
     private void Start()
@@ -83,12 +89,10 @@ public class LevelManager : MonoBehaviour
 
 
 
-        int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRoomPalier * (Props.Length - 1));
+        
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
 
-        SpawnAllTheProps(nbToBeSpawned);
-
-        InitializeNavMeshData();
+        
 
     }
 
