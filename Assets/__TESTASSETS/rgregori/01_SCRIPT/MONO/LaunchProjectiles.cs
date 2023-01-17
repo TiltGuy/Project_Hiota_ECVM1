@@ -13,6 +13,6 @@ public class LaunchProjectiles : MonoBehaviour
             Debug.LogWarning("Pas de Projectiles dans la chambre", this);
             return;
         }
-        Instantiate(projectile, transform.position, Quaternion.identity);
+        Instantiate(projectile, transform.position, transform.rotation);
     }
 }
