@@ -367,6 +367,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         Cursor.visible = false;
         SetVariablesFromSO();
 
+
         //GO_FocusCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = currentHiotaTarget;
         //initialisation of ALL the STATS SETTINGS
         // In the AWAKE METHOD because other scripts take the stats in start method
