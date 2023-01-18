@@ -79,6 +79,11 @@ public class TargetGatherer : MonoBehaviour
         {
             RemoveEnemyFromTargetableNdPotential(other);
         }
+
+        if(other.CompareTag("Player"))
+        {
+            Debug.Log("Trying to remove Hiota", this);
+        }
     }
 
     private void RemoveEnemyFromTargetableNdPotential( Collider other )
