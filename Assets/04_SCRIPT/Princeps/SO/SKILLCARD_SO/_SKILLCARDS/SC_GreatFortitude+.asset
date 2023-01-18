@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac117c5055eff74fa398e3fc3336d74, type: 3}
+  m_Name: SC_GreatFortitude+
+  m_EditorClassIdentifier: 
+  cardName: Fortitude
+  description: Add Max Health Points and replenish all of the Health of the enemies.
+    Reduce the global Speed
+  artwork: {fileID: 0}
+  PowerLVL: 2
+  Bonus:
+  - {fileID: 11400000, guid: 563ffdda6b6945645bf84645e8ba0259, type: 2}
+  - {fileID: 11400000, guid: ce5544683b020d94c8fd0fa99eaf7dee, type: 2}
+  Malus:
+  - {fileID: 11400000, guid: 12a380592e0369c4997ba9f7e47ba3e2, type: 2}
