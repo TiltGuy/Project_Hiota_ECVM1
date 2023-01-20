@@ -76,7 +76,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
     {
         //Debug.Log("Passe dans le switch");
         lastTargetPostion = currentPlayerTarget;
-        currentPlayerTarget = actionCameraPlayer.currentHiotaActionCameraTarget;
+        currentPlayerTarget = actionCameraPlayer.CurrentHiotaActionCameraTarget;
         if(b_InTransition)
         {
             StopAllCoroutines();
@@ -87,7 +87,7 @@ public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
 
     void NewMyPlayerCurrentTargetGroup()
     {
-        currentPlayerTarget = actionCameraPlayer.currentHiotaActionCameraTarget;
+        currentPlayerTarget = actionCameraPlayer.CurrentHiotaActionCameraTarget;
         //Debug.Log("I want to update my current Target", this);
     }
 
