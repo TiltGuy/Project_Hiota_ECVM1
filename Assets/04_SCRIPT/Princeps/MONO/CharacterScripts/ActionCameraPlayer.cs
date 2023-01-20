@@ -40,15 +40,21 @@ public class ActionCameraPlayer : MonoBehaviour
         get => currentHiotaActionCameraTarget;
         set
         {
-            GameObject lastTarget = null;
-            if(currentHiotaActionCameraTarget != null)
+            if(value == null)
             {
-                lastTarget = currentHiotaActionCameraTarget.gameObject;
+                OnRemoveCameraTarget?.Invoke(currentHiotaActionCameraTarget.gameObject);
+                currentHiotaActionCameraTarget = value;
+                return;
             }
-            Debug.Log("Last Target = " + lastTarget);
-            currentHiotaActionCameraTarget = value;
-            OnRemoveCameraTarget?.Invoke(lastTarget);
-            OnNewCameraTarget?.Invoke(currentHiotaActionCameraTarget.gameObject);
+            if((value != currentHiotaActionCameraTarget) && (currentHiotaActionCameraTarget != null))
+            {
+                OnRemoveCameraTarget.Invoke(currentHiotaActionCameraTarget.gameObject);
+                currentHiotaActionCameraTarget = value;
+                OnNewCameraTarget?.Invoke(currentHiotaActionCameraTarget.gameObject);
+                return;
+            }
+            currentHiotaActionCameraTarget=value;
+            OnNewCameraTarget.Invoke(currentHiotaActionCameraTarget.gameObject);
         }
     }
 
@@ -160,21 +166,8 @@ public class ActionCameraPlayer : MonoBehaviour
     {
         if(!controller_FSM.b_IsFocusing)
         {
-            if(targetGatherer.TargetableEnemies.Count > 0)
-            {
-                CurrentHiotaActionCameraTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
-                CharacterSpecs targetSpecsScript = CurrentHiotaActionCameraTarget.GetComponent<CharacterSpecs>();
-                targetSpecsScript.OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
+            AssignCurrentCameraTargetIfAvailable();
 
-                //Debug.Log(currentHiotaTarget, this);
-                controller_FSM.CurrentCharacterTarget = CurrentHiotaActionCameraTarget;
-                OnNewTargetPlayerPositionForTargetGroup?.Invoke();
-                FocusCamera_cine.Priority = 10;
-                FreeLookCamera_cine.Priority = 0;
-                //WaitForFocusLoose();
-                //Debug.Log(currentHiotaTarget, this);
-            }
-            
         }
         else
         {
@@ -183,6 +176,25 @@ public class ActionCameraPlayer : MonoBehaviour
             controller_FSM.CurrentCharacterTarget = null;
             CurrentHiotaActionCameraTarget = null;
             //Debug.Log("FreeLook Mode Camera Activated", this);
+        }
+    }
+
+    private void AssignCurrentCameraTargetIfAvailable()
+    {
+        if ( targetGatherer.TargetableEnemies.Count > 0 )
+        {
+            CurrentHiotaActionCameraTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
+            Debug.Log(currentHiotaActionCameraTarget);
+            CharacterSpecs targetSpecsScript = CurrentHiotaActionCameraTarget.GetComponent<CharacterSpecs>();
+            targetSpecsScript.OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
+
+            //Debug.Log(currentHiotaTarget, this);
+            controller_FSM.CurrentCharacterTarget = CurrentHiotaActionCameraTarget;
+            OnNewTargetPlayerPositionForTargetGroup?.Invoke();
+            FocusCamera_cine.Priority = 10;
+            FreeLookCamera_cine.Priority = 0;
+            //WaitForFocusLoose();
+            //Debug.Log(currentHiotaTarget, this);
         }
     }
 

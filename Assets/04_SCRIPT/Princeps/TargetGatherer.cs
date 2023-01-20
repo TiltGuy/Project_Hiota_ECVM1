@@ -292,7 +292,18 @@ public class TargetGatherer : MonoBehaviour
             return angle;
         }).ToList();
 
-        return SortedListOfEnemies.First();
+        //Debug.Log(SortedListOfEnemies.First());
+
+        if(SortedListOfEnemies.Count>0)
+        {
+            //Debug.Log("retu sorted");
+            return SortedListOfEnemies.First();
+        }
+        else
+        {
+            //Debug.Log("Return targetable");
+            return TargetableEnemies.First();
+        }
     }
 
 }
