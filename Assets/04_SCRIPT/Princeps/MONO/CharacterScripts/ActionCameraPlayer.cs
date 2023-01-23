@@ -48,13 +48,13 @@ public class ActionCameraPlayer : MonoBehaviour
             }
             if((value != currentHiotaActionCameraTarget) && (currentHiotaActionCameraTarget != null))
             {
-                OnRemoveCameraTarget.Invoke(currentHiotaActionCameraTarget.gameObject);
+                OnRemoveCameraTarget?.Invoke(currentHiotaActionCameraTarget.gameObject);
                 currentHiotaActionCameraTarget = value;
                 OnNewCameraTarget?.Invoke(currentHiotaActionCameraTarget.gameObject);
                 return;
             }
             currentHiotaActionCameraTarget=value;
-            OnNewCameraTarget.Invoke(currentHiotaActionCameraTarget.gameObject);
+            OnNewCameraTarget?.Invoke(currentHiotaActionCameraTarget.gameObject);
         }
     }
 
