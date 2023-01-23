@@ -77,7 +77,7 @@ public class CharacterSpecs : MonoBehaviour
         {
             health = Mathf.Clamp(value, 0, _maxHealth);
             healthPointBarFillAmount = health / _maxHealth;
-            healthBar.fillAmount = healthPointBarFillAmount;
+            healthBar.value = healthPointBarFillAmount;
             if ( health <= 0f )
             {
                 //Debug.Log(this + " => Killed");
@@ -174,10 +174,10 @@ public class CharacterSpecs : MonoBehaviour
 	#region IMAGES DEPENDENCIES
 	[Header(" -- IMAGES DEPENDENCIES -- ")]
 
-	public Image healthBar;
+	public Slider healthBar;
 	public float healthPointBarFillAmount;
 	[SerializeField]
-	private Image guardBarImage;
+	private Slider guardBarImage;
 	private float guardPointBarFillAmount;
 	#endregion
 
@@ -249,7 +249,7 @@ public class CharacterSpecs : MonoBehaviour
 		{
 			Health += 1;
 			healthPointBarFillAmount += 0.2f;
-			healthBar.fillAmount = healthPointBarFillAmount;
+			healthBar.value = healthPointBarFillAmount;
 			//print("Regeneratiooonnn !!!");
 			//Debug.Log("Health: " + Health,this);
 			Destroy(other.gameObject);
@@ -276,7 +276,7 @@ public class CharacterSpecs : MonoBehaviour
     {
 		currentGuard = currentGuardPointToUpdate;
 		guardPointBarFillAmount = currentGuard / _maxGuard;
-		guardBarImage.fillAmount = guardPointBarFillAmount;
+		guardBarImage.value = guardPointBarFillAmount;
 	}
 
     [ContextMenu("Kill")]
