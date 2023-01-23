@@ -16,7 +16,7 @@ public static class SaveSystem
         stream.Close();
     }
 
-    public static PlayerData LoadPlayer ( CharacterSpecs playerSpecs, DeckManager deckManager )
+    public static PlayerData LoadPlayer ()
     {
         string path = GetPath();
 
