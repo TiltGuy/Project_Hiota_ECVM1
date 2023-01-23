@@ -182,12 +182,12 @@ public class LevelManager : MonoBehaviour
         tempNextRoomIndex++;
         if( tempNextRoomIndex == palierRoomIndex)
         {
-            StartCoroutine(LoadNextRoom(PalierRoomSceneNames));
+            StartCoroutine(PreLoadNextRandomRoom(PalierRoomSceneNames));
             Debug.Log("Next Palier Room");
         }
         else
         {
-            StartCoroutine(LoadNextRoom(StandardRoomScenesNames));
+            StartCoroutine(PreLoadNextRandomRoom(StandardRoomScenesNames));
             Debug.Log("Next Standard Room");
         }
 
@@ -197,7 +197,7 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("nbTotalRooms = " + nbTotalRoomPalier);
     }
 
-    private IEnumerator LoadNextRoom(ScenesNames scenesNames)
+    private IEnumerator PreLoadNextRandomRoom(ScenesNames scenesNames)
     {
         yield return null;
         string nextPalierRoomName = scenesNames.ListOfScenes[Random.Range(0, PalierRoomSceneNames.ListOfScenes.Length)];
@@ -234,5 +234,11 @@ public class LevelManager : MonoBehaviour
         nextTroopIndex = Random.Range(min, max);
         //Debug.Log(troups[nextTroopIndex].Enemies.ToString());
         //Debug.Log("troupIndex = " + troopIndex);
+    }
+
+    public void LoadHub()
+    {
+        // Save le jeu
+        // load Scene Hub
     }
 }
