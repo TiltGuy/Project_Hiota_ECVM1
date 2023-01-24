@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class MainMenu : MonoBehaviour
 {
 	public string firstLevel;
+	public string hubLevel;
 
     public string artMap;
 
@@ -98,7 +100,13 @@ public class MainMenu : MonoBehaviour
 
     public void Continue()
     {
-        SaveSystem.LoadPlayer();
+        string path = SaveSystem.GetPath();
+        if ( !File.Exists(path) )
+        {
+            Debug.LogError("Save File not found in " + path);
+            return;
+        }
+        SceneManager.LoadScene(hubLevel);
     }
 
     public void ArtMap()
