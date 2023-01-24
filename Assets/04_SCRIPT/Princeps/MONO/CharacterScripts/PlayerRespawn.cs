@@ -27,17 +27,8 @@ public class PlayerRespawn : MonoBehaviour
         //GetComponent<Controller_FSM>().gravity = 0;
         yield return new WaitForSecondsRealtime(fadeDuration);
 
-        // reload level
-        var activeScene = SceneManager.GetActiveScene();
-        //var asyncOp = SceneManager.LoadSceneAsync(activeScene.name);
-        SceneManager.LoadScene(hubSceneName);
-        LevelManager.instance.LoadNextLevel();
-        Debug.Log("reload Next Scene");
-        //while (!asyncOp.isDone)
-        //{
-        //    Debug.Log(asyncOp.progress);
-        //    yield return null;
-        //}
+        
+        LevelManager.instance.LoadHub();
     }
 
     private IEnumerator Start()

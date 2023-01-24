@@ -12,8 +12,11 @@ public static class SaveSystem
         FileStream stream = new FileStream( path, FileMode.Create);
 
         PlayerData data = new PlayerData(playerSpecs, deckManager);
+        // Serialize
         formatter.Serialize(stream, data);
         stream.Close();
+
+        Debug.Log("Save Successfull ! ");
     }
 
     public static PlayerData LoadPlayer ()
@@ -28,10 +31,10 @@ public static class SaveSystem
 
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream fileStream = new FileStream( path, FileMode.Open);
-
+        // Deserialize
         PlayerData data = formatter.Deserialize(fileStream) as PlayerData;
         fileStream.Close();
-
+        Debug.Log("loading successfull");
         return data;
     }
 
