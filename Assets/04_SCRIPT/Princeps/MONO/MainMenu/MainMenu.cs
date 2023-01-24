@@ -96,6 +96,11 @@ public class MainMenu : MonoBehaviour
 		SceneManager.LoadScene(firstLevel);
 	}
 
+    public void Continue()
+    {
+        SaveSystem.LoadPlayer();
+    }
+
     public void ArtMap()
     {
         SceneManager.LoadScene(artMap);
