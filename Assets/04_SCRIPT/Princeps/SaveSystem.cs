@@ -1,13 +1,17 @@
 ﻿
 using UnityEngine;
 using System.IO;
+using FullSerializer;
+using System;
 using System.Runtime.Serialization.Formatters.Binary;
 
+[System.Serializable]
 public static class SaveSystem
 {
-    public static void SavePlayer( CharacterSpecs playerSpecs, DeckManager deckManager )
+    public static void SavePlayerData( CharacterSpecs playerSpecs, DeckManager deckManager )
     {
         BinaryFormatter formatter = new BinaryFormatter();
+        //fsSerializer _serializer = new fsSerializer();
         string path = GetPath();
         FileStream stream = new FileStream( path, FileMode.Create);
 
@@ -19,7 +23,7 @@ public static class SaveSystem
         Debug.Log("Save Successfull ! ");
     }
 
-    public static PlayerData LoadPlayer ()
+    public static PlayerData LoadPlayerData ()
     {
         string path = GetPath();
 
@@ -38,7 +42,7 @@ public static class SaveSystem
         return data;
     }
 
-    private static string GetPath()
+    public static string GetPath()
     {
         return Application.persistentDataPath + "/Hiota.hio";
     }

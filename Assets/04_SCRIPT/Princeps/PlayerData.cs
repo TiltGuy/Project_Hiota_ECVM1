@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FullSerializer;
+using System;
 
-[System.Serializable]
 public class PlayerData
 {
     #region -- PLAYER VARIABLES --
-    public int currentRoomID;
     public int currentSceneBuildIndex;
     public float currentHealthOfHiota;
     public float[] position;
@@ -20,7 +20,6 @@ public class PlayerData
 
     public PlayerData(CharacterSpecs playerSpecs, DeckManager deckManager)
     {
-        LevelManager.currentRoomIndex = currentRoomID;
         currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         currentHealthOfHiota =  playerSpecs.Health;
 
@@ -35,4 +34,6 @@ public class PlayerData
         _PlayerDeck = deckManager._PlayerDeck;
         _HiddenDeck = deckManager._HiddenDeck;
     }
+
+    
 }
