@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
 
     public ScenesNames StandardRoomScenesNames;
 
+    public string NameRoomHub;
+
     [SerializeField]
     private GameObject[] Props;
 
@@ -193,7 +195,7 @@ public class LevelManager : MonoBehaviour
 
         currentRoomIndex = tempNextRoomIndex;
         currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRoomPalier);
-        //Debug.Log("currentroomIndex = " + currentRoomIndex);
+        Debug.Log("currentroomIndex = " + currentRoomIndex);
         //Debug.Log("nbTotalRooms = " + nbTotalRoomPalier);
     }
 
@@ -230,15 +232,14 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("maxBase = " + maxBase);
         min = Mathf.Clamp(min, 0, Mathf.RoundToInt(troups.Length - 1 - maxBase));
         int max = Mathf.RoundToInt(maxBase + min);
-        //max = Mathf.Clamp(max, 2, Troups.Length - 1);
         nextTroopIndex = Random.Range(min, max);
-        //Debug.Log(troups[nextTroopIndex].Enemies.ToString());
-        //Debug.Log("troupIndex = " + troopIndex);
     }
 
     public void LoadHub()
     {
-        // Save le jeu
-        // load Scene Hub
+        currentRoomIndex = 0;
+        //SaveSystem.SavePlayer(GetComponent<CharacterSpecs>(), DeckManager.instance);
+        SceneManager.LoadScene(NameRoomHub);
+        Debug.Log("reload Hub");
     }
 }
