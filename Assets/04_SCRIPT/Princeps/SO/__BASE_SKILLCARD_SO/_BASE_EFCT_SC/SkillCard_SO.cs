@@ -8,7 +8,7 @@ public class SkillCard_SO : ScriptableObject
     public string cardName;
     public string description;
     public Sprite artwork;
-    public int PowerLVL = 1;
+    public int powerLVL = 1;
     public List<Effect_SO> Bonus;
     public List<Effect_SO> Malus;
 
