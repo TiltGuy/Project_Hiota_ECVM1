@@ -1,65 +1,59 @@
 ﻿
-using UnityEngine;
 using System.IO;
-using FullSerializer;
-using System;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 
 [System.Serializable]
 public static class SaveSystem
 {
     public static void SavePlayerData( CharacterSpecs playerSpecs, DeckManager deckManager )
     {
-        BinaryFormatter formatter = GetFormatter();
+        //BinaryFormatter formatter = GetFormatter();
         //fsSerializer _serializer = new fsSerializer();
         string path = GetPath();
-        FileStream stream = new FileStream( path, FileMode.Create);
+        //FileStream stream = new FileStream( path, FileMode.Create);
 
         PlayerData data = new PlayerData(playerSpecs, deckManager);
         // Serialize
-        formatter.Serialize(stream, data);
-        stream.Close();
+        //formatter.Serialize(stream, data);
+        string jsonData = JsonUtility.ToJson(data);
+        File.WriteAllText(path, jsonData);
+        //stream.Close();
 
-        Debug.Log("Save Successfull ! ");
+        Debug.Log("Save Successfull ! " + path);
     }
 
-    public static PlayerData LoadPlayerData ()
+    public static PlayerData LoadPlayerData()
     {
         string path = GetPath();
 
-        if ( !File.Exists( path ) )
+        if ( !File.Exists(path) )
         {
             Debug.LogWarning("Save File not found in " + path);
             return null;
         }
-
-        FileStream fileStream = File.Open(path, FileMode.Open);
-
-        BinaryFormatter formatter = GetFormatter();
-
         try
         {
-            PlayerData data = formatter.Deserialize(fileStream) as PlayerData;
-            fileStream.Close();
+            string jsonData = File.ReadAllText(path);
+            PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
             Debug.Log("loading successfull");
             return data;
         }
         catch
         {
-            Debug.LogWarningFormat("Failed to load File SAve", path);
-            fileStream.Close();
+            Debug.LogWarningFormat("Failed to load File SAve" + path);
             return null;
         }
     }
 
-    private static BinaryFormatter GetFormatter()
-    {
-        BinaryFormatter formatter = new BinaryFormatter( );
-        return formatter;
-    }
+    //private static BinaryFormatter GetFormatter()
+    //{
+    //    BinaryFormatter formatter = new BinaryFormatter();
+    //    return formatter;
+    //}
 
     public static string GetPath()
     {
-        return Application.persistentDataPath + "/player.hio";
+        return Application.persistentDataPath + "/player.json";
     }
 }

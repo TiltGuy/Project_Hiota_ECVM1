@@ -29,8 +29,8 @@ public class PlayerData
         _PlayerDeck = new List<SkillCard_SO>();
         _HiddenDeck = new List<SkillCard_SO>();
 
-        _PlayerDeck = deckManager._PlayerDeck_SOList;
-        _HiddenDeck = deckManager._HiddenDeck_SOList;
+        _PlayerDeck = deckManager._PlayerDeck;
+        _HiddenDeck = deckManager._HiddenDeck;
         _DeckManagerState = deckManager;
     }
 

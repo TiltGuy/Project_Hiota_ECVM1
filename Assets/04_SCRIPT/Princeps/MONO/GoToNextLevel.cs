@@ -13,7 +13,10 @@ public class GoToNextLevel : MonoBehaviour
         {
             //LevelManager.instance.LoadNextLevel();
             LevelManager.instance.b_IsPlayerReady = true;
-            saveFile.SaveOnExit();
+            if(saveFile != null)
+            {
+                saveFile.SaveOnExit();
+            }
         }
     }
 }
