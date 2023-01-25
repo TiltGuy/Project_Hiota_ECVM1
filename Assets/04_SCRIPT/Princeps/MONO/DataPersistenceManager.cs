@@ -28,6 +28,7 @@ public class DataPersistenceManager : MonoBehaviour
         LoadCurrentSave();
     }
 
+    [ContextMenu("LoadSave")]
     private void LoadCurrentSave()
     {
         ApplySaveData();
@@ -40,11 +41,11 @@ public class DataPersistenceManager : MonoBehaviour
         {
             DeckManager deckManager = DeckManager.instance;
 
-            deckManager._PlayerDeck_SOList = new List<SkillCard_SO>();
-            deckManager._PlayerDeck_SOList = CurrentSave._PlayerDeck;
+            deckManager._PlayerDeck = new List<SkillCard_SO>();
+            deckManager._PlayerDeck = CurrentSave._PlayerDeck;
 
-            deckManager._HiddenDeck_SOList = new List<SkillCard_SO>();
-            deckManager._HiddenDeck_SOList = CurrentSave._HiddenDeck;
+            deckManager._HiddenDeck = new List<SkillCard_SO>();
+            deckManager._HiddenDeck = CurrentSave._HiddenDeck;
         }
         else
         {
