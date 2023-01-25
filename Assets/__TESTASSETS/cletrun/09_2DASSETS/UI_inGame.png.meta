@@ -46,10 +46,13 @@ TextureImporter:
     second: Life_Bar_Ennemy_Handle
   - first:
       213: -3413999049994997050
-    second: Dash_Fill
+    second: Arrow_Focus
   - first:
       213: -7532297966955636144
-    second: Dash_Back
+    second: Dash_Fill
+  - first:
+      213: 8489598542574446111
+    second: Dash_Fill
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,9 +142,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 918
-        width: 1024
-        height: 99
+        y: 1761
+        width: 2048
+        height: 274
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,9 +163,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 738
-        width: 1024
-        height: 74
+        y: 1257
+        width: 2048
+        height: 187
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,9 +184,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 811
-        width: 1024
-        height: 101
+        y: 1462
+        width: 2048
+        height: 278
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,9 +205,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 656
-        width: 1024
-        height: 70
+        y: 1026
+        width: 2048
+        height: 195
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,9 +226,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 576
-        width: 1024
-        height: 71
+        y: 812
+        width: 2048
+        height: 186
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,34 +243,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Target_Arrow_2
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 5
-        width: 168
-        height: 190
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 511b5b803376ac3f0800000000000000
-      internalID: -879777308310392555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Life_Bar_Ennemy_Handle
       rect:
         serializedVersion: 2
-        x: 7
-        y: 814
-        width: 10
-        height: 97
+        x: 25
+        y: 478
+        width: 40
+        height: 295
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,9 +268,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 434
-        width: 1024
-        height: 124
+        y: 15
+        width: 2048
+        height: 419
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,10 +288,10 @@ TextureImporter:
       name: Life_Bar_Ennemy_Assets_4
       rect:
         serializedVersion: 2
-        x: 7
-        y: 919
-        width: 10
-        height: 97
+        x: 100
+        y: 477
+        width: 41
+        height: 297
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,34 +306,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life_Bar_Ennemy_Assets_7
+      name: Arrow_Focus
       rect:
         serializedVersion: 2
-        x: 0
-        y: 215
-        width: 1024
-        height: 213
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a849130108a071f0800000000000000
-      internalID: -1049153990876903258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dash_Fill
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 25
-        width: 174
-        height: 175
+        x: 200
+        y: 454
+        width: 332
+        height: 344
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -366,13 +327,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dash_Back
+      name: Dash_Fill
       rect:
         serializedVersion: 2
-        x: 751
-        y: 25
-        width: 174
-        height: 175
+        x: 567
+        y: 440
+        width: 349
+        height: 349
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,6 +343,27 @@ TextureImporter:
       bones: []
       spriteID: 05a563928e6e77790800000000000000
       internalID: -7532297966955636144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_Back
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 439
+        width: 349
+        height: 349
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16e2d705ec11d570800000000000000
+      internalID: 8489598542574446111
       vertices: []
       indices: 
       edges: []
