@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using FullSerializer;
-using System;
 
+[System.Serializable]
 public class PlayerData
 {
     #region -- PLAYER VARIABLES --
@@ -16,12 +13,13 @@ public class PlayerData
     #region -- GAME MANAGER VARIABLES --
     public List<SkillCard_SO> _PlayerDeck;
     public List<SkillCard_SO> _HiddenDeck;
+    public DeckManager _DeckManagerState;
     #endregion
 
-    public PlayerData(CharacterSpecs playerSpecs, DeckManager deckManager)
+    public PlayerData( CharacterSpecs playerSpecs, DeckManager deckManager )
     {
         currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        currentHealthOfHiota =  playerSpecs.Health;
+        currentHealthOfHiota = playerSpecs.Health;
 
         position = new float[3];
         position[0] = playerSpecs.transform.position.x;
@@ -31,9 +29,10 @@ public class PlayerData
         _PlayerDeck = new List<SkillCard_SO>();
         _HiddenDeck = new List<SkillCard_SO>();
 
-        _PlayerDeck = deckManager._PlayerDeck;
-        _HiddenDeck = deckManager._HiddenDeck;
+        _PlayerDeck = deckManager._PlayerDeck_SOList;
+        _HiddenDeck = deckManager._HiddenDeck_SOList;
+        _DeckManagerState = deckManager;
     }
 
-    
+
 }
