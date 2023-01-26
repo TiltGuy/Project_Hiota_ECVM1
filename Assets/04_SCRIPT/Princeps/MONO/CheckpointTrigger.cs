@@ -55,26 +55,32 @@ public class CheckpointTrigger : MonoBehaviour
 		}
 		
 		if(other.tag == tagFilter)
-		{
+        {
             // checkpoint entered
-            string nameFile = DataPersistenceManager.instance.tutoSaveName;
+            string nameFile = SaveSystem.TutoNameSaveFile;
             CharacterSpecs playerSpecs = other.gameObject.GetComponent<CharacterSpecs>();
             SaveSystem.SavePlayerData(playerSpecs, DeckManager.instance, nameFile);
+            Debug.Log("Save Player Data for Tuto");
             //PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);
-            Debug.Log(playerPrefsKey + " => " + checkpointIndex);
+            //Debug.Log(playerPrefsKey + " => " + checkpointIndex);
 
-            if ( triggerParticle != null )
-            {
-                Instantiate(triggerParticle, other.transform.position, other.transform.rotation);
-            }
+            SpawnFXs(other);
 
             SetCurrentCheckpoint();
 
             isTriggered = true;
         }
-	}
-	
-	private void OnEnable()
+    }
+
+    private void SpawnFXs( Collider other )
+    {
+        if ( triggerParticle != null )
+        {
+            Instantiate(triggerParticle, other.transform.position, other.transform.rotation);
+        }
+    }
+
+    private void OnEnable()
 	{
         if ( respawnTarget == null )
             respawnTarget = transform;

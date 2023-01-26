@@ -10,6 +10,6 @@ public class SaveFile : MonoBehaviour
         SaveSystem.SavePlayerData(
             charSpecs, 
             DeckManager.instance, 
-            DataPersistenceManager.instance.mainSaveName);
+            SaveSystem.MainSaveFileName);
     }
 }

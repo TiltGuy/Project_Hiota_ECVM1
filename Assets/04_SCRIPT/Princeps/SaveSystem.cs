@@ -6,6 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public static class SaveSystem
 {
+    public static string TutoNameSaveFile = "TutoHiota";
+    public static string MainSaveFileName = "Hiota";
     public static void SavePlayerData( CharacterSpecs playerSpecs, DeckManager deckManager, string nameFile )
     {
         //BinaryFormatter formatter = GetFormatter();
@@ -21,6 +23,11 @@ public static class SaveSystem
         //stream.Close();
 
         Debug.Log("Save Successfull ! " + path);
+    }
+
+    public static void SaveTutoState()
+    {
+        // Overwrite data of the tuto advancement
     }
 
     public static PlayerData LoadPlayerData( string nameFile )
@@ -59,14 +66,27 @@ public static class SaveSystem
         Debug.Log("File Save Deleted" + path);
     }
 
-    //private static BinaryFormatter GetFormatter()
-    //{
-    //    BinaryFormatter formatter = new BinaryFormatter();
-    //    return formatter;
-    //}
-
     public static string GetPath(string nameFile)
     {
         return Application.persistentDataPath + "/" + nameFile + ".json";
+    }
+
+    public static bool CheckIfTutoPassed()
+    {
+        if(File.Exists(GetPath(MainSaveFileName)))
+        {
+            PlayerData data = LoadPlayerData(MainSaveFileName);
+            return data.b_HasPassedTutorial;
+        }
+        return false;
+    }
+
+    public static bool CheckIfMainSaveExists()
+    {
+        if ( File.Exists(GetPath(MainSaveFileName)) )
+        {
+            return true;
+        }
+        return false;
     }
 }

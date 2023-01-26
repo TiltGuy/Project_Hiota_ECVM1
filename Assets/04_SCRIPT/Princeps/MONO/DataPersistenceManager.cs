@@ -10,7 +10,7 @@ public class DataPersistenceManager : MonoBehaviour
     public string mainSaveName;
     public string tutoSaveName;
 
-    public static DataPersistenceManager instance
+    public DataPersistenceManager instance
     {
         get;
         private set;
@@ -38,13 +38,13 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if(b_IsInTuto)
         {
-            ChosseSaveData(tutoSaveName);
+            ChooseSaveData(SaveSystem.TutoNameSaveFile);
             return;
         }
-        ChosseSaveData(mainSaveName);
+        ChooseSaveData(SaveSystem.MainSaveFileName);
     }
 
-    private void ChosseSaveData(string nameFile)
+    private void ChooseSaveData(string nameFile)
     {
         PlayerData CurrentSave = SaveSystem.LoadPlayerData(nameFile);
         if ( CurrentSave != null )
@@ -59,7 +59,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private static void ApplySaveData( PlayerData CurrentSave, string nameFile )
     {
-        if(nameFile == DataPersistenceManager.instance.tutoSaveName )
+        if(nameFile == SaveSystem.TutoNameSaveFile)
         {
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             Vector3 newposition = new Vector3(CurrentSave.position[0], CurrentSave.position[1], CurrentSave.position[2]);

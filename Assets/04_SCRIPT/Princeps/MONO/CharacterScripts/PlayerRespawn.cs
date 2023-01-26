@@ -27,7 +27,6 @@ public class PlayerRespawn : MonoBehaviour
         //GetComponent<Controller_FSM>().gravity = 0;
         yield return new WaitForSecondsRealtime(fadeDuration);
 
-        
         LevelManager.instance.LoadHub();
     }
 
@@ -37,7 +36,7 @@ public class PlayerRespawn : MonoBehaviour
 
         Camera.main.FadeIn(fadeDuration);
 
-        CheckpointTrigger lastCheckpoint = null;
+        //CheckpointTrigger lastCheckpoint = null;
 
         //foreach ( CheckpointTrigger checkpoint in CheckpointTrigger.instances.OrderBy(checkpoint => checkpoint.checkpointIndex) )
         //{

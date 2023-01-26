@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
@@ -7,6 +8,8 @@ public class PlayerData
     #region -- PLAYER VARIABLES --
     public int currentSceneBuildIndex;
     public float currentHealthOfHiota;
+    public bool b_HasPassedTutorial;
+    public Vector3 tutoPosition;
     public float[] position;
     #endregion
 
@@ -20,6 +23,8 @@ public class PlayerData
     {
         currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         currentHealthOfHiota = playerSpecs.Health;
+
+        tutoPosition = playerSpecs.transform.position;
 
         position = new float[3];
         position[0] = playerSpecs.transform.position.x;
