@@ -6,11 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public static class SaveSystem
 {
-    public static void SavePlayerData( CharacterSpecs playerSpecs, DeckManager deckManager )
+    public static void SavePlayerData( CharacterSpecs playerSpecs, DeckManager deckManager, string nameFile )
     {
         //BinaryFormatter formatter = GetFormatter();
         //fsSerializer _serializer = new fsSerializer();
-        string path = GetPath();
+        string path = GetPath(nameFile);
         //FileStream stream = new FileStream( path, FileMode.Create);
 
         PlayerData data = new PlayerData(playerSpecs, deckManager);
@@ -23,9 +23,9 @@ public static class SaveSystem
         Debug.Log("Save Successfull ! " + path);
     }
 
-    public static PlayerData LoadPlayerData()
+    public static PlayerData LoadPlayerData( string nameFile )
     {
-        string path = GetPath();
+        string path = GetPath(nameFile);
 
         if ( !File.Exists(path) )
         {
@@ -46,14 +46,27 @@ public static class SaveSystem
         }
     }
 
+    public static void ClearData(string nameFile)
+    {
+        string path = GetPath(nameFile);
+        if ( !File.Exists(path) )
+        {
+            Debug.LogWarning("Save File not found in " + path);
+            return;
+        }
+
+        File.Delete(path);
+        Debug.Log("File Save Deleted" + path);
+    }
+
     //private static BinaryFormatter GetFormatter()
     //{
     //    BinaryFormatter formatter = new BinaryFormatter();
     //    return formatter;
     //}
 
-    public static string GetPath()
+    public static string GetPath(string nameFile)
     {
-        return Application.persistentDataPath + "/player.json";
+        return Application.persistentDataPath + "/" + nameFile + ".json";
     }
 }
