@@ -39,20 +39,20 @@ public class PlayerRespawn : MonoBehaviour
 
         CheckpointTrigger lastCheckpoint = null;
 
-        foreach ( CheckpointTrigger checkpoint in CheckpointTrigger.instances.OrderBy(checkpoint => checkpoint.checkpointIndex) )
-        {
-            if ( checkpoint.SetCurrentCheckpoint() )
-            {
-                lastCheckpoint = checkpoint;
-                yield return null;
-            }
-        }
+        //foreach ( CheckpointTrigger checkpoint in CheckpointTrigger.instances.OrderBy(checkpoint => checkpoint.checkpointIndex) )
+        //{
+        //    if ( checkpoint.SetCurrentCheckpoint() )
+        //    {
+        //        lastCheckpoint = checkpoint;
+        //        yield return null;
+        //    }
+        //}
 
-        if ( lastCheckpoint != null )
-        {
-            //Debug.Log("Reload checkpoint: " + lastCheckpoint.checkpointIndex);
-            transform.position = lastCheckpoint.respawnTarget.position;
-        }
+        //if ( lastCheckpoint != null )
+        //{
+        //    //Debug.Log("Reload checkpoint: " + lastCheckpoint.checkpointIndex);
+        //    transform.position = lastCheckpoint.respawnTarget.position;
+        //}
 
         yield return new WaitForSeconds(fadeDuration);
 

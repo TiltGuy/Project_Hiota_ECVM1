@@ -38,7 +38,6 @@ public class CheckpointTrigger : MonoBehaviour
             }
 
             onEntered?.Invoke();
-            isTriggered = true;
 
             return true;
         }
@@ -58,7 +57,10 @@ public class CheckpointTrigger : MonoBehaviour
 		if(other.tag == tagFilter)
 		{
             // checkpoint entered
-            PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);
+            string nameFile = DataPersistenceManager.instance.tutoSaveName;
+            CharacterSpecs playerSpecs = other.gameObject.GetComponent<CharacterSpecs>();
+            SaveSystem.SavePlayerData(playerSpecs, DeckManager.instance, nameFile);
+            //PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);
             Debug.Log(playerPrefsKey + " => " + checkpointIndex);
 
             if ( triggerParticle != null )
@@ -67,7 +69,9 @@ public class CheckpointTrigger : MonoBehaviour
             }
 
             SetCurrentCheckpoint();
-		}
+
+            isTriggered = true;
+        }
 	}
 	
 	private void OnEnable()
