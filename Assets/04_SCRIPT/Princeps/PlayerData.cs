@@ -24,12 +24,40 @@ public class PlayerData
         currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         currentHealthOfHiota = playerSpecs.Health;
 
+        b_HasPassedTutorial = false;
+
         tutoPosition = playerSpecs.transform.position;
 
         position = new float[3];
         position[0] = playerSpecs.transform.position.x;
         position[1] = playerSpecs.transform.position.y;
         position[2] = playerSpecs.transform.position.z;
+
+        _PlayerDeck = new List<SkillCard_SO>();
+        _HiddenDeck = new List<SkillCard_SO>();
+
+        _PlayerDeck = deckManager._PlayerDeck;
+        _HiddenDeck = deckManager._HiddenDeck;
+        _DeckManagerState = deckManager;
+    }
+
+    public PlayerData( CharacterSpecs playerSpecs)
+    {
+        currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        currentHealthOfHiota = playerSpecs.Health;
+
+        b_HasPassedTutorial = false;
+
+        tutoPosition = playerSpecs.transform.position;
+
+        position = new float[3];
+        position[0] = playerSpecs.transform.position.x;
+        position[1] = playerSpecs.transform.position.y;
+        position[2] = playerSpecs.transform.position.z;
+    }
+
+    public PlayerData(DeckManager deckManager )
+    {
 
         _PlayerDeck = new List<SkillCard_SO>();
         _HiddenDeck = new List<SkillCard_SO>();

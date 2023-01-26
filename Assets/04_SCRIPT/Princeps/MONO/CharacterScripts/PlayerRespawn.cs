@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    static public bool isRespawning;
+    public bool isRespawning;
 
     public float fadeDuration = 3f;
 
@@ -14,6 +14,8 @@ public class PlayerRespawn : MonoBehaviour
 
     public void Respawn()
     {
+        if ( DataPersistenceManager.instance != null )
+            return;
         if ( !isRespawning )
         {
             isRespawning = true;

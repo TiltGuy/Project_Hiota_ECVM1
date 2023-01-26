@@ -1,16 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
 {
+
+    public bool isRespawning;
+
+    public float fadeDuration = 3f;
+
+    [SerializeField]
+    private Canvas LoadingScreen;
 
     public bool b_IsInTuto;
     [Header("-- SAVES NAMES --")]
     public string mainSaveName;
     public string tutoSaveName;
 
-    public DataPersistenceManager instance
+    [Header("-- LEVEL NAMES --")]
+    public string tutoLevel;
+    public string hubLevel;
+
+    private PlayerData currentDataToApply;
+
+    public static DataPersistenceManager instance
     {
         get;
         private set;
@@ -36,30 +51,16 @@ public class DataPersistenceManager : MonoBehaviour
     [ContextMenu("LoadSave")]
     private void LoadCurrentSave()
     {
-        if(b_IsInTuto)
+        currentDataToApply = SaveSystem.LoadPlayerData();
+        if ( currentDataToApply != null)
         {
-            ChooseSaveData(SaveSystem.TutoNameSaveFile);
-            return;
-        }
-        ChooseSaveData(SaveSystem.MainSaveFileName);
-    }
-
-    private void ChooseSaveData(string nameFile)
-    {
-        PlayerData CurrentSave = SaveSystem.LoadPlayerData(nameFile);
-        if ( CurrentSave != null )
-        {
-            ApplySaveData(CurrentSave, nameFile);
-        }
-        else
-        {
-            Debug.LogWarning("SaveFile cannot be Loaded because it's Empty", this);
+            ApplySaveData(currentDataToApply);
         }
     }
 
-    private static void ApplySaveData( PlayerData CurrentSave, string nameFile )
+    private static void ApplySaveData( PlayerData CurrentSave)
     {
-        if(nameFile == SaveSystem.TutoNameSaveFile)
+        if(!CurrentSave.b_HasPassedTutorial && GameObject.FindGameObjectWithTag("Respawn") != null)
         {
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             Vector3 newposition = new Vector3(CurrentSave.position[0], CurrentSave.position[1], CurrentSave.position[2]);
@@ -73,5 +74,34 @@ public class DataPersistenceManager : MonoBehaviour
 
         deckManager._HiddenDeck = new List<SkillCard_SO>();
         deckManager._HiddenDeck = CurrentSave._HiddenDeck;
+    }
+
+    public void RespawnPlayer()
+    {
+        if(!currentDataToApply.b_HasPassedTutorial)
+        {
+            // Lancer la coroutine respawn (nom de la scène)
+            StartCoroutine(RespawnCoroutine(tutoLevel));
+        }
+        else
+        {
+            StartCoroutine(RespawnCoroutine(hubLevel));
+        }
+    }
+
+    private IEnumerator RespawnCoroutine(string nameTargetScene)
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nameTargetScene);
+        asyncOperation.allowSceneActivation = false;
+        Debug.Log(asyncOperation.progress);
+        Camera.main.FadeOut(fadeDuration);
+        //GetComponent<Controller_FSM>().gravity = 0;
+        yield return new WaitForSecondsRealtime(fadeDuration);
+        Instantiate(LoadingScreen);
+        asyncOperation.allowSceneActivation = true;
+        while ( !asyncOperation.isDone )
+        {
+            yield return null;
+        }
     }
 }

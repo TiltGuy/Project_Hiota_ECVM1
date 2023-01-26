@@ -103,24 +103,30 @@ public class MainMenu : MonoBehaviour
 	{
         PlayerPrefs.DeleteAll();
         SaveSystem.ClearData(SaveSystem.MainSaveFileName);
-        SaveSystem.ClearData(SaveSystem.TutoNameSaveFile);
+        //SaveSystem.ClearData(SaveSystem.TutoNameSaveFile);
 		SceneManager.LoadScene(tutoLevel);
 	}
 
     public void Continue()
     {
-        string pathTuto = SaveSystem.GetPath(tutoSaveName);
         string pathMain = SaveSystem.GetPath(mainSaveName);
-        if ( !File.Exists(pathTuto) && !File.Exists(pathMain) )
+        if(File.Exists(pathMain))
         {
-            Debug.Log("Save File not found in " + pathTuto);
-            return;
+            PlayerData currentData = SaveSystem.LoadPlayerData();
+            if (currentData == null) 
+            {
+                return;
+            }
+            if(!currentData.b_HasPassedTutorial)
+            {
+                SceneManager.LoadScene(tutoLevel);
+            }
+            else
+            {
+                SceneManager.LoadScene(hubLevel);
+            }
         }
-        if ( !File.Exists(pathMain) )
-        {
-            SceneManager.LoadScene(hubLevel);
-        }
-        SceneManager.LoadScene(tutoLevel);
+        
     }
 
     public void ArtMap()
