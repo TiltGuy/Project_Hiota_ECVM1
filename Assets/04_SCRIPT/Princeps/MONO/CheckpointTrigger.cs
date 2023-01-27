@@ -38,7 +38,6 @@ public class CheckpointTrigger : MonoBehaviour
             }
 
             onEntered?.Invoke();
-            isTriggered = true;
 
             return true;
         }
@@ -56,21 +55,31 @@ public class CheckpointTrigger : MonoBehaviour
 		}
 		
 		if(other.tag == tagFilter)
-		{
+        {
             // checkpoint entered
-            PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);
-            Debug.Log(playerPrefsKey + " => " + checkpointIndex);
+            DataPersistenceManager.instance.saveCurrentTutoDataSave(false, respawnTarget.position);
+            ///APPELLE LE DATA PERSISTENCE MANAGER A LA PLACE
+            Debug.Log("Save Player Data for Tuto");
+            //PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);
+            //Debug.Log(playerPrefsKey + " => " + checkpointIndex);
 
-            if ( triggerParticle != null )
-            {
-                Instantiate(triggerParticle, other.transform.position, other.transform.rotation);
-            }
+            SpawnFXs(other);
 
             SetCurrentCheckpoint();
-		}
-	}
-	
-	private void OnEnable()
+
+            isTriggered = true;
+        }
+    }
+
+    private void SpawnFXs( Collider other )
+    {
+        if ( triggerParticle != null )
+        {
+            Instantiate(triggerParticle, other.transform.position, other.transform.rotation);
+        }
+    }
+
+    private void OnEnable()
 	{
         if ( respawnTarget == null )
             respawnTarget = transform;

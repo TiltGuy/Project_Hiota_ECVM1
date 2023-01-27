@@ -7,10 +7,17 @@ using System.IO;
 
 public class MainMenu : MonoBehaviour
 {
-	public string firstLevel;
+    [Header("-- SAVES NAMES --")]
+    public string mainSaveName;
+    public string tutoSaveName;
+
+    [Header("-- LEVEL NAMES --")]
+    public string tutoLevel;
 	public string hubLevel;
 
     public string artMap;
+
+    [Header("-- OTHER --")]
 
     private InputMaster action;
 
@@ -95,18 +102,31 @@ public class MainMenu : MonoBehaviour
 	public void StartGame()
 	{
         PlayerPrefs.DeleteAll();
-		SceneManager.LoadScene(firstLevel);
+        SaveSystem.ClearData(SaveSystem.MainSaveFileName);
+        //SaveSystem.ClearData(SaveSystem.TutoNameSaveFile);
+		SceneManager.LoadScene(tutoLevel);
 	}
 
     public void Continue()
     {
-        string path = SaveSystem.GetPath();
-        if ( !File.Exists(path) )
+        string pathMain = SaveSystem.GetPath(mainSaveName);
+        if(File.Exists(pathMain))
         {
-            Debug.LogError("Save File not found in " + path);
-            return;
+            PlayerData currentData = SaveSystem.LoadPlayerData();
+            if (currentData == null) 
+            {
+                return;
+            }
+            if(!currentData.b_HasPassedTutorial)
+            {
+                SceneManager.LoadScene(tutoLevel);
+            }
+            else
+            {
+                SceneManager.LoadScene(hubLevel);
+            }
         }
-        SceneManager.LoadScene(hubLevel);
+        
     }
 
     public void ArtMap()
