@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
         if ( nextTroopIndex == -1 )
         {
             DefineNextTroopIndex();
-            Debug.Log("ALED!!");
+            //Debug.Log("ALED!!");
         }
 
         int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRoomPalier * (Props.Length - 1));

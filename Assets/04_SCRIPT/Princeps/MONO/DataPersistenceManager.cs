@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     [SerializeField]
     private Canvas LoadingScreen;
+
+    
 
     public bool b_IsInTuto;
     [Header("-- SAVES NAMES --")]
@@ -35,7 +38,8 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if(instance != null)
         {
-            Debug.LogError("Data Persistence Manager already existed");
+            Debug.Log("Data Persistence Manager already existed");
+            return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -58,13 +62,44 @@ public class DataPersistenceManager : MonoBehaviour
         }
     }
 
+    internal void saveCurrentMainDataSave()
+    {
+        currentDataToApply._DeckManagerState = DeckManager.instance;
+        SaveSystem.SavePlayerData(currentDataToApply);
+    }
+
+    internal void saveCurrentTutoDataSave( bool TutoStatus, Vector3 tutoPosition )
+    {
+        if ( currentDataToApply == null )
+        {
+            CharacterSpecs player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterSpecs>();
+            currentDataToApply = new PlayerData(player, DeckManager.instance);
+        }
+        currentDataToApply.b_HasPassedTutorial = TutoStatus;
+        currentDataToApply.tutoPosition = tutoPosition;
+        Debug.Log("tutoPosition" + currentDataToApply.tutoPosition);
+        SaveSystem.SavePlayerData(currentDataToApply);
+    }
+
+    internal void saveCurrentTutoDataSave( bool TutoStatus )
+    {
+        if ( currentDataToApply == null )
+        {
+            CharacterSpecs player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterSpecs>();
+            currentDataToApply = new PlayerData(player, DeckManager.instance);
+        }
+        currentDataToApply.b_HasPassedTutorial = TutoStatus;
+        SaveSystem.SavePlayerData(currentDataToApply);
+    }
+
     private static void ApplySaveData( PlayerData CurrentSave)
     {
         if(!CurrentSave.b_HasPassedTutorial && GameObject.FindGameObjectWithTag("Respawn") != null)
         {
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-            Vector3 newposition = new Vector3(CurrentSave.position[0], CurrentSave.position[1], CurrentSave.position[2]);
+            Vector3 newposition = CurrentSave.tutoPosition;
             player.transform.position = newposition;
+            Debug.Log("Tamere je change le layer d place");
             return;
         }
         DeckManager deckManager = DeckManager.instance;
@@ -93,7 +128,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nameTargetScene);
         asyncOperation.allowSceneActivation = false;
-        Debug.Log(asyncOperation.progress);
+        Debug.Log("reloading the scene : " + asyncOperation.progress);
         Camera.main.FadeOut(fadeDuration);
         //GetComponent<Controller_FSM>().gravity = 0;
         yield return new WaitForSecondsRealtime(fadeDuration);

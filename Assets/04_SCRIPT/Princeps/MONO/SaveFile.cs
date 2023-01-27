@@ -7,7 +7,7 @@ public class SaveFile : MonoBehaviour
     public void SaveOnExit()
     {
         CharacterSpecs charSpecs = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterSpecs>();
-        SaveSystem.SavePlayerData( 
-            DeckManager.instance);
+        DataPersistenceManager.instance.saveCurrentMainDataSave();
+        
     }
 }

@@ -15,7 +15,10 @@ public class PlayerRespawn : MonoBehaviour
     public void Respawn()
     {
         if ( DataPersistenceManager.instance != null )
+        {
+            DataPersistenceManager.instance.RespawnPlayer();
             return;
+        }
         if ( !isRespawning )
         {
             isRespawning = true;
@@ -38,22 +41,7 @@ public class PlayerRespawn : MonoBehaviour
 
         Camera.main.FadeIn(fadeDuration);
 
-        //CheckpointTrigger lastCheckpoint = null;
-
-        //foreach ( CheckpointTrigger checkpoint in CheckpointTrigger.instances.OrderBy(checkpoint => checkpoint.checkpointIndex) )
-        //{
-        //    if ( checkpoint.SetCurrentCheckpoint() )
-        //    {
-        //        lastCheckpoint = checkpoint;
-        //        yield return null;
-        //    }
-        //}
-
-        //if ( lastCheckpoint != null )
-        //{
-        //    //Debug.Log("Reload checkpoint: " + lastCheckpoint.checkpointIndex);
-        //    transform.position = lastCheckpoint.respawnTarget.position;
-        //}
+        
 
         yield return new WaitForSeconds(fadeDuration);
 

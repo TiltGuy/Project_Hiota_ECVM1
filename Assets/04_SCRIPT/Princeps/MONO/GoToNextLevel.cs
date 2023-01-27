@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GoToNextLevel : MonoBehaviour
 {
-
-    public SaveFile saveFile;
+    public bool b_SaveTutoState = false;
+    public bool b_HaveToSave = false;
 
     private void OnTriggerEnter( Collider other )
     {
@@ -13,9 +13,16 @@ public class GoToNextLevel : MonoBehaviour
         {
             //LevelManager.instance.LoadNextLevel();
             LevelManager.instance.b_IsPlayerReady = true;
-            if(saveFile != null)
+            if( b_HaveToSave == true)
             {
-                saveFile.SaveOnExit();
+                if(b_SaveTutoState)
+                {
+                    DataPersistenceManager.instance.saveCurrentTutoDataSave(false);
+                }
+                else
+                {
+                    DataPersistenceManager.instance.saveCurrentMainDataSave();
+                }
             }
         }
     }

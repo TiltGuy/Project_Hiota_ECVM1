@@ -9,16 +9,17 @@ public static class SaveSystem
 {
     public static string TutoNameSaveFile = "TutoHiota";
     public static string MainSaveFileName = "Hiota";
-    public static void SavePlayerData( DeckManager deckManager)
+
+    public static void SavePlayerData( PlayerData playerDataToApply)
     {
         string path = GetPath(MainSaveFileName);
         string jsonData;
         if ( File.Exists(MainSaveFileName) )
         {
-            string newDataJson = CreateNewSave(deckManager);
-            jsonData = File.ReadAllText(GetPath(MainSaveFileName));
-            PlayerData currentPlayerData = JsonUtility.FromJson<PlayerData>(jsonData);
-            JsonUtility.FromJsonOverwrite(newDataJson, currentPlayerData);
+            string newDataJson = CreateNewSave(playerDataToApply);
+
+            string oldJsonData = File.ReadAllText(GetPath(MainSaveFileName));
+            JsonUtility.FromJsonOverwrite(oldJsonData, playerDataToApply);
             Debug.Log("Deck Manager Save File Overwriten : " + path);
             return;
         }
@@ -26,7 +27,7 @@ public static class SaveSystem
         //fsSerializer _serializer = new fsSerializer();
         //FileStream stream = new FileStream( path, FileMode.Create);
 
-        PlayerData data = new PlayerData(deckManager);
+        PlayerData data = playerDataToApply;
         // Serialize
         //formatter.Serialize(stream, data);
         jsonData = JsonUtility.ToJson(data);
@@ -35,85 +36,17 @@ public static class SaveSystem
         //stream.Close();
 
         Debug.Log("New Save Successfull ! " + path);
-    }
-
-    
-
-    public static void SavePlayerData( CharacterSpecs playerSpecs)
-    {
-        string path = GetPath(MainSaveFileName);
-        string jsonData;
-        if ( File.Exists(MainSaveFileName) )
-        {
-            string newDataJson = CreateNewSave(playerSpecs);
-            jsonData = File.ReadAllText(GetPath(MainSaveFileName));
-            PlayerData currentPlayerData = JsonUtility.FromJson<PlayerData>(jsonData);
-            JsonUtility.FromJsonOverwrite(newDataJson, currentPlayerData);
-            Debug.Log("Deck Manager Save File Overwriten : " + path);
-            return;
-        }
-        //BinaryFormatter formatter = GetFormatter();
-        //fsSerializer _serializer = new fsSerializer();
-        //FileStream stream = new FileStream( path, FileMode.Create);
-
-        PlayerData data = new PlayerData(playerSpecs);
-        // Serialize
-        //formatter.Serialize(stream, data);
-        jsonData = JsonUtility.ToJson(data);
-
-        File.WriteAllText(path, jsonData);
-        //stream.Close();
-
-        Debug.Log("New Save Successfull ! " + path);
-    }
-
-    
-
-    public static void SavePlayerData( CharacterSpecs playerSpecs, DeckManager deck )
-    {
-        string path = GetPath(MainSaveFileName);
-        string jsonData;
-        if ( File.Exists(MainSaveFileName) )
-        {
-            string newDataJson = CreateNewSave(playerSpecs, deck);
-            jsonData = File.ReadAllText(GetPath(MainSaveFileName));
-            PlayerData currentPlayerData = JsonUtility.FromJson<PlayerData>(jsonData);
-            JsonUtility.FromJsonOverwrite(newDataJson, currentPlayerData);
-            Debug.Log("Deck Manager Save File Overwriten : " + path);
-            return;
-        }
-        //BinaryFormatter formatter = GetFormatter();
-        //fsSerializer _serializer = new fsSerializer();
-        //FileStream stream = new FileStream( path, FileMode.Create);
-
-        PlayerData data = new PlayerData(playerSpecs, deck);
-        // Serialize
-        //formatter.Serialize(stream, data);
-        jsonData = JsonUtility.ToJson(data);
-        
-        File.WriteAllText(path, jsonData);
-        //stream.Close();
-
-        Debug.Log("New Save Successfull ! " + path);
-    }
-
-    private static string CreateNewSave( CharacterSpecs playerSpecs, DeckManager deck )
-    {
-        PlayerData newData = new PlayerData(playerSpecs, deck);
-        string newDataJson = JsonUtility.ToJson(newData);
-        return newDataJson;
-    }
-
-    private static string CreateNewSave( CharacterSpecs playerSpecs )
-    {
-        PlayerData newData = new PlayerData(playerSpecs);
-        string newDataJson = JsonUtility.ToJson(newData);
-        return newDataJson;
     }
 
     private static string CreateNewSave( DeckManager deckManager )
     {
         PlayerData newData = new PlayerData(deckManager);
+        string newDataJson = JsonUtility.ToJson(newData);
+        return newDataJson;
+    }
+
+    private static string CreateNewSave( PlayerData newData)
+    {
         string newDataJson = JsonUtility.ToJson(newData);
         return newDataJson;
     }

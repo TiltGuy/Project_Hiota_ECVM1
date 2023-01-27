@@ -6,11 +6,8 @@ using UnityEngine;
 public class PlayerData
 {
     #region -- PLAYER VARIABLES --
-    public int currentSceneBuildIndex;
-    public float currentHealthOfHiota;
     public bool b_HasPassedTutorial;
     public Vector3 tutoPosition;
-    public float[] position;
     #endregion
 
     #region -- GAME MANAGER VARIABLES --
@@ -21,17 +18,11 @@ public class PlayerData
 
     public PlayerData( CharacterSpecs playerSpecs, DeckManager deckManager )
     {
-        currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        currentHealthOfHiota = playerSpecs.Health;
 
         b_HasPassedTutorial = false;
 
         tutoPosition = playerSpecs.transform.position;
 
-        position = new float[3];
-        position[0] = playerSpecs.transform.position.x;
-        position[1] = playerSpecs.transform.position.y;
-        position[2] = playerSpecs.transform.position.z;
 
         _PlayerDeck = new List<SkillCard_SO>();
         _HiddenDeck = new List<SkillCard_SO>();
@@ -41,19 +32,12 @@ public class PlayerData
         _DeckManagerState = deckManager;
     }
 
-    public PlayerData( CharacterSpecs playerSpecs)
+    public PlayerData( Transform playerPos, bool tutoState)
     {
-        currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        currentHealthOfHiota = playerSpecs.Health;
 
-        b_HasPassedTutorial = false;
+        b_HasPassedTutorial = tutoState;
 
-        tutoPosition = playerSpecs.transform.position;
-
-        position = new float[3];
-        position[0] = playerSpecs.transform.position.x;
-        position[1] = playerSpecs.transform.position.y;
-        position[2] = playerSpecs.transform.position.z;
+        tutoPosition = playerPos.position;
     }
 
     public PlayerData(DeckManager deckManager )

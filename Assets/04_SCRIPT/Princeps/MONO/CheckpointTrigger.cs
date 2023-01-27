@@ -59,7 +59,8 @@ public class CheckpointTrigger : MonoBehaviour
             // checkpoint entered
             string nameFile = SaveSystem.TutoNameSaveFile;
             CharacterSpecs playerSpecs = other.gameObject.GetComponent<CharacterSpecs>();
-            SaveSystem.SavePlayerData(playerSpecs);
+            DataPersistenceManager.instance.saveCurrentTutoDataSave(false, respawnTarget.position);
+            ///APPELLE LE DATA PERSISTENCE MANAGER A LA PLACE
             Debug.Log("Save Player Data for Tuto");
             //PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);
             //Debug.Log(playerPrefsKey + " => " + checkpointIndex);
