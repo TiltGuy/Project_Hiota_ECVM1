@@ -204,23 +204,7 @@ public class LevelManager : MonoBehaviour
         yield return null;
         string nextPalierRoomName = scenesNames.ListOfScenes[Random.Range(0, PalierRoomSceneNames.ListOfScenes.Length)];
         Debug.Log("next palier = " + nextPalierRoomName);
-        AsyncOperation PreloadScene = SceneManager.LoadSceneAsync(nextPalierRoomName);
-        PreloadScene.allowSceneActivation = false;
-        Debug.Log("Progress : " + PreloadScene.progress);
-        while (!PreloadScene.isDone)
-        {
-            //Debug.Log("Progress : " + PreloadScene.progress);
-
-            if(PreloadScene.progress >= .9f)
-            {
-                if (b_IsPlayerReady)
-                {
-                    PreloadScene.allowSceneActivation=true;
-                    b_IsPlayerReady=false;
-                }
-            }
-            yield return null;
-        }
+        DataPersistenceManager.instance.TryPreloadNextRandomScene(nextPalierRoomName);
     }
 
     public void DefineNextTroopIndex()

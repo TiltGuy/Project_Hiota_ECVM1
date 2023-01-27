@@ -51,18 +51,6 @@ public static class SaveSystem
         return newDataJson;
     }
 
-    //public static void SaveTutoState(PlayerData newData)
-    //{
-    //    // Overwrite data of the tuto advancement
-    //    if (File.Exists(MainSaveFileName))
-    //    {
-    //        string newDataJson = JsonUtility.ToJson(newData);
-    //        string jsonData = File.ReadAllText(GetPath(MainSaveFileName));
-    //        PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
-    //        JsonUtility.FromJsonOverwrite(newDataJson, data);
-    //    }
-    //}
-
     public static PlayerData LoadPlayerData()
     {
         string path = GetPath(MainSaveFileName);
