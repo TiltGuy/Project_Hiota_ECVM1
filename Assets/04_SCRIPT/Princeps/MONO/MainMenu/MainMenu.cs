@@ -101,28 +101,12 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
-        GameManager.Instance.StartNewGame();
+        GameManager.instance.StartNewGame();
 	}
 
     public void Continue()
     {
-        string pathMain = SaveSystem.GetPath(mainSaveName);
-        if(File.Exists(pathMain))
-        {
-            PlayerData currentData = SaveSystem.LoadPlayerData();
-            if (currentData == null) 
-            {
-                return;
-            }
-            if(!currentData.b_HasPassedTutorial)
-            {
-                SceneManager.LoadScene(tutoLevel);
-            }
-            else
-            {
-                SceneManager.LoadScene(hubLevel);
-            }
-        }
+        GameManager.instance.ContinueGame();
         
     }
 

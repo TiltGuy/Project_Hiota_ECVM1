@@ -27,7 +27,7 @@ public class DataPersistenceManager : MonoBehaviour
     public string tutoLevel;
     public string hubLevel;
 
-    private PlayerData currentDataToApply;
+    internal PlayerData currentDataToApply;
 
     public static DataPersistenceManager instance
     {
@@ -62,6 +62,10 @@ public class DataPersistenceManager : MonoBehaviour
         {
             ApplySaveData(currentDataToApply);
             Debug.Log("Lance le applyData");
+        }
+        else
+        {
+            Debug.Log("No Save File Found... ");
         }
     }
 
@@ -107,7 +111,6 @@ public class DataPersistenceManager : MonoBehaviour
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             Vector3 newposition = CurrentSave.tutoPosition;
             player.transform.position = newposition;
-            Debug.Log("Tamere je change le layer d place");
             int securityNumber = 0;
             while (player.transform.position != newposition && securityNumber < 1000)
             {

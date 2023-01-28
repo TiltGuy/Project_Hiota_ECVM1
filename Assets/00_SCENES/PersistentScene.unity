@@ -197,16 +197,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2735695932845567065, guid: 98980f88f057b1240b4e8a3661275e84,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3734648641127809906, guid: 98980f88f057b1240b4e8a3661275e84,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4586521679439673489, guid: 98980f88f057b1240b4e8a3661275e84,
         type: 3}
       propertyPath: m_Pivot.x
@@ -317,11 +307,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 5055178562292686412, guid: 98980f88f057b1240b4e8a3661275e84,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98980f88f057b1240b4e8a3661275e84, type: 3}
 --- !u!1 &2085276204 stripped
@@ -330,6 +315,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2085276203}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2085276205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3451252162041066015, guid: 98980f88f057b1240b4e8a3661275e84,
+    type: 3}
+  m_PrefabInstance: {fileID: 2085276203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8668330177617114885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,5 +399,10 @@ PrefabInstance:
       propertyPath: LoadingScreen_GO
       value: 
       objectReference: {fileID: 2085276204}
+    - target: {fileID: 9019388000809958949, guid: 1cdc52b4b6ef95349a60a91453315749,
+        type: 3}
+      propertyPath: LoadingProgress_Bar
+      value: 
+      objectReference: {fileID: 2085276205}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdc52b4b6ef95349a60a91453315749, type: 3}
