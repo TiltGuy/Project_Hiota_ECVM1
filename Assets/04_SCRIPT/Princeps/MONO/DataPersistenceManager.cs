@@ -44,14 +44,14 @@ public class DataPersistenceManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 
     private void Start()
     {
 
-        LoadCurrentSave();
+        //LoadCurrentSave();
     }
 
     [ContextMenu("LoadSave")]
