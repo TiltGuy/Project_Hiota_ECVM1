@@ -206,6 +206,7 @@ MonoBehaviour:
   _groundChecker: {fileID: 0}
   characontroller: {fileID: 0}
   charSpecs: {fileID: 0}
+  SliderCooldownDash: {fileID: 0}
   HITTouchedPosition: {fileID: 0}
   NavAgent: {fileID: 39000561153551388}
   CharRigidbody: {fileID: 39000561153551386}
@@ -218,7 +219,6 @@ MonoBehaviour:
   _isGrounded: 0
   distanceCheckGround: 0.25
   gravity: -9.17
-  dashCooldown: 0.75
   dashDirection: {x: 0, y: 0, z: 0}
   lastDirectionInput: {x: 0, y: 0, z: 0}
   scalarVector: 0
@@ -2301,7 +2301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6143506695742234699
 RectTransform:
   m_ObjectHideFlags: 0
