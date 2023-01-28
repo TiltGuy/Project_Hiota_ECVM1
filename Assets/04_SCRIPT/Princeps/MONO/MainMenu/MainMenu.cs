@@ -101,10 +101,7 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
-        PlayerPrefs.DeleteAll();
-        SaveSystem.ClearData(SaveSystem.MainSaveFileName);
-        //SaveSystem.ClearData(SaveSystem.TutoNameSaveFile);
-		SceneManager.LoadScene(tutoLevel);
+        GameManager.Instance.StartNewGame();
 	}
 
     public void Continue()
