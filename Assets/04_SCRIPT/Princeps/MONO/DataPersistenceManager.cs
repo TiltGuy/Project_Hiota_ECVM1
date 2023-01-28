@@ -10,7 +10,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public bool isRespawning;
 
-    public float fadeDuration = 3f;
+    public float fadeDuration = 5f;
 
     [SerializeField]
     public Canvas LoadingScreen;
@@ -40,6 +40,7 @@ public class DataPersistenceManager : MonoBehaviour
         if(instance != null)
         {
             Debug.Log("Data Persistence Manager already existed");
+            Destroy(gameObject);
             return;
         }
         instance = this;
@@ -60,7 +61,13 @@ public class DataPersistenceManager : MonoBehaviour
         if ( currentDataToApply != null)
         {
             ApplySaveData(currentDataToApply);
+            Debug.Log("Lance le applyData");
         }
+    }
+
+    internal void TryToLoad()
+    {
+        LoadCurrentSave();
     }
 
     internal void saveCurrentMainDataSave()
@@ -101,6 +108,15 @@ public class DataPersistenceManager : MonoBehaviour
             Vector3 newposition = CurrentSave.tutoPosition;
             player.transform.position = newposition;
             Debug.Log("Tamere je change le layer d place");
+            int securityNumber = 0;
+            while (player.transform.position != newposition && securityNumber < 1000)
+            {
+                player.transform.position = newposition;
+                Debug.Log("Trying to put player at the good position");
+                Debug.Log("tutoPosition" + newposition);
+                Debug.Log("playerPosition" + player.transform.position);
+                securityNumber++;
+            }
             return;
         }
         DeckManager deckManager = DeckManager.instance;
@@ -110,6 +126,14 @@ public class DataPersistenceManager : MonoBehaviour
 
         deckManager._HiddenDeck = new List<SkillCard_SO>();
         deckManager._HiddenDeck = CurrentSave._HiddenDeck;
+    }
+
+    public void TryToContinue()
+    {
+        if(currentDataToApply != null)
+        {
+
+        }
     }
 
     public void RespawnPlayer()
@@ -162,6 +186,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             loda.gameObject.SetActive(false);
         }
+        LoadCurrentSave();
     }
 
     public IEnumerator PreLoadNextRandomRoom_Coroutine( string nextPalierRoomName )
@@ -210,4 +235,6 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.Log("Preloading Scene failed cuz not empty" + preloadingScene.progress);
         }
     }
+
+    
 }
