@@ -198,7 +198,10 @@ public class CharacterSpecs : MonoBehaviour
 	{
 		MaxHealth = CharStats_SO.maxHealth;
 		Health = CharStats_SO.StartHealth;
-
+        if(gameObject.CompareTag("Player"))
+        {
+            Debug.Log("transform.position of the player : " + transform.position);
+        }
 		//healthPointBarFillAmount = Health / MaxHealth;
 		//healthBar.fillAmount = healthPointBarFillAmount;
 

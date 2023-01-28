@@ -37,6 +37,9 @@ public class PlayerRespawn : MonoBehaviour
 
     private IEnumerator Start()
     {
+        if(DataPersistenceManager.instance != null)
+        {
+        }
         isRespawning = true;
 
         Camera.main.FadeIn(fadeDuration);
