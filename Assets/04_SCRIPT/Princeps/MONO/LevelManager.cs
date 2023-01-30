@@ -17,9 +17,9 @@ public class LevelManager : MonoBehaviour
     public NavMeshSurface[] surfaces;
 
     public float palierRoomIndex = 10;
-    public ScenesNames PalierRoomSceneNames;
+    public ScenesBuildIndex PalierRoomSceneBuildIndex;
 
-    public ScenesNames StandardRoomScenesNames;
+    public ScenesBuildIndex StandardRoomScenesBuildIndex;
 
     public string NameRoomHub;
 
@@ -184,12 +184,12 @@ public class LevelManager : MonoBehaviour
         tempNextRoomIndex++;
         if( tempNextRoomIndex == palierRoomIndex)
         {
-            StartCoroutine(PreLoadNextRandomRoom(PalierRoomSceneNames));
+            StartCoroutine(PreLoadNextRandomRoom(PalierRoomSceneBuildIndex));
             Debug.Log("Next Palier Room");
         }
         else
         {
-            StartCoroutine(PreLoadNextRandomRoom(StandardRoomScenesNames));
+            StartCoroutine(PreLoadNextRandomRoom(StandardRoomScenesBuildIndex));
             Debug.Log("Next Standard Room");
         }
 
@@ -199,12 +199,43 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("nbTotalRooms = " + nbTotalRoomPalier);
     }
 
-    private IEnumerator PreLoadNextRandomRoom(ScenesNames scenesNames)
+    private IEnumerator PreLoadNextRandomRoom(ScenesBuildIndex scenesNames)
     {
         yield return null;
-        string nextPalierRoomName = scenesNames.ListOfScenes[Random.Range(0, PalierRoomSceneNames.ListOfScenes.Length)];
-        Debug.Log("next palier = " + nextPalierRoomName);
-        DataPersistenceManager.instance.TryPreloadNextRandomScene(nextPalierRoomName);
+        int nextPalierRoomBuildIndex = scenesNames.ListOfScenesBuildIndex[Random.Range(0, PalierRoomSceneBuildIndex.ListOfScenesBuildIndex.Length)];
+        Debug.Log("next palier = " + nextPalierRoomBuildIndex);
+        GameManager.instance.GoToNextLVL(nextPalierRoomBuildIndex);
+    }
+
+    public int LoadNextRandomRoom( ScenesBuildIndex scenesNames )
+    {
+        int nextPalierRoomBuildIndex = scenesNames.ListOfScenesBuildIndex[Random.Range(0, PalierRoomSceneBuildIndex.ListOfScenesBuildIndex.Length)];
+        Debug.Log("next palier = " + nextPalierRoomBuildIndex);
+        return nextPalierRoomBuildIndex;
+        //GameManager.instance.GoToNextLVL(nextPalierRoomBuildIndex);
+    }
+
+    public int DefineNextFightArena()
+    {
+        float tempNextRoomIndex = currentRoomIndex;
+        tempNextRoomIndex++;
+        int nextRoomBuildIndex = 0;
+        if ( tempNextRoomIndex == palierRoomIndex )
+        {
+            nextRoomBuildIndex = LoadNextRandomRoom(PalierRoomSceneBuildIndex);
+            Debug.Log("Next Palier Room");
+        }
+        else
+        {
+            nextRoomBuildIndex = LoadNextRandomRoom(StandardRoomScenesBuildIndex);
+            Debug.Log("Next Standard Room");
+        }
+
+        currentRoomIndex = tempNextRoomIndex;
+        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRoomPalier);
+        Debug.Log("currentroomIndex = " + currentRoomIndex);
+        return nextRoomBuildIndex;
+        //Debug.Log("nbTotalRooms = " + nbTotalRoomPalier);
     }
 
     public void DefineNextTroopIndex()
