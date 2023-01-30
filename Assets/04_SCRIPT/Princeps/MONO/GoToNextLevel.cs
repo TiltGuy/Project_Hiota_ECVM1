@@ -11,19 +11,8 @@ public class GoToNextLevel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            //LevelManager.instance.LoadNextLevel();
-            LevelManager.instance.b_IsPlayerReady = true;
-            if( b_HaveToSave == true)
-            {
-                if(b_SaveTutoState)
-                {
-                    DataPersistenceManager.instance.saveCurrentTutoDataSave(false);
-                }
-                else
-                {
-                    DataPersistenceManager.instance.saveCurrentMainDataSave();
-                }
-            }
+            DataPersistenceManager.instance.saveCurrentMainDataSave();
+            GameManager.instance.GoToNextLVL(LevelManager.instance.DefineNextFightArena());
         }
     }
 }
