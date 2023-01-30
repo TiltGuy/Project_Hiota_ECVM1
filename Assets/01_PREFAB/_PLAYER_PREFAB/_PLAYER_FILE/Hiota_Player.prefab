@@ -1499,6 +1499,7 @@ MonoBehaviour:
   _groundChecker: {fileID: 6188173131968936273}
   characontroller: {fileID: 6634799758529909337}
   charSpecs: {fileID: 0}
+  SliderCooldownDash: {fileID: 7628233685452925411}
   HITTouchedPosition: {fileID: 0}
   NavAgent: {fileID: 0}
   CharRigidbody: {fileID: 0}
@@ -1511,7 +1512,6 @@ MonoBehaviour:
   _isGrounded: 0
   distanceCheckGround: 0.3
   gravity: -9.17
-  dashCooldown: 0.75
   dashDirection: {x: 0, y: 0, z: 0}
   lastDirectionInput: {x: 0, y: 0, z: 0}
   scalarVector: 0
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086b153d224aee840a3fe34520194ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRespawning: 0
   fadeDuration: 5
   hubSceneName: Blockout-Scene_HUB
 --- !u!114 &1603720935

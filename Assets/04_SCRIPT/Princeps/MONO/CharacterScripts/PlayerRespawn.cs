@@ -14,9 +14,9 @@ public class PlayerRespawn : MonoBehaviour
 
     public void Respawn()
     {
-        if ( DataPersistenceManager.instance != null )
+        if ( GameManager.instance != null )
         {
-            DataPersistenceManager.instance.RespawnPlayer();
+            StartCoroutine(RespawnCoroutine());
             return;
         }
         if ( !isRespawning )
@@ -31,12 +31,14 @@ public class PlayerRespawn : MonoBehaviour
         Camera.main.FadeOut(fadeDuration);
         //GetComponent<Controller_FSM>().gravity = 0;
         yield return new WaitForSecondsRealtime(fadeDuration);
-
-        LevelManager.instance.LoadHub();
+        GameManager.instance.RespawnPlayer();
     }
 
     private IEnumerator Start()
     {
+        if(DataPersistenceManager.instance != null)
+        {
+        }
         isRespawning = true;
 
         Camera.main.FadeIn(fadeDuration);

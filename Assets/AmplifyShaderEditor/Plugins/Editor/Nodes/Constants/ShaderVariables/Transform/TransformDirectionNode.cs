@@ -28,12 +28,15 @@ namespace AmplifyShaderEditor
 		private bool m_normalize = false;
 
 		[SerializeField]
+		private bool m_safeNormalize = false;
+
+		[SerializeField]
 		private InverseTangentType m_inverseTangentType = InverseTangentType.Fast;
 
 		private string InverseTBNStr = "Inverse TBN";
 
 		private const string NormalizeOptionStr = "Normalize";
-		private const string NormalizeFunc = "normalize( {0} )";
+		private const string SafeNormalizeOptionStr = "Safe";
 
 		private const string AseObjectToWorldDirVarName = "objToWorldDir";
 		private const string AseObjectToWorldDirFormat = "mul( unity_ObjectToWorld, float4( {0}, 0 ) ).xyz";
@@ -156,6 +159,14 @@ namespace AmplifyShaderEditor
 			{
 				UpdateSubtitle();
 			}
+
+			if( m_normalize )
+			{
+				EditorGUI.indentLevel++;
+				m_safeNormalize = EditorGUILayoutToggle( SafeNormalizeOptionStr , m_safeNormalize );
+				EditorGUILayout.HelpBox( Constants.SafeNormalizeInfoStr , MessageType.Info );
+				EditorGUI.indentLevel--;
+			}
 		}
 
 		public override void PropagateNodeData( NodeData nodeData, ref MasterNodeDataCollector dataCollector )
@@ -176,7 +187,7 @@ namespace AmplifyShaderEditor
 						default: case TransformSpaceTo.Object: break;
 						case TransformSpaceTo.World:
 						{
-							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BuiltIn )
+							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BiRP )
 								result = string.Format( AseSRPObjectToWorldDirFormat, result );
 							else
 								result = string.Format( AseObjectToWorldDirFormat, result );
@@ -185,7 +196,7 @@ namespace AmplifyShaderEditor
 						break;
 						case TransformSpaceTo.View:
 						{
-							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HD )
+							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HDRP )
 								result = string.Format( AseHDObjectToViewDirFormat, result );
 							else
 								result = string.Format( AseObjectToViewDirFormat, result );
@@ -194,7 +205,7 @@ namespace AmplifyShaderEditor
 						break;
 						case TransformSpaceTo.Clip:
 						{
-							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BuiltIn )
+							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BiRP )
 							{
 								result = string.Format( AseSRPObjectToClipDirFormat, result );
 							}
@@ -214,7 +225,7 @@ namespace AmplifyShaderEditor
 					{
 						case TransformSpaceTo.Object:
 						{
-							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BuiltIn )
+							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BiRP )
 								result = string.Format( AseSRPWorldToObjectDirFormat, result );
 							else
 								result = string.Format( AseWorldToObjectDirFormat, result );
@@ -231,7 +242,7 @@ namespace AmplifyShaderEditor
 						break;
 						case TransformSpaceTo.Clip:
 						{
-							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BuiltIn )
+							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BiRP )
 							{
 								result = string.Format( AseSRPWorldToClipDirFormat, result );
 							}
@@ -264,7 +275,7 @@ namespace AmplifyShaderEditor
 						default: case TransformSpaceTo.View: break;
 						case TransformSpaceTo.Clip:
 						{
-							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BuiltIn )
+							if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType != TemplateSRPType.BiRP )
 							{
 								result = string.Format( AseSRPViewToClipDirFormat, result );
 							}
@@ -284,7 +295,7 @@ namespace AmplifyShaderEditor
 				//	{
 				//		case TransformSpace.Object:
 				//		{
-				//			if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HD )
+				//			if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HDRP )
 				//			{
 				//				result = string.Format( AseHDClipToObjectDirFormat, result );
 				//			}
@@ -297,7 +308,7 @@ namespace AmplifyShaderEditor
 				//		break;
 				//		case TransformSpace.World:
 				//		{
-				//			if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HD )
+				//			if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HDRP )
 				//			{
 				//				result = string.Format( AseHDClipToWorldDirFormat, result );
 				//			}
@@ -310,7 +321,7 @@ namespace AmplifyShaderEditor
 				//		break;
 				//		case TransformSpace.View:
 				//		{
-				//			if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HD )
+				//			if( dataCollector.IsTemplate && dataCollector.TemplateDataCollectorInstance.CurrentSRPType == TemplateSRPType.HDRP )
 				//			{
 				//				result = string.Format( AseHDClipToViewDirFormat, result );
 				//			}
@@ -521,7 +532,9 @@ namespace AmplifyShaderEditor
 			}
 
 			if( m_normalize )
-				result = string.Format( NormalizeFunc, result );
+			{
+				result = GeneratorUtils.NormalizeValue( ref dataCollector , m_safeNormalize , m_inputPorts[ 0 ].DataType , result );
+			}
 
 			RegisterLocalVariable( 0, result, ref dataCollector, varName );
 			return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory ) );
@@ -545,6 +558,11 @@ namespace AmplifyShaderEditor
 			{
 				m_inverseTangentType = (InverseTangentType)Enum.Parse( typeof( InverseTangentType ), GetCurrentParam( ref nodeParams ) );
 			}
+			if( UIUtils.CurrentShaderVersion() > 18814 )
+			{
+				m_safeNormalize = Convert.ToBoolean( GetCurrentParam( ref nodeParams ) );
+			}
+
 			UpdateSubtitle();
 		}
 
@@ -555,6 +573,7 @@ namespace AmplifyShaderEditor
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_to );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_normalize );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_inverseTangentType );
+			IOUtils.AddFieldValueToString( ref nodeInfo , m_safeNormalize );
 		}
 	}
 }

@@ -10,6 +10,7 @@ public class FinishTuto : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             DataPersistenceManager.instance.saveCurrentTutoDataSave(true);
+            GameManager.instance.GoToNextLVL(LevelManager.instance.DefineNextFightArena());
         }
     }
 }

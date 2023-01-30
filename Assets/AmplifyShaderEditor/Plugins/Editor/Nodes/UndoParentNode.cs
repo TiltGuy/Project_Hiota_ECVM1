@@ -18,17 +18,17 @@ namespace AmplifyShaderEditor
 		public void UndoRecordObject( string name )
 		{
 			UIUtils.MarkUndoAction();
-			Undo.RegisterCompleteObjectUndo( UIUtils.CurrentWindow, name );
-			Undo.RecordObject( this, name );
+			UndoUtils.RegisterCompleteObjectUndo( UIUtils.CurrentWindow, name );
+			UndoUtils.RecordObject( this, name );
 		}
 
 		public virtual void RecordObject( string Id )
 		{
-			Undo.RecordObject( this, Id );
+			UndoUtils.RecordObject( this, Id );
 		}
 		public virtual void RecordObjectOnDestroy( string Id )
 		{
-			Undo.RecordObject( this, Id );
+			UndoUtils.RecordObject( this, Id );
 		}
 
 		public string EditorGUILayoutStringField( string name, string value, params GUILayoutOption[] options )
@@ -47,6 +47,16 @@ namespace AmplifyShaderEditor
 			if( !text.Equals( newValue ) )
 			{
 				UndoRecordObject( string.Format( MessageFormat, label, ( ( m_nodeAttribs != null ) ? m_nodeAttribs.Name : GetType().ToString() ) ) );
+			}
+			return newValue;
+		}
+
+		public string EditorGUILayoutTextField( string text, params GUILayoutOption[] options )
+		{
+			string newValue = EditorGUILayout.TextField( text, options );
+			if( !text.Equals( newValue ) )
+			{
+				UndoRecordObject( string.Format( MessageFormat, "EditorGUILayoutTextField", ( ( m_nodeAttribs != null ) ? m_nodeAttribs.Name : GetType().ToString() ) ) );
 			}
 			return newValue;
 		}
@@ -255,7 +265,7 @@ namespace AmplifyShaderEditor
 			}
 			return newValue;
 		}
-#if UNITY_2018_1_OR_NEWER
+
 		public Color EditorGUILayoutColorField( GUIContent label, Color value, bool showEyedropper, bool showAlpha, bool hdr, params GUILayoutOption[] options )
 		{
 			Color newValue = EditorGUILayout.ColorField( label, value, showEyedropper, showAlpha, hdr, options );
@@ -265,17 +275,7 @@ namespace AmplifyShaderEditor
 			}
 			return newValue;
 		}
-#else
-		public Color EditorGUILayoutColorField( GUIContent label, Color value, bool showEyedropper, bool showAlpha, bool hdr, ColorPickerHDRConfig hdrConfig, params GUILayoutOption[] options )
-		{
-			Color newValue = EditorGUILayout.ColorField( label, value, showEyedropper, showAlpha, hdr, hdrConfig, options );
-			if( newValue != value )
-			{
-				UndoRecordObject( string.Format( MessageFormat, label, ( ( m_nodeAttribs != null ) ? m_nodeAttribs.Name : GetType().ToString() ) ) );
-			}
-			return newValue;
-		}
-#endif
+
 		public float EditorGUILayoutSlider( string label, float value, float leftValue, float rightValue, params GUILayoutOption[] options )
 		{
 			float newValue = EditorGUILayout.Slider( label, value, leftValue, rightValue, options );
@@ -446,6 +446,26 @@ namespace AmplifyShaderEditor
 			return newValue;
 		}
 
+		public string EditorGUITextArea( Rect position, string text )
+		{
+			string newValue = EditorGUI.TextArea( position, text );
+			if( !newValue.Equals( text ) )
+			{
+				UndoRecordObject( string.Format( MessageFormat, "TextArea", ( ( m_nodeAttribs != null ) ? m_nodeAttribs.Name : GetType().ToString() ) ) );
+			}
+			return newValue;
+		}
+
+		public string EditorGUITextArea( Rect position, string text, [UnityEngine.Internal.DefaultValue( "EditorStyles.textField" )] GUIStyle style )
+		{
+			string newValue = EditorGUI.TextArea( position, text,style );
+			if( !newValue.Equals( text ) )
+			{
+				UndoRecordObject( string.Format( MessageFormat, "TextArea", ( ( m_nodeAttribs != null ) ? m_nodeAttribs.Name : GetType().ToString() ) ) );
+			}
+			return newValue;
+		}
+
 		public string EditorGUITextField( Rect position, string label, string text, [UnityEngine.Internal.DefaultValue( "EditorStyles.textField" )] GUIStyle style )
 		{
 			string newValue = EditorGUI.TextField( position, label, text, style );
@@ -455,7 +475,7 @@ namespace AmplifyShaderEditor
 			}
 			return newValue;
 		}
-#if UNITY_2018_1_OR_NEWER
+
 		public Color EditorGUIColorField( Rect position, GUIContent label, Color value, bool showEyedropper, bool showAlpha, bool hdr )
 		{
 			Color newValue = EditorGUI.ColorField( position, label, value, showEyedropper, showAlpha, hdr );
@@ -465,17 +485,7 @@ namespace AmplifyShaderEditor
 			}
 			return newValue;
 		}
-#else
-		public Color EditorGUIColorField( Rect position, GUIContent label, Color value, bool showEyedropper, bool showAlpha, bool hdr, ColorPickerHDRConfig hdrConfig )
-		{
-			Color newValue = EditorGUI.ColorField( position, label, value, showEyedropper, showAlpha, hdr, hdrConfig );
-			if( newValue != value )
-			{
-				UndoRecordObject( string.Format( MessageFormat, label, ( ( m_nodeAttribs != null ) ? m_nodeAttribs.Name : GetType().ToString() ) ) );
-			}
-			return newValue;
-		}
-#endif
+
 		public Color EditorGUIColorField( Rect position, string label, Color value )
 		{
 			Color newValue = EditorGUI.ColorField( position, label, value );

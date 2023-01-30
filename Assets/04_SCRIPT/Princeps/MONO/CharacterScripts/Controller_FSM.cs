@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(CharacterSpecs))]
@@ -54,7 +55,7 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     [HideInInspector] public CharacterSpecs charSpecs;
 
-    
+    public Slider SliderCooldownDash;
 
     public Transform HITTouchedPosition;
 
@@ -111,8 +112,8 @@ public class Controller_FSM : ActionHandler, IDamageable
     #region Dash Settings
 
     [Header(" -- DASH SETTINGS -- ")]
-
-    public float dashCooldown = 0.75f;
+    private float dashCooldown = 0.75f;
+    private float dashCounter = 0f;
     [HideInInspector] public Vector3 dashDirection;
     [HideInInspector] public Vector3 lastDirectionInput;
     [HideInInspector] public float scalarVector;
@@ -320,6 +321,7 @@ public class Controller_FSM : ActionHandler, IDamageable
             }
         } 
     }
+
 
     private void Awake()
     {
@@ -709,9 +711,19 @@ public class Controller_FSM : ActionHandler, IDamageable
     public IEnumerator BufferingDashEvent()
     {
         b_CanDash = false;
-        yield return new WaitForSeconds(dashCooldown);
+        while(dashCounter<= dashCooldown)
+        {
+            dashCounter += Time.deltaTime;
+            if(SliderCooldownDash!=null)
+            {
+                SliderCooldownDash.value = dashCounter / dashCooldown;
+            }
+            yield return null;
+        }
+        //yield return new WaitForSeconds(dashCooldown);
         b_CanDash = true;
         b_WantDash = false;
+        dashCounter= 0;
     }
 
     public IEnumerator ChockingTime()

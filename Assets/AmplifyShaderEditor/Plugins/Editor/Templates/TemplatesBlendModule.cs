@@ -427,6 +427,7 @@ namespace AmplifyShaderEditor
 			if( EditorGUI.EndChangeCheck() )
 			{
 				m_isDirty = true;
+				CustomEdited = true;
 			}
 		}
 
@@ -584,6 +585,7 @@ namespace AmplifyShaderEditor
 
 		public override void ReadFromString( ref uint index, ref string[] nodeParams )
 		{
+			base.ReadFromString( ref index, ref nodeParams );
 			ReadBlendModeFromString( ref index, ref nodeParams );
 			ReadBlendOpFromString( ref index, ref nodeParams );
 			ReadAlphaToMaskFromString( ref index, ref nodeParams );
@@ -591,6 +593,7 @@ namespace AmplifyShaderEditor
 
 		public override void WriteToString( ref string nodeInfo )
 		{
+			base.WriteToString( ref nodeInfo );
 			WriteBlendModeToString( ref nodeInfo );
 			WriteBlendOpToString( ref nodeInfo );
 		}
@@ -677,7 +680,7 @@ namespace AmplifyShaderEditor
 			set
 			{
 				m_sourceFactorRGB = value;
-				m_sourceFactorRGBInline.IntValue = (int)m_sourceFactorRGB;
+				m_sourceFactorRGBInline.IntValue = (int)value;
 				m_sourceFactorRGBInline.Active = false;
 			}
 
@@ -689,6 +692,7 @@ namespace AmplifyShaderEditor
 			{
 				m_destFactorRGB = value;
 				m_destFactorRGBInline.IntValue = (int)value;
+				m_destFactorRGBInline.Active = false;
 			}
 		}
 

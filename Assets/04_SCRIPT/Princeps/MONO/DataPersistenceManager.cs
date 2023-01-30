@@ -10,7 +10,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public bool isRespawning;
 
-    public float fadeDuration = 3f;
+    public float fadeDuration = 5f;
 
     [SerializeField]
     public Canvas LoadingScreen;
@@ -27,7 +27,7 @@ public class DataPersistenceManager : MonoBehaviour
     public string tutoLevel;
     public string hubLevel;
 
-    private PlayerData currentDataToApply;
+    internal PlayerData currentDataToApply;
 
     public static DataPersistenceManager instance
     {
@@ -40,17 +40,19 @@ public class DataPersistenceManager : MonoBehaviour
         if(instance != null)
         {
             Debug.Log("Data Persistence Manager already existed");
+            Destroy(gameObject);
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 
     private void Start()
     {
-
-        LoadCurrentSave();
+        currentDataToApply = SaveSystem.LoadPlayerData();
+        Debug.Log(currentDataToApply);
+        //LoadCurrentSave();
     }
 
     [ContextMenu("LoadSave")]
@@ -60,7 +62,17 @@ public class DataPersistenceManager : MonoBehaviour
         if ( currentDataToApply != null)
         {
             ApplySaveData(currentDataToApply);
+            Debug.Log("Lance le applyData");
         }
+        else
+        {
+            Debug.Log("No Save File Found... ");
+        }
+    }
+
+    internal void TryToLoad()
+    {
+        LoadCurrentSave();
     }
 
     internal void saveCurrentMainDataSave()
@@ -100,7 +112,15 @@ public class DataPersistenceManager : MonoBehaviour
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             Vector3 newposition = CurrentSave.tutoPosition;
             player.transform.position = newposition;
-            Debug.Log("Tamere je change le layer d place");
+            int securityNumber = 0;
+            while (player.transform.position != newposition && securityNumber < 1000)
+            {
+                player.transform.position = newposition;
+                Debug.Log("Trying to put player at the good position");
+                Debug.Log("tutoPosition" + newposition);
+                Debug.Log("playerPosition" + player.transform.position);
+                securityNumber++;
+            }
             return;
         }
         DeckManager deckManager = DeckManager.instance;
@@ -111,103 +131,7 @@ public class DataPersistenceManager : MonoBehaviour
         deckManager._HiddenDeck = new List<SkillCard_SO>();
         deckManager._HiddenDeck = CurrentSave._HiddenDeck;
     }
-
-    public void RespawnPlayer()
-    {
-        if(currentDataToApply == null) 
-        {
-            CharacterSpecs specs = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterSpecs>();
-            currentDataToApply = new PlayerData(specs, DeckManager.instance);
-        }
-        if(!currentDataToApply.b_HasPassedTutorial)
-        {
-            // Lancer la coroutine respawn (nom de la scène)
-            if(preloadingScene== null)
-            {
-                StartCoroutine(Respawn_Coroutine(tutoLevel));
-            }
-        }
-        else
-        {
-            if(preloadingScene== null)
-            {
-                StartCoroutine(Respawn_Coroutine(hubLevel));
-            }
-        }
-    }
-
-    private IEnumerator Respawn_Coroutine(string nameTargetScene)
-    {
-        AsyncOperation preloadingScene = SceneManager.LoadSceneAsync(nameTargetScene);
-        preloadingScene.allowSceneActivation = false;
-        Debug.Log("reloading the scene : " + preloadingScene.progress);
-        Camera.main.FadeOut(fadeDuration);
-        //GetComponent<Controller_FSM>().gravity = 0;
-        yield return new WaitForSecondsRealtime(fadeDuration);
-        if ( loda == null )
-        {
-            loda = Instantiate(LoadingScreen);
-            DontDestroyOnLoad(loda);
-        }
-        else
-        {
-            loda.gameObject.SetActive(true);
-        }
-        preloadingScene.allowSceneActivation = true;
-        while ( !preloadingScene.isDone )
-        {
-            yield return null;
-        }
-        if ( loda != null )
-        {
-            loda.gameObject.SetActive(false);
-        }
-    }
-
-    public IEnumerator PreLoadNextRandomRoom_Coroutine( string nextPalierRoomName )
-    {
-        AsyncOperation preloadingScene = SceneManager.LoadSceneAsync(nextPalierRoomName);
-        bool b_IsPlayerReady = LevelManager.instance.b_IsPlayerReady;
-        preloadingScene.allowSceneActivation = false;
-        Debug.Log("Progress : " + preloadingScene.progress);
-        while ( !preloadingScene.isDone )
-        {
-            //Debug.Log("Progress : " + preloadingScene.progress);
-
-            if ( preloadingScene.progress >= .9f )
-            {
-                if ( b_IsPlayerReady )
-                {
-                    if ( loda == null )
-                    {
-                        loda = Instantiate(LoadingScreen);
-                        DontDestroyOnLoad(loda);
-                    }
-                    else
-                    {
-                        loda.gameObject.SetActive(true);
-                    }
-                    preloadingScene.allowSceneActivation = true;
-                    b_IsPlayerReady = false;
-                }
-            }
-            yield return null;
-        }
-        if(loda != null)
-        {
-            loda.gameObject.SetActive(false);
-        }
-    }
     
-    public void TryPreloadNextRandomScene( string nextPalierRoomName )
-    {
-        if(preloadingScene == null)
-        {
-            StartCoroutine(PreLoadNextRandomRoom_Coroutine(nextPalierRoomName));
-        }
-        else
-        {
-            Debug.Log("Preloading Scene failed cuz not empty" + preloadingScene.progress);
-        }
-    }
+
+    
 }
