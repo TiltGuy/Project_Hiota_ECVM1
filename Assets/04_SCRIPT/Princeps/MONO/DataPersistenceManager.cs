@@ -50,7 +50,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start()
     {
-
+        currentDataToApply = SaveSystem.LoadPlayerData();
+        Debug.Log(currentDataToApply);
         //LoadCurrentSave();
     }
 
@@ -130,114 +131,7 @@ public class DataPersistenceManager : MonoBehaviour
         deckManager._HiddenDeck = new List<SkillCard_SO>();
         deckManager._HiddenDeck = CurrentSave._HiddenDeck;
     }
-
-    public void TryToContinue()
-    {
-        if(currentDataToApply != null)
-        {
-
-        }
-    }
-
-    public void RespawnPlayer()
-    {
-        if(currentDataToApply == null) 
-        {
-            CharacterSpecs specs = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterSpecs>();
-            currentDataToApply = new PlayerData(specs, DeckManager.instance);
-        }
-        if(!currentDataToApply.b_HasPassedTutorial)
-        {
-            // Lancer la coroutine respawn (nom de la scène)
-            if(preloadingScene== null)
-            {
-                StartCoroutine(Respawn_Coroutine(tutoLevel));
-            }
-        }
-        else
-        {
-            if(preloadingScene== null)
-            {
-                StartCoroutine(Respawn_Coroutine(hubLevel));
-            }
-        }
-    }
-
-    private IEnumerator Respawn_Coroutine(string nameTargetScene)
-    {
-        AsyncOperation preloadingScene = SceneManager.LoadSceneAsync(nameTargetScene);
-        preloadingScene.allowSceneActivation = false;
-        Debug.Log("reloading the scene : " + preloadingScene.progress);
-        Camera.main.FadeOut(fadeDuration);
-        //GetComponent<Controller_FSM>().gravity = 0;
-        yield return new WaitForSecondsRealtime(fadeDuration);
-        if ( loda == null )
-        {
-            loda = Instantiate(LoadingScreen);
-            DontDestroyOnLoad(loda);
-        }
-        else
-        {
-            loda.gameObject.SetActive(true);
-        }
-        preloadingScene.allowSceneActivation = true;
-        while ( !preloadingScene.isDone )
-        {
-            yield return null;
-        }
-        if ( loda != null )
-        {
-            loda.gameObject.SetActive(false);
-        }
-        LoadCurrentSave();
-    }
-
-    public IEnumerator PreLoadNextRandomRoom_Coroutine( string nextPalierRoomName )
-    {
-        AsyncOperation preloadingScene = SceneManager.LoadSceneAsync(nextPalierRoomName);
-        bool b_IsPlayerReady = LevelManager.instance.b_IsPlayerReady;
-        preloadingScene.allowSceneActivation = false;
-        Debug.Log("Progress : " + preloadingScene.progress);
-        while ( !preloadingScene.isDone )
-        {
-            //Debug.Log("Progress : " + preloadingScene.progress);
-
-            if ( preloadingScene.progress >= .9f )
-            {
-                if ( b_IsPlayerReady )
-                {
-                    if ( loda == null )
-                    {
-                        loda = Instantiate(LoadingScreen);
-                        DontDestroyOnLoad(loda);
-                    }
-                    else
-                    {
-                        loda.gameObject.SetActive(true);
-                    }
-                    preloadingScene.allowSceneActivation = true;
-                    b_IsPlayerReady = false;
-                }
-            }
-            yield return null;
-        }
-        if(loda != null)
-        {
-            loda.gameObject.SetActive(false);
-        }
-    }
     
-    public void TryPreloadNextRandomScene( string nextPalierRoomName )
-    {
-        if(preloadingScene == null)
-        {
-            StartCoroutine(PreLoadNextRandomRoom_Coroutine(nextPalierRoomName));
-        }
-        else
-        {
-            Debug.Log("Preloading Scene failed cuz not empty" + preloadingScene.progress);
-        }
-    }
 
     
 }
