@@ -12,7 +12,7 @@ namespace AmplifyShaderEditor
 	[Serializable]
 	public class TemplateOptionUIItem
 	{
-		public delegate void OnActionPerformed( bool isRefreshing, bool invertAction, TemplateOptionUIItem uiItem, params TemplateActionItem[] validActions );
+		public delegate void OnActionPerformed( bool actionFromUser, bool isRefreshing, bool invertAction, TemplateOptionUIItem uiItem, params TemplateActionItem[] validActions );
 		public event OnActionPerformed OnActionPerformedEvt;
 
 		[SerializeField]
@@ -32,6 +32,9 @@ namespace AmplifyShaderEditor
 
 		[SerializeField]
 		private bool m_invertActionOnDeselection = false;
+
+		[SerializeField]
+		private Int64 m_lastClickedTimestamp = 0;
 
 		public TemplateOptionUIItem( TemplateOptionsItem options )
 		{
@@ -56,6 +59,7 @@ namespace AmplifyShaderEditor
 			m_checkOnExecute = origin.CheckOnExecute;
 			m_invertActionOnDeselection = origin.InvertActionOnDeselection;
 		}
+		
 
 		public void Draw( UndoParentNode owner )
 		{
@@ -136,18 +140,19 @@ namespace AmplifyShaderEditor
 				}
 				if( EditorGUI.EndChangeCheck() )
 				{
+					m_lastClickedTimestamp = DateTime.UtcNow.Ticks;
 					if( OnActionPerformedEvt != null )
 					{
 						if( m_invertActionOnDeselection )
-							OnActionPerformedEvt( false, lastOption != m_options.DisableIdx, this, m_options.ActionsPerOption[ lastOption ] );
+							OnActionPerformedEvt( true, false, lastOption != m_options.DisableIdx, this, m_options.ActionsPerOption[ lastOption ] );
 
-						OnActionPerformedEvt( false, false, this, m_options.ActionsPerOption[ m_currentOption ] );
+						OnActionPerformedEvt( true, false, false, this, m_options.ActionsPerOption[ m_currentOption ] );
 					}
 				}
 			}
 		}
 
-		public void CheckEnDisable()
+		public void CheckEnDisable( bool actionFromUser )
 		{
 			//string deb = string.Empty;// "-- Checked --" + m_options.Name+" "+ m_isVisible + " "+ m_wasVisible;
 			if( m_isVisible )
@@ -164,12 +169,12 @@ namespace AmplifyShaderEditor
 							{
 								if( i != m_currentOption && i != m_options.DisableIdx )
 								{
-									OnActionPerformedEvt( false, true, this, m_options.ActionsPerOption[ i ] );
+									OnActionPerformedEvt( actionFromUser, false, true, this, m_options.ActionsPerOption[ i ] );
 								}
 							}
 						}
 
-						OnActionPerformedEvt( false, false, this, m_options.ActionsPerOption[ m_currentOption ] );
+						OnActionPerformedEvt( actionFromUser, false, false, this, m_options.ActionsPerOption[ m_currentOption ] );
 						//if( !m_isVisible )
 							//OnActionPerformedEvt( isRefreshing, false, this, m_options.ActionsPerOption[ m_options.DisableIdx ] );
 					}
@@ -185,7 +190,7 @@ namespace AmplifyShaderEditor
 
 				if( OnActionPerformedEvt != null )
 				{
-					OnActionPerformedEvt( false, false, this, m_options.ActionsPerOption[ m_options.DisableIdx ] );
+					OnActionPerformedEvt( actionFromUser, false, false, this, m_options.ActionsPerOption[ m_options.DisableIdx ] );
 				}
 			}
 		}
@@ -213,7 +218,7 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public void Refresh()
+		public void Update( bool isRefreshing = true )
 		{
 			if( OnActionPerformedEvt != null )
 			{
@@ -223,12 +228,12 @@ namespace AmplifyShaderEditor
 					{
 						if( i != m_currentOption && i != m_options.DisableIdx )
 						{
-							OnActionPerformedEvt( true, true, this, m_options.ActionsPerOption[ i ] );
+							OnActionPerformedEvt( false, isRefreshing, true, this, m_options.ActionsPerOption[ i ] );
 						}
 					}
 				}
 
-				OnActionPerformedEvt( true, false, this, m_options.ActionsPerOption[ m_currentOption ] );
+				OnActionPerformedEvt( false, isRefreshing, false, this, m_options.ActionsPerOption[ m_currentOption ] );
 			}
 		}
 
@@ -292,9 +297,33 @@ namespace AmplifyShaderEditor
 		{
 			get
 			{
+				if( m_options.Type == AseOptionsType.Field &&
+					m_currentOption == 1 )
+				{
+					if( m_options.FieldValue.NodeId < -1 )
+					{
+						//This is quite the hack. The bug is related to if a user chooses an inline property on the field option, then the behavior is to comment the original property set on the template
+						// The problem is that, if the user sets an inline property and select its own internal property from there, then the behavior that will prevail without this hack is to call the actions associated with setting a new inline property
+						// Which is on all templates to comment the original template internal property leaving the property commented on the final code (This was detected on URP PBR)
+						PropertyNode node = UIUtils.CurrentWindow.OutsideGraph.GetInternalTemplateNode( m_options.FieldValue.NodeId ) as PropertyNode;
+						if( node != null )
+						{
+							if( node.PropertyName.Equals( m_options.FieldInlineName ) )
+							{
+								return m_options.ActionsPerOption.Rows[ 0 ];
+							}
+						}
+					}
+					else if( m_options.FieldValue.NodeId == -1 )
+					{
+						// If node id is -1 then no node is selected on the inline dropdown then we should also fallback to using its internal property
+						return m_options.ActionsPerOption.Rows[ 0 ];
+					}
+				}
 				return m_options.ActionsPerOption.Rows[m_currentOption];
 			}
 		}
 		public bool InvertActionOnDeselection { get { return m_invertActionOnDeselection; } }
+		public Int64 LastClickedTimestamp { get { return m_lastClickedTimestamp; } set { m_lastClickedTimestamp = value; } }
 	}
 }

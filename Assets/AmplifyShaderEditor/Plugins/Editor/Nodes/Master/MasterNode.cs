@@ -240,13 +240,6 @@ namespace AmplifyShaderEditor
 
 		protected void DrawCustomInspector( bool dropdown )
 		{
-#if !UNITY_2018_3_OR_NEWER
-			dropdown = false;
-#else
-			if( ASEPackageManagerHelper.CurrentHDVersion <= ASESRPVersions.ASE_SRP_5_16_1 )
-				dropdown = false;
-#endif
-
 			EditorGUILayout.BeginHorizontal();
 			m_customInspectorName = EditorGUILayoutTextField( CustomInspectorStr, m_customInspectorName );
 			if( !dropdown )
@@ -266,19 +259,68 @@ namespace AmplifyShaderEditor
 
 					GenericMenu menu = new GenericMenu();
 					AddMenuItem( menu, Constants.DefaultCustomInspector );
-#if UNITY_2018_3_OR_NEWER
-					if( ASEPackageManagerHelper.CurrentHDVersion > ASESRPVersions.ASE_SRP_6_9_1 )
+
+					ASESRPBaseline version = ASESRPBaseline.ASE_SRP_INVALID;
+					bool foundHDRP = ASEPackageManagerHelper.FoundHDRPVersion;
+					bool foundURP = ASEPackageManagerHelper.FoundURPVersion;
+
+					if( foundHDRP && foundURP )
 					{
-						AddMenuItem( menu, "UnityEditor.Rendering.HighDefinition.HDLitGUI" );
-						AddMenuItem( menu, "UnityEditor.ShaderGraph.PBRMasterGUI" );
+						version = ( ASEPackageManagerHelper.CurrentHDRPBaseline > ASEPackageManagerHelper.CurrentURPBaseline ) ? ASEPackageManagerHelper.CurrentHDRPBaseline : ASEPackageManagerHelper.CurrentURPBaseline;
 					}
-					else
+					else if( foundHDRP )
 					{
-						AddMenuItem( menu, "UnityEditor.Experimental.Rendering.HDPipeline.HDLitGUI" );
+						version = ASEPackageManagerHelper.CurrentHDRPBaseline;
 					}
-#else
-					AddMenuItem( menu, "UnityEditor.Experimental.Rendering.HDPipeline.HDLitGUI" );
-#endif
+					else if( foundURP )
+					{
+						version = ASEPackageManagerHelper.CurrentURPBaseline;
+					}
+
+					if( foundHDRP )
+					{
+						if( version >= ASESRPBaseline.ASE_SRP_11 )
+						{
+							AddMenuItem( menu , "Rendering.HighDefinition.DecalShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.LightingShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.LitShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.HDUnlitGUI" );
+						}
+						else
+						if( version >= ASESRPBaseline.ASE_SRP_10 )
+						{
+							AddMenuItem( menu , "Rendering.HighDefinition.DecalGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.LitShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.LightingShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.HDUnlitGUI" );
+						}
+						else if( version >= ASESRPBaseline.ASE_SRP_12 )
+						{
+							AddMenuItem( menu , "Rendering.HighDefinition.DecalGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.LitShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.LightingShaderGraphGUI" );
+							AddMenuItem( menu , "Rendering.HighDefinition.HDUnlitGUI" );
+						}
+						else
+						{
+							AddMenuItem( menu , "UnityEditor.Rendering.HighDefinition.HDLitGUI" );
+						}
+					}
+
+					if( foundURP )
+					{
+						if( version >= ASESRPBaseline.ASE_SRP_12 )
+						{
+							AddMenuItem( menu , "UnityEditor.ShaderGraphLitGUI" );
+							AddMenuItem( menu , "UnityEditor.ShaderGraphUnlitGUI" );
+							AddMenuItem( menu , "UnityEditor.Rendering.Universal.DecalShaderGraphGUI" );
+							AddMenuItem( menu , "UnityEditor.ShaderGraphLitGUI" );
+						}
+						else
+						{
+							AddMenuItem( menu , "UnityEditor.ShaderGraph.PBRMasterGUI" );
+						}
+					}
 					menu.ShowAsContext();
 				}
 			}
@@ -297,11 +339,11 @@ namespace AmplifyShaderEditor
 
 		protected void DrawShaderName()
 		{
-#if UNITY_2019_1_OR_NEWER
+
 			// this is a hack to control the automatic selection of text fields when the window is selected after serialization
 			// by having a selectable label the focus happens on it instead and doesn't interupt the usual flow of the editor
 			EditorGUILayout.SelectableLabel( "", GUILayout.Height( 0 ) );
-#endif
+
 			EditorGUI.BeginChangeCheck();
 			string newShaderName = EditorGUILayoutTextField( m_shaderNameContent, m_shaderName );
 			if( EditorGUI.EndChangeCheck() )
@@ -561,6 +603,12 @@ namespace AmplifyShaderEditor
 			return null;
 		}
 
+		public void CheckSamplingMacrosFlag()
+		{
+			if( ContainerGraph.SamplingMacros && m_currentDataCollector != null )
+				m_currentDataCollector.AddToDirectives( Constants.SamplingMacrosDirective );
+
+		}
 		protected void SortInputPorts( ref List<InputPort> vertexPorts, ref List<InputPort> fragmentPorts )
 		{
 			for( int i = 0; i < m_inputPorts.Count; i++ )
@@ -609,6 +657,7 @@ namespace AmplifyShaderEditor
 				AssetDatabase.Refresh( ImportAssetOptions.ForceUpdate );
 				CurrentShader = Shader.Find( ShaderName );
 			}
+
 			//else
 			//{
 			//	// need to always get asset datapath because a user can change and asset location from the project window 
@@ -974,9 +1023,10 @@ namespace AmplifyShaderEditor
 				m_sizeIsDirty = true;
 			}
 		}
+		public string CurrentInspector { get { return m_customInspectorName; } }
 		public string CustomInspectorFormatted { get { return string.Format( CustomInspectorFormat, m_customInspectorName ); } }
 		public string CroppedShaderName { get { return m_croppedShaderName; } }
-		public AvailableShaderTypes CurrentMasterNodeCategory { get { return ( m_masterNodeCategory == 0 ) ? AvailableShaderTypes.SurfaceShader : AvailableShaderTypes.Template; } }
+		public virtual AvailableShaderTypes CurrentMasterNodeCategory { get { return ( m_masterNodeCategory == 0 ) ? AvailableShaderTypes.SurfaceShader : AvailableShaderTypes.Template; } }
 		public int CurrentMasterNodeCategoryIdx { get { return m_masterNodeCategory; } }
 		public MasterNodeDataCollector CurrentDataCollector { get { return m_currentDataCollector; } set { m_currentDataCollector = value; } }
 		public List<PropertyNode> PropertyNodesVisibleList { get { return m_propertyNodesVisibleList; } }

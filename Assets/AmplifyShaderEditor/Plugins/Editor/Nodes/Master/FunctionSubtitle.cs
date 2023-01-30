@@ -24,7 +24,7 @@ namespace AmplifyShaderEditor
 		//	m_previewShaderGUID = "04bc8e7b317dccb4d8da601680dd8140";
 		//}
 		[SerializeField]
-		private string m_subttile = "Subtitle";
+		private string m_subtitle = "Subtitle";
 
 		protected override void CommonInit( int uniqueId )
 		{
@@ -33,7 +33,7 @@ namespace AmplifyShaderEditor
 			AddOutputPort( WirePortDataType.FLOAT, Constants.EmptyPortValue );
 			m_autoWrapProperties = true;
 			m_textLabelWidth = 100;
-			SetTitleText( m_subttile );
+			SetTitleText( m_subtitle );
 			m_previewShaderGUID = "74e4d859fbdb2c0468de3612145f4929";
 		}
 
@@ -73,7 +73,7 @@ namespace AmplifyShaderEditor
 			//	base.PropagateNodeData( nodeData, ref dataCollector );
 			//Debug.Log( IsConnected + " " + m_containerGraph.CurrentFunctionOutput );
 			if( m_containerGraph.CurrentFunctionOutput != null && IsConnected )
-				m_containerGraph.CurrentFunctionOutput.SubTitle = m_subttile;
+				m_containerGraph.CurrentFunctionOutput.SubTitle = m_subtitle;
 			//	m_containerGraph.CurrentShaderFunction.FunctionSubtitle = m_subttile;
 		}
 
@@ -82,10 +82,10 @@ namespace AmplifyShaderEditor
 			base.DrawProperties();
 			EditorGUILayout.BeginVertical();
 			EditorGUI.BeginChangeCheck();
-			m_subttile = EditorGUILayoutTextField( "Name", m_subttile );
+			m_subtitle = EditorGUILayoutTextField( "Name", m_subtitle );
 			if( EditorGUI.EndChangeCheck() )
 			{
-				SetTitleText( m_subttile );
+				SetTitleText( m_subtitle );
 				//UIUtils.UpdateFunctionInputData( UniqueId, m_inputName );
 			}
 			EditorGUI.BeginChangeCheck();
@@ -111,14 +111,14 @@ namespace AmplifyShaderEditor
 		public override void WriteToString( ref string nodeInfo, ref string connectionsInfo )
 		{
 			base.WriteToString( ref nodeInfo, ref connectionsInfo );
-			IOUtils.AddFieldValueToString( ref nodeInfo, m_subttile );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_subtitle );
 		}
 
 		public override void ReadFromString( ref string[] nodeParams )
 		{
 			base.ReadFromString( ref nodeParams );
-			m_subttile = GetCurrentParam( ref nodeParams );
-			SetTitleText( m_subttile );
+			m_subtitle = GetCurrentParam( ref nodeParams );
+			SetTitleText( m_subtitle );
 		}
 	}
 }
