@@ -44,10 +44,13 @@ public class SpawnTroup : MonoBehaviour
         foreach ( GameObject enemy in troups[LevelManager.nextTroopIndex ].Enemies )
         {
             Vector3 randomPosition = GetARandomPointInCircle();
-            GameObject currentEnemey = Instantiate(enemy, transform.position + randomPosition, transform.rotation);
+            GameObject currentEnemy = Instantiate(enemy, transform.position + randomPosition, transform.rotation);
+            
+            currentEnemy.transform.parent = transform;
+            currentEnemy.transform.parent = null;
             EnemyHolder currentHolder;
-            currentHolder.controllerFSM = currentEnemey.GetComponent<Controller_FSM>();
-            currentHolder.characterSpecs = currentEnemey.GetComponent<CharacterSpecs>();
+            currentHolder.controllerFSM = currentEnemy.GetComponent<Controller_FSM>();
+            currentHolder.characterSpecs = currentEnemy.GetComponent<CharacterSpecs>();
 
         }
     }
