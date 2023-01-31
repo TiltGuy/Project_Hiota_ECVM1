@@ -16,10 +16,15 @@ public class PlayerRespawn : MonoBehaviour
     {
         if ( GameManager.instance != null )
         {
-            StartCoroutine(RespawnCoroutine());
+            if (isRespawning == false)
+            {
+                StartCoroutine(RespawnCoroutine());
+                Debug.Log("Je suis mort");
+            }
+            isRespawning = true;
             return;
         }
-        if ( !isRespawning )
+        if ( !isRespawning && GameManager.instance == null)
         {
             isRespawning = true;
             StartCoroutine("RespawnCoroutine");
@@ -36,9 +41,6 @@ public class PlayerRespawn : MonoBehaviour
 
     private IEnumerator Start()
     {
-        if(DataPersistenceManager.instance != null)
-        {
-        }
         isRespawning = true;
 
         Camera.main.FadeIn(fadeDuration);
