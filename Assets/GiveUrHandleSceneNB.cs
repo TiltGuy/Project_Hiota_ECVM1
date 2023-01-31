@@ -9,6 +9,6 @@ public class GiveUrHandleSceneNB : MonoBehaviour
     void Start()
     {
         //GameManager.instance.currentScene = SceneManager.GetSceneByBuildIndex((int)ScenesIndexes.MAINMENU);
-        Debug.Log(GameManager.instance.currentScene.name);
+        //Debug.Log(GameManager.instance.currentScene.name);
     }
 }
