@@ -40,12 +40,15 @@ public class DeckManager : MonoBehaviour
 
     private void Start()
     {
-        _RunDeck = new List<SkillCard_SO>();
-        _PlayerDeck = new List<SkillCard_SO>();
-        _HiddenDeck = new List<SkillCard_SO>();
-        _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck;
-        _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck;
-        _RunDeck = _PlayerDeck;
+        if(DataPersistenceManager.instance.currentDataToApply != null)
+        {
+            _RunDeck = new List<SkillCard_SO>();
+            _PlayerDeck = new List<SkillCard_SO>();
+            _HiddenDeck = new List<SkillCard_SO>();
+            _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck;
+            _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck;
+            _RunDeck = _PlayerDeck;
+        }
     }
 
     public List<SkillCard_SO> DrawCards(float numberCardsToDraw)
