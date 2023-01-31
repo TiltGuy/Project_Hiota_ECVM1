@@ -17,9 +17,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     public string EnemyTag;
     public List<Transform> Enemies = new List<Transform>();
     public UnityEvent OnSelectSkillCard;
-    public bool saveToPlayerPrefs = false;
-    [SerializeField]
-    private bool b_LoadNextLevel = true;
+    //public bool saveToPlayerPrefs = false;
     //put the ref in the editor
     public TMP_Text Bonus_Text;
     //put the ref in the editor
@@ -50,10 +48,10 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     {
         //AssignNewSkillCard();
 
-        if ( saveToPlayerPrefs && PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated") == 1 )
-        {
-            TakeDamagesParriable(0, null, false);
-        }
+        //if ( saveToPlayerPrefs && PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated") == 1 )
+        //{
+        //    TakeDamagesParriable(0, null, false);
+        //}
 
         if(SkillCard != null)
         {
@@ -86,12 +84,8 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
             {
                 CharacterSpecs specs = Striker.GetComponent<CharacterSpecs>();
                 specs.RegenerateLife(specs.MaxHealth);
-                if ( b_LoadNextLevel )
-                {
-                    LevelManager.instance.LoadNextLevel();
-                }
             }
-            SaveSteleToPlayerPref();
+            //SaveSteleToPlayerPref();
         }
     }
 
@@ -101,10 +95,10 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
 
     private void SaveSteleToPlayerPref()
     {
-        if ( saveToPlayerPrefs )
-        {
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
-        }
+        //if ( saveToPlayerPrefs )
+        //{
+        //    PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
+        //}
     }
 
     private void UpdateCardMessages(TMP_Text textToUpdate, SkillCard_SO skillCard, bool b_BonusDisplay)

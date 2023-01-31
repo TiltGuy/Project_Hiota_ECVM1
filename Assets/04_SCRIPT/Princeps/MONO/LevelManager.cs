@@ -233,7 +233,7 @@ public class LevelManager : MonoBehaviour
 
         currentRoomIndex = tempNextRoomIndex;
         currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, nbTotalRoomPalier);
-        Debug.Log("currentroomIndex = " + currentRoomIndex);
+        //Debug.Log("currentroomIndex = " + currentRoomIndex);
         return nextRoomBuildIndex;
         //Debug.Log("nbTotalRooms = " + nbTotalRoomPalier);
     }

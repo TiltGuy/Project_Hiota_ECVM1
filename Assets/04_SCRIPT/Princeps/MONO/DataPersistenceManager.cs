@@ -51,7 +51,7 @@ public class DataPersistenceManager : MonoBehaviour
     private void Start()
     {
         currentDataToApply = SaveSystem.LoadPlayerData();
-        Debug.Log(currentDataToApply);
+        //Debug.Log(currentDataToApply);
         //LoadCurrentSave();
     }
 

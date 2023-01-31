@@ -82,7 +82,7 @@ public class TargetGatherer : MonoBehaviour
 
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Trying to remove Hiota", this);
+            //Debug.Log("Trying to remove Hiota", this);
         }
     }
 
