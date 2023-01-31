@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class DeckManager : MonoBehaviour
 {
@@ -40,14 +41,25 @@ public class DeckManager : MonoBehaviour
 
     private void Start()
     {
-        if(DataPersistenceManager.instance.currentDataToApply != null)
+        //for ( int i = 0; i < _PlayerDeck.Count; i++ )
+        //{
+        //    _RunDeck.Add(_PlayerDeck[i]);
+        //}
+        if( DataPersistenceManager.instance.currentDataToApply != null)
         {
-            _RunDeck = new List<SkillCard_SO>();
-            _PlayerDeck = new List<SkillCard_SO>();
-            _HiddenDeck = new List<SkillCard_SO>();
-            _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck;
-            _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck;
-            _RunDeck = _PlayerDeck;
+            _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck.ToList();
+            _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck.ToList();
+
+        }
+        _RunDeck = _PlayerDeck.ToList();
+    }
+
+    private void CopyList(List<SkillCard_SO> OriginList, List<SkillCard_SO> newList )
+    {
+        foreach ( SkillCard_SO skillCard in OriginList )
+        {
+            newList.Add(skillCard);
+            Debug.Log(skillCard.name);
         }
     }
 
@@ -103,19 +115,6 @@ public class DeckManager : MonoBehaviour
             _PlayerDeck.Add(newCard);
         }
         //ApplyCardEffectForAllEnemies(newCard);
-    }
-
-    private void ApplyCardEffectForAllEnemies( SkillCard_SO newCard )
-    {
-        foreach ( EnemyHolder enemy in _EnemyList )
-        {
-            if ( !enemy.controllerFSM.gameObject.activeInHierarchy || enemy.controllerFSM == null )
-            {
-                Debug.LogWarning("There Isn't any enemy to receive a card !!!");
-                return;
-            }
-            newCard.ApplyEffects(enemy.controllerFSM, enemy.characterSpecs);
-        }
     }
 
     public void ApplyCardEffectsToEnemy(Controller_FSM targetController, CharacterSpecs targetSpecs)
