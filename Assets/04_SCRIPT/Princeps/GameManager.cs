@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,8 +32,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentScene = GetCurrentScene();
-        Debug.Log(currentScene);
+        currentScene = GetOtherSceneNonActive();
+        SceneManager.SetActiveScene(currentScene);
+        //Debug.Log(currentScene);
     }
 
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         LoadingScreen_GO.SetActive(true);
 
-        Debug.Log(GetCurrentScene().name);
+        //Debug.Log(GetOtherSceneNonActive().name);
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)ScenesIndexes.MAINMENU));
         AsyncOperation newScene = SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
@@ -58,19 +60,23 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
+        if(!File.Exists(SaveSystem.GetPath(SaveSystem.MainSaveFileName)))
+        {
+            return;
+        }
         scenesLoading.Clear();
         scenesLoading = new List<AsyncOperation>();
         LoadingScreen_GO.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)ScenesIndexes.MAINMENU));
-        if(DataPersistenceManager.instance.currentDataToApply != null)
+        if(DataPersistenceManager.instance.currentDataToApply != null )
         {
             PlayerData playerData = DataPersistenceManager.instance.currentDataToApply;
             if(!playerData.b_HasPassedTutorial)
             {
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive));
                 
-                Debug.Log("---- Current Scene Name = " + GetCurrentScene().name);
-                Debug.Log("---- Current Scene Handle = " + GetCurrentScene().handle);
+                Debug.Log("---- Current Scene Name = " + GetOtherSceneNonActive().name);
+                Debug.Log("---- Current Scene Handle = " + GetOtherSceneNonActive().handle);
             }
             else
             {
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
             if ( !playerData.b_HasPassedTutorial )
             {
                 //Debug.Log("----- Want to respawn from " + currentScene.name);
-                scenesLoading.Add(SceneManager.UnloadSceneAsync(GetCurrentScene()));
+                scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
 
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive));
                 
@@ -106,10 +112,9 @@ public class GameManager : MonoBehaviour
             else
             {
                 //Debug.Log("----- Want to respawn from " + currentScene.name);
-                scenesLoading.Add(SceneManager.UnloadSceneAsync(GetCurrentScene()));
+                scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
-                Debug.Log("----- New Scene is  " + currentScene.name);
-                Debug.Log("---- Current Scene Handle = " + currentScene.handle);
+                LevelManager.currentRoomIndex= 0;
                 DataPersistenceManager.instance.saveCurrentMainDataSave();
             }
         }
@@ -126,8 +131,8 @@ public class GameManager : MonoBehaviour
 
         LoadingScreen_GO.SetActive(true);
 
-        Debug.Log(GetCurrentScene().name);
-        scenesLoading.Add(SceneManager.UnloadSceneAsync(GetCurrentScene()));
+        //Debug.Log(GetCurrentScene().name);
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
         AsyncOperation newScene = SceneManager.LoadSceneAsync(NextSceneBuildIndex, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
         StartCoroutine(GetScenesLoadProgress_Coroutine());
@@ -160,8 +165,11 @@ public class GameManager : MonoBehaviour
         }
         DataPersistenceManager.instance.TryToLoad();
         scenesLoading.Clear();
-        Debug.Log(SceneManager.GetActiveScene().name);
         LoadingScreen_GO.SetActive(false);
+        //Debug.Log("Current Scene Active = " + GetOtherSceneNonActive().name);
+        SceneManager.SetActiveScene(GetOtherSceneNonActive());
+        //Debug.Log("----- New Scene is  " + currentScene.name);
+        //Debug.Log("---- Current Scene Handle = " + currentScene.handle);
     }
 
     [ContextMenu("GetCurrentSceneHandleNdName")]
@@ -185,7 +193,7 @@ public class GameManager : MonoBehaviour
 
 
     [ContextMenu("ReturnCurrentScene")]
-    public Scene GetCurrentScene()
+    public Scene GetOtherSceneNonActive()
     {
         if ( SceneManager.sceneCount > 0 )
         {
@@ -195,7 +203,6 @@ public class GameManager : MonoBehaviour
                 if ( sceneToExam != SceneManager.GetActiveScene() )
                 {
                     //Debug.Log(sceneToExam.name);
-                    Debug.Log(sceneToExam.name);
                     return sceneToExam;
                 }
             }
