@@ -93,13 +93,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
     {
     }
 
-    private void SaveSteleToPlayerPref()
-    {
-        //if ( saveToPlayerPrefs )
-        //{
-        //    PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "." + name + ".t_Activated", 1);
-        //}
-    }
 
     private void UpdateCardMessages(TMP_Text textToUpdate, SkillCard_SO skillCard, bool b_BonusDisplay)
     {
