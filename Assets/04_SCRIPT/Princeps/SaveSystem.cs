@@ -30,12 +30,12 @@ public static class SaveSystem
         PlayerData data = playerDataToApply;
         // Serialize
         //formatter.Serialize(stream, data);
-        jsonData = JsonUtility.ToJson(data);
+        jsonData = JsonUtility.ToJson(data,true);
 
         File.WriteAllText(path, jsonData);
         //stream.Close();
 
-        Debug.Log("New Save Successfull ! " + path);
+        //Debug.Log("New Save Successfull ! " + path);
     }
 
     private static string CreateNewSave( DeckManager deckManager )
@@ -47,7 +47,7 @@ public static class SaveSystem
 
     private static string CreateNewSave( PlayerData newData)
     {
-        string newDataJson = JsonUtility.ToJson(newData);
+        string newDataJson = JsonUtility.ToJson(newData,true);
         return newDataJson;
     }
 
@@ -64,7 +64,6 @@ public static class SaveSystem
         {
             string jsonData = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
-            Debug.Log("loading successfull");
             return data;
         }
         catch
