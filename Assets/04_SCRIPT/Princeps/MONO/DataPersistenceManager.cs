@@ -29,6 +29,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     internal PlayerData currentDataToApply;
 
+
     public static DataPersistenceManager instance
     {
         get;
