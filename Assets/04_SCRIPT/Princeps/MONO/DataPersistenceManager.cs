@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -80,6 +81,8 @@ public class DataPersistenceManager : MonoBehaviour
     {
         currentDataToApply._DeckManagerState = DeckManager.instance;
         SaveSystem.SavePlayerData(currentDataToApply);
+        currentDataToApply._PlayerDeck = currentDataToApply._DeckManagerState._PlayerDeck.ToList();
+        currentDataToApply._HiddenDeck = currentDataToApply._DeckManagerState._HiddenDeck.ToList();
     }
 
     internal void saveCurrentTutoDataSave( bool TutoStatus, Vector3 tutoPosition )

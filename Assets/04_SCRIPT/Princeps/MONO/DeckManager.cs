@@ -45,22 +45,16 @@ public class DeckManager : MonoBehaviour
         //{
         //    _RunDeck.Add(_PlayerDeck[i]);
         //}
-        if( DataPersistenceManager.instance.currentDataToApply != null)
+        if( DataPersistenceManager.instance.currentDataToApply != null
+            && DataPersistenceManager.instance.currentDataToApply._PlayerDeck != null
+            && DataPersistenceManager.instance.currentDataToApply._HiddenDeck != null
+            && DataPersistenceManager.instance.currentDataToApply.b_HasPassedTutorial)
         {
             _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck.ToList();
             _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck.ToList();
 
         }
         _RunDeck = _PlayerDeck.ToList();
-    }
-
-    private void CopyList(List<SkillCard_SO> OriginList, List<SkillCard_SO> newList )
-    {
-        foreach ( SkillCard_SO skillCard in OriginList )
-        {
-            newList.Add(skillCard);
-            Debug.Log(skillCard.name);
-        }
     }
 
     public List<SkillCard_SO> DrawCards(float numberCardsToDraw)
