@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject LoadingScreen_GO;
     public Slider LoadingProgress_Bar;
+
+    public List<string> ListOfScenes = new List<string>();
+
 
     public static GameManager instance;
 
