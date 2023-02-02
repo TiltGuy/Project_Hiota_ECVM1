@@ -7,6 +7,22 @@ public class TrapScript : MonoBehaviour
     [SerializeField] private List<string> TargetTag = new List<string>();
     private Animator animator;
     public float damages;
+    public bool b_IsRandomized;
+
+    private void Awake()
+    {
+        if(b_IsRandomized)
+        {
+            if(LevelManager.instance != null)
+            {
+                LevelManager.instance.PropsList.Add(gameObject);
+            }
+            else
+            {
+                Debug.Log("TAMERRRRRRRRRRRRR");
+            }
+        }
+    }
 
     private void OnTriggerEnter( Collider other )
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] Props;
+
+    public List<GameObject> PropsList = new List<GameObject>();
+
+    List<GameObject> gameObjectToSpawned;
 
     [SerializeField]
     private Troup_SO[] troups;
@@ -66,7 +71,7 @@ public class LevelManager : MonoBehaviour
             instance = this;
         }
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         if(!CheckSurfacesNullGameObject(surfaces))
         {
@@ -79,20 +84,15 @@ public class LevelManager : MonoBehaviour
             DefineNextTroopIndex();
             //Debug.Log("ALED!!");
         }
-
-        int nbToBeSpawned = Mathf.FloorToInt(1 + currentRoomIndex / nbTotalRoomPalier * (Props.Length - 1));
-
-        SpawnAllTheProps(nbToBeSpawned);
-
-        InitializeNavMeshData();
     }
 
     private void Start()
     {
-        if(currentRoomIndex < 0 )
-        {
-            currentRoomIndex = 0;
-        }
+        Initialisation();
+        //if(currentRoomIndex < 0 )
+        //{
+        //    currentRoomIndex = 0;
+        //}
         //foreach (GameObject prop in Props)
         //{
         //    if (Random.Range(0,100) > minProbability + currentRoomIndex/nbTotalRooms * (maxProbability - minProbability) )
@@ -103,11 +103,45 @@ public class LevelManager : MonoBehaviour
 
 
 
-        
+
         //Debug.Log("nbToBeSpawned = " + nbToBeSpawned);
 
-        
 
+
+    }
+
+    private void Initialisation()
+    {
+        int nbToBeSpawned = 1;
+        if (GameManager.instance != null)
+        {
+            float nbTotalArena = GameManager.instance.baseListOfScenes.Count;
+            nbToBeSpawned = Mathf.FloorToInt(1 + GameManager.instance.ArenaIndex / nbTotalArena * (Props.Length - 1));
+
+        }
+        //SpawnAllTheProps(nbToBeSpawned);
+
+        SpawnAllThePropInTheList(nbToBeSpawned);
+
+        InitializeNavMeshData();
+    }
+
+    private void SpawnAllThePropInTheList(int nbToSpawn)
+    {
+        
+        gameObjectToSpawned = new List<GameObject>();
+        gameObjectToSpawned = PropsList.ToList();
+        gameObjectToSpawned = gameObjectToSpawned.OrderBy(s => Random.Range(0f, 1f)).ToList();
+        if ( nbToSpawn > gameObjectToSpawned.Count )
+        {
+            nbToSpawn = gameObjectToSpawned.Count;
+        }
+        for(int i = 0; i < nbToSpawn; i++)
+        {
+            bool status = gameObjectToSpawned[i].activeInHierarchy;
+            gameObjectToSpawned[i].SetActive(!status);
+            gameObjectToSpawned.RemoveAt(i);
+        }
     }
 
     private void InitializeNavMeshData()
