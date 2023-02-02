@@ -26,7 +26,6 @@ public class Projectile : MonoBehaviour
         if( targetLayerMasktoDamages == (targetLayerMasktoDamages | (1 << other.gameObject.layer)) )
         {
             DoDamages(other);
-            Debug.Log("I'm doing damages",this);
         }
         if ( targetLayerMasktoDestroy == (targetLayerMasktoDestroy | (1 << other.gameObject.layer)) )
         {

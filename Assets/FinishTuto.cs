@@ -11,7 +11,7 @@ public class FinishTuto : MonoBehaviour
         {
             DataPersistenceManager.instance.saveCurrentTutoDataSave(true);
             DeckManager.Destroy(DeckManager.instance);
-            GameManager.instance.GoToNextLVL(LevelManager.instance.DefineNextFightArena());
+            GameManager.instance.GoToNextLVL();
         }
     }
 }

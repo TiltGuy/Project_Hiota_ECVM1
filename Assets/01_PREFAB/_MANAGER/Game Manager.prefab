@@ -43,8 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97c65c2eb4c5db4eba1e553e6a4a6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScene:
+    m_Handle: 0
+  currentHandle: 0
+  nextSceneBuildName: 
   mainMenu: MainMenu
-  tutoLevel: Blockout-Scene_EnemyTweak
-  hubLevel: Blockout-Scene_HUB
-  level01: Blockout_Level_01
-  level02: Blockout_Level_02
+  LoadingScreen_GO: {fileID: 0}
+  LoadingProgress_Bar: {fileID: 0}
+  baseListOfScenes:
+  - Arena_Level_01
+  - Arena_Level_02
+  - Arena_Level_03

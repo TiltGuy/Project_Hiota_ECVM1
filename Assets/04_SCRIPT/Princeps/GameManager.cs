@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
 {
     public Scene currentScene;
     public int currentHandle;
+    private int arenaIndex;
+    public int ArenaIndex
+    {
+        get => arenaIndex;
+    }
     public string nextSceneBuildName;
 
     [Header("-- MAIN MENU --")]
@@ -22,7 +27,9 @@ public class GameManager : MonoBehaviour
     public GameObject LoadingScreen_GO;
     public Slider LoadingProgress_Bar;
 
-    public List<string> ListOfScenes = new List<string>();
+    public List<string> baseListOfScenes = new List<string>();
+
+    private List<string> currentlistOfScenes = new List<string>();
 
 
     public static GameManager instance;
@@ -49,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.DeleteAll();
         SaveSystem.ClearData(SaveSystem.MainSaveFileName);
+        DataPersistenceManager.instance.TryClearData();
 
         #endregion
 
@@ -84,6 +92,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
                 Debug.Log("Launch Hub Scene");
             }
@@ -119,31 +128,46 @@ public class GameManager : MonoBehaviour
                 scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
                 LevelManager.currentRoomIndex= 0;
+                arenaIndex = 0;
                 DataPersistenceManager.instance.saveCurrentMainDataSave();
             }
         }
         StartCoroutine(GetScenesLoadProgress_Coroutine());
     }
 
-    public void GoToNextLVL(int NextSceneBuildIndex)
+
+    [ContextMenu("Go To Next LVL")]
+
+    public void GoToNextLVL()
     {
         //if(scenesLoading.Count>0)
         //{
         //    scenesLoading.Clear();
         //}
         scenesLoading = new List<AsyncOperation>();
+        if(currentlistOfScenes.Count == 0)
+        {
+            currentlistOfScenes = baseListOfScenes.ToList();
+        }
 
         LoadingScreen_GO.SetActive(true);
 
         //Debug.Log(GetCurrentScene().name);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
-        AsyncOperation newScene = SceneManager.LoadSceneAsync(NextSceneBuildIndex, LoadSceneMode.Additive);
+        string nextScene = currentlistOfScenes.OrderBy(s => Random.Range(0f, 1f)).FirstOrDefault(s => s.StartsWith("Arena"));
+        Debug.Log(nextScene);
+        currentlistOfScenes.Remove(nextScene);
+        AsyncOperation newScene = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
+        arenaIndex++;
         StartCoroutine(GetScenesLoadProgress_Coroutine());
         //Debug.Log("LoadingSceneDone");
     }
 
     float totalScenesLoadingProgress;
+
+    
+
     private IEnumerator GetScenesLoadProgress_Coroutine()
     {
         foreach(AsyncOperation loadingScene in scenesLoading)

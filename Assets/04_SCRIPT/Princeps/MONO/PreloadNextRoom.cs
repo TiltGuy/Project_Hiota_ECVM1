@@ -8,7 +8,7 @@ public class PreloadNextRoom : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            LevelManager.instance.LoadNextLevel();
+            
         }
     }
 }
