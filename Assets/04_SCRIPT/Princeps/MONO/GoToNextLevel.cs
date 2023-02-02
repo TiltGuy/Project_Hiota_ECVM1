@@ -9,7 +9,7 @@ public class GoToNextLevel : MonoBehaviour
         if(other.tag == "Player")
         {
             DataPersistenceManager.instance.saveCurrentMainDataSave();
-            GameManager.instance.GoToNextLVL(LevelManager.instance.DefineNextFightArena());
+            GameManager.instance.GoToNextLVL();
         }
     }
 }
