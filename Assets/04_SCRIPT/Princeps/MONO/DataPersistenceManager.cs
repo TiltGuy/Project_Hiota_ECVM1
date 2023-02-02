@@ -24,10 +24,6 @@ public class DataPersistenceManager : MonoBehaviour
     public string mainSaveName;
     public string tutoSaveName;
 
-    [Header("-- LEVEL NAMES --")]
-    public string tutoLevel;
-    public string hubLevel;
-
     internal PlayerData currentDataToApply;
 
 
@@ -134,6 +130,17 @@ public class DataPersistenceManager : MonoBehaviour
 
         deckManager._HiddenDeck = new List<SkillCard_SO>();
         deckManager._HiddenDeck = CurrentSave._HiddenDeck;
+    }
+
+    public void TryClearData()
+    {
+        if ( currentDataToApply == null )
+            return; 
+        currentDataToApply.b_HasPassedTutorial = false;
+        currentDataToApply._PlayerDeck?.Clear();
+        currentDataToApply._HiddenDeck?.Clear();
+
+
     }
     
 
