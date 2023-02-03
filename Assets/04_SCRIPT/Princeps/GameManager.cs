@@ -10,7 +10,6 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public Scene currentScene;
-    public int currentHandle;
     private int arenaIndex;
     public int ArenaIndex
     {
@@ -26,6 +25,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject LoadingScreen_GO;
     public Slider LoadingProgress_Bar;
+
+    [Header("-- SCENES SETTINGS --")]
+
+    public string prefix_StandardArena;
+    public string prefix_PalierArena;
 
     public List<string> baseListOfScenes = new List<string>();
 
@@ -107,7 +111,7 @@ public class GameManager : MonoBehaviour
         //    scenesLoading.Clear();
         //}
         scenesLoading = new List<AsyncOperation>();
-
+        ResetCurrentListOfScenes();
         LoadingScreen_GO.SetActive(true);
         if ( DataPersistenceManager.instance.currentDataToApply != null )
         {
@@ -145,23 +149,45 @@ public class GameManager : MonoBehaviour
         //    scenesLoading.Clear();
         //}
         scenesLoading = new List<AsyncOperation>();
-        if(currentlistOfScenes.Count == 0)
-        {
-            currentlistOfScenes = baseListOfScenes.ToList();
-        }
+        ResetCurrentListOfScenes();
 
         LoadingScreen_GO.SetActive(true);
 
         //Debug.Log(GetCurrentScene().name);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
-        string nextScene = currentlistOfScenes.OrderBy(s => Random.Range(0f, 1f)).FirstOrDefault(s => s.StartsWith("Arena"));
+        arenaIndex++;
+        string currentPrefix = prefix_StandardArena;
+        if ( arenaIndex % 3 == 0 )
+        {
+            currentPrefix = prefix_PalierArena;
+        }
+        string nextScene = PickSceneRandomly(currentPrefix);
         Debug.Log(nextScene);
         currentlistOfScenes.Remove(nextScene);
         AsyncOperation newScene = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
-        arenaIndex++;
         StartCoroutine(GetScenesLoadProgress_Coroutine());
         //Debug.Log("LoadingSceneDone");
+    }
+
+    private string PickSceneRandomly( string currentPrefix )
+    {
+        string sceneName = currentlistOfScenes.OrderBy(s => Random.Range(0f, 1f)).FirstOrDefault(s => s.StartsWith(currentPrefix));
+        Debug.Log("sceneName = " + sceneName);
+        if(sceneName== null)
+        {
+            sceneName = currentlistOfScenes.OrderBy(s=> Random.Range(0f,1f)).First();
+        }
+        
+        return sceneName;
+    }
+
+    private void ResetCurrentListOfScenes()
+    {
+        if ( currentlistOfScenes.Count == 0 )
+        {
+            currentlistOfScenes = baseListOfScenes.ToList();
+        }
     }
 
     float totalScenesLoadingProgress;
@@ -181,7 +207,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 totalScenesLoadingProgress = (totalScenesLoadingProgress / scenesLoading.Count) * 100f;
-                Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
+                //Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
                 
                 if(LoadingProgress_Bar != null)
                 {
