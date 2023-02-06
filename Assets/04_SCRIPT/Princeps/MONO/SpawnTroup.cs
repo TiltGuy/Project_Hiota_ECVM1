@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 public class SpawnTroup : MonoBehaviour
 {
 
     public static SpawnTroup instance;
 
+    [System.Serializable]
+    public struct SpawnPoint
+    {
+        public Transform transform;
+        public float radiusOfSpawn;
+    }
+
+    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
     public float distToSpawn;
 
@@ -43,9 +52,25 @@ public class SpawnTroup : MonoBehaviour
     {
         foreach ( GameObject enemy in troups[LevelManager.nextTroopIndex ].Enemies )
         {
-            Vector3 randomPosition = GetARandomPointInCircle();
-            GameObject currentEnemy = Instantiate(enemy, transform.position + randomPosition, transform.rotation);
-            
+            Vector3 randomPositionInCircle;
+            GameObject currentEnemy;
+            if (spawnPoints.Count>0)
+            {
+                SpawnPoint currentPoint = spawnPoints.OrderBy(s => Random.Range(0f, 1f)).First();
+                randomPositionInCircle = GetARandomPointInCircle(currentPoint.radiusOfSpawn);
+                currentEnemy = Instantiate(enemy, 
+                    currentPoint.transform.position + randomPositionInCircle, 
+                    currentPoint.transform.rotation);
+
+            }
+            else
+            {
+                randomPositionInCircle = GetARandomPointInCircle(distToSpawn);
+                currentEnemy = Instantiate(enemy, 
+                    transform.position + randomPositionInCircle, 
+                    transform.rotation);
+
+            }
             currentEnemy.transform.parent = transform;
             currentEnemy.transform.parent = null;
             EnemyHolder currentHolder;
@@ -55,13 +80,13 @@ public class SpawnTroup : MonoBehaviour
         }
     }
 
-    private Vector3 GetARandomPointInCircle()
+    private Vector3 GetARandomPointInCircle(float distance)
     {
         Vector2 randomPointInCircle = Random.insideUnitCircle;
         Vector3 randomPosition = new Vector3(
-            randomPointInCircle.x * distToSpawn,
+            randomPointInCircle.x * distance,
             0,
-            randomPointInCircle.y * distToSpawn);
+            randomPointInCircle.y * distance);
         
         NavMeshHit hit;
         if (NavMesh.SamplePosition(transform.position + randomPosition, out hit, 5f, NavMesh.AllAreas) )
@@ -80,6 +105,14 @@ public class SpawnTroup : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distToSpawn);
+        foreach(SpawnPoint point in spawnPoints)
+        {
+            if(point.transform != null)
+            {
+                Debug.DrawLine(transform.position, point.transform.position);
+                Gizmos.DrawWireSphere(point.transform.position, point.radiusOfSpawn);
+            }
+        }
 
     }
 
