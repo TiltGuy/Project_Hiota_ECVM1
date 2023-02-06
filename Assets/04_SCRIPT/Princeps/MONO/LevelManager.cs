@@ -15,15 +15,13 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
+    public float nbTotalArenasIfGMAbsent;
+
     public NavMeshSurface[] surfaces;
 
     public float palierRoomIndex = 10;
-    public ScenesBuildIndex PalierRoomSceneBuildIndex;
-
-    public ScenesBuildIndex StandardRoomScenesBuildIndex;
 
 
-    [SerializeField]
     private GameObject[] Props;
 
     public List<GameObject> PropsList = new List<GameObject>();
@@ -116,7 +114,7 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             float nbTotalArena = GameManager.instance.baseListOfScenes.Count;
-            nbToBeSpawned = Mathf.FloorToInt(1 + GameManager.instance.ArenaIndex / nbTotalArena * (Props.Length - 1));
+            nbToBeSpawned = Mathf.FloorToInt(1 + GameManager.instance.ArenaIndex / nbTotalArena * (PropsList.Count - 1));
 
         }
         //SpawnAllTheProps(nbToBeSpawned);
@@ -272,9 +270,22 @@ public class LevelManager : MonoBehaviour
 
     public void DefineNextTroopIndex()
     {
+
         Troup_SO[] troups = LevelManager.instance.Troups;
-        float nbTotalArena = GameManager.instance.baseListOfScenes.Count;
-        int min = Mathf.FloorToInt(0 + GameManager.instance.ArenaIndex / nbTotalArena * (troups.Length - 1));
+        float nbTotalArena;
+        int arenaIndex;
+        if (GameManager.instance != null)
+        {
+            arenaIndex = GameManager.instance.ArenaIndex;
+            nbTotalArena = GameManager.instance.baseListOfScenes.Count;
+        }
+        else
+        {
+            nbTotalArena = nbTotalArenasIfGMAbsent;
+            arenaIndex = (int)palierRoomIndex;
+        }
+
+        int min = Mathf.FloorToInt(0 + arenaIndex / nbTotalArena * (troups.Length - 1));
         float maxBase = (troups.Length - 1) * arrayFraction;
         //Debug.Log("min = " + min);
         //Debug.Log("maxBase = " + maxBase);

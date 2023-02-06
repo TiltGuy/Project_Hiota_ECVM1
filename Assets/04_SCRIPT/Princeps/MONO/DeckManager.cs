@@ -45,16 +45,24 @@ public class DeckManager : MonoBehaviour
         //{
         //    _RunDeck.Add(_PlayerDeck[i]);
         //}
-        if( DataPersistenceManager.instance.currentDataToApply != null
-            && DataPersistenceManager.instance.currentDataToApply._PlayerDeck != null
-            && DataPersistenceManager.instance.currentDataToApply._HiddenDeck != null
-            && DataPersistenceManager.instance.currentDataToApply.b_HasPassedTutorial)
+        if(DataPersistenceManager.instance)
+        {
+            TakeSavedDecksFromDTManager();
+        }
+        _RunDeck = _PlayerDeck.ToList();
+    }
+
+    private void TakeSavedDecksFromDTManager()
+    {
+        if ( DataPersistenceManager.instance.currentDataToApply != null
+                    && DataPersistenceManager.instance.currentDataToApply._PlayerDeck != null
+                    && DataPersistenceManager.instance.currentDataToApply._HiddenDeck != null
+                    && DataPersistenceManager.instance.currentDataToApply.b_HasPassedTutorial )
         {
             _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck.ToList();
             _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck.ToList();
 
         }
-        _RunDeck = _PlayerDeck.ToList();
     }
 
     public List<SkillCard_SO> DrawCards(float numberCardsToDraw)
