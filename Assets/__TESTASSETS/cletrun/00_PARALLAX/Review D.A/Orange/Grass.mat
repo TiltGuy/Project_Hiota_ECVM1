@@ -12,7 +12,7 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3002
   stringTagMap: {}
   disabledShaderPasses: []
@@ -32,12 +32,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amplitude: 0.1
+    - _Amplitude: 0.3
     - _Cutoff: 0.5
     - _Float: 0
     - _Float1: 0.1
     - _Float2: 0
+    - _LevelProgression: 0
     - _NoiseScale: 0
     - _Speed: 0.1
     - __dirty: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.7264151, g: 0.07954927, b: 0, a: 0}
