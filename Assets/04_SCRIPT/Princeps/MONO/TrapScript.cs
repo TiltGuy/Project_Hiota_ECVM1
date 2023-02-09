@@ -7,6 +7,7 @@ public class TrapScript : MonoBehaviour
     [SerializeField] private List<string> TargetTag = new List<string>();
     private Animator animator;
     public float damages;
+    public bool b_NeedPlayerActivation = false;
     public bool b_IsRandomized;
 
     private void Awake()
@@ -22,6 +23,13 @@ public class TrapScript : MonoBehaviour
                 Debug.Log("TAMERRRRRRRRRRRRR");
             }
         }
+        animator= GetComponent<Animator>();
+        animator.SetBool("b_PlayerTriggable", b_NeedPlayerActivation);
+    }
+
+    public void LaunchAnimation ()
+    {
+        animator.SetTrigger("t_Activation");
     }
 
     private void OnTriggerEnter( Collider other )
