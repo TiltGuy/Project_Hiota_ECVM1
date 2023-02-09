@@ -104,7 +104,10 @@ public class SpawnTroup : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, distToSpawn);
+        if (spawnPoints.Count == 0)
+        {
+            Gizmos.DrawWireSphere(transform.position, distToSpawn);
+        }
         foreach(SpawnPoint point in spawnPoints)
         {
             if(point.transform != null)
