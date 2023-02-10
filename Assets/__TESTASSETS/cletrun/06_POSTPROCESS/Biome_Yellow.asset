@@ -104,10 +104,10 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 0
-    value: {x: 1, y: 0.8458115, z: 0.8650498, w: 0}
+    value: {x: 1, y: 0.9870412, z: 0.92511344, w: 0}
   gamma:
-    overrideState: 0
-    value: {x: 0.9335675, y: 0.94481474, z: 1, w: -0.0031597337}
+    overrideState: 1
+    value: {x: 1, y: 0.9260935, z: 0.99269897, w: -0.0031597337}
   gain:
     overrideState: 1
     value: {x: 1, y: 0.8189626, z: 0.8231007, w: 0}
@@ -1355,6 +1355,56 @@ MonoBehaviour:
   - {fileID: -4871416850682782370}
   - {fileID: 6295937233785322355}
   - {fileID: -3821906843203787105}
+  - {fileID: 4937158284714967206}
+--- !u!114 &4937158284714967206
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
+  m_Name: AmbientOcclusion
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 0
+  intensity:
+    overrideState: 1
+    value: 1
+  color:
+    overrideState: 1
+    value: {r: 0.1792453, g: 0.016295025, b: 0, a: 1}
+  ambientOnly:
+    overrideState: 1
+    value: 0
+  noiseFilterTolerance:
+    overrideState: 0
+    value: 0
+  blurTolerance:
+    overrideState: 0
+    value: -4.6
+  upsampleTolerance:
+    overrideState: 0
+    value: -12
+  thicknessModifier:
+    overrideState: 1
+    value: 2.12
+  directLightingStrength:
+    overrideState: 0
+    value: 0
+  radius:
+    overrideState: 1
+    value: 1.99
+  quality:
+    overrideState: 1
+    value: 4
 --- !u!114 &6295937233785322355
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1373,19 +1423,19 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.6
+    value: 10
   threshold:
-    overrideState: 1
-    value: 0.36
+    overrideState: 0
+    value: 0.86
   softKnee:
-    overrideState: 1
+    overrideState: 0
     value: 0.512
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
     overrideState: 1
-    value: 3.02
+    value: 3.63
   anamorphicRatio:
     overrideState: 0
     value: -0.15
@@ -1396,7 +1446,7 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   dirtTexture:
-    overrideState: 1
+    overrideState: 0
     value: {fileID: 2800000, guid: a93c54053709ad84b936c6858b72bf2e, type: 3}
     defaultState: 1
   dirtIntensity:
