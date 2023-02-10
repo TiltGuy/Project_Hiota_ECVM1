@@ -8,8 +8,12 @@ public class GoToNextLevel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            DataPersistenceManager.instance.saveCurrentMainDataSave();
-            GameManager.instance.GoToNextLVL();
+            if(DataPersistenceManager.instance!=null && GameManager.instance!=null)
+            {
+                DataPersistenceManager.instance.saveCurrentMainDataSave();
+                GameManager.instance.GoToNextLVL();
+            }
+            Debug.Log("TELEPORTAION!!!");
         }
     }
 }
