@@ -13,7 +13,10 @@ public class GoToNextLevel : MonoBehaviour
                 DataPersistenceManager.instance.saveCurrentMainDataSave();
                 GameManager.instance.GoToNextLVL();
             }
-            Debug.Log("TELEPORTAION!!!");
+            else
+            {
+                Debug.Log("TELEPORTAION!!!");
+            }
         }
     }
 }
