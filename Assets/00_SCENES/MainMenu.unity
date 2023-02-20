@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &622897791 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 695545167225171576, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-    type: 3}
-  m_PrefabInstance: {fileID: 695545166736557063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901197472
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 622897791}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1901197475
@@ -410,6 +404,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7533533944945029444, guid: 0d3f3db0175a4b54d80ec27daeea6777,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a33e50c68f171f4985fa3916ab282e5,
+        type: 3}
+    - target: {fileID: 7533533944945029444, guid: 0d3f3db0175a4b54d80ec27daeea6777,
+        type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a33e50c68f171f4985fa3916ab282e5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d3f3db0175a4b54d80ec27daeea6777, type: 3}
 --- !u!1001 &3724666891470784767
