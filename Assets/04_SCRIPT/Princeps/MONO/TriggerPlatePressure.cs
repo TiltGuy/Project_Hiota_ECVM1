@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class TriggerPlatePressure : MonoBehaviour
 {
     private float cooldown = 3f;
-    private bool b_IsTriggered = false;
+    public bool b_IsTriggered = false;
+    private bool b_IsTimed = true;
 
     public UnityEvent LaunchTrapActions;
 
@@ -24,9 +25,17 @@ public class TriggerPlatePressure : MonoBehaviour
         {
 
             LaunchTrapActions?.Invoke();
-            StartCoroutine(LaunchCooldown_Coroutine());
+            if(b_IsTimed)
+            {
+                StartCoroutine(LaunchCooldown_Coroutine());
+            }
             //LaunchCooldown
         }
+    }
+
+    public void ResetState()
+    {
+        Debug.Log("BAM!!");
     }
 
     private IEnumerator LaunchCooldown_Coroutine()
