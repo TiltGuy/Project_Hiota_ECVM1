@@ -8,6 +8,9 @@ public class TriggerPlatePressure : MonoBehaviour
     private float cooldown = 3f;
     public bool b_IsTriggered = false;
     private bool b_IsTimed = true;
+    [SerializeField]
+    private Animator animatorTrap;
+    private bool b_PlayerIsInTrigger;
 
     public UnityEvent LaunchTrapActions;
 
@@ -16,6 +19,17 @@ public class TriggerPlatePressure : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             TriggerTrap();
+            b_PlayerIsInTrigger=true;
+            animatorTrap.SetBool("b_PlayerInTrigger", b_PlayerIsInTrigger);
+        }
+    }
+
+    private void OnTriggerExit( Collider other )
+    {
+        if ( other.CompareTag("Player") )
+        {
+            b_PlayerIsInTrigger = false;
+            animatorTrap.SetBool("b_PlayerInTrigger", b_PlayerIsInTrigger);
         }
     }
 
