@@ -2311,25 +2311,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.16482219, y: -0.046593707, z: -0.0042541297}
     m_Extent: {x: 0.16729578, y: 0.059355255, z: 0.030098751}
   m_DirtyAABB: 0
---- !u!114 &7539870108989355787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957038371635234718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c061d2f3d950f6743a50fbd2c8f2e064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sword_GO: {fileID: 8694659917032642440}
-  swordHitBox: {fileID: 8000955240489185507}
-  animator: {fileID: 5080958129423583070}
-  ps: {fileID: 4939392671061270624, guid: 1b54c7f41eb3b58478ef65928b8b94a4, type: 3}
-  controller_FSM: {fileID: 1645655096204719503}
-  currentAttackHitboxPrefab: {fileID: 0}
-  currentAttackHitbox: {fileID: 0}
 --- !u!1 &1738397639064498420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,6 +2658,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.013167303, y: 0.0012098062, z: 0.00039496587}
     m_Extent: {x: 0.010585975, y: 0.0039051883, z: 0.004081029}
   m_DirtyAABB: 0
+--- !u!114 &7539870108989355787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957038371635234718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c061d2f3d950f6743a50fbd2c8f2e064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sword_GO: {fileID: 8694659917032642440}
+  swordHitBox: {fileID: 8000955240489185507}
+  animator: {fileID: 0}
+  ps: {fileID: 4939392671061270624, guid: 1b54c7f41eb3b58478ef65928b8b94a4, type: 3}
+  controller_FSM: {fileID: 1645655096204719503}
+  currentAttackHitboxPrefab: {fileID: 0}
+  currentAttackHitbox: {fileID: 0}
 --- !u!1 &1966000936423683108
 GameObject:
   m_ObjectHideFlags: 0
@@ -6734,7 +6734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4997609187450371656
 Transform:
   m_ObjectHideFlags: 0
@@ -10283,6 +10283,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hiota_Animated_Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 932ed85d134bb7c4da93757f598f9bf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 932ed85d134bb7c4da93757f598f9bf8,
         type: 3}
       propertyPath: m_Controller
@@ -10296,21 +10301,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1723090672550787791}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &5080958129423583070 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 932ed85d134bb7c4da93757f598f9bf8,
+--- !u!4 &1180819048662883620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 932ed85d134bb7c4da93757f598f9bf8,
     type: 3}
   m_PrefabInstance: {fileID: 1723090672550787791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8694659917032642440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8016414992643616071, guid: 932ed85d134bb7c4da93757f598f9bf8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1723090672550787791}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1180819048662883620 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 932ed85d134bb7c4da93757f598f9bf8,
     type: 3}
   m_PrefabInstance: {fileID: 1723090672550787791}
   m_PrefabAsset: {fileID: 0}
