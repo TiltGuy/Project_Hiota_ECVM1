@@ -275,7 +275,8 @@ ModelImporter:
       - time: 0.18048754
         functionName: WindUpGlow
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 7423741171350939730, guid: 2932a3d232767f24d9ec9cef904eef27,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -297,9 +298,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -315,10 +316,18 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9902439
+      - time: 1
         functionName: UpdateBasicAttackHitBoxStatutFalse
         data: 
         objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.17061584
+        functionName: Sword_Slasher
+        data: 
+        objectReferenceParameter: {fileID: 7121003988618494751, guid: 562a90014d336694a9a3b719064ff849,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -340,12 +349,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
