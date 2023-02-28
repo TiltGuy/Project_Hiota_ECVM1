@@ -108,4 +108,14 @@ public class Player_InputScript : MonoBehaviour
     }
 
 
+    private void OnGUI()
+    {
+        // PG: debug input "kill target"
+        if ( Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.K )
+        {
+            if ( controller_FSM.CurrentCharacterTarget != null )
+                controller_FSM.CurrentCharacterTarget.SendMessage("Kill");
+        }
+    }
+
 }

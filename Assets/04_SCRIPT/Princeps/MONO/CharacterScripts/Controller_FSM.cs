@@ -394,6 +394,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         //print("B_HaveSuccessfullyHitten = " + b_HaveSuccessfullyHitten);
         if (PauseManager.b_IsPaused) return;
 
+
         scalarVector = Vector3.Dot(transform.forward, directionToGo);
         currentState.UpdtateState(this);
 
@@ -767,5 +768,4 @@ public class Controller_FSM : ActionHandler, IDamageable
         Vector3 GetLocalVelocity = transform.InverseTransformDirection(NavAgent.velocity);
         return GetLocalVelocity;
     }
-
 }
