@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3124337257305532289
 RectTransform:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2288755304943575211
 RectTransform:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1836867923379095680
 RectTransform:
   m_ObjectHideFlags: 0
@@ -658,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NumberOfUses: 1
+  animation: {fileID: 0}
   TargetTags: []
   SkillCard: {fileID: 0}
   EnemyTag: Enemy
@@ -687,8 +688,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  saveToPlayerPrefs: 1
-  b_LoadNextLevel: 1
   Bonus_Text: {fileID: 3621438288354214035}
   Malus_Text: {fileID: 918009652724701737}
 --- !u!95 &3998523623733364754
