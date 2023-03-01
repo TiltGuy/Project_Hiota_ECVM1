@@ -75,6 +75,11 @@ public class DataPersistenceManager : MonoBehaviour
 
     internal void saveCurrentMainDataSave()
     {
+        if ( currentDataToApply == null )
+        {
+            CharacterSpecs player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterSpecs>();
+            currentDataToApply = new PlayerData(player, DeckManager.instance);
+        }
         currentDataToApply._DeckManagerState = DeckManager.instance;
         SaveSystem.SavePlayerData(currentDataToApply);
         currentDataToApply._PlayerDeck = currentDataToApply._DeckManagerState._PlayerDeck.ToList();
