@@ -10,13 +10,33 @@ public class RoomObject : MonoBehaviour
     public int minIndex = 0;
     [Range(0, 12)]
     public int maxIndex = 12;
+    [Range(0, 12)]
+    public int debugArenaIndex = 0;
+
+    [ContextMenu("Debug Play")]
+    public void LaunchDebugPlay()
+    {
+        debugPlay = true;
+    }
+
+    public bool debugPlay
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("DebugPlay") == 1;
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("DebugPlay", value ? 1 : 0);
+        }
+    }
 
     public void Start()
     {
-        if ( GameManager.instance == null )
-            return;
-        var arenaIndex = GameManager.instance.ArenaIndex;
+        var arenaIndex = debugPlay || GameManager.instance == null ? debugArenaIndex : GameManager.instance.ArenaIndex;
         gameObject.SetActive(arenaIndex >= minIndex && arenaIndex <= maxIndex);
+        debugPlay = false;
     }
 
     void OnDrawGizmos()
@@ -25,6 +45,10 @@ public class RoomObject : MonoBehaviour
 //Gizmos.color = Color.blue;
 //Gizmos.DrawSphere(transform.position, .5f);
         UnityEditor.Handles.Label(transform.position, minIndex + "-" + maxIndex);
+        if(debugPlay)
+        {
+            UnityEditor.EditorApplication.isPlaying = true;
+        }
 #endif
     }
 }

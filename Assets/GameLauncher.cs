@@ -10,14 +10,19 @@ public class GameLauncher : MonoBehaviour
 static public void LaunchGame()
 {
 new GameObject("GameLauncher").AddComponent<GameLauncher>();
-UnityEditor.EditorApplication.isPlaying = true;
+        UnityEditor.EditorApplication.isPlaying = true;
 }
 #endif
 
+    public int arenaIndex = -1;
+
     void Start()
     {
-        hideFlags = HideFlags.DontSave;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = true;
+        hideFlags = HideFlags.HideAndDontSave;
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene(0);
+#endif
     }
 }
