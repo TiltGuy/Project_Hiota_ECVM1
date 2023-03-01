@@ -9,6 +9,8 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public Scene currentScene;
     private int arenaIndex;
     public int ArenaIndex
@@ -36,17 +38,31 @@ public class GameManager : MonoBehaviour
     private List<string> currentlistOfScenes = new List<string>();
 
 
-    public static GameManager instance;
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
+        if(instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+
         instance = this;
 
-        SceneManager.LoadSceneAsync((int)ScenesIndexes.MAINMENU, LoadSceneMode.Additive);
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        Debug.Log("load main menu");
+        var asyncOp = SceneManager.LoadSceneAsync((int)ScenesIndexes.MAINMENU, LoadSceneMode.Additive);
+        while ( !asyncOp.isDone )
+        {
+            Debug.Log(asyncOp.progress);
+            yield return null;
+        }
+        Debug.Log("main menu loaded");
         currentScene = GetOtherSceneNonActive();
         SceneManager.SetActiveScene(currentScene);
         //Debug.Log(currentScene);
@@ -68,7 +84,7 @@ public class GameManager : MonoBehaviour
 
         //Debug.Log(GetOtherSceneNonActive().name);
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)ScenesIndexes.MAINMENU));
-        AsyncOperation newScene = SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive);
+        AsyncOperation newScene = SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
         StartCoroutine(GetScenesLoadProgress_Coroutine());
         //Debug.Log("LoadingSceneDone");
