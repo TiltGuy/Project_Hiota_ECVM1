@@ -22,6 +22,8 @@ public class IABrain : MonoBehaviour
     public float AntiBennyHillCountdown = 3f;
     public float AntiBennyHillTimer;
 
+    public bool autoStartCombat = true;
+
     #region ATTACK SETTINGS
 
     public bool b_WantToAttack;

@@ -279,9 +279,9 @@ public class Controller_FSM : ActionHandler, IDamageable
         set
         {
             currentSpeed = value;
-            if(NavAgent)
+            if ( NavAgent )
             {
-                NavAgent.speed = value;
+                NavAgent.speed = currentSpeed;
             }
         }
     }
@@ -423,8 +423,6 @@ public class Controller_FSM : ActionHandler, IDamageable
             //Debug.Log(CurrentSpeed, this);
         }
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
-
-
     }
 
     private void FixedUpdate()

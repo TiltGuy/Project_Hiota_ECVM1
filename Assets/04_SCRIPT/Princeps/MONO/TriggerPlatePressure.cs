@@ -11,26 +11,46 @@ public class TriggerPlatePressure : MonoBehaviour
     [SerializeField]
     private Animator animatorTrap;
     private bool b_PlayerIsInTrigger;
+    public List<string> tagFilter = new List<string>() { "Player" };
+    public GameObject fxPrefab;
 
     public UnityEvent LaunchTrapActions;
+    public List<Collider> others = new List<Collider>();
 
     private void OnTriggerEnter( Collider other )
     {
-        if(other.CompareTag("Player"))
+        if(tagFilter.Contains(other.gameObject.tag))
         {
-            TriggerTrap();
-            b_PlayerIsInTrigger=true;
-            animatorTrap.SetBool("b_PlayerInTrigger", b_PlayerIsInTrigger);
+            if ( !others.Contains(other) )
+                others.Add(other);
+
+            if(!b_PlayerIsInTrigger)
+            {
+                Debug.Log(this + " triggered by " + other);
+                if ( fxPrefab != null )
+                    Instantiate(fxPrefab, other.transform.position, Quaternion.identity);
+                //TextFX.Create(other.transform.position, "TRAP!");
+                TriggerTrap();
+                b_PlayerIsInTrigger = true;
+                animatorTrap?.SetBool("b_PlayerInTrigger", b_PlayerIsInTrigger);
+            }
         }
     }
 
     private void OnTriggerExit( Collider other )
     {
-        if ( other.CompareTag("Player") )
+        if ( others.Contains(other) )
         {
-            b_PlayerIsInTrigger = false;
-            animatorTrap.SetBool("b_PlayerInTrigger", b_PlayerIsInTrigger);
+            others.Remove(other);
+
+            if ( others.Count == 0 && b_PlayerIsInTrigger )
+            {
+                b_PlayerIsInTrigger = false;
+                animatorTrap?.SetBool("b_PlayerInTrigger", b_PlayerIsInTrigger);
+            }
         }
+
+        
     }
 
     private void TriggerTrap()

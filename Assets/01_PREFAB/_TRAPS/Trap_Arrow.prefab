@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 6104122840097015986}
   - component: {fileID: 6178157259219265654}
   - component: {fileID: 8641339656514352052}
+  - component: {fileID: 3595084228316165866}
   m_Layer: 12
   m_Name: PressurPlate
   m_TagString: Untagged
@@ -407,6 +408,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2079364914343624d8ecc4f95aa9adc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_IsTriggered: 0
+  animatorTrap: {fileID: 0}
+  tagFilter:
+  - Player
+  - Enemy
+  fxPrefab: {fileID: 0}
   LaunchTrapActions:
     m_PersistentCalls:
       m_Calls:
@@ -432,6 +439,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  others: []
+--- !u!95 &3595084228316165866
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5977695678187091999}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b3b43530b855504abb4d4b5bbac445c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7171023937689099749
 GameObject:
   m_ObjectHideFlags: 0

@@ -97,7 +97,12 @@ public class ChallengeTrigger : MonoBehaviour
             enemiesToKill.Add(enemy);
             b_CanCheckWinCondition = true;
             enemy.onHealthDepleted += OnEnemyHealthDepleted;
-            OnStartCombatDelegate += enemy.GetComponent<IABrain>().AddPlayerToCurrentControllerTarget;
+
+            var aiBrain = enemy.GetComponent<IABrain>();
+            if ( aiBrain != null && aiBrain.autoStartCombat)
+            {
+                OnStartCombatDelegate += aiBrain.AddPlayerToCurrentControllerTarget;
+            }
         }
     }
 

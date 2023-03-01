@@ -33,6 +33,8 @@ public class Touch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if ( controllerFSM == null )
+            return;
         if (other.CompareTag(Tag) || other.CompareTag("Destructible"))
         {
             IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
