@@ -9,7 +9,7 @@ public class Touch : MonoBehaviour
     public AttackStats_SO AttackStats;
 
     [HideInInspector] PlayerController_Animator instigatorAnimator;
-    Controller_FSM controllerFSM;
+    public Controller_FSM controllerFSM;
 
     public bool b_StunEnemyOnHit;
 

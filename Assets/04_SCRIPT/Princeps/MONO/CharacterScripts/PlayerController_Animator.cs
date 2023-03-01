@@ -11,6 +11,7 @@ public class PlayerController_Animator : MonoBehaviour
 
     [Tooltip("It needs the prefab of CameraBase")]
     public GameObject Sword_GO;
+    public GameObject Hip_Localiser;
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
@@ -18,6 +19,7 @@ public class PlayerController_Animator : MonoBehaviour
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;
     public Transform currentAttackHitbox;
+    public bool b_IsUsingSwordHB = false;
     //public int nbHitBoxTrue = 0;
 
     #endregion
@@ -37,29 +39,37 @@ public class PlayerController_Animator : MonoBehaviour
         //print("current attack is : " + currentAttackHitbox);
     }
 
-    public void ToggleSwordHitBoxStatut()
+    public void ToggleSwordHitBoxStatut(bool value)
     {
-        swordHitBox.enabled = !swordHitBox.enabled;
+        swordHitBox.enabled = value;
     }
 
     public void UpdateBasicAttackHitBoxStatutTrue()
     {
         //swordHitBox.enabled = true;
-        if (currentAttackHitboxPrefab)
+        if (!b_IsUsingSwordHB )
         {
-            if ( controller_FSM.CurrentAttackStats )
+            if ( currentAttackHitboxPrefab )
             {
-                currentAttackHitboxPrefab = controller_FSM.CurrentAttackStats.hitBoxPrefab;
+                if ( controller_FSM.CurrentAttackStats )
+                {
+                    currentAttackHitboxPrefab = controller_FSM.CurrentAttackStats.hitBoxPrefab;
+                }
+                currentAttackHitbox = Instantiate(currentAttackHitboxPrefab, controller_FSM.transform.position, Quaternion.identity);
+                Touch currentInstance = currentAttackHitbox.GetComponent<Touch>();
+                currentInstance.ControllerFSM = controller_FSM;
+                currentInstance.InstigatorAnimator = this;
+                currentInstance.AttackStats = controller_FSM.CurrentAttackStats;
+                currentAttackHitbox.SetParent(controller_FSM.transform);
+                currentAttackHitbox.transform.localPosition = Vector3.zero;
+                currentAttackHitbox.transform.localRotation = Quaternion.identity;
+                return;
             }
-            currentAttackHitbox = Instantiate(currentAttackHitboxPrefab, controller_FSM.transform.position, Quaternion.identity);
-            Touch currentInstance = currentAttackHitbox.GetComponent<Touch>();
-            currentInstance.ControllerFSM = controller_FSM;
-            currentInstance.InstigatorAnimator = this;
-            currentInstance.AttackStats = controller_FSM.CurrentAttackStats;
-            currentAttackHitbox.SetParent(controller_FSM.transform);
-            currentAttackHitbox.transform.localPosition = Vector3.zero;
-            currentAttackHitbox.transform.localRotation = Quaternion.identity;
             //Debug.Log(currentInstance.transform.localScale);
+        }
+        if(b_IsUsingSwordHB)
+        {
+            ToggleSwordHitBoxStatut(true);
         }
         //Debug.Log("Basic Attack HitBox is : " + currentAttackHitbox, this);
         
@@ -67,9 +77,14 @@ public class PlayerController_Animator : MonoBehaviour
 
     public void UpdateBasicAttackHitBoxStatutFalse()
     {
-        if (currentAttackHitbox)
+        if (currentAttackHitbox && !b_IsUsingSwordHB)
         {
             currentAttackHitbox.GetComponent<Touch>().DestroyItSelfAfterUsed();
+            return;
+        }
+        if ( b_IsUsingSwordHB )
+        {
+            ToggleSwordHitBoxStatut(false);
         }
         //swordHitBox.enabled = false;
     }
@@ -111,6 +126,14 @@ public class PlayerController_Animator : MonoBehaviour
         glowingSword.SetParent(Sword_GO.transform);
         glowingSword.transform.localRotation = Quaternion.identity;
         glowingSword.transform.localPosition = Vector3.zero;
+    }
+
+    public void Sword_Slash( GameObject targetFX )
+    {
+        Transform Sword_Slash = Instantiate(targetFX.transform, Hip_Localiser.transform.position, Quaternion.identity);
+        Sword_Slash.SetParent(Hip_Localiser.transform);
+        Sword_Slash.transform.localRotation = Quaternion.identity;
+        Sword_Slash.transform.localPosition = Vector3.zero;
     }
 
 }
