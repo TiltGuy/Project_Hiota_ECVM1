@@ -17,7 +17,8 @@ public class SpawnTroup : MonoBehaviour
     }
 
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
-
+    public List<Troup_SO> troupsOverride = new List<Troup_SO>();
+    public bool ignoreLevelManager;
     public float distToSpawn;
 
     public struct EnemyHolder
@@ -32,44 +33,54 @@ public class SpawnTroup : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        Troup_SO[] troups = LevelManager.instance.Troups;
-        if ( troups != null)
-        {
+        yield return null;
 
-            SortTroupsByDifficulty(troups);
-            //if ( nextTroopIndex == -1 )
-            //{
-            //    DefineNextTroopIndex();
-            //    Debug.Log("ALED!!");
-            //}
-            InstantiateEnemiesInsideCircle(troups);
+        if(troupsOverride.Count > 0)
+        {
+            var randomTroup = troupsOverride[Random.Range(0, troupsOverride.Count)];
+            Debug.Log("Spawn random troup: " + randomTroup);
+            SpawnTroupInsideCircle(randomTroup);
+        }
+        
+        if(!ignoreLevelManager)
+        {
+            SpawnTroupsFromLevelManager();
         }
     }
 
-    private void InstantiateEnemiesInsideCircle( Troup_SO[] troups )
+    private void SpawnTroupsFromLevelManager()
     {
+        Troup_SO[] troups = LevelManager.instance.Troups;
+        if ( troups == null || troups.Length == 0 ) return;
+
+        SortTroupsByDifficulty(troups);
         var troupIndex = RoomObject.debugPlay ? Mathf.Min(troups.Length - 1, RoomObject.debugArenaIndex)  : LevelManager.nextTroopIndex;
-        Debug.Log("troupIndex=" + troupIndex + " => " + troups[troupIndex]);
-        foreach ( GameObject enemy in troups[troupIndex].Enemies )
+        SpawnTroupInsideCircle(troups[troupIndex]);
+        Debug.Log("SpawnTroupsFromLevelManager => " + troupIndex + " => " + troups[troupIndex]);
+    }
+
+    private void SpawnTroupInsideCircle(Troup_SO troup)
+    {
+        foreach ( GameObject enemy in troup.Enemies )
         {
             Vector3 randomPositionInCircle;
             GameObject currentEnemy;
-            if (spawnPoints.Count>0)
+            if ( spawnPoints.Count > 0 )
             {
                 SpawnPoint currentPoint = spawnPoints.OrderBy(s => Random.Range(0f, 1f)).First();
                 randomPositionInCircle = GetARandomPointInCircle(currentPoint.radiusOfSpawn);
-                currentEnemy = Instantiate(enemy, 
-                    currentPoint.transform.position + randomPositionInCircle, 
+                currentEnemy = Instantiate(enemy,
+                    currentPoint.transform.position + randomPositionInCircle,
                     currentPoint.transform.rotation);
 
             }
             else
             {
                 randomPositionInCircle = GetARandomPointInCircle(distToSpawn);
-                currentEnemy = Instantiate(enemy, 
-                    transform.position + randomPositionInCircle, 
+                currentEnemy = Instantiate(enemy,
+                    transform.position + randomPositionInCircle,
                     transform.rotation);
 
             }
