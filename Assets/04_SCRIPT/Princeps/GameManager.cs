@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public List<string> baseListOfScenes = new List<string>();
 
-    private List<string> currentlistOfScenes = new List<string>();
+    private List<string> randomizedListOfScenes = new List<string>();
 
 
 
@@ -177,22 +177,24 @@ public class GameManager : MonoBehaviour
         {
             currentPrefix = prefix_PalierArena;
         }
-        string nextScene = PickSceneRandomly(currentPrefix);
+        // string nextScene = PickNextScene(currentPrefix);
+        ResetCurrentListOfScenes();
+        string nextScene = randomizedListOfScenes.First();
+        randomizedListOfScenes.RemoveAt(0);
         Debug.Log(nextScene);
-        currentlistOfScenes.Remove(nextScene);
         AsyncOperation newScene = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
         StartCoroutine(GetScenesLoadProgress_Coroutine());
         //Debug.Log("LoadingSceneDone");
     }
 
-    private string PickSceneRandomly( string currentPrefix )
+    private string PickNextScene( string currentPrefix )
     {
-        string sceneName = currentlistOfScenes.OrderBy(s => Random.Range(0f, 1f)).FirstOrDefault(s => s.StartsWith(currentPrefix));
+        string sceneName = randomizedListOfScenes.OrderBy(s => Random.Range(0f, 1f)).FirstOrDefault(s => s.StartsWith(currentPrefix));
         Debug.Log("sceneName = " + sceneName);
         if(sceneName== null)
         {
-            sceneName = currentlistOfScenes.OrderBy(s=> Random.Range(0f,1f)).First();
+            sceneName = randomizedListOfScenes.OrderBy(s=> Random.Range(0f,1f)).First();
         }
         
         return sceneName;
@@ -200,9 +202,9 @@ public class GameManager : MonoBehaviour
 
     private void ResetCurrentListOfScenes()
     {
-        if ( currentlistOfScenes.Count == 0 )
+        if ( randomizedListOfScenes.Count == 0 )
         {
-            currentlistOfScenes = baseListOfScenes.ToList();
+            randomizedListOfScenes = baseListOfScenes.OrderBy(s => Random.Range(0f, 1f)).ToList();
         }
     }
 
