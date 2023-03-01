@@ -10,16 +10,22 @@ public class RoomObject : MonoBehaviour
     public int minIndex = 0;
     [Range(0, 12)]
     public int maxIndex = 12;
-    [Range(0, 12)]
-    public int debugArenaIndex = 0;
 
-    [ContextMenu("Debug Play")]
-    public void LaunchDebugPlay()
+    static public int debugArenaIndex
     {
-        debugPlay = true;
+
+        get
+        {
+            return PlayerPrefs.GetInt("debugArenaIndex");
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("debugArenaIndex", value );
+        }
     }
 
-    public bool debugPlay
+    static public bool debugPlay
     {
         get
         {
@@ -32,6 +38,12 @@ public class RoomObject : MonoBehaviour
         }
     }
 
+    [ContextMenu("Debug Play")]
+    public void LaunchDebugPlay()
+    {
+        debugPlay = true;
+    }
+
     public void Start()
     {
         var arenaIndex = debugPlay || GameManager.instance == null ? debugArenaIndex : GameManager.instance.ArenaIndex;
@@ -42,9 +54,10 @@ public class RoomObject : MonoBehaviour
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
+Gizmos.DrawIcon(transform.position, "RoomObject");
 //Gizmos.color = Color.blue;
 //Gizmos.DrawSphere(transform.position, .5f);
-        UnityEditor.Handles.Label(transform.position, minIndex + "-" + maxIndex);
+        UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f, minIndex + "-" + maxIndex);
         if(debugPlay)
         {
             UnityEditor.EditorApplication.isPlaying = true;
@@ -52,7 +65,7 @@ public class RoomObject : MonoBehaviour
 #endif
     }
 }
-/*
+
 #if UNITY_EDITOR
 [UnityEditor.CustomEditor(typeof(RoomObject))]
 public class RoomObjectEditor : UnityEditor.Editor
@@ -61,9 +74,13 @@ public class RoomObjectEditor : UnityEditor.Editor
     {
         base.OnInspectorGUI();
 
-       // RoomObject.debugArenaIndex = UnityEditor.EditorGUILayout.IntField("Debug",RoomObject.debugArenaIndex);
-       // (target as RoomObject).Update();
+        GUILayout.BeginVertical("box");
+        RoomObject.debugArenaIndex = UnityEditor.EditorGUILayout.IntSlider("Debug Index", RoomObject.debugArenaIndex, 0, 12);
+        if(GUILayout.Button("DEBUG PLAY", GUILayout.ExpandWidth(false)))
+        {
+            RoomObject.debugPlay = true;
+        }
+        GUILayout.EndVertical();
     }
 }
 #endif
-*/
