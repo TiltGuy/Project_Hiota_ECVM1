@@ -50,7 +50,9 @@ public class SpawnTroup : MonoBehaviour
 
     private void InstantiateEnemiesInsideCircle( Troup_SO[] troups )
     {
-        foreach ( GameObject enemy in troups[LevelManager.nextTroopIndex ].Enemies )
+        var troupIndex = RoomObject.debugPlay ? Mathf.Min(troups.Length - 1, RoomObject.debugArenaIndex)  : LevelManager.nextTroopIndex;
+        Debug.Log("troupIndex=" + troupIndex + " => " + troups[troupIndex]);
+        foreach ( GameObject enemy in troups[troupIndex].Enemies )
         {
             Vector3 randomPositionInCircle;
             GameObject currentEnemy;
