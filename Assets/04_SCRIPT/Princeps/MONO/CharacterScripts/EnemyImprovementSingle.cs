@@ -71,7 +71,7 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         //    TakeDamagesParriable(0, null, false);
         //}
 
-
+        Time.timeScale = 0;
         cardCanvas.gameObject.SetActive(true);
         cardCanvas.GetComponentsInChildren<UnityEngine.UI.Selectable>().First().Select();
 
@@ -113,6 +113,7 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
 
         gameObject.SetActive(false);
         cardCanvas.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float ForceOfProjection )

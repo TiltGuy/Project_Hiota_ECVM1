@@ -15,6 +15,7 @@ public class ChallengeTrigger : MonoBehaviour
     public bool saveToPlayerPrefs = true;
     public bool b_ListIsDynamic = false;
     public bool b_CanCheckWinCondition = true;
+    public List<GameObject> toggleObjects = new List<GameObject>();
     private bool b_CombatDone = false;
     public static ChallengeTrigger instance;
 
@@ -25,7 +26,9 @@ public class ChallengeTrigger : MonoBehaviour
 
     private void Start()
     {
-        
+        toggleObjects.ForEach(o => o.SetActive(false));
+
+
 
         if ( saveToPlayerPrefs )
         {
@@ -64,6 +67,7 @@ public class ChallengeTrigger : MonoBehaviour
     {
         if(enemiesToKill.Count == 0 && b_CanCheckWinCondition)
         {
+            toggleObjects.ForEach(o => o.SetActive(true));
             onAllEnemiesKilled?.Invoke();
             if(LevelManager.instance != null)
             {

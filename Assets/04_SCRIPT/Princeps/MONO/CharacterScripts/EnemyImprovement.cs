@@ -11,7 +11,6 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
 {
     private Animator _animator;
     public float _NumberOfUses;
-    public Animation animation;
     public List<string> TargetTags = new List<string>();
     //public List<SkillCard_SO> SkillCards = new List<SkillCard_SO>();
     public SkillCard_SO SkillCard;
@@ -54,7 +53,7 @@ public class EnemyImprovement : MonoBehaviour, IDamageable
         //    TakeDamagesParriable(0, null, false);
         //}
 
-        animation.Play();
+        
 
         if(SkillCard != null)
         {
