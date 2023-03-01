@@ -37,8 +37,15 @@ public class IABrain : MonoBehaviour
     {
         get { return b_IsEnemyInFight; }
         set 
-        { 
+        {
+            if ( b_IsEnemyInFight == value )
+                return;
+
             b_IsEnemyInFight = value;
+
+            if ( !gameObject.activeSelf )
+                return;
+
             if (b_IsEnemyInFight)
             {
                 StopCoroutine("InvertFactorStrafeDirection_Coroutine");

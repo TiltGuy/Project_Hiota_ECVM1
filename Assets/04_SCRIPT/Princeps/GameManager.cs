@@ -41,16 +41,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-
         if(instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
 
+        DontDestroyOnLoad(gameObject);
         instance = this;
-
     }
 
     private IEnumerator Start()

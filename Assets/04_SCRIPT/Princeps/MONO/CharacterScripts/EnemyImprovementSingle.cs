@@ -21,11 +21,13 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
     //public bool saveToPlayerPrefs = false;
     //put the ref in the editor
     public Canvas cardCanvas;
-    public bool lineBreak;
     public SkillCard_SO[] AllSkillCards;
     public SkillCard_SO[] SkillCards;
     public TMP_Text[] Bonus_Texts;
     public TMP_Text[] Malus_Texts;
+    public string bonusPrefix = "Bonus";
+    public string malusPrefix = "Malus";
+    public string linePrefix = "> ";
 
     private void Awake()
     {
@@ -128,18 +130,17 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         {
             if( skillCard.Bonus.Count > 0)
             {
+                if ( !string.IsNullOrEmpty(bonusPrefix) ) textToUpdate.text = bonusPrefix + "\n";
                 for ( int j = 0; j < skillCard.Bonus.Count; j++ )
                 {
                     // first Line of Text
-                    if ( lineBreak )
-                        textToUpdate.text += "\n";
                     if ( j == 0 )
                     {
-                        textToUpdate.text += skillCard.Bonus[j].cardMessage;
+                        textToUpdate.text += linePrefix + skillCard.Bonus[j].cardMessage;
                     }
                     else
                     {
-                        textToUpdate.text += newLine + skillCard.Bonus[j].cardMessage;
+                        textToUpdate.text += newLine + linePrefix + skillCard.Bonus[j].cardMessage;
                     }
                 }
             }
@@ -148,16 +149,17 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         {
             if( skillCard.Malus.Count > 0 )
             {
+                if(!string.IsNullOrEmpty(malusPrefix)) textToUpdate.text = malusPrefix + "\n";
                 for ( int j = 0; j < skillCard.Malus.Count; j++ )
                 {
                     // first Line of Text
                     if ( j == 0 )
                     {
-                        textToUpdate.text += skillCard.Malus[j].cardMessage;
+                        textToUpdate.text += linePrefix + skillCard.Malus[j].cardMessage;
                     }
                     else
                     {
-                        textToUpdate.text += newLine + skillCard.Malus[j].cardMessage;
+                        textToUpdate.text += newLine + linePrefix + skillCard.Malus[j].cardMessage;
                     }
                 }
             }
