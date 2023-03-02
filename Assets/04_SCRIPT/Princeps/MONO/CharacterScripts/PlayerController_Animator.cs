@@ -12,6 +12,7 @@ public class PlayerController_Animator : MonoBehaviour
     [Tooltip("It needs the prefab of CameraBase")]
     public GameObject Sword_GO;
     public GameObject Hip_Localiser;
+    public GameObject GuardPoint;
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
@@ -136,4 +137,16 @@ public class PlayerController_Animator : MonoBehaviour
         Sword_Slash.transform.localPosition = Vector3.zero;
     }
 
+    //*public void ShieldSpawn( GameObject targetFX )
+    //{
+        //Transform ShieldSpawn = Instantiate(targetFX.transform, GuardPoint.transform.position, Quaternion.identity);
+        //ShieldSpawn.SetParent(GuardPoint.transform);
+        //ShieldSpawn.transform.localRotation = Quaternion.identity;
+      //  ShieldSpawn.transform.localPosition = Vector3.zero;
+    //}
+
+    //public void ShieldDown( GameObject targetFX )
+    //{
+    //    Destroy(ShieldSpawn);
+    //}
 }
