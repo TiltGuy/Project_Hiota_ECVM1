@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UpdateCurrentPlayerTargetGroup : MonoBehaviour
 {
-    private Controller_FSM controller;
     [SerializeField]
+    private Controller_FSM controller;
     private Transform currentPlayerTarget;
     private Transform newPlayerTarget;
     private Transform lastTargetPostion;
