@@ -882,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tag: Enemy
   AttackStats: {fileID: 0}
-  controllerFSM: {fileID: 0}
+  controllerFSM: {fileID: 3178285811554527035}
   b_StunEnemyOnHit: 0
 --- !u!1 &2923223195816003692
 GameObject:
@@ -1803,9 +1803,9 @@ GameObject:
   - component: {fileID: 3178285811554527035}
   - component: {fileID: 2358066334903997757}
   - component: {fileID: 2681276055901130558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hiota_Prefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1817,7 +1817,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5995341394175550888}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
   m_LocalPosition: {x: -14, y: 34, z: -147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1831,7 +1831,7 @@ Transform:
   - {fileID: 8188252156687874039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!143 &39180162134888296
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3129,7 +3129,7 @@ PrefabInstance:
         type: 3}
       propertyPath: controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3178285811554527035}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fbca7cbaeb32ac4a819f6c9036e956e, type: 3}
 --- !u!4 &5043106714761244865 stripped
