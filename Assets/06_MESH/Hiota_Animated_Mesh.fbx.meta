@@ -162,7 +162,9 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event UpdateBasicAttackHitBoxStatutFalse has a time
+      (0.166667) outside the clip's valid range (0.000000..0.166666). It will never
+      be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -380,15 +382,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: ShieldDown
-        data: 
-        objectReferenceParameter: {fileID: 3688853240251728856, guid: ef682d97bfd5a2543b89ebb471a98bea,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -991,7 +985,7 @@ ModelImporter:
       name: HIOTA_Guard_CNT_ATK_HF
       takeName: Take 001
       internalID: 0
-      firstFrame: 555
+      firstFrame: 940
       lastFrame: 945
       wrapMode: 0
       orientationOffsetY: 0
@@ -1034,7 +1028,7 @@ ModelImporter:
       name: HIOTA_Guard_CNT_ATK_REC
       takeName: Take 001
       internalID: 0
-      firstFrame: 560
+      firstFrame: 945
       lastFrame: 955
       wrapMode: 0
       orientationOffsetY: 0
