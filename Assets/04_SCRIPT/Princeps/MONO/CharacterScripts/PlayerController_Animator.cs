@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController_Animator : MonoBehaviour
+public class PlayerController_Animator:MonoBehaviour
 {
     # region DEPENDENCIES
 
@@ -13,6 +13,7 @@ public class PlayerController_Animator : MonoBehaviour
     public GameObject Sword_GO;
     public GameObject Hip_Localiser;
     public GameObject GuardPoint;
+    public GameObject Shield;
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
@@ -21,13 +22,15 @@ public class PlayerController_Animator : MonoBehaviour
     public Transform currentAttackHitboxPrefab;
     public Transform currentAttackHitbox;
     public bool b_IsUsingSwordHB = false;
+
+
     //public int nbHitBoxTrue = 0;
 
     #endregion
 
     private void Start()
     {
-        if(controller_FSM.CurrentAttackStats)
+        if ( controller_FSM.CurrentAttackStats )
         {
             currentAttackHitboxPrefab = controller_FSM.CurrentAttackStats.hitBoxPrefab;
         }
@@ -40,7 +43,7 @@ public class PlayerController_Animator : MonoBehaviour
         //print("current attack is : " + currentAttackHitbox);
     }
 
-    public void ToggleSwordHitBoxStatut(bool value)
+    public void ToggleSwordHitBoxStatut( bool value )
     {
         swordHitBox.enabled = value;
     }
@@ -48,7 +51,7 @@ public class PlayerController_Animator : MonoBehaviour
     public void UpdateBasicAttackHitBoxStatutTrue()
     {
         //swordHitBox.enabled = true;
-        if (!b_IsUsingSwordHB )
+        if ( !b_IsUsingSwordHB )
         {
             if ( currentAttackHitboxPrefab )
             {
@@ -68,17 +71,17 @@ public class PlayerController_Animator : MonoBehaviour
             }
             //Debug.Log(currentInstance.transform.localScale);
         }
-        if(b_IsUsingSwordHB)
+        if ( b_IsUsingSwordHB )
         {
             ToggleSwordHitBoxStatut(true);
         }
         //Debug.Log("Basic Attack HitBox is : " + currentAttackHitbox, this);
-        
+
     }
 
     public void UpdateBasicAttackHitBoxStatutFalse()
     {
-        if (currentAttackHitbox && !b_IsUsingSwordHB)
+        if ( currentAttackHitbox && !b_IsUsingSwordHB )
         {
             currentAttackHitbox.GetComponent<Touch>().DestroyItSelfAfterUsed();
             return;
@@ -90,7 +93,7 @@ public class PlayerController_Animator : MonoBehaviour
         //swordHitBox.enabled = false;
     }
 
-    
+
 
     public void ShaftSword()
     {
@@ -108,20 +111,20 @@ public class PlayerController_Animator : MonoBehaviour
 
     public void DustCloud()
     {
-        Instantiate(ps,transform.position, Quaternion.identity);
+        Instantiate(ps, transform.position, Quaternion.identity);
     }
 
-    public void SpawnFX(GameObject TargetFX)
+    public void SpawnFX( GameObject TargetFX )
     {
         Instantiate(TargetFX.transform, transform.position, Quaternion.identity);
     }
 
     public void FinishAttackAnimation()
     {
-        Debug.Log("Bob ! Do something ! ",this);
+        Debug.Log("Bob ! Do something ! ", this);
     }
 
-    public void WindUpGlow(GameObject targetFX)
+    public void WindUpGlow( GameObject targetFX )
     {
         Transform glowingSword = Instantiate(targetFX.transform, Sword_GO.transform.position, Quaternion.identity);
         glowingSword.SetParent(Sword_GO.transform);
@@ -139,14 +142,30 @@ public class PlayerController_Animator : MonoBehaviour
 
     //*public void ShieldSpawn( GameObject targetFX )
     //{
-        //Transform ShieldSpawn = Instantiate(targetFX.transform, GuardPoint.transform.position, Quaternion.identity);
-        //ShieldSpawn.SetParent(GuardPoint.transform);
-        //ShieldSpawn.transform.localRotation = Quaternion.identity;
-      //  ShieldSpawn.transform.localPosition = Vector3.zero;
+    //Transform ShieldSpawn = Instantiate(targetFX.transform, GuardPoint.transform.position, Quaternion.identity);
+    //ShieldSpawn.SetParent(GuardPoint.transform);
+    //ShieldSpawn.transform.localRotation = Quaternion.identity;
+    //  ShieldSpawn.transform.localPosition = Vector3.zero;
     //}
 
     //public void ShieldDown( GameObject targetFX )
     //{
     //    Destroy(ShieldSpawn);
     //}
+
+
+
+    //if(isParrying == true)
+      //  {
+
+        //    Shield.SetActive(true);
+          //  animator.SetBool("",true);
+
+        //}
+    //else
+//{
+  //  Shield.SetActive(false);
+    //animator.SetBool("", false);
+//}
+
 }
