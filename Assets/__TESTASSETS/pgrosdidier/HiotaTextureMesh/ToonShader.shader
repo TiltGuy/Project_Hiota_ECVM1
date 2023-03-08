@@ -18,13 +18,17 @@ Shader "ToonShader"
 		_Float2("Float 2", Range( 0 , 1)) = 0
 		_Color0("Color 0", Color) = (1,1,1,0)
 		_NormalMap("NormalMap", 2D) = "bump" {}
+		_Emissive("Emissive", 2D) = "white" {}
+		_EmissiveColor("Emissive Color", Color) = (0,0,0,0)
+		_TextureSample1("Texture Sample 1", 2D) = "white" {}
+		_HeightStrenght("Height Strenght", Float) = 0
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" }
+		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" "IsEmissive" = "true"  }
 		Cull Back
 		CGINCLUDE
 		#include "UnityPBSLighting.cginc"
@@ -61,12 +65,18 @@ Shader "ToonShader"
 			UnityGIInput GIData;
 		};
 
+		uniform float4 _EmissiveColor;
+		uniform sampler2D _Emissive;
+		uniform float4 _Emissive_ST;
 		uniform float4 _AlbedoTint;
 		uniform sampler2D _Albedo;
 		uniform float4 _Albedo_ST;
 		uniform sampler2D _TextureSample0;
 		uniform sampler2D _NormalMap;
 		uniform float4 _NormalMap_ST;
+		uniform sampler2D _TextureSample1;
+		uniform float4 _TextureSample1_ST;
+		uniform float _HeightStrenght;
 		uniform float _Float0;
 		uniform float _RimOffset;
 		uniform float _RimPower;
@@ -77,6 +87,23 @@ Shader "ToonShader"
 		uniform float4 _Color0;
 		uniform float _Float2;
 		uniform float _SpecIntensity;
+
+
+		float3 PerturbNormal107_g1( float3 surf_pos, float3 surf_norm, float height, float scale )
+		{
+			// "Bump Mapping Unparametrized Surfaces on the GPU" by Morten S. Mikkelsen
+			float3 vSigmaS = ddx( surf_pos );
+			float3 vSigmaT = ddy( surf_pos );
+			float3 vN = surf_norm;
+			float3 vR1 = cross( vSigmaT , vN );
+			float3 vR2 = cross( vN , vSigmaS );
+			float fDet = dot( vSigmaS , vR1 );
+			float dBs = ddx( height );
+			float dBt = ddy( height );
+			float3 vSurfGrad = scale * 0.05 * sign( fDet ) * ( dBs * vR1 + dBt * vR2 );
+			return normalize ( abs( fDet ) * vN - vSurfGrad );
+		}
+
 
 		inline half4 LightingStandardCustomLighting( inout SurfaceOutputCustomLightingCustom s, half3 viewDir, UnityGI gi )
 		{
@@ -102,21 +129,28 @@ Shader "ToonShader"
 			float2 uv_NormalMap = i.uv_texcoord * _NormalMap_ST.xy + _NormalMap_ST.zw;
 			float3 NormalMap85 = UnpackNormal( tex2D( _NormalMap, uv_NormalMap ) );
 			float3 ase_worldPos = i.worldPos;
+			float3 surf_pos107_g1 = ase_worldPos;
+			float3 ase_worldNormal = WorldNormalVector( i, float3( 0, 0, 1 ) );
+			float3 surf_norm107_g1 = ase_worldNormal;
+			float2 uv_TextureSample1 = i.uv_texcoord * _TextureSample1_ST.xy + _TextureSample1_ST.zw;
+			float height107_g1 = tex2D( _TextureSample1, uv_TextureSample1 ).r;
+			float scale107_g1 = _HeightStrenght;
+			float3 localPerturbNormal107_g1 = PerturbNormal107_g1( surf_pos107_g1 , surf_norm107_g1 , height107_g1 , scale107_g1 );
+			float3 HeightMap94 = localPerturbNormal107_g1;
 			#if defined(LIGHTMAP_ON) && UNITY_VERSION < 560 //aseld
 			float3 ase_worldlightDir = 0;
 			#else //aseld
 			float3 ase_worldlightDir = Unity_SafeNormalize( UnityWorldSpaceLightDir( ase_worldPos ) );
 			#endif //aseld
-			float dotResult2 = dot( normalize( (WorldNormalVector( i , NormalMap85 )) ) , ase_worldlightDir );
+			float dotResult2 = dot( normalize( (WorldNormalVector( i , ( NormalMap85 * HeightMap94 ) )) ) , ase_worldlightDir );
 			float normal_lightdir7 = dotResult2;
-			float2 temp_cast_0 = ((normal_lightdir7*_Float0 + _Float0)).xx;
-			float4 shadow19 = ( Albedo28 * tex2D( _TextureSample0, temp_cast_0 ) );
+			float2 temp_cast_2 = ((normal_lightdir7*_Float0 + _Float0)).xx;
+			float4 shadow19 = ( Albedo28 * tex2D( _TextureSample0, temp_cast_2 ) );
 			#if defined(LIGHTMAP_ON) && ( UNITY_VERSION < 560 || ( defined(LIGHTMAP_SHADOW_MIXING) && !defined(SHADOWS_SHADOWMASK) && defined(SHADOWS_SCREEN) ) )//aselc
 			float4 ase_lightColor = 0;
 			#else //aselc
 			float4 ase_lightColor = _LightColor0;
 			#endif //aselc
-			float3 ase_worldNormal = WorldNormalVector( i, float3( 0, 0, 1 ) );
 			float3 ase_normWorldNormal = normalize( ase_worldNormal );
 			UnityGI gi36 = gi;
 			float3 diffNorm36 = ase_normWorldNormal;
@@ -145,6 +179,8 @@ Shader "ToonShader"
 		{
 			o.SurfInput = i;
 			o.Normal = float3(0,0,1);
+			float2 uv_Emissive = i.uv_texcoord * _Emissive_ST.xy + _Emissive_ST.zw;
+			o.Emission = ( _EmissiveColor * tex2D( _Emissive, uv_Emissive ) ).rgb;
 		}
 
 		ENDCG
@@ -301,7 +337,6 @@ Node;AmplifyShaderEditor.GetLocalVarNode;49;1017.593,203.9437;Inherit;False;48;R
 Node;AmplifyShaderEditor.GetLocalVarNode;77;1096.788,358.0419;Inherit;False;76;spec;1;0;OBJECT;;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;59;1220.02,114.164;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;78;1298.061,269.2119;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;1555.092,19.49049;Float;False;True;-1;2;ASEMaterialInspector;0;0;CustomLighting;ToonShader;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;;0;False;;False;0;False;;0;False;;False;0;Opaque;0.5;True;True;0;False;Opaque;;Geometry;ForwardOnly;12;all;True;True;True;True;0;False;;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;2;15;10;25;False;0.5;True;0;0;False;;0;False;;0;0;False;;0;False;;0;False;;0;False;;0;False;0.01;0.06603771,0.06603771,0.06603771,0;VertexOffset;True;False;Cylindrical;False;True;Relative;0;;-1;-1;-1;-1;0;False;0;0;False;;-1;0;False;;0;0;0;False;0.1;False;;0;False;;False;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT3;0,0,0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 Node;AmplifyShaderEditor.ColorNode;79;-581.5085,2778.422;Inherit;False;Property;_Color0;Color 0;12;0;Create;True;0;0;0;False;0;False;1,1,1,0;0.6226415,0.2378961,0.2998393,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SmoothstepOpNode;69;-631.6743,2458.776;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;82;-223.9391,2889.126;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
@@ -311,12 +346,22 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;72;377.768,2470.915;Inherit;False;
 Node;AmplifyShaderEditor.LightAttenuation;75;393.3062,2349.433;Inherit;False;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;74;626.3825,2535.892;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;85;-2861.552,-552.2687;Inherit;False;NormalMap;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.GetLocalVarNode;86;-2536.352,-582.3489;Inherit;False;85;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.GetLocalVarNode;87;-2537.922,-15.19592;Inherit;False;85;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SamplerNode;84;-3256.8,-562.5147;Inherit;True;Property;_NormalMap;NormalMap;13;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ColorNode;26;-1109.538,-916.2777;Inherit;False;Property;_AlbedoTint;AlbedoTint;3;0;Create;True;0;0;0;False;0;False;0,0,0,0;0.6603774,0.1588643,0.2109971,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;89;1426.293,-166.7412;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;1664.092,-34.50951;Float;False;True;-1;2;ASEMaterialInspector;0;0;CustomLighting;ToonShader;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;;0;False;;False;0;False;;0;False;;False;0;Opaque;0.5;True;True;0;False;Opaque;;Geometry;ForwardOnly;12;all;True;True;True;True;0;False;;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;2;15;10;25;False;0.5;True;0;0;False;;0;False;;0;0;False;;0;False;;0;False;;0;False;;0;False;0.01;0.06603771,0.06603771,0.06603771,0;VertexOffset;True;False;Cylindrical;False;True;Relative;0;;-1;-1;-1;-1;0;False;0;0;False;;-1;0;False;;0;0;0;False;0.1;False;;0;False;;False;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT3;0,0,0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
+Node;AmplifyShaderEditor.SamplerNode;88;1049.375,-108.9855;Inherit;True;Property;_Emissive;Emissive;14;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;90;1086.793,-357.7412;Inherit;False;Property;_EmissiveColor;Emissive Color;15;0;Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.FunctionNode;91;-3342.338,-766.7288;Inherit;False;Normal From Height;-1;;1;1942fe2c5f1a1f94881a33d532e4afeb;0;2;20;FLOAT;0;False;110;FLOAT;1;False;2;FLOAT3;40;FLOAT3;0
+Node;AmplifyShaderEditor.SamplerNode;92;-3707.338,-800.7288;Inherit;True;Property;_TextureSample1;Texture Sample 1;16;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;84;-3427.8,-473.8147;Inherit;True;Property;_NormalMap;NormalMap;13;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;93;-3568.65,-581.5458;Inherit;False;Property;_HeightStrenght;Height Strenght;17;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RegisterLocalVarNode;94;-3024.65,-805.5458;Inherit;False;HeightMap;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.GetLocalVarNode;95;-2693.65,-763.5458;Inherit;False;94;HeightMap;1;0;OBJECT;;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.GetLocalVarNode;86;-2610.352,-595.3489;Inherit;False;85;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;96;-2423.65,-695.5458;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 WireConnection;4;0;87;0
-WireConnection;1;0;86;0
+WireConnection;1;0;96;0
 WireConnection;5;0;4;0
 WireConnection;5;1;6;0
 WireConnection;2;0;1;0
@@ -367,7 +412,6 @@ WireConnection;59;0;20;0
 WireConnection;59;1;49;0
 WireConnection;78;0;59;0
 WireConnection;78;1;77;0
-WireConnection;0;13;78;0
 WireConnection;69;0;67;0
 WireConnection;69;1;70;0
 WireConnection;69;2;71;0
@@ -381,5 +425,14 @@ WireConnection;72;1;73;0
 WireConnection;74;0;75;0
 WireConnection;74;1;72;0
 WireConnection;85;0;84;0
+WireConnection;89;0;90;0
+WireConnection;89;1;88;0
+WireConnection;0;2;89;0
+WireConnection;0;13;78;0
+WireConnection;91;20;92;0
+WireConnection;91;110;93;0
+WireConnection;94;0;91;0
+WireConnection;96;0;86;0
+WireConnection;96;1;95;0
 ASEEND*/
-//CHKSM=2D1924B6976D3CA259D22BE67223D37B05A29D44
+//CHKSM=775981EC94F0FA5EF33B4281467F1AB2AD0CF605

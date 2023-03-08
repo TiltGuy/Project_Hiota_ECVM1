@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonMat
+  m_Name: HiotaMat
   m_Shader: {fileID: 4800000, guid: 9c6370dccea062b4fb51947971b294b2, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 3245c6426a003754f862dc066dbb3bad, type: 3}
+        m_Texture: {fileID: 2800000, guid: bd4468b9952b99649a5843d3c8eb4750, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -43,12 +43,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emissive:
+        m_Texture: {fileID: 2800000, guid: 7507b7fd0dc854649911eea706901461, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ff8ba9c92a9abf74491c72371b41b43a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -64,7 +72,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: f14611f45d893d24c95958e83f7ee1bc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8746268103c707449b56866032979411, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: fed06b3c424aab24aa38c233eff24c3e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
@@ -86,6 +98,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HeightStrenght: 0.07
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -93,9 +106,9 @@ Material:
     - _RimOffset: 0.55
     - _RimPower: 0.52
     - _SmoothnessTextureChannel: 0
-    - _SpecIntensity: 0.36
+    - _SpecIntensity: 0.1
     - _SpecTransition: 0
-    - _Specular: 0.2
+    - _Specular: 0.56
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
@@ -105,9 +118,11 @@ Material:
     - _min: 1.1
     m_Colors:
     - _ASEOutlineColor: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0}
+    - _AlbedoTint: {r: 0.7406558, g: 0.754717, b: 0.7369171, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0.6226415, g: 0.23789605, b: 0.29983926, a: 0}
+    - _Color0: {r: 0.2924528, g: 0.048282295, b: 0.050491434, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimTint: {r: 1, g: 0.706339, b: 0.4669811, a: 0}
+    - _EmissiveColor: {r: 0, g: 0.550797, b: 1, a: 1}
+    - _RimTint: {r: 0, g: 0.6436324, b: 1, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0.990566, g: 0.7896493, b: 0.88562155, a: 0}
