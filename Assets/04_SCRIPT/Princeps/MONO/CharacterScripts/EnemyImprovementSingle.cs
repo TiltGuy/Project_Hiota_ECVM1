@@ -72,7 +72,7 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         //{
         //    TakeDamagesParriable(0, null, false);
         //}
-
+        print("je me display !");
         Time.timeScale = 0;
         cardCanvas.gameObject.SetActive(true);
         cardCanvas.GetComponentsInChildren<UnityEngine.UI.Selectable>().First().Select();
@@ -100,7 +100,7 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
             CharacterSpecs specs = Striker.GetComponent<CharacterSpecs>();
             specs.RegenerateLife(specs.MaxHealth);
         }
-
+        print("je prend des dommages !");
         DisplayCanvas();
     }
 
