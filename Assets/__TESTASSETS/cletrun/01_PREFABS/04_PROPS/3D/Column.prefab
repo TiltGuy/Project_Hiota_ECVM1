@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7251988472249805940}
   - component: {fileID: 447223883617106444}
   - component: {fileID: 905364819129596050}
+  - component: {fileID: 6039269996324275748}
   m_Layer: 0
   m_Name: Stalagmtie_Column
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &6039269996324275748
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692560403204004444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.9952
+  m_Height: 18.4351
+  m_Direction: 1
+  m_Center: {x: 0, y: 9.21755, z: 0.011099994}
 --- !u!1 &7888648696754968158
 GameObject:
   m_ObjectHideFlags: 0
