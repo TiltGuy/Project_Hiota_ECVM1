@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
                 //Debug.Log("----- Want to respawn from " + currentScene.name);
                 scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
 
-                scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive));
+                scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
                 
                 Debug.Log("----- New Scene is  " + currentScene.name);
                 Debug.Log("---- Current Scene Handle = " + currentScene.handle);
@@ -150,6 +150,18 @@ public class GameManager : MonoBehaviour
                 DataPersistenceManager.instance.saveCurrentMainDataSave();
             }
         }
+        StartCoroutine(GetScenesLoadProgress_Coroutine());
+    }
+
+    public void GoToMainMenu()
+    {
+        scenesLoading = new List<AsyncOperation>();
+        ResetCurrentListOfScenes();
+        LoadingScreen_GO.SetActive(true);
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
+        scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.MAINMENU, LoadSceneMode.Additive));
+        LevelManager.currentRoomIndex = 0;
+        arenaIndex = 0;
         StartCoroutine(GetScenesLoadProgress_Coroutine());
     }
 

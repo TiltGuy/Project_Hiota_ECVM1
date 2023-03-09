@@ -309,7 +309,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5995341394175550888}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14, y: 34, z: -147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -322,7 +322,7 @@ Transform:
   - {fileID: 8188252156687874039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &39180162134888296
 CharacterController:
   m_ObjectHideFlags: 0
@@ -452,8 +452,7 @@ MonoBehaviour:
   onKilled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8993273744164734514, guid: dda6bb067db491247983c3a9c3d2c278,
-          type: 3}
+      - m_Target: {fileID: 5890393504402126789}
         m_MethodName: Respawn
         m_Mode: 1
         m_Arguments:
