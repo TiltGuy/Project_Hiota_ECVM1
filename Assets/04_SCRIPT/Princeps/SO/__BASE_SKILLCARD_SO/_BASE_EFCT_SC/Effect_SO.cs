@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Effect_SO: ScriptableObject
 {
-    public float value;
     public string cardMessage;
     public virtual void AddEffect(Controller_FSM controller, CharacterSpecs characterSpecs)
     {

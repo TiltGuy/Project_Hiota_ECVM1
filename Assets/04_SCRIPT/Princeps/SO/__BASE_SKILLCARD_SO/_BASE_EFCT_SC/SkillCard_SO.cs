@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Assets/04_SCRIPT/SO/SKILLCARD_SO/_SKILLCARDS/SC_Template", menuName ="SkillCard/SkillCard_Template")]
+[CreateAssetMenu(fileName = "SC_Template", menuName ="SkillCard/SkillCard_Template")]
 public class SkillCard_SO : ScriptableObject
 {
     public string cardName;
