@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerLoadSaveFileOnStart : MonoBehaviour
 {
-    private DataPersistenceManager currentInstance;
+    private DataPersistentManager currentInstance;
 
     void Start()
     {
-        if(DataPersistenceManager.instance!= null)
+        if(DataPersistentManager.instance!= null)
         {
-            currentInstance = DataPersistenceManager.instance;
+            currentInstance = DataPersistentManager.instance;
             currentInstance.TryToLoad();
         }
     }
