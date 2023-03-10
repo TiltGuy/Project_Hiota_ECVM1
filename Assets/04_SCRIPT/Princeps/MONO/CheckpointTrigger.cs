@@ -57,8 +57,8 @@ public class CheckpointTrigger : MonoBehaviour
 		if(other.tag == tagFilter)
         {
             // checkpoint entered
-            DataPersistenceManager.instance.saveCurrentTutoDataSave(false, respawnTarget.position);
-            DataPersistenceManager.instance.saveCurrentMainDataSave();
+            DataPersistentManager.instance.saveCurrentTutoDataSave(false, respawnTarget.position);
+            DataPersistentManager.instance.saveCurrentMainDataSave();
             ///APPELLE LE DATA PERSISTENCE MANAGER A LA PLACE
             Debug.Log("Save Player Data for Tuto");
             //PlayerPrefs.SetInt(playerPrefsKey, checkpointIndex);

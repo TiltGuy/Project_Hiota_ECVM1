@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.DeleteAll();
         SaveSystem.ClearData(SaveSystem.MainSaveFileName);
-        DataPersistenceManager.instance.TryClearData();
+        DataPersistentManager.instance.TryClearData();
 
         #endregion
 
@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
         scenesLoading = new List<AsyncOperation>();
         LoadingScreen_GO.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)ScenesIndexes.MAINMENU));
-        if(DataPersistenceManager.instance.currentDataToApply != null )
+        if(DataPersistentManager.instance.currentDataToApply != null )
         {
-            PlayerData playerData = DataPersistenceManager.instance.currentDataToApply;
+            PlayerData playerData = DataPersistentManager.instance.currentDataToApply;
             if(!playerData.b_HasPassedTutorial)
             {
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive));
@@ -127,9 +127,9 @@ public class GameManager : MonoBehaviour
         scenesLoading = new List<AsyncOperation>();
         ResetCurrentListOfScenes();
         LoadingScreen_GO.SetActive(true);
-        if ( DataPersistenceManager.instance.currentDataToApply != null )
+        if ( DataPersistentManager.instance.currentDataToApply != null )
         {
-            PlayerData playerData = DataPersistenceManager.instance.currentDataToApply;
+            PlayerData playerData = DataPersistentManager.instance.currentDataToApply;
             if ( !playerData.b_HasPassedTutorial )
             {
                 //Debug.Log("----- Want to respawn from " + currentScene.name);
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
                 scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
                 LevelManager.currentRoomIndex= 0;
                 arenaIndex = 0;
-                DataPersistenceManager.instance.saveCurrentMainDataSave();
+                DataPersistentManager.instance.saveCurrentMainDataSave();
             }
         }
         StartCoroutine(GetScenesLoadProgress_Coroutine());
@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
-        DataPersistenceManager.instance.TryToLoad();
+        DataPersistentManager.instance.TryToLoad();
         scenesLoading.Clear();
         LoadingScreen_GO.SetActive(false);
         //Debug.Log("Current Scene Active = " + GetOtherSceneNonActive().name);

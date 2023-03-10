@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-public class DataPersistenceManager : MonoBehaviour
+public class DataPersistentManager : MonoBehaviour
 {
 
     public bool isRespawning;
@@ -27,7 +27,7 @@ public class DataPersistenceManager : MonoBehaviour
     internal PlayerData currentDataToApply;
 
 
-    public static DataPersistenceManager instance
+    public static DataPersistentManager instance
     {
         get;
         private set;
@@ -53,7 +53,7 @@ public class DataPersistenceManager : MonoBehaviour
         //LoadCurrentSave();
     }
 
-    [ContextMenu("LoadSave")]
+    [ContextMenu("LoadSave")] 
     private void LoadCurrentSave()
     {
         currentDataToApply = SaveSystem.LoadPlayerData();

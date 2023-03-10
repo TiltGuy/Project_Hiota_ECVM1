@@ -6,6 +6,7 @@ using System.Linq;
 
 public class DeckManager : MonoBehaviour
 {
+    public ListOfCards BaseListOfCards;
     public List<SkillCard_SO> _HiddenDeck = new List<SkillCard_SO>();
     public List<SkillCard_SO> _PlayerDeck = new List<SkillCard_SO>();
     public List<SkillCard_SO> _RunDeck = new List<SkillCard_SO>();
@@ -45,22 +46,27 @@ public class DeckManager : MonoBehaviour
         //{
         //    _RunDeck.Add(_PlayerDeck[i]);
         //}
-        if(DataPersistenceManager.instance)
+        if(DataPersistentManager.instance)
         {
-            TakeSavedDecksFromDTManager();
+            TakeSavedDecksFromDPManager();
+        }
+        else
+        {
+            _PlayerDeck.Clear();
+            _PlayerDeck = BaseListOfCards.ListCards.ToList();
         }
         _RunDeck = _PlayerDeck.ToList();
     }
 
-    private void TakeSavedDecksFromDTManager()
+    private void TakeSavedDecksFromDPManager()
     {
-        if ( DataPersistenceManager.instance.currentDataToApply != null
-                    && DataPersistenceManager.instance.currentDataToApply._PlayerDeck != null
-                    && DataPersistenceManager.instance.currentDataToApply._HiddenDeck != null
-                    && DataPersistenceManager.instance.currentDataToApply.b_HasPassedTutorial )
+        if ( DataPersistentManager.instance.currentDataToApply != null
+                    && DataPersistentManager.instance.currentDataToApply._PlayerDeck != null
+                    && DataPersistentManager.instance.currentDataToApply._HiddenDeck != null
+                    && DataPersistentManager.instance.currentDataToApply.b_HasPassedTutorial )
         {
-            _PlayerDeck = DataPersistenceManager.instance.currentDataToApply._PlayerDeck.ToList();
-            _HiddenDeck = DataPersistenceManager.instance.currentDataToApply._HiddenDeck.ToList();
+            _PlayerDeck = DataPersistentManager.instance.currentDataToApply._PlayerDeck.ToList();
+            _HiddenDeck = DataPersistentManager.instance.currentDataToApply._HiddenDeck.ToList();
 
         }
     }

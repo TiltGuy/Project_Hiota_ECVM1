@@ -33,13 +33,23 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
     {
         UpdateListOfEnemies();
         _animator = GetComponent<Animator>();
-
+        
         var cardList = AllSkillCards.ToList();
-        for(int i = 0; i < SkillCards.Length; i++ )
+        if(DeckManager.instance)
         {
-            var randomCard = cardList[Random.Range(0, cardList.Count)];
-            cardList.Remove(randomCard);
-            SkillCards[i] = randomCard;
+            for(int i = 0; i < SkillCards.Length; i++)
+            {
+                SkillCards[i] = DeckManager.instance.DrawOneCard();
+            }
+        }
+        else
+        {
+            for ( int i = 0; i < SkillCards.Length; i++ )
+            {
+                var randomCard = cardList[Random.Range(0, cardList.Count)];
+                cardList.Remove(randomCard);
+                SkillCards[i] = randomCard;
+            }
         }
     }
 
