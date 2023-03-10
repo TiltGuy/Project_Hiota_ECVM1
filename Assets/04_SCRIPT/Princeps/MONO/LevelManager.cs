@@ -119,7 +119,7 @@ public class LevelManager : MonoBehaviour
         }
         //SpawnAllTheProps(nbToBeSpawned);
 
-        SpawnAllThePropInTheList(nbToBeSpawned);
+        //SpawnAllThePropInTheList(nbToBeSpawned);
 
         InitializeNavMeshData();
     }
