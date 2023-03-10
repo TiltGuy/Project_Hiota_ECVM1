@@ -173,12 +173,13 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-
     public void LoadMenu()
     {
         ResumeGame();
-        SceneManager.LoadScene(0);
-        print("Go Main Menu");
+        if(GameManager.instance !=  null)
+        {
+            GameManager.instance.GoToMainMenu();
+        }
     }
 
     public void ResetSave()
