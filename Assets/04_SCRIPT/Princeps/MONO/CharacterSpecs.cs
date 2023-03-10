@@ -227,6 +227,7 @@ public class CharacterSpecs : MonoBehaviour
     {
 		controller.UpdateGuardAmountDelegate -= UpdateGuardBar;
         controller.OnPerfectGuard -= RegenerateLife;
+        onHealthDepleted = null;
     }
 
 
