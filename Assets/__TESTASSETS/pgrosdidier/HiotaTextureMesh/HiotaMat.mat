@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7507b7fd0dc854649911eea706901461, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 2800000, guid: fed06b3c424aab24aa38c233eff24c3e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -56,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: ff8ba9c92a9abf74491c72371b41b43a, type: 3}
+        m_Texture: {fileID: 2800000, guid: ca6e613be811f4543ae0b2a4cb6d37a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -94,28 +98,29 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Float0: 0.55
-    - _Float2: 0.12
+    - _Float2: 0.357
     - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightStrenght: 0.01
+    - _HeightStrenght: 0.1
     - _Metallic: 0
     - _Mode: 0
+    - _NormalStenght: 0.0001
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimOffset: 0.55
-    - _RimPower: 0.52
+    - _RimPower: 0.646
     - _SmoothnessTextureChannel: 0
-    - _SpecIntensity: 0.1
+    - _SpecIntensity: 0
     - _SpecTransition: 0
-    - _Specular: 0.56
+    - _Specular: 6.87
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _max: 1.12
-    - _min: 1.1
+    - _max: 1
+    - _min: 0
     m_Colors:
     - _ASEOutlineColor: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0}
     - _AlbedoTint: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0}
@@ -123,6 +128,6 @@ Material:
     - _Color0: {r: 0.2924528, g: 0.048282295, b: 0.050491434, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0.550797, b: 1, a: 1}
-    - _RimTint: {r: 0, g: 0.6436324, b: 1, a: 0}
+    - _RimTint: {r: 0.15156639, g: 0.211839, b: 0.24528301, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0.990566, g: 0.7896493, b: 0.88562155, a: 0}
