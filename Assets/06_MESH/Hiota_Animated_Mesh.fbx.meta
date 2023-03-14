@@ -585,7 +585,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: Winged
+        data: 
+        objectReferenceParameter: {fileID: 1626087746970851241, guid: 41d0a86da7f56f747a0de2087b1b381f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.99523735
+        functionName: UnWinged
+        data: 
+        objectReferenceParameter: {fileID: 1626087746970851241, guid: 41d0a86da7f56f747a0de2087b1b381f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

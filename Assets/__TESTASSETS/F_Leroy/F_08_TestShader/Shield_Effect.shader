@@ -5,7 +5,7 @@ Shader "Shield_Effect"
 	Properties
 	{
 		_Shield_Slider("Shield_Slider", Range( 0 , 1)) = 1
-		_Cutoff( "Mask Clip Value", Float ) = 0.15
+		_Cutoff( "Mask Clip Value", Float ) = 0.18
 		[HighDynamicRange]_HighDynamicRange("High Dynamic Range", Range( 1 , 4)) = 1
 		_Texture("Texture", 2D) = "white" {}
 		_Speed("Speed", Float) = 0
@@ -21,7 +21,7 @@ Shader "Shield_Effect"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Reverse"  "Queue" = "AlphaTest+0" "IsEmissive" = "true"  }
+		Tags{ "RenderType" = "Transparent"  "Queue" = "AlphaTest+0" "IsEmissive" = "true"  }
 		Cull Off
 		AlphaToMask On
 		CGINCLUDE
@@ -45,7 +45,7 @@ Shader "Shield_Effect"
 		uniform float _Shield_Max;
 		uniform float _Shield_Slider;
 		uniform float _Size_Of_Aura;
-		uniform float _Cutoff = 0.15;
+		uniform float _Cutoff = 0.18;
 
 		inline half4 LightingUnlit( SurfaceOutput s, half3 lightDir, half atten )
 		{
@@ -154,11 +154,11 @@ Node;AmplifyShaderEditor.TextureCoordinatesNode;36;-1808.722,270.0338;Inherit;Fa
 Node;AmplifyShaderEditor.TexturePropertyNode;41;-2157.789,43.55888;Inherit;True;Property;_Texture0;Texture 0;3;0;Create;True;0;0;0;False;0;False;None;faad2c967939e544babd3a55b333df15;False;white;Auto;Texture2D;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
 Node;AmplifyShaderEditor.Vector2Node;43;-2296.363,453.7375;Inherit;False;Constant;_Vector0;Vector 0;4;0;Create;True;0;0;0;False;0;False;0.5,0.5;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
 Node;AmplifyShaderEditor.TextureCoordinatesNode;44;-2432.863,300.3376;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;45;-2421.581,602.5545;Inherit;False;Property;_Speed;Speed;5;0;Create;True;0;0;0;False;0;False;0;5;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;45;-2421.581,602.5545;Inherit;False;Property;_Speed;Speed;5;0;Create;True;0;0;0;False;0;False;0;2;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SamplerNode;17;-1744.347,407.08;Inherit;True;Property;_Texture;Texture;4;0;Create;True;0;0;0;False;0;False;-1;faad2c967939e544babd3a55b333df15;194244f8eb1165a4494a0200f25f86f1;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleAddOpNode;52;-1292.105,738.804;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;16;-1571.9,124.7593;Inherit;False;Property;_HighDynamicRange;High Dynamic Range;2;0;Create;True;0;0;0;False;1;HighDynamicRange;False;1;1.45;1;4;0;1;FLOAT;0
-Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;-348.7399,307.0103;Float;False;True;-1;2;ASEMaterialInspector;0;0;Unlit;Shield_Effect;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Off;0;False;;0;False;;False;0;False;;0;False;;False;0;Custom;0.15;True;True;0;True;Custom;Reverse;AlphaTest;All;12;all;True;True;True;True;0;False;;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;2;15;10;25;False;5;False;0;0;False;;0;False;;0;0;False;;0;False;;0;False;;0;False;;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;True;Relative;0;;1;-1;-1;-1;0;True;0;0;False;;-1;0;False;_Mask_Clip;0;0;0;False;1;False;;0;False;;False;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
+Node;AmplifyShaderEditor.RangedFloatNode;16;-1571.9,124.7593;Inherit;False;Property;_HighDynamicRange;High Dynamic Range;2;0;Create;True;0;0;0;False;1;HighDynamicRange;False;1;1.4;1;4;0;1;FLOAT;0
+Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;-348.7399,307.0103;Float;False;True;-1;2;ASEMaterialInspector;0;0;Unlit;Shield_Effect;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Off;0;False;;0;False;;False;0;False;;0;False;;False;0;Custom;0.18;True;True;0;True;Transparent;Reverse;AlphaTest;All;12;all;True;True;True;True;0;False;;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;2;15;10;25;False;5;False;0;0;False;;0;False;;0;0;False;;0;False;;0;False;;0;False;;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;True;Relative;0;;1;-1;-1;-1;0;True;0;0;False;;-1;0;False;_Mask_Clip;0;0;0;False;1;False;;0;False;;False;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;55;-1435.837,789.7865;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;53;-2056.157,683.386;Inherit;False;Property;_Shine_Of_Aura;Shine_Of_Aura;8;0;Create;True;0;0;0;False;0;False;2.55;3;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;54;-1555.79,675.7476;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
@@ -171,10 +171,10 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;18;-1203.76,228.0031;Inherit;False
 Node;AmplifyShaderEditor.SimpleAddOpNode;51;-1403.087,463.6362;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.ColorNode;46;-1155.382,350.0628;Inherit;False;Property;_ColorPearls;ColorPearls;6;0;Create;True;0;0;0;False;0;False;0,0,0,0;0,0.827451,1,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.VertexColorNode;15;-1176.455,535.3787;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;56;-1164.346,1057.35;Inherit;False;Property;_Size_Of_Aura;Size_Of_Aura;9;0;Create;True;0;0;0;False;0;False;0;0.5;0;2;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;66;-1910.15,1117.889;Float;False;Property;_Shield_Slider;Shield_Slider;0;0;Create;True;0;0;0;False;0;False;1;1;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;56;-1164.346,1057.35;Inherit;False;Property;_Size_Of_Aura;Size_Of_Aura;9;0;Create;True;0;0;0;False;0;False;0;0.2;0;2;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;66;-1910.15,1117.889;Float;False;Property;_Shield_Slider;Shield_Slider;0;0;Create;True;0;0;0;False;0;False;1;0.5767176;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;74;-1506.182,975.8524;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;75;-1857.375,978.6107;Inherit;False;Property;_Shield_Min;Shield_Min;10;0;Create;True;0;0;0;False;0;False;0;0.1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;75;-1857.375,978.6107;Inherit;False;Property;_Shield_Min;Shield_Min;10;0;Create;True;0;0;0;False;0;False;0;0.15;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;76;-1845.675,1044.911;Inherit;False;Property;_Shield_Max;Shield_Max;11;0;Create;True;0;0;0;False;0;False;0;0.75;0;0;0;1;FLOAT;0
 WireConnection;20;0;15;0
 WireConnection;22;0;18;0
@@ -210,4 +210,4 @@ WireConnection;74;0;75;0
 WireConnection;74;1;76;0
 WireConnection;74;2;66;0
 ASEEND*/
-//CHKSM=43CB3637B31329DCF59E4B5412821E7EE1174FD9
+//CHKSM=8B1FCAF0E1A356580AD16FD495F2F261860D79B0
