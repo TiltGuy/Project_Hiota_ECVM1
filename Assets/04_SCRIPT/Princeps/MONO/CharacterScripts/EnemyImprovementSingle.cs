@@ -23,13 +23,12 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
     public Canvas cardCanvas;
     public SkillCard_SO[] AllSkillCards;
     public SkillCard_SO[] SkillCards;
+    public TMP_Text[] Title_Text;
     public TMP_Text[] Bonus_Texts;
     public TMP_Text[] Malus_Texts;
     public string bonusPrefix = "Bonus";
     public string malusPrefix = "Malus";
     public string linePrefix = "> ";
-
-    private bool b_IsChoosingCard;
 
     private void Awake()
     {
@@ -92,15 +91,14 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         {
             pManager.b_IsChoosingCard = true;
         }
-        Time.timeScale = 0;
         cardCanvas.gameObject.SetActive(true);
         cardCanvas.GetComponentsInChildren<UnityEngine.UI.Selectable>().First().Select();
+        Time.timeScale = 0;
 
-        //animation.Play();
-         
         int cardIndex = 0;
         foreach ( SkillCard_SO skillCard in SkillCards )
         {
+            UpdateCardMessageTitle(Title_Text[cardIndex], skillCard);
             UpdateCardMessages(Bonus_Texts[cardIndex], skillCard, true);
             UpdateCardMessages(Malus_Texts[cardIndex], skillCard, false);
             cardIndex++;
@@ -139,7 +137,6 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         Time.timeScale = 1;
         gameObject.SetActive(false);
         cardCanvas.gameObject.SetActive(false);
-        b_IsChoosingCard = false;
     }
 
     public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float ForceOfProjection )
@@ -191,5 +188,12 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         
     }
 
-    
+
+    private void UpdateCardMessageTitle( TMP_Text textToUpdate, SkillCard_SO skillCard)
+    {
+        textToUpdate.text = skillCard.cardName;
+
+    }
+
+
 }
