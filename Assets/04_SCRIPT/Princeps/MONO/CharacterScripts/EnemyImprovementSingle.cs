@@ -29,6 +29,8 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
     public string malusPrefix = "Malus";
     public string linePrefix = "> ";
 
+    private bool b_IsChoosingCard;
+
     private void Awake()
     {
         UpdateListOfEnemies();
@@ -52,6 +54,8 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
             }
         }
     }
+
+
 
     private void UpdateListOfEnemies()
     {
@@ -83,6 +87,11 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         //    TakeDamagesParriable(0, null, false);
         //}
         print("je me display !");
+        PauseManager pManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+        if(pManager)
+        {
+            pManager.b_IsChoosingCard = true;
+        }
         Time.timeScale = 0;
         cardCanvas.gameObject.SetActive(true);
         cardCanvas.GetComponentsInChildren<UnityEngine.UI.Selectable>().First().Select();
@@ -122,10 +131,15 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         //GameObject.FindGameObjectsWithTag("Gate").ToList().ForEach(o => o.gameObject.SetActive(false));
         ToggleOnRoomComplete.ToggleAll();
         OnSelectSkillCard?.Invoke();
-
+        PauseManager pManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+        if ( pManager )
+        {
+            pManager.b_IsChoosingCard = false;
+        }
+        Time.timeScale = 1;
         gameObject.SetActive(false);
         cardCanvas.gameObject.SetActive(false);
-        Time.timeScale = 1;
+        b_IsChoosingCard = false;
     }
 
     public void TakeDamagesNonParriable( float damageTaken, Transform Striker, float ForceOfProjection )
