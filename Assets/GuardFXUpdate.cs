@@ -26,7 +26,7 @@ public class GuardFXUpdate : StateMachineBehaviour
     {
         if ( currentFX)
         {
-            renderer = currentFX.GetComponent<MeshRenderer>();
+            //renderer = currentFX.GetComponent<MeshRenderer>();
             renderer.sharedMaterial.SetFloat("_Shield_Slider", specs.CurrentGuard / specs.MaxGuard);
 
             Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
@@ -62,7 +62,7 @@ public class GuardFXUpdate : StateMachineBehaviour
         currentFX = Instantiate(ShieldFXToInstantiate,
             animator.transform.position,
             animator.transform.rotation);
-        renderer = currentFX.GetComponent<MeshRenderer>();
+        renderer = currentFX.GetComponentInChildren<MeshRenderer>();
         specs = animator.GetComponent<CharacterSpecs>();
     }
 
