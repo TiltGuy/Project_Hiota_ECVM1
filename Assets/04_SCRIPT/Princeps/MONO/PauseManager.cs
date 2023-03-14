@@ -22,6 +22,7 @@ public class PauseManager : MonoBehaviour
     public GameObject keyboard, controller;
     private bool leftWindowSwitched = true;
     private bool rightWindowSwitched = true;
+    public bool b_IsChoosingCard = false;
 
     private void Awake()
     {
@@ -67,7 +68,10 @@ public class PauseManager : MonoBehaviour
 
     void PauseGame()
     {
-        Time.timeScale = 0;
+        if ( !b_IsChoosingCard )
+        {
+            Time.timeScale = 0;
+        }
         Menu.gameObject.SetActive(true);
         HideSettings();
         b_IsPaused = true;
@@ -75,7 +79,10 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        Time.timeScale = 1;
+        if(!b_IsChoosingCard)
+        {
+            Time.timeScale = 1;
+        }
         b_IsPaused = false;
         HideSettings();
         Menu.gameObject.SetActive(false);
