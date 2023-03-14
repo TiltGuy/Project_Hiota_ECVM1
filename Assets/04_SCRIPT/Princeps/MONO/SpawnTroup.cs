@@ -58,7 +58,7 @@ public class SpawnTroup : MonoBehaviour
         SortTroupsByDifficulty(troups);
         var troupIndex = RoomObject.debugPlay ? Mathf.Min(troups.Length - 1, RoomObject.debugArenaIndex)  : LevelManager.nextTroopIndex;
         SpawnTroupInsideCircle(troups[troupIndex]);
-        Debug.Log("SpawnTroupsFromLevelManager => " + troupIndex + " => " + troups[troupIndex]);
+        //Debug.Log("SpawnTroupsFromLevelManager => " + troupIndex + " => " + troups[troupIndex]);
     }
 
     private void SpawnTroupInsideCircle(Troup_SO troup)
