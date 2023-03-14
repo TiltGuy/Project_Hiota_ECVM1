@@ -18,8 +18,8 @@ public class SCE_Explosion : Effect_SO
     private void SpawnExplosion( CharacterSpecs characterSpecs )
     {
         Debug.Log("BOUM HEADSHOT!!! ", characterSpecs);
-        //GameObject gameObject = Instantiate(explosionPrefab,
-        //    characterSpecs.transform.position,
-        //    characterSpecs.transform.rotation);
+        GameObject gameObject = Instantiate(explosionPrefab,
+            characterSpecs.transform.position,
+            characterSpecs.transform.rotation);
     }
 }

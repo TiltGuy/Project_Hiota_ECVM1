@@ -2,17 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class explosion : MonoBehaviour
+public class Explosion: MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private SphereCollider TriggerOfExplosion;
+    [SerializeField]
+    private LayerMask mask;
+    [SerializeField]
+    private float timerBeforeExplosion;
+    public float damages;
+    private float currentTimer = 0f;
+
+    private void Start()
     {
-        
+        TriggerOfExplosion.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        currentTimer += Time.deltaTime;
+        if(currentTimer >= timerBeforeExplosion)
+        {
+            TriggerOfExplosion.enabled = true;
+        }
     }
+
+    private void OnTriggerEnter( Collider other )
+    {
+        if( ((1 << other.gameObject.layer) & mask) != 0 )
+        {
+            IDamageable damageable = other.GetComponent(typeof(IDamageable)) as IDamageable;
+            if ( damageable != null )
+            {
+                damageable.TakeDamagesNonParriable(damages, transform, 1f);
+            }
+        }
+    }
+
 }
