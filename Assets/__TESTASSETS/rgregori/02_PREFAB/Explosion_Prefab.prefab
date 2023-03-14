@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7304870301935323868}
-  - component: {fileID: 2482188207911544583}
   - component: {fileID: 4023858222487554867}
+  - component: {fileID: 1269184097994810247}
   m_Layer: 0
   m_Name: Explosion_Prefab
   m_TagString: Untagged
@@ -33,7 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2482188207911544583
+--- !u!135 &4023858222487554867
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2826216891350994463}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.87
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1269184097994810247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,21 +62,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 768
-  timerBeforeExplosion: 0.7
-  damages: 2
---- !u!135 &4023858222487554867
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2826216891350994463}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.87
-  m_Center: {x: 0, y: 0, z: 0}
+  timerBeforeExplosion: 0.75
+  damages: 4
 --- !u!1 &4224962563831447809
 GameObject:
   m_ObjectHideFlags: 0

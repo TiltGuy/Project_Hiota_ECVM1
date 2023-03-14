@@ -23,7 +23,7 @@ public class Explosion: MonoBehaviour
         currentTimer += Time.deltaTime;
         if(currentTimer >= timerBeforeExplosion)
         {
-            TriggerOfExplosion.enabled = true;
+            TriggerOfExplosion.enabled = true; 
         }
     }
 
