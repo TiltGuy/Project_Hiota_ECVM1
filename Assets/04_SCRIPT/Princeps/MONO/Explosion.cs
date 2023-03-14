@@ -10,6 +10,8 @@ public class Explosion: MonoBehaviour
     private LayerMask mask;
     [SerializeField]
     private float timerBeforeExplosion;
+    [SerializeField]
+    private float timerBeforeDestroying;
     public float damages;
     private float currentTimer = 0f;
 
@@ -23,7 +25,11 @@ public class Explosion: MonoBehaviour
         currentTimer += Time.deltaTime;
         if(currentTimer >= timerBeforeExplosion)
         {
-            TriggerOfExplosion.enabled = true; 
+            TriggerOfExplosion.enabled = true;
+        }
+        if ( currentTimer >= timerBeforeDestroying )
+        {
+            Destroy(gameObject);
         }
     }
 
