@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4934171656636572011}
   - component: {fileID: 3598170415862770760}
-  - component: {fileID: 918014401265973200}
   - component: {fileID: 6601514228437859832}
   m_Layer: 2
   m_Name: ChallengeTriggerPrefab
@@ -50,7 +49,7 @@ MonoBehaviour:
   onPlayerEnterCombatZone:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 918014401265973200}
+      - m_Target: {fileID: 0}
         m_MethodName: DrawCardsForSpawner
         m_Mode: 1
         m_Arguments:
@@ -79,21 +78,6 @@ MonoBehaviour:
   b_ListIsDynamic: 1
   b_CanCheckWinCondition: 0
   toggleObjects: []
---- !u!114 &918014401265973200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6870301502817576979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6fb81b42b55d1341a0e06709aa07ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SteleSkilCards:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!135 &6601514228437859832
 SphereCollider:
   m_ObjectHideFlags: 0
