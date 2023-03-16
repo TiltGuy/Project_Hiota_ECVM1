@@ -132,6 +132,8 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         var skillCard = SkillCards[index];
         //print("Assign");
         DeckManager.instance.AddCardToEnnemyDeck(skillCard);
+        DeckManager.instance.RemoveCardFromRunDeck(SkillCards[0]);
+        DeckManager.instance.RemoveCardFromRunDeck(SkillCards[1]);
         //GameObject.FindGameObjectsWithTag("Gate").ToList().ForEach(o => o.gameObject.SetActive(false));
         ToggleOnRoomComplete.ToggleAll();
         OnSelectSkillCard?.Invoke();
