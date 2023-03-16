@@ -19,7 +19,7 @@ Shader "ToonFluff"
 		_Float2("Float 2", Range( 0 , 1)) = 0
 		_Color0("Color 0", Color) = (1,1,1,0)
 		_NormalMap("NormalMap", 2D) = "bump" {}
-		_TextureSample1("Texture Sample 1", 2D) = "white" {}
+		_HeightMap("Height Map", 2D) = "white" {}
 		_OpacityMask("Opacity Mask", 2D) = "white" {}
 		_HeightStrenght("Height Strenght", Float) = 0
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
@@ -73,8 +73,8 @@ Shader "ToonFluff"
 		uniform sampler2D _TextureSample0;
 		uniform sampler2D _NormalMap;
 		uniform float4 _NormalMap_ST;
-		uniform sampler2D _TextureSample1;
-		uniform float4 _TextureSample1_ST;
+		uniform sampler2D _HeightMap;
+		uniform float4 _HeightMap_ST;
 		uniform float _HeightStrenght;
 		uniform float _Float0;
 		uniform float _RimOffset;
@@ -133,8 +133,8 @@ Shader "ToonFluff"
 			float3 surf_pos107_g1 = ase_worldPos;
 			float3 ase_worldNormal = WorldNormalVector( i, float3( 0, 0, 1 ) );
 			float3 surf_norm107_g1 = ase_worldNormal;
-			float2 uv_TextureSample1 = i.uv_texcoord * _TextureSample1_ST.xy + _TextureSample1_ST.zw;
-			float height107_g1 = tex2D( _TextureSample1, uv_TextureSample1 ).r;
+			float2 uv_HeightMap = i.uv_texcoord * _HeightMap_ST.xy + _HeightMap_ST.zw;
+			float height107_g1 = tex2D( _HeightMap, uv_HeightMap ).r;
 			float scale107_g1 = _HeightStrenght;
 			float3 localPerturbNormal107_g1 = PerturbNormal107_g1( surf_pos107_g1 , surf_norm107_g1 , height107_g1 , scale107_g1 );
 			float3 HeightMap94 = localPerturbNormal107_g1;
@@ -346,7 +346,6 @@ Node;AmplifyShaderEditor.GetLocalVarNode;87;-2537.922,-15.19592;Inherit;False;85
 Node;AmplifyShaderEditor.ColorNode;26;-1109.538,-916.2777;Inherit;False;Property;_AlbedoTint;AlbedoTint;4;0;Create;True;0;0;0;False;0;False;0,0,0,0;0.6603774,0.1588643,0.2109971,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;1664.092,-34.50951;Float;False;True;-1;2;ASEMaterialInspector;0;0;CustomLighting;ToonFluff;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Off;0;False;;0;False;;False;0;False;;0;False;;False;0;Custom;0.5;True;True;0;True;TransparentCutout;;Geometry;All;12;all;True;True;True;True;0;False;;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;2;15;10;25;False;0.5;True;0;0;False;;0;False;;0;0;False;;0;False;;0;False;;0;False;;0;False;0.01;0.06603771,0.06603771,0.06603771,0;VertexOffset;True;False;Cylindrical;False;True;Relative;0;;0;-1;-1;-1;0;False;0;0;False;;-1;0;False;;0;0;0;False;0.1;False;;0;False;;False;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT3;0,0,0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 Node;AmplifyShaderEditor.FunctionNode;91;-3342.338,-766.7288;Inherit;False;Normal From Height;-1;;1;1942fe2c5f1a1f94881a33d532e4afeb;0;2;20;FLOAT;0;False;110;FLOAT;1;False;2;FLOAT3;40;FLOAT3;0
-Node;AmplifyShaderEditor.SamplerNode;92;-3707.338,-800.7288;Inherit;True;Property;_TextureSample1;Texture Sample 1;15;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SamplerNode;84;-3427.8,-473.8147;Inherit;True;Property;_NormalMap;NormalMap;14;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;93;-3568.65,-581.5458;Inherit;False;Property;_HeightStrenght;Height Strenght;17;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;94;-3024.65,-805.5458;Inherit;False;HeightMap;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
@@ -361,6 +360,7 @@ Node;AmplifyShaderEditor.GetLocalVarNode;77;1113.688,564.7419;Inherit;False;76;s
 Node;AmplifyShaderEditor.SimpleAddOpNode;59;1236.92,320.864;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;78;1314.961,475.9119;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;97;1135.15,-38.04663;Inherit;True;Property;_OpacityMask;Opacity Mask;16;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;92;-3707.338,-800.7288;Inherit;True;Property;_HeightMap;Height Map;15;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;4;0;87;0
 WireConnection;1;0;96;0
 WireConnection;5;0;4;0
@@ -434,4 +434,4 @@ WireConnection;59;1;49;0
 WireConnection;78;0;59;0
 WireConnection;78;1;77;0
 ASEEND*/
-//CHKSM=260F21E1E8BEEB3EF9A50DA6BBE39A745079232C
+//CHKSM=F57558A9F73E6A22096F982A8589E2833825AEE9

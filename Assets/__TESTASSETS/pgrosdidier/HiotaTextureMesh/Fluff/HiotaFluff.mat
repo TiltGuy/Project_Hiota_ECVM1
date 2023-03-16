@@ -31,12 +31,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7a2ad4d780035e54d8ea2725efbfbf78, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OpacityMask:
-        m_Texture: {fileID: 2800000, guid: 7a2ad4d780035e54d8ea2725efbfbf78, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5726119b51c9c6143b5ba21608f1787b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
@@ -52,19 +56,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _Float0: 1.62
-    - _Float2: 0.266
+    - _Float2: 1
     - _HeightStrenght: 0
-    - _RimOffset: 0.99
-    - _RimPower: 0.445
-    - _SpecIntensity: 0.57
+    - _RimOffset: -0.54
+    - _RimPower: 1
+    - _SpecIntensity: 0.66
     - _Specular: 0
     - __dirty: 0
     - _max: 0
     - _min: 0
     m_Colors:
-    - _AlbedoTint: {r: 1, g: 1, b: 1, a: 0}
+    - _AlbedoTint: {r: 0, g: 0, b: 0, a: 0}
     - _Basecolor: {r: 0, g: 0, b: 0, a: 0}
     - _Color0: {r: 0.68369526, g: 0.8679245, b: 0.85064757, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
