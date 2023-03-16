@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ac117c5055eff74fa398e3fc3336d74, type: 3}
-  m_Name: SC_BlindFervor+
+  m_Name: SC_Fortitude+
   m_EditorClassIdentifier: 
-  cardName: Blind Fervor
-  description: 'More '
+  cardName: Great Fortitude
+  description: Add Max Health Points and replenish all of the Health of the enemies.
+    Reduce the global Speed
   artwork: {fileID: 0}
-  PowerLVL: 2
+  shopCost: 0
+  moneyBet: 1
+  powerLVL: 1
   Bonus:
-  - {fileID: 11400000, guid: 74e3603c854ab4c40b9158cb96c3da14, type: 2}
-  Malus:
-  - {fileID: 11400000, guid: 1c6d8d29e09a51e47b755f1749a35198, type: 2}
+  - {fileID: 11400000, guid: 563ffdda6b6945645bf84645e8ba0259, type: 2}
   - {fileID: 11400000, guid: ce5544683b020d94c8fd0fa99eaf7dee, type: 2}
+  Malus:
+  - {fileID: 11400000, guid: 12a380592e0369c4997ba9f7e47ba3e2, type: 2}
