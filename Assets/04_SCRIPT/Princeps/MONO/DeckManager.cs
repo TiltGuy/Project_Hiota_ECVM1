@@ -58,6 +58,8 @@ public class DeckManager : MonoBehaviour
         _RunDeck = _PlayerDeck.ToList();
     }
 
+    #region Save STuffs
+
     private void TakeSavedDecksFromDPManager()
     {
         if ( DataPersistentManager.instance.currentDataToApply != null
@@ -71,6 +73,24 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Dealer Stuffs
+
+    public int CalculateCurrentCardsBet()
+    {
+        int moneyBet = 0;
+
+        foreach(SkillCard_SO skillCard in _EnemiesDeck)
+        {
+            moneyBet += skillCard.moneyBet;
+        }
+        return moneyBet;
+    }
+
+    #endregion
+
+    #region Draw Card STUFFS
     public List<SkillCard_SO> DrawCards(float numberCardsToDraw)
     {
         List<SkillCard_SO> cardsDrawnToReturn = new List<SkillCard_SO>();
@@ -89,26 +109,20 @@ public class DeckManager : MonoBehaviour
         return cardsDrawnToReturn;
     }
 
+
     public SkillCard_SO DrawOneCard()
     {
-        if(UnityEngine.Random.value < .5f && _HiddenDeck.Count > 0)
+        
+        if ( _RunDeck.Count == 0 )
         {
-            SkillCard_SO newCard = _HiddenDeck[UnityEngine.Random.Range(0, _HiddenDeck.Count)];
-            //_HiddenDeck.Remove(newCard);
-            //_PlayerDeck.Add(newCard);
-            return newCard;
+            _RunDeck = _PlayerDeck;
         }
-        else
-        {
-            if ( _RunDeck.Count == 0 )
-            {
-                _RunDeck = _PlayerDeck;
-            }
-            SkillCard_SO newCard = _RunDeck[UnityEngine.Random.Range(0, _RunDeck.Count)];
-            //_RunDeck.Remove(newCard);
-            return newCard;
-        }
+        SkillCard_SO newCard = _RunDeck[UnityEngine.Random.Range(0, _RunDeck.Count)];
+        //_RunDeck.Remove(newCard);
+        return newCard;
     }
+
+    #endregion
 
     public void AddCardToEnnemyDeck(SkillCard_SO newCard)
     {
@@ -116,11 +130,6 @@ public class DeckManager : MonoBehaviour
         if ( _RunDeck.Contains(newCard))
         {
             _RunDeck.Remove(newCard);
-        }
-        if( _HiddenDeck.Contains(newCard))
-        {
-            _HiddenDeck.Remove(newCard);
-            _PlayerDeck.Add(newCard);
         }
         //ApplyCardEffectForAllEnemies(newCard);
     }
@@ -135,6 +144,8 @@ public class DeckManager : MonoBehaviour
             }
         }
     }
+
+    #region Registering Enemy Stuffs
 
     public void RegisterEnemy(GameObject enemy_go)
     {
@@ -155,4 +166,6 @@ public class DeckManager : MonoBehaviour
         }
 
     }
+
+    #endregion
 }

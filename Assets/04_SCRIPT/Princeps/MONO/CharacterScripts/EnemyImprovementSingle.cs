@@ -123,6 +123,12 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
 
     public void SelectCard(int index)
     {
+        int currentBet = 0;
+        if (DeckManager.instance)
+        {
+            currentBet = DeckManager.instance.CalculateCurrentCardsBet();
+        }
+        Debug.Log("Total Money Bet = " + currentBet, this);
         var skillCard = SkillCards[index];
         //print("Assign");
         DeckManager.instance.AddCardToEnnemyDeck(skillCard);
