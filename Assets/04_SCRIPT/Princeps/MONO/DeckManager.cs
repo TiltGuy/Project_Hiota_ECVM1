@@ -127,11 +127,16 @@ public class DeckManager : MonoBehaviour
     public void AddCardToEnnemyDeck(SkillCard_SO newCard)
     {
         _EnemiesDeck.Add(newCard);
-        if ( _RunDeck.Contains(newCard))
+        //ApplyCardEffectForAllEnemies(newCard);
+    }
+
+
+    public void RemoveCardFromRunDeck( SkillCard_SO newCard )
+    {
+        if ( _RunDeck.Contains(newCard) )
         {
             _RunDeck.Remove(newCard);
         }
-        //ApplyCardEffectForAllEnemies(newCard);
     }
 
     public void ApplyCardEffectsToEnemy(Controller_FSM targetController, CharacterSpecs targetSpecs)
