@@ -11,10 +11,13 @@ public class CardCollection : MonoBehaviour
     public string bonusPrefix = "Bonus";
     public string malusPrefix = "Malus";
     public string linePrefix = "> ";
+    [HideInInspector]
     public SkillCard_SO currentSkillcard;
+    [HideInInspector]
     public Collection refCollection;
     public GameObject feedbackSelectedImage;
 
+    [HideInInspector]
     public bool b_IsSelected;
 
     public void AssignText( SkillCard_SO skillCard )

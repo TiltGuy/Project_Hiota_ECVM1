@@ -39,7 +39,14 @@ public class Player_InputScript : MonoBehaviour
         actionCameraPlayer = GetComponent<ActionCameraPlayer>();
 
         //Initialisation of ALL the Bindings with InputMaster
-        controls = new InputMaster();
+        if(InputManager.inputMaster != null)
+        {
+            controls = InputManager.inputMaster;
+        }
+        else
+        {
+            controls = new InputMaster();
+        }
 
         controls.Player.Movement.performed += ctx => InputMovement(ctx.ReadValue<Vector2>());
         controls.Player.Movement.canceled += ctx => InputMovement(Vector2.zero);

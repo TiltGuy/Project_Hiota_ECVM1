@@ -11,8 +11,29 @@ public class Collection : MonoBehaviour
     public ListOfCards collection;
     public GameObject prefabCard;
     public GameObject panelDisplay;
+    private InputMaster controls;
 
-    
+    [SerializeField]
+    private Scrollbar bar;
+    [SerializeField]
+    private float speedScroll = 1f;
+
+    private void Awake()
+    {
+        //Initialisation of ALL the Bindings with InputMaster
+        if ( InputManager.inputMaster != null )
+        {
+            controls = InputManager.inputMaster;
+            controls.UI.Enable();
+        }
+        else
+        {
+            controls = new InputMaster();
+            controls.UI.Enable();
+        }
+
+        controls.UI.ScrollController.performed += ctx => ScrollCollection(ctx.ReadValue<float>());
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +41,17 @@ public class Collection : MonoBehaviour
         UpdateDisplay();
     }
 
+    private void ScrollCollection(float Axis)
+    {
+        bar.value += Axis * speedScroll * Time.deltaTime;
+        bar.value = Mathf.Clamp01(bar.value);
+        Debug.Log("Axis = " + bar.value, this);
+    }
+
+    private void Update()
+    {
+
+    }
 
     private void UpdateDisplay()
     {
@@ -53,6 +85,7 @@ public class Collection : MonoBehaviour
 
             }
         }
+
     }
 
     

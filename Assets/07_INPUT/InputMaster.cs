@@ -652,6 +652,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollController"",
+                    ""type"": ""Value"",
+                    ""id"": ""7b415ca4-3dd7-47df-bcc0-d0d8e1213c88"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1182,6 +1191,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07a22cb8-dc53-435b-b104-f8cd39e6055e"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ScrollController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08d0f637-2dde-4b52-83a4-9930ac9d1446"",
+                    ""path"": ""<DualShockGamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4_Scheme"",
+                    ""action"": ""ScrollController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1263,6 +1294,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_UI_EscapeUI = m_UI.FindAction("EscapeUI", throwIfNotFound: true);
         m_UI_SwitchShortcut = m_UI.FindAction("SwitchShortcut", throwIfNotFound: true);
         m_UI_SwitchWindow = m_UI.FindAction("SwitchWindow", throwIfNotFound: true);
+        m_UI_ScrollController = m_UI.FindAction("ScrollController", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1431,6 +1463,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_EscapeUI;
     private readonly InputAction m_UI_SwitchShortcut;
     private readonly InputAction m_UI_SwitchWindow;
+    private readonly InputAction m_UI_ScrollController;
     public struct UIActions
     {
         private @InputMaster m_Wrapper;
@@ -1447,6 +1480,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @EscapeUI => m_Wrapper.m_UI_EscapeUI;
         public InputAction @SwitchShortcut => m_Wrapper.m_UI_SwitchShortcut;
         public InputAction @SwitchWindow => m_Wrapper.m_UI_SwitchWindow;
+        public InputAction @ScrollController => m_Wrapper.m_UI_ScrollController;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1492,6 +1526,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @SwitchWindow.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
                 @SwitchWindow.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
                 @SwitchWindow.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchWindow;
+                @ScrollController.started -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollController;
+                @ScrollController.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollController;
+                @ScrollController.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollController;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1532,6 +1569,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @SwitchWindow.started += instance.OnSwitchWindow;
                 @SwitchWindow.performed += instance.OnSwitchWindow;
                 @SwitchWindow.canceled += instance.OnSwitchWindow;
+                @ScrollController.started += instance.OnScrollController;
+                @ScrollController.performed += instance.OnScrollController;
+                @ScrollController.canceled += instance.OnScrollController;
             }
         }
     }
@@ -1598,5 +1638,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnEscapeUI(InputAction.CallbackContext context);
         void OnSwitchShortcut(InputAction.CallbackContext context);
         void OnSwitchWindow(InputAction.CallbackContext context);
+        void OnScrollController(InputAction.CallbackContext context);
     }
 }

@@ -630,6 +630,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollController",
+                    "type": "Value",
+                    "id": "7b415ca4-3dd7-47df-bcc0-d0d8e1213c88",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1158,6 +1167,28 @@
                     "processors": "",
                     "groups": "PS4_Scheme",
                     "action": "SwitchWindow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07a22cb8-dc53-435b-b104-f8cd39e6055e",
+                    "path": "<Gamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ScrollController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08d0f637-2dde-4b52-83a4-9930ac9d1446",
+                    "path": "<DualShockGamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4_Scheme",
+                    "action": "ScrollController",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
