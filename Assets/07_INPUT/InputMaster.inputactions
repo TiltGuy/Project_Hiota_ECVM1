@@ -636,9 +636,27 @@
                     "type": "Value",
                     "id": "7b415ca4-3dd7-47df-bcc0-d0d8e1213c88",
                     "expectedControlType": "",
-                    "processors": "",
+                    "processors": "AxisDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Gach_Gauche",
+                    "type": "Button",
+                    "id": "43da0f49-4c49-48d1-821e-8aea77498aca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gach_Droite",
+                    "type": "Button",
+                    "id": "25fcf487-c5b6-4e18-89f0-54aa89625a6a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1189,6 +1207,28 @@
                     "processors": "",
                     "groups": "PS4_Scheme",
                     "action": "ScrollController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e5fa4fc-70f8-41fa-aa87-e8fb7418d86b",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gach_Gauche",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86f7ce5e-914c-40ef-a55a-75061bd48654",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gach_Droite",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

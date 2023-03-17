@@ -658,9 +658,27 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""7b415ca4-3dd7-47df-bcc0-d0d8e1213c88"",
                     ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Gach_Gauche"",
+                    ""type"": ""Button"",
+                    ""id"": ""43da0f49-4c49-48d1-821e-8aea77498aca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gach_Droite"",
+                    ""type"": ""Button"",
+                    ""id"": ""25fcf487-c5b6-4e18-89f0-54aa89625a6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1213,6 +1231,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""ScrollController"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e5fa4fc-70f8-41fa-aa87-e8fb7418d86b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gach_Gauche"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86f7ce5e-914c-40ef-a55a-75061bd48654"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gach_Droite"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1295,6 +1335,8 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_UI_SwitchShortcut = m_UI.FindAction("SwitchShortcut", throwIfNotFound: true);
         m_UI_SwitchWindow = m_UI.FindAction("SwitchWindow", throwIfNotFound: true);
         m_UI_ScrollController = m_UI.FindAction("ScrollController", throwIfNotFound: true);
+        m_UI_Gach_Gauche = m_UI.FindAction("Gach_Gauche", throwIfNotFound: true);
+        m_UI_Gach_Droite = m_UI.FindAction("Gach_Droite", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1464,6 +1506,8 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_SwitchShortcut;
     private readonly InputAction m_UI_SwitchWindow;
     private readonly InputAction m_UI_ScrollController;
+    private readonly InputAction m_UI_Gach_Gauche;
+    private readonly InputAction m_UI_Gach_Droite;
     public struct UIActions
     {
         private @InputMaster m_Wrapper;
@@ -1481,6 +1525,8 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @SwitchShortcut => m_Wrapper.m_UI_SwitchShortcut;
         public InputAction @SwitchWindow => m_Wrapper.m_UI_SwitchWindow;
         public InputAction @ScrollController => m_Wrapper.m_UI_ScrollController;
+        public InputAction @Gach_Gauche => m_Wrapper.m_UI_Gach_Gauche;
+        public InputAction @Gach_Droite => m_Wrapper.m_UI_Gach_Droite;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1529,6 +1575,12 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @ScrollController.started -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollController;
                 @ScrollController.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollController;
                 @ScrollController.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollController;
+                @Gach_Gauche.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGach_Gauche;
+                @Gach_Gauche.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGach_Gauche;
+                @Gach_Gauche.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGach_Gauche;
+                @Gach_Droite.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGach_Droite;
+                @Gach_Droite.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGach_Droite;
+                @Gach_Droite.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGach_Droite;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1572,6 +1624,12 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @ScrollController.started += instance.OnScrollController;
                 @ScrollController.performed += instance.OnScrollController;
                 @ScrollController.canceled += instance.OnScrollController;
+                @Gach_Gauche.started += instance.OnGach_Gauche;
+                @Gach_Gauche.performed += instance.OnGach_Gauche;
+                @Gach_Gauche.canceled += instance.OnGach_Gauche;
+                @Gach_Droite.started += instance.OnGach_Droite;
+                @Gach_Droite.performed += instance.OnGach_Droite;
+                @Gach_Droite.canceled += instance.OnGach_Droite;
             }
         }
     }
@@ -1639,5 +1697,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnSwitchShortcut(InputAction.CallbackContext context);
         void OnSwitchWindow(InputAction.CallbackContext context);
         void OnScrollController(InputAction.CallbackContext context);
+        void OnGach_Gauche(InputAction.CallbackContext context);
+        void OnGach_Droite(InputAction.CallbackContext context);
     }
 }
