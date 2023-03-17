@@ -8,6 +8,7 @@ public class SelectedScroll : MonoBehaviour, ISelectHandler
 {
     public void OnSelect( BaseEventData eventData )
     {
-        Debug.Log(this.gameObject.name + " was selected");
+        //Debug.Log(this.gameObject.transform.parent.gameObject.name + " was selected");
+        Collection.instance.SelectCard(this.gameObject);
     }
 }
