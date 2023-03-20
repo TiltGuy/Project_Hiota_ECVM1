@@ -29,7 +29,7 @@ public class GuardFXUpdate : StateMachineBehaviour
             //renderer = currentFX.GetComponent<MeshRenderer>();
             renderer.sharedMaterial.SetFloat("_Shield_Slider", specs.CurrentGuard / specs.MaxGuard);
 
-            Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
+            //Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
         }
     }
 
@@ -70,6 +70,6 @@ public class GuardFXUpdate : StateMachineBehaviour
     override public void OnStateMachineExit( Animator animator, int stateMachinePathHash )
     {
         Destroy(currentFX);
-        Debug.Log("Je détruis mon fx!", this);
+        //Debug.Log("Je détruis mon fx!", this);
     }
 }
