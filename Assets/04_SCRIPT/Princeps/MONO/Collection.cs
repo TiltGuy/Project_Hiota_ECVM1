@@ -12,8 +12,11 @@ public class Collection : MonoBehaviour
 
     public Canvas cardCanvas;
     public ListOfCards collection;
+    [SerializeField]
+    private float nbOfCardsinLists;
+    public GameObject collection_Empty;
     public GameObject prefabCard;
-    public GameObject panelDisplay;
+    public GameObject cardPage;
     private InputMaster controls;
     public GameObject Cursor;
     [SerializeField]
@@ -22,14 +25,10 @@ public class Collection : MonoBehaviour
 
     RectTransform rectTransformCursor;
 
-    [SerializeField]
     private Scrollbar bar;
-    [SerializeField]
     private float speedScroll = 100f;
-    [SerializeField]
     private float speedScrollLerp = 10f;
 
-    [SerializeField]
     float pasScroll = .2f;
 
     float scrollInput;
@@ -54,17 +53,15 @@ public class Collection : MonoBehaviour
 
         controls.UI.ScrollController.performed += ctx => ScrollCollection(ctx.ReadValue<float>());
 
-        controls.UI.Gach_Gauche.started += ctx => ScrollUp();
-        controls.UI.Gach_Droite.started += ctx => ScrollDown();
+        controls.UI.Gach_Gauche.started += ctx => ScrollLeft();
+        controls.UI.Gach_Droite.started += ctx => ScrollRight();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateDisplay();
+        InitializeDisplay();
         rectTransformCursor = Cursor.GetComponent<RectTransform>();
-        minCursorPos = rectTransformCursor.position.y;
-        maxCursorPos = minCursorPos + panelDisplay.transform.childCount * gridLayoutGroup.spacing.y;
     }
 
     private void ScrollCollection(float Axis)
@@ -72,35 +69,15 @@ public class Collection : MonoBehaviour
         scrollInput = Axis;
     }
 
-    private void Update()
-    {
-        //print("RectTransformCursorY = " + rectTransformCursor.position.y);
-        //float cursorRelativePos = (rectTransformCursor.position.y - minCursorPos) / maxCursorPos;
-        ////print("cursorRelativePos = " + cursorRelativePos);
-        //bar.value = Mathf.Lerp(bar.value, cursorRelativePos, Time.deltaTime * speedScrollLerp);
-        //bar.value = Mathf.Clamp01(bar.value);
 
-        //float currentCursorPosY = rectTransformCursor.position.y;
-        //currentCursorPosY += scrollInput * speedScroll * Time.deltaTime;
-        ////currentCursorPosY = Mathf.Clamp(currentCursorPosY, minCursorPos, maxCursorPos);
-        //rectTransformCursor.position = new Vector3(rectTransformCursor.position.x,
-        //    currentCursorPosY,
-        //    rectTransformCursor.position.z);
-        //bar.value += Axis * speedScroll * Time.deltaTime;
-        //Debug.Log("Axis = " + scrollInput, this);
+    public void ScrollLeft()
+    {
+        
     }
 
-
-    public void ScrollUp()
+    public void ScrollRight()
     {
-        bar.value += pasScroll;
-        bar.value = Mathf.Clamp01(bar.value);
-    }
 
-    public void ScrollDown()
-    {
-        bar.value -= pasScroll;
-        bar.value = Mathf.Clamp01(bar.value);
     }
 
     public void SelectCard(GameObject target)
@@ -111,11 +88,20 @@ public class Collection : MonoBehaviour
         // AJOUTER FEEDBACK SELECTION
     }
 
-    private void UpdateDisplay()
+    private void InitializeDisplay()
     {
+        int cardCounter = 0;
+        GameObject currentPage = Instantiate(cardPage, collection_Empty.transform);
+
         foreach (SkillCard_SO card in collection.ListCards)
         {
-            GameObject clone = Instantiate(prefabCard, panelDisplay.transform);
+            cardCounter++;
+            if (cardCounter % nbOfCardsinLists == 0)
+            {
+                Debug.Log("NEW PAGE cardCounter = " + cardCounter, currentPage);
+                cardCounter = 0;
+            }
+            GameObject clone = Instantiate(prefabCard, currentPage.transform);
             clone.name = card.name;
             CardCollection cardScript = clone.GetComponent<CardCollection>();
             cardScript.AssignText(card);
