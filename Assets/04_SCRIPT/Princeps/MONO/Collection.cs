@@ -11,6 +11,7 @@ public class Collection : MonoBehaviour
     public static Collection instance;
 
     public Canvas cardCanvas;
+    public bool b_UseDeckManagerCollection;
     public ListOfCards collection;
     [SerializeField]
     private float nbOfCardsinLists;
@@ -19,11 +20,11 @@ public class Collection : MonoBehaviour
     [SerializeField]
     GameObject[] pages;
     int currentPageID = 0;
+    public TMP_Text currentPageNumber;
+    public TMP_Text totalPageNumber;
     public GameObject cardPage;
     private InputMaster controls;
     public GameObject Cursor;
-    [SerializeField]
-    private GridLayoutGroup gridLayoutGroup;
     private float minCursorPos, maxCursorPos;
 
     RectTransform rectTransformCursor;
@@ -63,7 +64,14 @@ public class Collection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeDisplay();
+        if(b_UseDeckManagerCollection && DeckManager.instance != null)
+        {
+            InitializeDisplay(DeckManager.instance.BaseListOfCards.ListCards);
+        }
+        else
+        {
+            InitializeDisplay(collection.ListCards);
+        }
         rectTransformCursor = Cursor.GetComponent<RectTransform>();
     }
 
@@ -80,9 +88,16 @@ public class Collection : MonoBehaviour
             return;
         }
         currentPageID -= 1;
+        UpdateCurrentPageNumberPagination();
         SetCurrentPageVisible();
         SetFirstCardSelectable();
 
+    }
+
+    private void UpdateCurrentPageNumberPagination()
+    {
+        int numberCurrentPage = currentPageID + 1;
+        currentPageNumber.text = numberCurrentPage.ToString();
     }
 
     public void ScrollRight()
@@ -94,6 +109,7 @@ public class Collection : MonoBehaviour
             return;
         }
         currentPageID += 1;
+        UpdateCurrentPageNumberPagination();
         SetCurrentPageVisible();
         SetFirstCardSelectable();
     }
@@ -121,16 +137,18 @@ public class Collection : MonoBehaviour
         // AJOUTER FEEDBACK SELECTION
     }
 
-    private void InitializeDisplay()
+    private void InitializeDisplay(List<SkillCard_SO> CollectionCard)
     {
         int cardCounter = 0;
         int pageCounter = 0;
-        int numberOfPages = Mathf.CeilToInt(collection.ListCards.Count / nbOfCardsinLists);
+        int numberOfPages = Mathf.CeilToInt(CollectionCard.Count / nbOfCardsinLists);
         pages = new GameObject[numberOfPages];
+        totalPageNumber.text = string.Concat("/ ", pages.Length.ToString());
+        UpdateCurrentPageNumberPagination();
         GameObject currentPage;
         currentPage = Instantiate(cardPage, collection_Empty.transform);
         pages[pageCounter] = currentPage;
-        foreach ( SkillCard_SO card in collection.ListCards )
+        foreach ( SkillCard_SO card in CollectionCard )
         {
             if ( cardCounter % nbOfCardsinLists == 0 && cardCounter != 0 )
             {
