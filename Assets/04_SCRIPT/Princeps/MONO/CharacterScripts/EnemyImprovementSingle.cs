@@ -123,17 +123,18 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
 
     public void SelectCard(int index)
     {
-        int currentBet = 0;
-        if (DeckManager.instance)
-        {
-            currentBet = DeckManager.instance.CalculateCurrentCardsBet();
-        }
-        Debug.Log("Total Money Bet = " + currentBet, this);
+        
         var skillCard = SkillCards[index];
         //print("Assign");
-        DeckManager.instance.AddCardToEnnemyDeck(skillCard);
-        DeckManager.instance.RemoveCardFromRunDeck(SkillCards[0]);
-        DeckManager.instance.RemoveCardFromRunDeck(SkillCards[1]);
+        DeckManager currentDeckInstance = DeckManager.instance;
+        currentDeckInstance.AddCardToEnnemyDeck(skillCard);
+        currentDeckInstance.RemoveCardFromRunDeck(SkillCards[0]);
+        currentDeckInstance.RemoveCardFromRunDeck(SkillCards[1]);
+        if ( currentDeckInstance )
+        {
+            currentDeckInstance.PlayerBetMoney = currentDeckInstance.CalculateCurrentCardsBet();
+            print("Money Bet = " + currentDeckInstance.PlayerBetMoney);
+        }
         //GameObject.FindGameObjectsWithTag("Gate").ToList().ForEach(o => o.gameObject.SetActive(false));
         ToggleOnRoomComplete.ToggleAll();
         OnSelectSkillCard?.Invoke();
