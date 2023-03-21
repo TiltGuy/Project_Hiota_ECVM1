@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 1512704071305417046}
   - component: {fileID: 1512704071305417033}
   - component: {fileID: 1512704071305417045}
+  - component: {fileID: 8094278160122684541}
   m_Layer: 5
   m_Name: UI_Hiota
   m_TagString: Untagged
@@ -425,6 +426,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textVersionGame: {fileID: 1512704072655855667}
   devPhaseGame: Alpha
+--- !u!114 &8094278160122684541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512704071305417032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863b986c31d541a46873b63d64832a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoney_Text: {fileID: 2852571704366527178}
+  playerBetMoney_Text: {fileID: 6026185422189103987}
 --- !u!1 &1512704072655855669
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using TMPro;
 
 public class DeckManager : MonoBehaviour
 {
+    [SerializeField]
+    int playerMoney;
+    [SerializeField]
+    int playerBetMoney;
     public ListOfCards BaseListOfCards;
     public List<SkillCard_SO> _HiddenDeck = new List<SkillCard_SO>();
     public List<SkillCard_SO> _PlayerDeck = new List<SkillCard_SO>();
@@ -24,6 +29,29 @@ public class DeckManager : MonoBehaviour
 
     public static DeckManager instance;
 
+    public delegate void MultiCastDelegate();
+    public MultiCastDelegate OnMoneyChanged;
+    public MultiCastDelegate OnMoneyBetChanged;
+    public int PlayerMoney
+    {
+        get => playerMoney;
+        set
+        {
+            playerMoney = value;
+            OnMoneyChanged();
+        }
+    }
+
+    public int PlayerBetMoney
+    {
+        get => playerBetMoney;
+        set
+        {
+            playerBetMoney = value;
+            OnMoneyBetChanged();
+        } 
+    }
+
     private void Awake()
     {
         #region Singleton Instanciation
@@ -38,6 +66,11 @@ public class DeckManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         #endregion
+    }
+
+    public void GainMoneyBet()
+    {
+        PlayerMoney += PlayerBetMoney;
     }
 
     private void Start()
