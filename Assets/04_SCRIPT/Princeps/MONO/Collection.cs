@@ -16,6 +16,9 @@ public class Collection : MonoBehaviour
     private float nbOfCardsinLists;
     public GameObject collection_Empty;
     public GameObject prefabCard;
+    [SerializeField]
+    GameObject[] pages;
+    int currentPageID = 0;
     public GameObject cardPage;
     private InputMaster controls;
     public GameObject Cursor;
@@ -72,12 +75,42 @@ public class Collection : MonoBehaviour
 
     public void ScrollLeft()
     {
-        
+        if ( currentPageID - 1 < 0 )
+        {
+            return;
+        }
+        currentPageID -= 1;
+        SetCurrentPageVisible();
+        SetFirstCardSelectable();
+
     }
 
     public void ScrollRight()
     {
 
+        print(currentPageID);
+        if ( currentPageID + 1 > pages.Length - 1 )
+        {
+            return;
+        }
+        currentPageID += 1;
+        SetCurrentPageVisible();
+        SetFirstCardSelectable();
+    }
+
+    private void SetCurrentPageVisible()
+    {
+        for ( int i = 0; i < pages.Length; i++ )
+        {
+            if ( i != currentPageID )
+            {
+                pages[i].SetActive(false);
+            }
+            else
+            {
+                pages[i].SetActive(true);
+            }
+        }
     }
 
     public void SelectCard(GameObject target)
@@ -91,27 +124,45 @@ public class Collection : MonoBehaviour
     private void InitializeDisplay()
     {
         int cardCounter = 0;
-        GameObject currentPage = Instantiate(cardPage, collection_Empty.transform);
-
-        foreach (SkillCard_SO card in collection.ListCards)
+        int pageCounter = 0;
+        int numberOfPages = Mathf.CeilToInt(collection.ListCards.Count / nbOfCardsinLists);
+        pages = new GameObject[numberOfPages];
+        GameObject currentPage;
+        currentPage = Instantiate(cardPage, collection_Empty.transform);
+        pages[pageCounter] = currentPage;
+        foreach ( SkillCard_SO card in collection.ListCards )
         {
-            cardCounter++;
-            if (cardCounter % nbOfCardsinLists == 0)
+            if ( cardCounter % nbOfCardsinLists == 0 && cardCounter != 0 )
             {
-                Debug.Log("NEW PAGE cardCounter = " + cardCounter, currentPage);
                 cardCounter = 0;
+                currentPage = Instantiate(cardPage, collection_Empty.transform);
+                pageCounter++;
+                pages[pageCounter] = currentPage;
+                currentPage.SetActive(false);
+                //Debug.Log("NEW PAGE cardCounter = " + cardCounter, currentPage);
             }
-            GameObject clone = Instantiate(prefabCard, currentPage.transform);
-            clone.name = card.name;
-            CardCollection cardScript = clone.GetComponent<CardCollection>();
-            cardScript.AssignText(card);
-            cardScript.refCollection = this;
-            if(DeckManager.instance._PlayerDeck.Contains(card))
-            {
-                cardScript.SetFeedbackSelected(true);
-            }
+            cardCounter++;
+            InitializeCard(currentPage, card);
         }
+        SetFirstCardSelectable();
+    }
+
+    private void SetFirstCardSelectable()
+    {
         cardCanvas.GetComponentsInChildren<Selectable>().First().Select();
+    }
+
+    private void InitializeCard( GameObject currentPage, SkillCard_SO card )
+    {
+        GameObject clone = Instantiate(prefabCard, currentPage.transform);
+        clone.name = card.name;
+        CardCollection cardScript = clone.GetComponent<CardCollection>();
+        cardScript.AssignText(card);
+        cardScript.refCollection = this;
+        if ( DeckManager.instance._PlayerDeck.Contains(card) )
+        {
+            cardScript.SetFeedbackSelected(true);
+        }
     }
 
     public void ToggleCardToDeck(CardCollection card)
