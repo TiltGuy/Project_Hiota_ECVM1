@@ -29,9 +29,25 @@ public class Player_InputScript : MonoBehaviour
 
     #endregion
 
+    [SerializeField]
+    bool b_IsInUI;
+    public bool B_IsInUI
+    {
+        get => b_IsInUI;
+        set
+        {
+            if (b_IsInUI != value)
+            {
+                b_IsInUI = value;
+            }
+        }
+    }
+
+
     public delegate void MultiDelegate();
     public MultiDelegate OnChangeCurrentPlayerTarget;
     private bool b_ChangeTargetInput;
+
 
     private void Awake()
     {
@@ -63,7 +79,7 @@ public class Player_InputScript : MonoBehaviour
         controls.Player.Parry.started += ctx => WantingToParry(true);
         controls.Player.Parry.canceled += ctx => WantingToParry(false);
 
-        controls.Player.Attack.started += ctx => controller_FSM.TakeAttackInputInBuffer();
+        controls.Player.Attack.started += ctx => InputAttack();
 
         controls.Player.FocusTarget.started += ctx => ToggleHiotaFocusMode();
         controls.Player.DebugCursorBinding.started += ctx => controller_FSM.HideCursor();
@@ -84,13 +100,32 @@ public class Player_InputScript : MonoBehaviour
         controller_FSM.m_InputMoveVector = value;
     }
 
+    void InputAttack()
+    {
+        if ( b_IsInUI )
+            return;
+        controller_FSM.TakeAttackInputInBuffer();
+    }
+
     void WantingToParry(bool value)
     {
+        if(b_IsInUI)
+        {
+            controller_FSM.b_IsInputParry = false;
+            Debug.Log(controller_FSM.b_IsInputParry);
+            return;
+        }
         controller_FSM.b_IsInputParry = value;
+        //print("PARRRY INPUt ! & b_IsUIing = " + b_IsInUI);
     }
 
     void SetInputDash(bool value)
     {
+        if ( b_IsInUI)
+        {
+            controller_FSM.b_WantDash = false;
+            return;
+        }
         controller_FSM.b_WantDash = value;
     }
 

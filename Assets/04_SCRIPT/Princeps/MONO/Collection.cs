@@ -17,6 +17,9 @@ public class Collection : MonoBehaviour
     private float nbOfCardsinLists;
     public GameObject collection_Empty;
     public GameObject prefabCard;
+
+    [Header("-- PAGINATION SETTINGS --")]
+    
     [SerializeField]
     GameObject[] pages;
     int currentPageID = 0;
@@ -25,17 +28,15 @@ public class Collection : MonoBehaviour
     public GameObject cardPage;
     private InputMaster controls;
     public GameObject Cursor;
-    private float minCursorPos, maxCursorPos;
 
-    RectTransform rectTransformCursor;
+    [Header("-- CLOSE UP SETTINGS --")]
 
-    private Scrollbar bar;
-    private float speedScroll = 100f;
-    private float speedScrollLerp = 10f;
+    public GameObject CloseUpPanel;
+    public GameObject CloseUpCard_GO;
 
-    float pasScroll = .2f;
 
-    float scrollInput;
+    Player_InputScript refPlayerInput;
+
 
     private void Awake()
     {
@@ -55,16 +56,34 @@ public class Collection : MonoBehaviour
             controls.UI.Enable();
         }
 
-        controls.UI.ScrollController.performed += ctx => ScrollCollection(ctx.ReadValue<float>());
+        //controls.UI.ScrollController.performed += ctx => ScrollCollection(ctx.ReadValue<float>());
 
         controls.UI.Gach_Gauche.started += ctx => ScrollLeft();
         controls.UI.Gach_Droite.started += ctx => ScrollRight();
     }
 
+    private void OnEnable()
+    {
+        if(refPlayerInput)
+        {
+            refPlayerInput.B_IsInUI = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if(refPlayerInput)
+        {
+            refPlayerInput.B_IsInUI = false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        if(b_UseDeckManagerCollection && DeckManager.instance != null)
+        refPlayerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_InputScript>();
+        refPlayerInput.B_IsInUI = true;
+        if (b_UseDeckManagerCollection && DeckManager.instance != null)
         {
             InitializeDisplay(DeckManager.instance.BaseListOfCards.ListCards);
         }
@@ -72,14 +91,24 @@ public class Collection : MonoBehaviour
         {
             InitializeDisplay(collection.ListCards);
         }
-        rectTransformCursor = Cursor.GetComponent<RectTransform>();
     }
 
-    private void ScrollCollection(float Axis)
+    private void Update()
     {
-        scrollInput = Axis;
+        UpdateIsInUIPlayer();
     }
 
+    private void UpdateIsInUIPlayer()
+    {
+        if ( cardCanvas.gameObject.activeInHierarchy )
+        {
+            refPlayerInput.B_IsInUI = true;
+        }
+        else
+        {
+            refPlayerInput.B_IsInUI = false;
+        }
+    }
 
     public void ScrollLeft()
     {
