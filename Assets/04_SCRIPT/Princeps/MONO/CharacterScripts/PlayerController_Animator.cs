@@ -14,6 +14,11 @@ public class PlayerController_Animator:MonoBehaviour
     public GameObject Hip_Localiser;
     public GameObject GuardPoint;
     public GameObject Shield;
+    public GameObject Base_Attack;
+    public GameObject Dash_Attack_Frwd;
+    public GameObject Dash_Attack_L;
+    public GameObject Dash_Attack_R;
+    public GameObject Counter_Attack;
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
@@ -140,13 +145,46 @@ public class PlayerController_Animator:MonoBehaviour
         Sword_Slash.transform.localPosition = Vector3.zero;
     }
 
-    //*public void ShieldSpawn( GameObject targetFX )
-    //{
-    //Transform ShieldSpawn = Instantiate(targetFX.transform, GuardPoint.transform.position, Quaternion.identity);
-    //ShieldSpawn.SetParent(GuardPoint.transform);
-    //ShieldSpawn.transform.localRotation = Quaternion.identity;
-    //  ShieldSpawn.transform.localPosition = Vector3.zero;
-    //}
+    public void Slash_Activate_Neutral( GameObject targetFX )
+    {
+    Transform Slash_Activate_Neutral = Instantiate(targetFX.transform, Base_Attack.transform.position, Quaternion.identity);
+        Slash_Activate_Neutral.SetParent(Base_Attack.transform);
+        Slash_Activate_Neutral.transform.localRotation = Quaternion.identity;
+        Slash_Activate_Neutral.transform.localPosition = Vector3.zero;
+    }
+
+    public void Slash_Activate_Dash_Frwd( GameObject targetFX )
+    {
+        Transform Slash_Activate_Dash_Frwd = Instantiate(targetFX.transform, Dash_Attack_Frwd.transform.position, Quaternion.identity);
+        Slash_Activate_Dash_Frwd.SetParent(Base_Attack.transform);
+        Slash_Activate_Dash_Frwd.transform.localRotation = Quaternion.identity;
+        Slash_Activate_Dash_Frwd.transform.localPosition = Vector3.zero;
+    }
+
+    public void Slash_Activate_Dash_L( GameObject targetFX )
+    {
+        Transform Slash_Activate_Dash_L = Instantiate(targetFX.transform, Dash_Attack_L.transform.position, Quaternion.identity);
+        Slash_Activate_Dash_L.SetParent(Base_Attack.transform);
+        Slash_Activate_Dash_L.transform.localRotation = Quaternion.identity;
+        Slash_Activate_Dash_L.transform.localPosition = Vector3.zero;
+    }
+
+    public void Slash_Activate_Dash_R( GameObject targetFX )
+    {
+        Transform Slash_Activate_Dash_R = Instantiate(targetFX.transform, Dash_Attack_R.transform.position, Quaternion.identity);
+        Slash_Activate_Dash_R.SetParent(Base_Attack.transform);
+        Slash_Activate_Dash_R.transform.localRotation = Quaternion.identity;
+        Slash_Activate_Dash_R.transform.localPosition = Vector3.zero;
+    }
+
+    public void Slash_Activate_Counter( GameObject targetFX )
+    {
+        Transform Slash_Activate_Counter = Instantiate(targetFX.transform, Counter_Attack.transform.position, Quaternion.identity);
+        Slash_Activate_Counter.SetParent(Base_Attack.transform);
+        Slash_Activate_Counter.transform.localRotation = Quaternion.identity;
+        Slash_Activate_Counter.transform.localPosition = Vector3.zero;
+    }
+
 
     //public void ShieldDown( GameObject targetFX )
     //{
@@ -156,16 +194,16 @@ public class PlayerController_Animator:MonoBehaviour
 
 
     //if(isParrying == true)
-      //  {
+    //  {
 
-        //    Shield.SetActive(true);
-          //  animator.SetBool("",true);
+    //    Shield.SetActive(true);
+    //  animator.SetBool("",true);
 
-        //}
+    //}
     //else
-//{
-  //  Shield.SetActive(false);
+    //{
+    //  Shield.SetActive(false);
     //animator.SetBool("", false);
-//}
+    //}
 
 }

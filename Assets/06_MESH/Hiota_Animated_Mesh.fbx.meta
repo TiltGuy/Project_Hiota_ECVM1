@@ -162,9 +162,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event UpdateBasicAttackHitBoxStatutFalse has a time
-      (0.166667) outside the clip's valid range (0.000000..0.166666). It will never
-      be fired
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -318,6 +316,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.02071563
+        functionName: Slash_Activate_Neutral
+        data: 
+        objectReferenceParameter: {fileID: 7121003988618494751, guid: 562a90014d336694a9a3b719064ff849,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 1
         functionName: UpdateBasicAttackHitBoxStatutFalse
         data: 
@@ -328,7 +334,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 9.900001
     - serializedVersion: 16
       name: HIOTA_Base_ATK_REC
       takeName: Take 001
@@ -643,7 +649,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.019048654
+        functionName: Slash_Activate_Dash_Frwd
+        data: 
+        objectReferenceParameter: {fileID: 7121003988618494751, guid: 562a90014d336694a9a3b719064ff849,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -986,7 +1000,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 940
-      lastFrame: 945
+      lastFrame: 955
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1020,10 +1034,18 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.030956386
+        functionName: Slash_Activate_Counter
+        data: 
+        objectReferenceParameter: {fileID: 7121003988618494751, guid: 562a90014d336694a9a3b719064ff849,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 9.900001
     - serializedVersion: 16
       name: HIOTA_Guard_CNT_ATK_REC
       takeName: Take 001
@@ -1382,6 +1404,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.030956032
+        functionName: Slash_Activate_Dash_L
+        data: 
+        objectReferenceParameter: {fileID: 7121003988618494751, guid: 562a90014d336694a9a3b719064ff849,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1480,6 +1510,14 @@ ModelImporter:
         functionName: UpdateBasicAttackHitBoxStatutFalse
         data: 
         objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.023815246
+        functionName: Slash_Activate_Dash_R
+        data: 
+        objectReferenceParameter: {fileID: 7121003988618494751, guid: 562a90014d336694a9a3b719064ff849,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
