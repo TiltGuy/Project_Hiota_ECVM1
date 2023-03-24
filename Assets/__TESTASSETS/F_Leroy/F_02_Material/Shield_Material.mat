@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Aura_Texture:
+        m_Texture: {fileID: 2800000, guid: d6c00c5481c7d604da3a11ae3affc0e6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,6 +63,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Pearls_Texture:
+        m_Texture: {fileID: 2800000, guid: 194244f8eb1165a4494a0200f25f86f1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture:
         m_Texture: {fileID: 2800000, guid: 194244f8eb1165a4494a0200f25f86f1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -88,22 +96,24 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighDynamicRange: 1.4
+    - _HighDynamicRange: 1
     - _Mask_Clip: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Opacity_Test: 5
     - _Parallax: 0.02
     - _Power_Of_Aura: 2
     - _Shield_Max: 0.75
     - _Shield_Min: 0.15
-    - _Shield_Slider: 1.0007143
+    - _Shield_Slider: 1.000035
     - _Shine_Of_Aura: 3
     - _Size_Of_Aura: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 2
+    - _Speed: -2
     - _SrcBlend: 1
+    - _TestMaggle: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
