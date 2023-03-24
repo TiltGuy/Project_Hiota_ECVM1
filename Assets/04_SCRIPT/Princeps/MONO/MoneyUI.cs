@@ -26,7 +26,7 @@ public class MoneyUI : MonoBehaviour
     private void UpdatePlayerMoney()
     {
         playerMoney_Text.text = DeckManager.instance.PlayerMoney.ToString();
-        print(DeckManager.instance.PlayerMoney.ToString());
+        //print(DeckManager.instance.PlayerMoney.ToString());
     }
 
     private void UpdatePlayerBet()
