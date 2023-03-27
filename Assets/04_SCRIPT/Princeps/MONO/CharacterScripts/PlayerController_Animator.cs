@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController_Animator:MonoBehaviour
@@ -131,58 +129,79 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void WindUpGlow( GameObject targetFX )
     {
-        Transform glowingSword = Instantiate(targetFX.transform, Sword_GO.transform.position, Quaternion.identity);
-        glowingSword.SetParent(Sword_GO.transform);
-        glowingSword.transform.localRotation = Quaternion.identity;
-        glowingSword.transform.localPosition = Vector3.zero;
+        if(targetFX != null)
+        {
+            Transform glowingSword = Instantiate(targetFX.transform, Sword_GO.transform.position, Quaternion.identity);
+            glowingSword.SetParent(Sword_GO.transform);
+            glowingSword.transform.localRotation = Quaternion.identity;
+            glowingSword.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Sword_Slash( GameObject targetFX )
     {
-        Transform Sword_Slash = Instantiate(targetFX.transform, Hip_Localiser.transform.position, Quaternion.identity);
-        Sword_Slash.SetParent(Hip_Localiser.transform);
-        Sword_Slash.transform.localRotation = Quaternion.identity;
-        Sword_Slash.transform.localPosition = Vector3.zero;
+        if ( targetFX != null )
+        {
+            Transform Sword_Slash = Instantiate(targetFX.transform, Hip_Localiser.transform.position, Quaternion.identity);
+            Sword_Slash.SetParent(Hip_Localiser.transform);
+            Sword_Slash.transform.localRotation = Quaternion.identity;
+            Sword_Slash.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Slash_Activate_Neutral( GameObject targetFX )
     {
-    Transform Slash_Activate_Neutral = Instantiate(targetFX.transform, Base_Attack.transform.position, Quaternion.identity);
-        Slash_Activate_Neutral.SetParent(Base_Attack.transform);
-        Slash_Activate_Neutral.transform.localRotation = Quaternion.identity;
-        Slash_Activate_Neutral.transform.localPosition = Vector3.zero;
+        if ( targetFX != null )
+        {
+            Transform Slash_Activate_Neutral = Instantiate(targetFX.transform, Base_Attack.transform.position, Quaternion.identity);
+            Slash_Activate_Neutral.SetParent(Base_Attack.transform);
+            Slash_Activate_Neutral.transform.localRotation = Quaternion.identity;
+            Slash_Activate_Neutral.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Slash_Activate_Dash_Frwd( GameObject targetFX )
     {
-        Transform Slash_Activate_Dash_Frwd = Instantiate(targetFX.transform, Dash_Attack_Frwd.transform.position, Quaternion.identity);
-        Slash_Activate_Dash_Frwd.SetParent(Base_Attack.transform);
-        Slash_Activate_Dash_Frwd.transform.localRotation = Quaternion.identity;
-        Slash_Activate_Dash_Frwd.transform.localPosition = Vector3.zero;
+        if ( targetFX != null )
+        {
+            Transform Slash_Activate_Dash_Frwd = Instantiate(targetFX.transform, Dash_Attack_Frwd.transform.position, Quaternion.identity);
+            Slash_Activate_Dash_Frwd.SetParent(Base_Attack.transform);
+            Slash_Activate_Dash_Frwd.transform.localRotation = Quaternion.identity;
+            Slash_Activate_Dash_Frwd.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Slash_Activate_Dash_L( GameObject targetFX )
     {
-        Transform Slash_Activate_Dash_L = Instantiate(targetFX.transform, Dash_Attack_L.transform.position, Quaternion.identity);
-        Slash_Activate_Dash_L.SetParent(Base_Attack.transform);
-        Slash_Activate_Dash_L.transform.localRotation = Quaternion.identity;
-        Slash_Activate_Dash_L.transform.localPosition = Vector3.zero;
+        if ( targetFX != null )
+        {
+            Transform Slash_Activate_Dash_L = Instantiate(targetFX.transform, Dash_Attack_L.transform.position, Quaternion.identity);
+            Slash_Activate_Dash_L.SetParent(Base_Attack.transform);
+            Slash_Activate_Dash_L.transform.localRotation = Quaternion.identity;
+            Slash_Activate_Dash_L.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Slash_Activate_Dash_R( GameObject targetFX )
     {
-        Transform Slash_Activate_Dash_R = Instantiate(targetFX.transform, Dash_Attack_R.transform.position, Quaternion.identity);
-        Slash_Activate_Dash_R.SetParent(Base_Attack.transform);
-        Slash_Activate_Dash_R.transform.localRotation = Quaternion.identity;
-        Slash_Activate_Dash_R.transform.localPosition = Vector3.zero;
+        if ( targetFX != null )
+        {
+            Transform Slash_Activate_Dash_R = Instantiate(targetFX.transform, Dash_Attack_R.transform.position, Quaternion.identity);
+            Slash_Activate_Dash_R.SetParent(Base_Attack.transform);
+            Slash_Activate_Dash_R.transform.localRotation = Quaternion.identity;
+            Slash_Activate_Dash_R.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Slash_Activate_Counter( GameObject targetFX )
     {
-        Transform Slash_Activate_Counter = Instantiate(targetFX.transform, Counter_Attack.transform.position, Quaternion.identity);
-        Slash_Activate_Counter.SetParent(Base_Attack.transform);
-        Slash_Activate_Counter.transform.localRotation = Quaternion.identity;
-        Slash_Activate_Counter.transform.localPosition = Vector3.zero;
+        if ( targetFX != null )
+        {
+            Transform Slash_Activate_Counter = Instantiate(targetFX.transform, Counter_Attack.transform.position, Quaternion.identity);
+            Slash_Activate_Counter.SetParent(Base_Attack.transform);
+            Slash_Activate_Counter.transform.localRotation = Quaternion.identity;
+            Slash_Activate_Counter.transform.localPosition = Vector3.zero;
+        }
     }
 
 
