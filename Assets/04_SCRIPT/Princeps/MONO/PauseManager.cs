@@ -14,14 +14,14 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     private Transform SettingsMenu;
 
-    public GameObject pausePanel;
+    /*public GameObject pausePanel;
     public GameObject shortcutPanel;
     private bool leftShortcut = true;
     private bool rightShortcut = true;
 
     public GameObject keyboard, controller;
     private bool leftWindowSwitched = true;
-    private bool rightWindowSwitched = true;
+    private bool rightWindowSwitched = true;*/
     public bool b_IsChoosingCard = false;
 
     private void Awake()
@@ -36,11 +36,11 @@ public class PauseManager : MonoBehaviour
         action.UI.Pause.performed += _ => DetermineGamePauseStatut();
         //Debug.Log(b_IsPaused);
 
-        action.UI.SwitchWindow.started += ctx => SwitchLeftWindow();
-        action.UI.SwitchWindow.started += ctx => SwitchRightWindow();
+        //action.UI.SwitchWindow.started += ctx => SwitchLeftWindow();
+        //action.UI.SwitchWindow.started += ctx => SwitchRightWindow();
 
-        action.UI.SwitchShortcut.started += ctx => SwitchLeftShortcut();
-        action.UI.SwitchShortcut.started += ctx => SwitchRightShortcut();
+        //action.UI.SwitchShortcut.started += ctx => SwitchLeftShortcut();
+        //action.UI.SwitchShortcut.started += ctx => SwitchRightShortcut();
         ResumeGame();
     }
 
@@ -86,7 +86,7 @@ public class PauseManager : MonoBehaviour
         b_IsPaused = false;
         HideSettings();
         Menu.gameObject.SetActive(false);
-        //print("ResumeGame");
+        print("ResumeGame");
     }
 
     public void ShowSettings()
@@ -107,7 +107,7 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void SwitchLeftWindow()
+    /*private void SwitchLeftWindow()
     {
 
         if ( leftWindowSwitched )
@@ -178,7 +178,7 @@ public class PauseManager : MonoBehaviour
 
             rightShortcut = !rightShortcut;
         }
-    }
+    }*/
 
     public void LoadMenu()
     {
