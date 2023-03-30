@@ -9,8 +9,8 @@ public class PlayerController_Animator:MonoBehaviour
 
     [Tooltip("It needs the prefab of CameraBase")]
     public GameObject Sword_GO;
-    public GameObject Hip_Localiser;
-    public GameObject GuardPoint;
+    public GameObject Pieds;
+    //public GameObject GuardPoint;
     public GameObject Shield;
     public GameObject Base_Attack;
     public GameObject Dash_Attack_Frwd;
@@ -20,6 +20,7 @@ public class PlayerController_Animator:MonoBehaviour
     public CapsuleCollider swordHitBox;
     public Animator animator;
     public Transform ps;
+    public Transform Dash_FX;
     public Controller_FSM controller_FSM;
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;
@@ -114,13 +115,18 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void DustCloud()
     {
-        Instantiate(ps, transform.position, Quaternion.identity);
+        Instantiate(ps, transform.position, transform.rotation);
+    }
+    public void DashBurst()
+    {
+        Instantiate(Dash_FX, transform.position, transform.rotation);
     }
 
-    public void SpawnFX( GameObject TargetFX )
+
+    /*public void SpawnFX( GameObject TargetFX )
     {
         Instantiate(TargetFX.transform, transform.position, Quaternion.identity);
-    }
+    }*/
 
     public void FinishAttackAnimation()
     {
@@ -138,16 +144,16 @@ public class PlayerController_Animator:MonoBehaviour
         }
     }
 
-    public void Sword_Slash( GameObject targetFX )
-    {
-        if ( targetFX != null )
-        {
-            Transform Sword_Slash = Instantiate(targetFX.transform, Hip_Localiser.transform.position, Quaternion.identity);
-            Sword_Slash.SetParent(Hip_Localiser.transform);
-            Sword_Slash.transform.localRotation = Quaternion.identity;
-            Sword_Slash.transform.localPosition = Vector3.zero;
-        }
-    }
+    //public void Sword_Slash( GameObject targetFX )
+    //{
+      //  if ( targetFX != null )
+        //{
+          //  Transform Sword_Slash = Instantiate(targetFX.transform, Hip_Localiser.transform.position, Quaternion.identity);
+          //  Sword_Slash.SetParent(Hip_Localiser.transform);
+          //  Sword_Slash.transform.localRotation = Quaternion.identity;
+          //  Sword_Slash.transform.localPosition = Vector3.zero;
+        //}
+    //}
 
     public void Slash_Activate_Neutral( GameObject targetFX )
     {
@@ -203,26 +209,5 @@ public class PlayerController_Animator:MonoBehaviour
             Slash_Activate_Counter.transform.localPosition = Vector3.zero;
         }
     }
-
-
-    //public void ShieldDown( GameObject targetFX )
-    //{
-    //    Destroy(ShieldSpawn);
-    //}
-
-
-
-    //if(isParrying == true)
-    //  {
-
-    //    Shield.SetActive(true);
-    //  animator.SetBool("",true);
-
-    //}
-    //else
-    //{
-    //  Shield.SetActive(false);
-    //animator.SetBool("", false);
-    //}
 
 }
