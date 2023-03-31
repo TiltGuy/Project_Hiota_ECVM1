@@ -7,24 +7,20 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FluffMatTest
+  m_Name: Weapons
   m_Shader: {fileID: 4800000, guid: 7fea3a18b1a59164e8590af532597cb5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 988073f9b7b4067479b00f776b5f36ee, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseColorRGBOutlineWidthA:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 977516d98ab103745a01fbc479428073, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -47,16 +43,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Emissive:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _HeightMap:
-        m_Texture: {fileID: 2800000, guid: 6b6e86a81a29cdf41a751dc9bc742e5d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _HiotaV3_Material001_Emissive:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 797d9b4539c1f4a46b925304149c15c7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -75,15 +63,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _OpacityMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -91,74 +71,42 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 3a92a2ecc0185f5448f37d022059113a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: fed06b3c424aab24aa38c233eff24c3e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: 2ce92e630c5257649ba6ac163c8d4e5f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _ASEOutlineWidth: 0.013
     - _BaseCellOffset: 0
     - _BaseCellSharpness: 0.01
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Emissiveintensity: 0.2
-    - _Float0: 0.55
-    - _Float2: 0.357
-    - _GlossMapScale: 0
+    - _Emissiveintensity: 0.5
+    - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightStrenght: 0.1
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 0
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 1
-    - _NormalStenght: 0.0001
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimOffset: 0.55
-    - _RimPower: 0.718
     - _ShadowContribution: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SpecIntensity: 0
-    - _SpecTransition: 0
-    - _Specular: 6.87
     - _SpecularHighlights: 1
-    - _SpecularStep: 0
     - _SrcBlend: 1
     - _StaticHighLights: 0
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _max: 1
-    - _min: 0
     - _specularhighlightsize: -1
     m_Colors:
-    - _ASEOutlineColor: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0}
-    - _AlbedoTint: {r: 1, g: 1, b: 1, a: 0}
-    - _BaseTint: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+    - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0.2924528, g: 0.048282295, b: 0.050491434, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColor: {r: 0.79886085, g: 0.9056604, b: 0.9003809, a: 1}
-    - _EmissiveColorA: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
-    - _EmissiveColorB: {r: 1.8663139, g: 1.8663139, b: 1.8663139, a: 0}
-    - _RimTint: {r: 0.15156639, g: 0.211839, b: 0.24528301, a: 0}
-    - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Tint: {r: 0.990566, g: 0.7896493, b: 0.88562155, a: 0}
+    - _EmissiveColorA: {r: 0.497775, g: 0.7669207, b: 0.8867924, a: 0}
+    - _EmissiveColorB: {r: 0.0068365852, g: 0, b: 0.3773585, a: 0}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
