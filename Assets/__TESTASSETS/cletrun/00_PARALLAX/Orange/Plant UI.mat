@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Plant UI
+  m_Shader: {fileID: 4800000, guid: e4eab095959383e448c9e9d71c7cbb6a, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3002
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Grass:
+        m_Texture: {fileID: 2800000, guid: 129da60478c7e1944b50521ee874d737, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 417025cc229b4cd38638ba97d15d9fd2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 33b99296ab6527c4294a524cebdf86bc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Amplitude: 1.85
+    - _Cutoff: 0.7
+    - _Float: 0.1
+    - _Float1: -1.98
+    - _Float2: 0.0006
+    - _LevelProgression: 0
+    - _NoiseScale: 1
+    - _Speed: 0.55
+    - __dirty: 0
+    - _max: 1
+    - _min: 0
+    m_Colors:
+    - _Color: {r: 0.6037736, g: 0.48057643, b: 0.36169454, a: 0}
+    - _Color0: {r: 0.007843137, g: 0.08254085, b: 0.24705875, a: 0}
+    - _Color2: {r: 0.594959, g: 0.6431373, b: 0.1372549, a: 0}
+    - _EmissiveColor: {r: 0.06666667, g: 0.30392158, b: 0.21764706, a: 0}
+    - _bottomcolor: {r: 0.007843137, g: 0.08254082, b: 0.24705872, a: 0}
+    - _topcolor: {r: 1, g: 0.7602384, b: 0.6084906, a: 0}
