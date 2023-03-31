@@ -101,19 +101,9 @@ public class GameManager : MonoBehaviour
         if(DataPersistentManager.instance.currentDataToApply != null )
         {
             PlayerData playerData = DataPersistentManager.instance.currentDataToApply;
-            if(!playerData.b_HasPassedTutorial)
-            {
-                scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.TUTORIAL, LoadSceneMode.Additive));
-                
-                Debug.Log("---- Current Scene Name = " + GetOtherSceneNonActive().name);
-                Debug.Log("---- Current Scene Handle = " + GetOtherSceneNonActive().handle);
-            }
-            else
-            {
 
-                scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
-                Debug.Log("Launch Hub Scene");
-            }
+            scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
+            Debug.Log("Launch Hub Scene");
         }
         StartCoroutine(GetScenesLoadProgress_Coroutine());
     }
