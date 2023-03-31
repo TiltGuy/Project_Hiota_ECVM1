@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Linq;
 
 public class PauseManager : MonoBehaviour
 {
@@ -75,6 +77,7 @@ public class PauseManager : MonoBehaviour
         Menu.gameObject.SetActive(true);
         HideSettings();
         b_IsPaused = true;
+        GetComponentsInChildren<Selectable>().First().Select();
     }
 
     public void ResumeGame()
