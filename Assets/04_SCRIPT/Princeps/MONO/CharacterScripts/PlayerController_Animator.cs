@@ -9,7 +9,7 @@ public class PlayerController_Animator:MonoBehaviour
 
     [Tooltip("It needs the prefab of CameraBase")]
     public GameObject Sword_GO;
-    public GameObject Pieds;
+    public GameObject Spine;
     //public GameObject GuardPoint;
     public GameObject Shield;
     public GameObject Base_Attack;
@@ -121,8 +121,8 @@ public class PlayerController_Animator:MonoBehaviour
     public void DashBurst()
     {
         Instantiate(Dash_FX, transform.position, transform.rotation);
-        Transform Ailes = Instantiate(FXAiles.transform, Pieds.transform.position, Quaternion.identity);
-        Ailes.SetParent(Pieds.transform);
+        Transform Ailes = Instantiate(FXAiles.transform, Spine.transform.position, Quaternion.identity);
+        Ailes.SetParent(Spine.transform);
         Ailes.transform.localRotation = Quaternion.identity;
         Ailes.transform.localPosition = Vector3.zero;
     }
