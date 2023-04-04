@@ -21,6 +21,7 @@ public class PlayerController_Animator:MonoBehaviour
     public Animator animator;
     public Transform ps;
     public Transform Dash_FX;
+    public Transform FXAiles;
     public Controller_FSM controller_FSM;
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;
@@ -120,6 +121,10 @@ public class PlayerController_Animator:MonoBehaviour
     public void DashBurst()
     {
         Instantiate(Dash_FX, transform.position, transform.rotation);
+        Transform Ailes = Instantiate(FXAiles.transform, Pieds.transform.position, Quaternion.identity);
+        Ailes.SetParent(Pieds.transform);
+        Ailes.transform.localRotation = Quaternion.identity;
+        Ailes.transform.localPosition = Vector3.zero;
     }
 
 
