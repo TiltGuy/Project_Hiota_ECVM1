@@ -40,7 +40,7 @@ public class SpawnTroup : MonoBehaviour
         if(troupsOverride.Count > 0)
         {
             var randomTroup = troupsOverride[Random.Range(0, troupsOverride.Count)];
-            Debug.Log("Spawn random troup: " + randomTroup);
+            //Debug.Log("Spawn random troup: " + randomTroup);
             SpawnTroupInsideCircle(randomTroup);
         }
         
