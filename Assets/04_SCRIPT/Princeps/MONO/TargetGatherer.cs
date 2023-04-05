@@ -135,6 +135,10 @@ public class TargetGatherer : MonoBehaviour
                         if (!TargetableEnemies.Contains(enemy.transform) && enemy.gameObject.activeInHierarchy)
                         {
                             TargetableEnemies.Add(enemy.transform);
+                            if(b_IsPlayer)
+                            {
+                                DisplayEnemiesHealthBar(TargetableEnemies,true);
+                            }
                         }
                     }
                     else
@@ -163,6 +167,16 @@ public class TargetGatherer : MonoBehaviour
             }
         }
 
+    }
+
+    private void DisplayEnemiesHealthBar(List<Transform> enemies, bool b_ToDisplayBars)
+    {
+        Canvas currentHealthBar;
+        foreach(Transform enemy in enemies)
+        {
+            currentHealthBar = enemy.GetComponentInChildren<Canvas>();
+            Debug.Log(currentHealthBar.gameObject.name, currentHealthBar.gameObject);
+        }
     }
 
     float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
