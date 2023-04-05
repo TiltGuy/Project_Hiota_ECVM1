@@ -281,9 +281,13 @@ MonoBehaviour:
   FrontAttackStats: {fileID: 11400000, guid: 50eef0070fb898a4b89a9a1677ef47d0, type: 2}
   BackAttackStats: {fileID: 11400000, guid: 564fffd047ff9fc49abea2f31bab2bf4, type: 2}
   ParryAttackStats: {fileID: 11400000, guid: 634ab48e56c8412459bc02f8b362913e, type: 2}
-  healthBar: {fileID: 39000560671697348}
+  onKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  currentDamagesModifier: 0
+  healthBar: {fileID: 0}
   healthPointBarFillAmount: 0
-  guardBarImage: {fileID: 512061180034281470}
+  guardBarImage: {fileID: 0}
   Particle_Damage_Taken: {fileID: 8704643220767672381, guid: 484313ccad327774abc39dd0db32de18,
     type: 3}
   Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
@@ -307,6 +311,7 @@ MonoBehaviour:
   b_CanChangeFocusTarget: 1
   b_IsInputParry: 0
   b_Stunned: 0
+  b_Hooked: 0
   b_AttackInput: 0
   b_IsPerfectlyParrying: 0
   b_CanChangeFocusCameraTarget: 1
@@ -327,6 +332,7 @@ MonoBehaviour:
   _groundChecker: {fileID: 0}
   characontroller: {fileID: 0}
   charSpecs: {fileID: 0}
+  SliderCooldownDash: {fileID: 0}
   HITTouchedPosition: {fileID: 0}
   NavAgent: {fileID: 39000561153551388}
   CharRigidbody: {fileID: 39000561153551386}
@@ -334,17 +340,15 @@ MonoBehaviour:
   BrainAI: {fileID: 1897634448}
   b_IsInvicible: 0
   baseSpeed: 5
-  currentSpeed: 5
+  currentSpeedModifier: 0
   m_turnSpeed: 20
   _isGrounded: 0
   distanceCheckGround: 0.25
   gravity: -9.17
-  dashCooldown: 0.75
   dashDirection: {x: 0, y: 0, z: 0}
   lastDirectionInput: {x: 0, y: 0, z: 0}
   scalarVector: 0
   b_CanDash: 1
-  b_IsDashing: 0
   m_camF: {x: 0, y: 0, z: 0}
   m_camR: {x: 0, y: 0, z: 0}
   directionToGo: {x: 0, y: 0, z: 0}
@@ -388,6 +392,10 @@ MonoBehaviour:
   timeToInvertStrafeDirection: 4
   speedOfTurningEnemyWhenFocus: 25.7
   speedTurningWhenAttacking: 5.7
+  SpeedIncreasedWhenEnemyFleeing: 6
+  AntiBennyHillCountdown: 3
+  AntiBennyHillTimer: 0
+  autoStartCombat: 1
   b_WantToAttack: 0
   timerBetweenATK: 3
   TimeBtwATKRandomize: 1
@@ -420,7 +428,7 @@ GameObject:
   - component: {fileID: 39000561188572073}
   m_Layer: 9
   m_Name: Canvas_HealthBar
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,7 +548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3826089074790116482
 RectTransform:
   m_ObjectHideFlags: 0
@@ -726,12 +734,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sword_GO: {fileID: 0}
+  Spine: {fileID: 0}
+  Shield: {fileID: 0}
+  Base_Attack: {fileID: 0}
+  Dash_Attack_Frwd: {fileID: 0}
+  Dash_Attack_L: {fileID: 0}
+  Dash_Attack_R: {fileID: 0}
+  Counter_Attack: {fileID: 0}
   swordHitBox: {fileID: 0}
   animator: {fileID: 8745342701363642594}
   ps: {fileID: 4939392671061270624, guid: 1b54c7f41eb3b58478ef65928b8b94a4, type: 3}
+  Dash_FX: {fileID: 0}
+  FXAiles: {fileID: 0}
   controller_FSM: {fileID: 1273245036896107738}
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
+  b_IsUsingSwordHB: 0
 --- !u!1 &5458967291958895477
 GameObject:
   m_ObjectHideFlags: 0

@@ -269,6 +269,7 @@ MonoBehaviour:
   SpeedIncreasedWhenEnemyFleeing: 10
   AntiBennyHillCountdown: 3
   AntiBennyHillTimer: 0
+  autoStartCombat: 1
   b_WantToAttack: 0
   timerBetweenATK: 3
   TimeBtwATKRandomize: 1
@@ -327,7 +328,7 @@ GameObject:
   - component: {fileID: 39000561188572073}
   m_Layer: 5
   m_Name: Canvas_Enemy_HealthBar
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -339,17 +340,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39000561188572071}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0000093082}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.013813999, y: 0.01450033, z: 0.013813999}
   m_Children:
   - {fileID: 6300372030798583581}
   m_Father: {fileID: 39000561153551390}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000000012069, y: 2.8633}
+  m_AnchoredPosition: {x: 0, y: 2.8633}
   m_SizeDelta: {x: 100, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &39000561188572074
@@ -665,7 +666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3826089074790116482
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1007,12 +1008,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sword_GO: {fileID: 0}
+  Spine: {fileID: 0}
+  Shield: {fileID: 0}
+  Base_Attack: {fileID: 0}
+  Dash_Attack_Frwd: {fileID: 0}
+  Dash_Attack_L: {fileID: 0}
+  Dash_Attack_R: {fileID: 0}
+  Counter_Attack: {fileID: 0}
   swordHitBox: {fileID: 0}
   animator: {fileID: 8745342701363642594}
   ps: {fileID: 4939392671061270624, guid: 1b54c7f41eb3b58478ef65928b8b94a4, type: 3}
+  Dash_FX: {fileID: 0}
+  FXAiles: {fileID: 0}
   controller_FSM: {fileID: 1273245036896107738}
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
+  b_IsUsingSwordHB: 0
 --- !u!1 &2841808287223530177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,8 +1113,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.0054960167, y: 0.0021339883, z: -0.003521956}
-    m_Extent: {x: 0.005720188, y: 0.0055902535, z: 0.0036968724}
+    m_Center: {x: 0.004226799, y: 0.00056365645, z: -0.0047737085}
+    m_Extent: {x: 0.006258008, y: 0.0029176571, z: 0.004948625}
   m_DirtyAABB: 0
 --- !u!183 &5817113474059331552
 Cloth:
@@ -2239,8 +2250,8 @@ RectTransform:
   m_Father: {fileID: 2762204328642016633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2433,7 +2444,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2884,8 +2895,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.005080371, y: 0.0021345643, z: -0.0039925897}
-    m_Extent: {x: 0.006135906, y: 0.005590505, z: 0.0032263328}
+    m_Center: {x: -0.0040062508, y: 0.00033950992, z: -0.005286524}
+    m_Extent: {x: 0.006051452, y: 0.002971955, z: 0.0045148823}
   m_DirtyAABB: 0
 --- !u!183 &5178499485437154812
 Cloth:
