@@ -697,6 +697,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShopToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddcb46c8-e786-446a-81ca-ac180c85b70c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1315,6 +1324,50 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f71ddcc-fcac-4fa4-bf5c-9dff12bb0c24"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShopToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d50c09ff-7949-4a6a-8685-f4254bb59cbe"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShopToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2345bdc-7ef8-4e86-8fa3-c7a2eb0099cb"",
+                    ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShopToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0c44089-0cbc-4484-9c9c-9ae973caa6e6"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShopToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1401,6 +1454,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_UI_Gach_Gauche = m_UI.FindAction("Gach_Gauche", throwIfNotFound: true);
         m_UI_Gach_Droite = m_UI.FindAction("Gach_Droite", throwIfNotFound: true);
         m_UI_Close_Up = m_UI.FindAction("Close_Up", throwIfNotFound: true);
+        m_UI_ShopToggle = m_UI.FindAction("ShopToggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1574,6 +1628,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Gach_Gauche;
     private readonly InputAction m_UI_Gach_Droite;
     private readonly InputAction m_UI_Close_Up;
+    private readonly InputAction m_UI_ShopToggle;
     public struct UIActions
     {
         private @InputMaster m_Wrapper;
@@ -1595,6 +1650,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @Gach_Gauche => m_Wrapper.m_UI_Gach_Gauche;
         public InputAction @Gach_Droite => m_Wrapper.m_UI_Gach_Droite;
         public InputAction @Close_Up => m_Wrapper.m_UI_Close_Up;
+        public InputAction @ShopToggle => m_Wrapper.m_UI_ShopToggle;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1655,6 +1711,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Close_Up.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClose_Up;
                 @Close_Up.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClose_Up;
                 @Close_Up.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClose_Up;
+                @ShopToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnShopToggle;
+                @ShopToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnShopToggle;
+                @ShopToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnShopToggle;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1710,6 +1769,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Close_Up.started += instance.OnClose_Up;
                 @Close_Up.performed += instance.OnClose_Up;
                 @Close_Up.canceled += instance.OnClose_Up;
+                @ShopToggle.started += instance.OnShopToggle;
+                @ShopToggle.performed += instance.OnShopToggle;
+                @ShopToggle.canceled += instance.OnShopToggle;
             }
         }
     }
@@ -1781,5 +1843,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnGach_Gauche(InputAction.CallbackContext context);
         void OnGach_Droite(InputAction.CallbackContext context);
         void OnClose_Up(InputAction.CallbackContext context);
+        void OnShopToggle(InputAction.CallbackContext context);
     }
 }

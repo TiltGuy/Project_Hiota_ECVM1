@@ -8,6 +8,8 @@ using System.Linq;
 public class Collection : MonoBehaviour
 {
 
+    private InputMaster controls;
+
     public static Collection instance;
 
     public Canvas cardCanvas;
@@ -27,7 +29,6 @@ public class Collection : MonoBehaviour
     public TMP_Text currentPageNumber;
     public TMP_Text totalPageNumber;
     public GameObject cardPage;
-    private InputMaster controls;
     public GameObject Cursor;
 
     [Header("-- CLOSE UP SETTINGS --")]
@@ -103,6 +104,10 @@ public class Collection : MonoBehaviour
 
     private void ToggleCloseUp()
     {
+        if(!cardCanvas.gameObject.activeInHierarchy)
+        {
+            return;
+        }
         if(CloseUpPanel.activeInHierarchy)
         {
             CloseUpPanel.SetActive(false);

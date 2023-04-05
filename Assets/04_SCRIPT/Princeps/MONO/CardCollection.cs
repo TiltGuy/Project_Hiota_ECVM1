@@ -15,19 +15,26 @@ public class CardCollection : MonoBehaviour
     public SkillCard_SO currentSkillcard;
     [HideInInspector]
     public Collection refCollection;
+    public Shop refShop;
     public GameObject feedbackSelectedImage;
+    public TMP_Text Cost_Text;
 
     [HideInInspector]
     public bool b_IsSelected;
 
     public void AssignText( SkillCard_SO skillCard )
     {
+        
         Bonus_Texts.text = "";
         Malus_Texts.text = "";
         currentSkillcard = skillCard;
         UpdateCardMessages(Bonus_Texts, skillCard, true);
         UpdateCardMessages(Malus_Texts, skillCard, false);
         UpdateCardMessageTitle(Title_Text, skillCard);
+        if ( Cost_Text != null )
+        {
+            Cost_Text.text = "Cost : " + currentSkillcard.shopCost.ToString();
+        }
     }
 
     private void UpdateCardMessages( TMP_Text textToUpdate, SkillCard_SO skillCard, bool b_BonusDisplay )
@@ -99,5 +106,10 @@ public class CardCollection : MonoBehaviour
     public void ButtonClick()
     {
         refCollection.ToggleCardToDeck(this);
+    }
+
+    public void ShopButtonClick()
+    {
+        refShop.BuyCard(this);
     }
 }
