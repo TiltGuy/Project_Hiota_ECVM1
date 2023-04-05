@@ -22,6 +22,8 @@ public class CardCollection : MonoBehaviour
 
     public void AssignText( SkillCard_SO skillCard )
     {
+        Bonus_Texts.text = "";
+        Malus_Texts.text = "";
         currentSkillcard = skillCard;
         UpdateCardMessages(Bonus_Texts, skillCard, true);
         UpdateCardMessages(Malus_Texts, skillCard, false);
@@ -77,7 +79,6 @@ public class CardCollection : MonoBehaviour
     private void UpdateCardMessageTitle( TMP_Text textToUpdate, SkillCard_SO skillCard )
     {
         textToUpdate.text = skillCard.cardName;
-
     }
 
     public void SetFeedbackSelected(bool value)

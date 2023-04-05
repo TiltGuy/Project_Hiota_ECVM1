@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 2289063308984082129}
   - component: {fileID: 2911350882508458429}
   - component: {fileID: 1299150650951861139}
+  - component: {fileID: 230612637483853974}
   m_Layer: 5
   m_Name: PauseManager
   m_TagString: Untagged
@@ -515,6 +516,7 @@ MonoBehaviour:
   collection_Empty: {fileID: 3885556448481726333}
   prefabCard: {fileID: 8232867818548805418, guid: e63585406255d3b4c91f95bc7a8e2ee4,
     type: 3}
+  currentCardSelected: {fileID: 0}
   pages: []
   currentPageNumber: {fileID: 8923963581300987843}
   totalPageNumber: {fileID: 2875979814432507459}
@@ -523,6 +525,25 @@ MonoBehaviour:
   Cursor: {fileID: 694288757}
   CloseUpPanel: {fileID: 0}
   CloseUpCard_GO: {fileID: 0}
+  CloseUpCard_Description: {fileID: 0}
+--- !u!114 &230612637483853974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537890049324605116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6b9eb57f3a47c4ea2ea210b8f4df0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1132303442883551716
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class Collection : MonoBehaviour
     private float nbOfCardsinLists;
     public GameObject collection_Empty;
     public GameObject prefabCard;
+    public SkillCard_SO currentCardSelected;
 
     [Header("-- PAGINATION SETTINGS --")]
     
@@ -33,6 +34,7 @@ public class Collection : MonoBehaviour
 
     public GameObject CloseUpPanel;
     public GameObject CloseUpCard_GO;
+    public TMP_Text CloseUpCard_Description;
 
 
     Player_InputScript refPlayerInput;
@@ -60,6 +62,7 @@ public class Collection : MonoBehaviour
 
         controls.UI.Gach_Gauche.started += ctx => ScrollLeft();
         controls.UI.Gach_Droite.started += ctx => ScrollRight();
+        controls.UI.Close_Up.started += ctx => ToggleCloseUp();
     }
 
     private void OnEnable()
@@ -96,6 +99,23 @@ public class Collection : MonoBehaviour
     private void Update()
     {
         UpdateIsInUIPlayer();
+    }
+
+    private void ToggleCloseUp()
+    {
+        if(CloseUpPanel.activeInHierarchy)
+        {
+            CloseUpPanel.SetActive(false);
+        }
+        else
+        {
+            // Faire passer le SO au close UP
+            CloseUpCard_GO.GetComponent<CardCollection>().AssignText(currentCardSelected);
+            CloseUpCard_Description.text = currentCardSelected.description;
+
+            // Afficher Le close UP
+            CloseUpPanel.SetActive(true);
+        }
     }
 
     private void UpdateIsInUIPlayer()
@@ -162,8 +182,7 @@ public class Collection : MonoBehaviour
     {
         Cursor.transform.position = target.transform.position;
         Cursor.transform.parent = target.transform;
-
-        // AJOUTER FEEDBACK SELECTION
+        currentCardSelected = target.GetComponentInParent<CardCollection>().currentSkillcard;
     }
 
     private void InitializeDisplay(List<SkillCard_SO> CollectionCard)
@@ -225,7 +244,7 @@ public class Collection : MonoBehaviour
             {
                 DeckManager.instance._PlayerDeck.Add(card.currentSkillcard);
                 card.SetFeedbackSelected(true);
-
+                // mettre à jour le compteur en prenant le count sur 24
             }
         }
 
