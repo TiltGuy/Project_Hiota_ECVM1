@@ -104,7 +104,10 @@ public class Player_InputScript : MonoBehaviour
     {
         if ( b_IsInUI )
             return;
-        controller_FSM.TakeAttackInputInBuffer();
+        if(controller_FSM != null)
+        {
+            controller_FSM.TakeAttackInputInBuffer();
+        }
     }
 
     void WantingToParry(bool value)

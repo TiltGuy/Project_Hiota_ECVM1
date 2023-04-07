@@ -135,10 +135,7 @@ public class TargetGatherer : MonoBehaviour
                         if (!TargetableEnemies.Contains(enemy.transform) && enemy.gameObject.activeInHierarchy)
                         {
                             TargetableEnemies.Add(enemy.transform);
-                            if(b_IsPlayer)
-                            {
-                                DisplayEnemiesHealthBar(TargetableEnemies,true);
-                            }
+                            DisplayEnemiesHealthBar(enemy.transform,true);
                         }
                     }
                     else
@@ -147,6 +144,7 @@ public class TargetGatherer : MonoBehaviour
                         if (TargetableEnemies.Contains(enemy.transform) && (!enemy.gameObject.activeInHierarchy 
                             || enemy.GetComponent<Controller_FSM>().B_IsDead == true))
                         {
+                            DisplayEnemiesHealthBar(enemy.transform, false);
                             TargetableEnemies.Remove(enemy.transform);
 
                         }
@@ -157,6 +155,7 @@ public class TargetGatherer : MonoBehaviour
                 {
                     if (TargetableEnemies.Contains(objToVerify.transform))
                     {
+                        DisplayEnemiesHealthBar(objToVerify.transform, false);
                         TargetableEnemies.Remove(objToVerify.transform);
 
                     }
@@ -169,13 +168,12 @@ public class TargetGatherer : MonoBehaviour
 
     }
 
-    private void DisplayEnemiesHealthBar(List<Transform> enemies, bool b_ToDisplayBars)
+    private void DisplayEnemiesHealthBar(Transform enemy, bool b_ToDisplayBars)
     {
-        Canvas currentHealthBar;
-        foreach(Transform enemy in enemies)
+        if(b_IsPlayer)
         {
-            currentHealthBar = enemy.GetComponentInChildren<Canvas>();
-            Debug.Log(currentHealthBar.gameObject.name, currentHealthBar.gameObject);
+            enemy.GetComponent<IABrain>().DisplayHealthBar(b_ToDisplayBars, false);
+            Debug.Log(enemy.name, transform);
         }
     }
 
@@ -242,7 +240,7 @@ public class TargetGatherer : MonoBehaviour
 
     public Transform CheckoutNextTargetedEnemy(Vector2 input)
     {
-        print("Vector to next Target = " + input);
+        //print("Vector to next Target = " + input);
         Transform currentHiotaTarget = controller.currentCharacterTarget;
         Transform objectToReturn;
         objectToReturn = currentHiotaTarget;

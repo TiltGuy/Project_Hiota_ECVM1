@@ -47,6 +47,11 @@ public class Collection : MonoBehaviour
 
         instance = this;
 
+        if(instance !=null)
+        {
+            Destroy(this);
+        }
+        DontDestroyOnLoad(gameObject);
         //Initialisation of ALL the Bindings with InputMaster
         if ( InputManager.inputMaster != null )
         {
@@ -59,12 +64,12 @@ public class Collection : MonoBehaviour
             controls.UI.Enable();
         }
 
-        //controls.UI.ScrollController.performed += ctx => ScrollCollection(ctx.ReadValue<float>());
-
         controls.UI.Gach_Gauche.started += ctx => ScrollLeft();
         controls.UI.Gach_Droite.started += ctx => ScrollRight();
         controls.UI.Close_Up.started += ctx => ToggleCloseUp();
     }
+
+    
 
     private void OnEnable()
     {
@@ -85,6 +90,8 @@ public class Collection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+
         refPlayerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_InputScript>();
         refPlayerInput.B_IsInUI = true;
         if (b_UseDeckManagerCollection && DeckManager.instance != null)
@@ -137,14 +144,17 @@ public class Collection : MonoBehaviour
 
     public void ScrollLeft()
     {
-        if ( currentPageID - 1 < 0 )
+        if(cardCanvas.gameObject.activeInHierarchy)
         {
-            return;
+            if ( currentPageID - 1 < 0 )
+            {
+                return;
+            }
+            currentPageID -= 1;
+            UpdateCurrentPageNumberPagination();
+            SetCurrentPageVisible();
+            SetFirstCardSelectable();
         }
-        currentPageID -= 1;
-        UpdateCurrentPageNumberPagination();
-        SetCurrentPageVisible();
-        SetFirstCardSelectable();
 
     }
 
@@ -156,16 +166,18 @@ public class Collection : MonoBehaviour
 
     public void ScrollRight()
     {
-
-        print(currentPageID);
-        if ( currentPageID + 1 > pages.Length - 1 )
+        if(cardCanvas.gameObject.activeInHierarchy)
         {
-            return;
+            //print(currentPageID);
+            if ( currentPageID + 1 > pages.Length - 1 )
+            {
+                return;
+            }
+            currentPageID += 1;
+            UpdateCurrentPageNumberPagination();
+            SetCurrentPageVisible();
+            SetFirstCardSelectable();
         }
-        currentPageID += 1;
-        UpdateCurrentPageNumberPagination();
-        SetCurrentPageVisible();
-        SetFirstCardSelectable();
     }
 
     private void SetCurrentPageVisible()

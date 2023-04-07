@@ -8,8 +8,8 @@ public class IABrain : MonoBehaviour
 
     private Controller_FSM controller_FSM;
     private TargetGatherer targetGatherer;
+    private CharacterSpecs charSpecs;
 
-    
 
     [HideInInspector] public float factorStrafecrossDirection = 1f;
     private bool b_IsEnemyInFight = false;
@@ -24,6 +24,8 @@ public class IABrain : MonoBehaviour
 
     public bool autoStartCombat = true;
 
+    
+
     #region ATTACK SETTINGS
 
     public bool b_WantToAttack;
@@ -32,6 +34,12 @@ public class IABrain : MonoBehaviour
     public float minDistForPerformingAttack = 1f;
 
     #endregion
+
+    [Header("-- Health Bar Display --")]
+
+    public Canvas HealthBar;
+    [HideInInspector]
+    public bool b_IsVisible;
 
     public bool B_IsEnemyInFight
     {
@@ -65,7 +73,8 @@ public class IABrain : MonoBehaviour
     {
         controller_FSM = GetComponent<Controller_FSM>();
         targetGatherer = GetComponentInChildren<TargetGatherer>();
-        if(targetGatherer == null)
+        charSpecs = GetComponentInChildren<CharacterSpecs>();
+        if (targetGatherer == null)
         {
             Debug.LogError("WARNING : There is no target gatherer in reference !!!");
         }
@@ -134,6 +143,21 @@ public class IABrain : MonoBehaviour
     private IEnumerator BennyHillTimer_Couroutine()
     {
         yield return new WaitForSeconds(AntiBennyHillTimer);
+    }
+
+    public void DisplayHealthBar(bool value, bool b_IsTarget)
+    {
+        if(b_IsTarget)
+        {
+            HealthBar.gameObject.SetActive(value);
+            Debug.Log(value, transform);
+            return;
+        }
+        if((charSpecs.Health != charSpecs.MaxHealth))
+        {
+            HealthBar.gameObject.SetActive(value);
+            Debug.Log(value, transform);
+        }
     }
 
 

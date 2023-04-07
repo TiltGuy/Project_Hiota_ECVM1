@@ -53,14 +53,14 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        Debug.Log("load main menu");
+        //Debug.Log("load main menu");
         var asyncOp = SceneManager.LoadSceneAsync((int)ScenesIndexes.MAINMENU, LoadSceneMode.Additive);
         while ( !asyncOp.isDone )
         {
-            Debug.Log(asyncOp.progress);
+            //Debug.Log(asyncOp.progress);
             yield return null;
         }
-        Debug.Log("main menu loaded");
+        //Debug.Log("main menu loaded");
         currentScene = GetOtherSceneNonActive();
         SceneManager.SetActiveScene(currentScene);
         //Debug.Log(currentScene);

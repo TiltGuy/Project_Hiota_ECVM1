@@ -184,7 +184,7 @@ public class ActionCameraPlayer : MonoBehaviour
         if ( targetGatherer.TargetableEnemies.Count > 0 )
         {
             CurrentHiotaActionCameraTarget = targetGatherer.CheckoutClosestEnemyToCenterCam();
-            Debug.Log(currentHiotaActionCameraTarget);
+            //Debug.Log(currentHiotaActionCameraTarget);
             CharacterSpecs targetSpecsScript = CurrentHiotaActionCameraTarget.GetComponent<CharacterSpecs>();
             targetSpecsScript.OnSomethingKilledMe += DoSomethingWhenCurrentTargetGetKilled;
 

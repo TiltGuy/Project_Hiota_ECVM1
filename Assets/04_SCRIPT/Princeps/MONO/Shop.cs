@@ -12,6 +12,8 @@ public class Shop : MonoBehaviour
     public List<SkillCard_SO> currentListOfSkillCardSOToChoose = new List<SkillCard_SO>();
     public List<CardCollection> ListOfCardSlots = new List<CardCollection>();
 
+    public GameObject ShopPanel_GO;
+
     public GameObject CloseUpPanel;
     public GameObject CloseUpCard_GO;
     public TMP_Text CloseUpCard_Description;
@@ -42,9 +44,16 @@ public class Shop : MonoBehaviour
     void Start()
     {
         SortCardsSO();
-        ShopGrid.GetComponentsInChildren<Selectable>().First().Select();
+        if( ShopPanel_GO.activeInHierarchy)
+        {
+            SelectFirstCardShop();
+        }
     }
 
+    private void SelectFirstCardShop()
+    {
+        ShopGrid.GetComponentsInChildren<Selectable>().First().Select();
+    }
 
     private void SortCardsSO()
     {
@@ -127,7 +136,7 @@ public class Shop : MonoBehaviour
         // Rajouter le SOLD OUT
         if( ShopGrid.GetComponentsInChildren<Selectable>().Length > 0 )
         {
-            ShopGrid.GetComponentsInChildren<Selectable>().First().Select();
+            SelectFirstCardShop();
         }
     }
 
@@ -141,7 +150,7 @@ public class Shop : MonoBehaviour
         }
         if ( ShopGrid.GetComponentsInChildren<Selectable>().Length > 0 )
         {
-            ShopGrid.GetComponentsInChildren<Selectable>().First().Select();
+            SelectFirstCardShop();
         }
     }
 }

@@ -57,6 +57,8 @@ public class ActionHandler : MonoBehaviour
     public delegate void MultiDelegate();
     public MultiDelegate OnTargetNull;
 
+    Coroutine AttackCoroutine;
+
 
     public Transform CurrentCharacterTarget
     {
@@ -108,9 +110,13 @@ public class ActionHandler : MonoBehaviour
 
     public void TakeAttackInputInBuffer()
     {
-        StopCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        if( AttackCoroutine != null)
+        {
+            StopCoroutine(AttackCoroutine);
+        }
         b_AttackInput = true;
-        StartCoroutine(BufferingAttackInputCoroutine(timeBufferAttackInput));
+        AttackCoroutine = StartCoroutine("BufferingAttackInputCoroutine", timeBufferAttackInput);
+
     }
     private IEnumerator BufferingAttackInputCoroutine(float time)
     {
