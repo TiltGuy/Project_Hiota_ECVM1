@@ -276,6 +276,8 @@ MonoBehaviour:
   timerBetweenATK: 1
   TimeBtwATKRandomize: 1
   minDistForPerformingAttack: 2.4
+  HealthBar: {fileID: 39000561188572074}
+  b_IsVisible: 0
 --- !u!65 &1912565262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1038,7 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sword_GO: {fileID: 0}
-  Pieds: {fileID: 0}
+  Spine: {fileID: 0}
   Shield: {fileID: 0}
   Base_Attack: {fileID: 0}
   Dash_Attack_Frwd: {fileID: 0}
@@ -1049,6 +1051,7 @@ MonoBehaviour:
   animator: {fileID: 8745342701363642594}
   ps: {fileID: 4939392671061270624, guid: 1b54c7f41eb3b58478ef65928b8b94a4, type: 3}
   Dash_FX: {fileID: 0}
+  FXAiles: {fileID: 0}
   controller_FSM: {fileID: 1273245036896107738}
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
