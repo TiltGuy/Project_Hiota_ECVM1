@@ -122,19 +122,19 @@ ModelImporter:
     second: HIOTA_Dash_ATK_LEFT_ANT
   - first:
       74: -2700267207792136842
-    second: HIOTA_Dash_ATK_LEFT_HF
-  - first:
-      74: 4683213498673881369
-    second: HIOTA_Dash_ATK_LEFT_REC
-  - first:
-      74: 2249124230292615466
-    second: HIOTA_Dash_ATK_RIGHT_ANT
-  - first:
-      74: 6042099589706794178
     second: HIOTA_Dash_ATK_RIGHT_HF
   - first:
-      74: 3784493334315362389
+      74: 4683213498673881369
     second: HIOTA_Dash_ATK_RIGHT_REC
+  - first:
+      74: 2249124230292615466
+    second: HIOTA_Dash_ATK_LEFT_ANT
+  - first:
+      74: 6042099589706794178
+    second: HIOTA_Dash_ATK_LEFT_HF
+  - first:
+      74: 3784493334315362389
+    second: HIOTA_Dash_ATK_LEFT_REC
   - first:
       74: 6200434516023485613
     second: HIOTA_Focus_Run_Diag_Frwd_Right
@@ -147,6 +147,9 @@ ModelImporter:
   - first:
       74: -2554752239124956477
     second: HIOTA_Dash_Diag_Bkwd_Left
+  - first:
+      74: 2249124230292615466
+    second: HIOTA_Dash_ATK_RIGHT_ANT
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -1134,8 +1137,8 @@ ModelImporter:
       name: HIOTA_Guard_CNT_ATK_REC
       takeName: Take 001
       internalID: 0
-      firstFrame: 945
-      lastFrame: 955
+      firstFrame: 955
+      lastFrame: 970
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1158,7 +1161,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 9.900001
     - serializedVersion: 16
       name: HIOTA_Guard_DMG
       takeName: Take 001
@@ -1421,7 +1424,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: HIOTA_Dash_ATK_LEFT_ANT
+      name: HIOTA_Dash_ATK_RIGHT_ANT
       takeName: Take 001
       internalID: 0
       firstFrame: 770
@@ -1450,7 +1453,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: HIOTA_Dash_ATK_LEFT_HF
+      name: HIOTA_Dash_ATK_RIGHT_HF
       takeName: Take 001
       internalID: 0
       firstFrame: 785
@@ -1501,7 +1504,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: HIOTA_Dash_ATK_LEFT_REC
+      name: HIOTA_Dash_ATK_RIGHT_REC
       takeName: Take 001
       internalID: 0
       firstFrame: 790
@@ -1530,7 +1533,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: HIOTA_Dash_ATK_RIGHT_ANT
+      name: HIOTA_Dash_ATK_LEFT_ANT
       takeName: Take 001
       internalID: 0
       firstFrame: 805
@@ -1559,7 +1562,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: HIOTA_Dash_ATK_RIGHT_HF
+      name: HIOTA_Dash_ATK_LEFT_HF
       takeName: Take 001
       internalID: 0
       firstFrame: 820
@@ -1610,7 +1613,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: HIOTA_Dash_ATK_RIGHT_REC
+      name: HIOTA_Dash_ATK_LEFT_REC
       takeName: Take 001
       internalID: 0
       firstFrame: 825
