@@ -6,10 +6,10 @@ public class RoomObject : MonoBehaviour
 {
     //static public int debugArenaIndex;
 
-    [Range(0, 12)]
+    [Range(0, 5)]
     public int minIndex = 0;
-    [Range(0, 12)]
-    public int maxIndex = 12;
+    [Range(0, 5)]
+    public int maxIndex = 5;
 
     static public int debugArenaIndex
     {
@@ -75,7 +75,7 @@ public class RoomObjectEditor : UnityEditor.Editor
         base.OnInspectorGUI();
 
         GUILayout.BeginVertical("box");
-        RoomObject.debugArenaIndex = UnityEditor.EditorGUILayout.IntSlider("Debug Index", RoomObject.debugArenaIndex, 0, 12);
+        RoomObject.debugArenaIndex = UnityEditor.EditorGUILayout.IntSlider("Debug Index", RoomObject.debugArenaIndex, 0, 5);
         if(GUILayout.Button("DEBUG PLAY", GUILayout.ExpandWidth(false)))
         {
             RoomObject.debugPlay = true;

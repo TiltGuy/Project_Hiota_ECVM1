@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 119
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1011756350350843257
 Transform:
@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2327805, y: 2.9301224, z: 5.576233}
-  m_Center: {x: 0.09856582, y: 0.9650612, z: 0.26948416}
+  m_Size: {x: 1.3898497, y: 5.389038, z: 4.1647034}
+  m_Center: {x: 0.020031184, y: 2.194519, z: -0.014237881}
 --- !u!114 &693729588033282662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 119
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &2080064125338220847
 Transform:
@@ -172,7 +172,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3661960316020378583
 Transform:
@@ -271,10 +271,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739753960762874912, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
         type: 3}
       propertyPath: m_Name
       value: Grass_3D (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e19f74e75cad454eb5257944418ba81, type: 3}
@@ -361,10 +371,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739753960762874912, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
         type: 3}
       propertyPath: m_Name
       value: Grass_3D (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e19f74e75cad454eb5257944418ba81, type: 3}
@@ -451,10 +471,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739753960762874912, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
         type: 3}
       propertyPath: m_Name
       value: Grass_3D (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e19f74e75cad454eb5257944418ba81, type: 3}
@@ -541,10 +571,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739753960762874912, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
         type: 3}
       propertyPath: m_Name
       value: Grass_3D (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e19f74e75cad454eb5257944418ba81, type: 3}
@@ -620,6 +660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallCover_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498753129365590999, guid: f52a51ed747c1214fac35d91be7ad312,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f52a51ed747c1214fac35d91be7ad312, type: 3}
@@ -706,10 +751,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739753960762874912, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
         type: 3}
       propertyPath: m_Name
       value: Grass_3D (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e19f74e75cad454eb5257944418ba81, type: 3}
@@ -796,10 +851,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739753960762874912, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
         type: 3}
       propertyPath: m_Name
       value: Grass_3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093338810591310761, guid: 1e19f74e75cad454eb5257944418ba81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e19f74e75cad454eb5257944418ba81, type: 3}
