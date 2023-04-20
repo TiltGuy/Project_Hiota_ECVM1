@@ -7,28 +7,20 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shield_Material
-  m_Shader: {fileID: 4800000, guid: d612d3ac556a68441989006d53299256, type: 3}
+  m_Name: Portal_Spawn
+  m_Shader: {fileID: 4800000, guid: fac9408d2f745ca46a102c6543326b86, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Aura_Texture:
-        m_Texture: {fileID: 2800000, guid: d6c00c5481c7d604da3a11ae3affc0e6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Coupe_FX_1001_BaseMap_ACESACEScg:
-        m_Texture: {fileID: 2800000, guid: faad2c967939e544babd3a55b333df15, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -63,24 +55,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Pearls_Texture:
-        m_Texture: {fileID: 2800000, guid: 194244f8eb1165a4494a0200f25f86f1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: 194244f8eb1165a4494a0200f25f86f1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture0:
-        m_Texture: {fileID: 2800000, guid: faad2c967939e544babd3a55b333df15, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture1:
-        m_Texture: {fileID: 2800000, guid: c365892e5441f3e46bc0e29482472df3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: d6c00c5481c7d604da3a11ae3affc0e6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 52c1a422bfc04b543adc653b160af1e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -88,36 +64,24 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha_Clip: 0.671
     - _BumpScale: 1
-    - _Cutoff: 0.18
+    - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Emissive_Power: 10
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighDynamicRange: 1
-    - _Mask_Clip: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Opacity_Test: 5
     - _Parallax: 0.02
-    - _Power_Of_Aura: 2
-    - _Shield_Max: 0.75
-    - _Shield_Min: 0.15
-    - _Shield_Slider: 1.0000442
-    - _Shine_Of_Aura: 3
-    - _Size_Of_Aura: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: -2
     - _SrcBlend: 1
-    - _TestMaggle: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorPearls: {r: 0, g: 0.827451, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
