@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD;
 
 public class ChallengeTrigger : MonoBehaviour
 {
+    public StudioEventEmitter emitter;
+
     public List<CharacterSpecs> enemiesToKill = new List<CharacterSpecs>();
     public UnityEvent onPlayerEnterCombatZone;
     public delegate void OnMultiDelegate();

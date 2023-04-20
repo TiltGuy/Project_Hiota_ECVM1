@@ -38,6 +38,16 @@ public class Shop : MonoBehaviour
         }
 
         controls.UI.Close_Up.started += ctx => ToggleCloseUp();
+        controls.UI.ShopToggle.started += ctx => ToggleShopCanvas();
+    }
+
+    void ToggleShopCanvas()
+    {
+        ShopPanel_GO.SetActive(!ShopPanel_GO.activeInHierarchy);
+        if ( ShopPanel_GO.activeInHierarchy )
+        {
+            SelectFirstCardShop();
+        }
     }
 
     // Start is called before the first frame update

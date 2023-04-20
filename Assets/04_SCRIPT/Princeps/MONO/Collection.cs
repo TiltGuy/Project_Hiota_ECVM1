@@ -45,12 +45,14 @@ public class Collection : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        instance = this;
-
-        if(instance !=null)
+        if ( instance != null )
         {
             Destroy(this);
         }
+
+        instance = this;
+
+        
         DontDestroyOnLoad(gameObject);
         //Initialisation of ALL the Bindings with InputMaster
         if ( InputManager.inputMaster != null )
