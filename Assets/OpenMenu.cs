@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 public class OpenMenu : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class OpenMenu : MonoBehaviour
         {
             OnClose?.Invoke();
             b_IsOpen = false;
+            DeckManager.instance._RunDeck = DeckManager.instance._CurrentDeck.ToList();
         }
     }
 }
