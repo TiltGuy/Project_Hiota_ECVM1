@@ -86,7 +86,7 @@ ModelImporter:
     second: ECLAIREUR_Guard_DMG
   - first:
       74: -5405653242291790180
-    second: ECLAIREUR_Hit_Taken
+    second: ECLAIREUR_Guard_BRK
   - first:
       74: -4910373821244374761
     second: ECLAIREUR_Fall_Off_Short
@@ -132,9 +132,6 @@ ModelImporter:
   - first:
       74: 140757480654261154
     second: ECLAIREUR_Dash_Diag_BKWD_L
-  - first:
-      74: 5189397933021662664
-    second: ECLAIREUR_Guard_BRK
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -254,8 +251,8 @@ ModelImporter:
       name: ECLAIREUR_Base_ATK_HF
       takeName: Take 001
       internalID: 0
-      firstFrame: 81
-      lastFrame: 86
+      firstFrame: 80
+      lastFrame: 85
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -264,12 +261,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -283,7 +280,7 @@ ModelImporter:
       name: ECLAIREUR_Base_ATK_REC
       takeName: Take 001
       internalID: 0
-      firstFrame: 86
+      firstFrame: 85
       lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
@@ -293,9 +290,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -922,7 +919,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 565
-      lastFrame: 580
+      lastFrame: 610
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -947,7 +944,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: ECLAIREUR_Hit_Taken
+      name: ECLAIREUR_Guard_BRK
       takeName: Take 001
       internalID: 0
       firstFrame: 615
@@ -1136,7 +1133,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -1410,39 +1407,10 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
-    - serializedVersion: 16
-      name: ECLAIREUR_Guard_BRK
-      takeName: Take 001
-      internalID: 0
-      firstFrame: 585
-      lastFrame: 610
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 10
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1.6
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -1489,7 +1457,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.6
+    globalScale: 1
     rootMotionBoneName: B_Root_Motion_1
     hasTranslationDoF: 0
     hasExtraRoot: 0
