@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class Collection : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Collection : MonoBehaviour
     public static Collection instance;
 
     public Canvas cardCanvas;
+    public GameObject collectionEmpty;
     public bool b_UseDeckManagerCollection;
     public ListOfCards collection;
     [SerializeField]
@@ -43,13 +45,15 @@ public class Collection : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
 
         if ( instance != null )
         {
-            Destroy(this);
+            Debug.Log("Je m'autodétruis!!!!");
+            Destroy(gameObject);
         }
 
+        Debug.Log(instance,instance);
         instance = this;
 
         
@@ -71,7 +75,17 @@ public class Collection : MonoBehaviour
         controls.UI.Close_Up.started += ctx => ToggleCloseUp();
     }
 
-    
+    public void RefreshCollection()
+    {
+        if ( b_UseDeckManagerCollection && DeckManager.instance != null )
+        {
+            InitializeDisplay(DeckManager.instance._PlayerDeck);
+        }
+        else
+        {
+            InitializeDisplay(collection.ListCards);
+        }
+    }
 
     private void OnEnable()
     {
@@ -92,18 +106,11 @@ public class Collection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        //instance = this;
 
         refPlayerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_InputScript>();
         refPlayerInput.B_IsInUI = true;
-        if (b_UseDeckManagerCollection && DeckManager.instance != null)
-        {
-            InitializeDisplay(DeckManager.instance.BaseListOfCards.ListCards);
-        }
-        else
-        {
-            InitializeDisplay(collection.ListCards);
-        }
+        RefreshCollection();
     }
 
     private void Update()
@@ -146,7 +153,9 @@ public class Collection : MonoBehaviour
 
     public void ScrollLeft()
     {
-        if(cardCanvas.gameObject.activeInHierarchy)
+        if ( cardCanvas == null )
+            return;
+        if (cardCanvas.gameObject.activeInHierarchy)
         {
             if ( currentPageID - 1 < 0 )
             {
@@ -168,6 +177,8 @@ public class Collection : MonoBehaviour
 
     public void ScrollRight()
     {
+        if ( cardCanvas == null )
+            return;
         if(cardCanvas.gameObject.activeInHierarchy)
         {
             //print(currentPageID);
@@ -199,8 +210,10 @@ public class Collection : MonoBehaviour
 
     public void SelectCard(GameObject target)
     {
-        Cursor.transform.position = target.transform.position;
-        Cursor.transform.parent = target.transform;
+        //Debug.Log(Cursor.name, Cursor);
+        Debug.Log(target.name, target.transform);
+        //Cursor.transform.position = target.transform.position;
+        //Cursor.transform.parent = target.transform;
         currentCardSelected = target.GetComponentInParent<CardCollection>().currentSkillcard;
     }
 
@@ -209,6 +222,10 @@ public class Collection : MonoBehaviour
         int cardCounter = 0;
         int pageCounter = 0;
         int numberOfPages = Mathf.CeilToInt(CollectionCard.Count / nbOfCardsinLists);
+        for(int i = 0; i < pages.Length; i++)
+        {
+            Destroy(pages[i]);
+        }
         pages = new GameObject[numberOfPages];
         totalPageNumber.text = string.Concat("/ ", pages.Length.ToString());
         UpdateCurrentPageNumberPagination();
@@ -234,7 +251,28 @@ public class Collection : MonoBehaviour
 
     private void SetFirstCardSelectable()
     {
-        cardCanvas.GetComponentsInChildren<Selectable>().First().Select();
+        //List<SelectedScroll> list = new List<SelectedScroll>();
+        //list = cardCanvas.GetComponentsInChildren<SelectedScroll>().ToList();
+        //foreach(SelectedScroll scroll in list)
+        //{
+        //    Debug.Log(scroll.name, scroll.transform);
+        //}
+        //Debug.Log(list.Count);
+        //Debug.Log(cardCanvas.GetComponentsInChildren<SelectedScroll>().First());
+        //cardCanvas.GetComponentsInChildren<SelectedScroll>().First().GetComponent<Button>().Select();
+        StartCoroutine("SelectContinueButtonLater");
+    }
+
+    IEnumerator SelectContinueButtonLater()
+    {
+        yield return null;
+        GameObject eventSchose = GameObject.Find("EventSystem");
+        if(eventSchose != null)
+        {
+            EventSystem es = eventSchose.GetComponent<EventSystem>();
+            es.SetSelectedGameObject(null);
+            es.SetSelectedGameObject(cardCanvas.GetComponentsInChildren<SelectedScroll>().First().gameObject);
+        }
     }
 
     private void InitializeCard( GameObject currentPage, SkillCard_SO card )
@@ -244,7 +282,7 @@ public class Collection : MonoBehaviour
         CardCollection cardScript = clone.GetComponent<CardCollection>();
         cardScript.AssignText(card);
         cardScript.refCollection = this;
-        if ( DeckManager.instance._PlayerDeck.Contains(card) )
+        if ( DeckManager.instance._CurrentDeck.Contains(card) )
         {
             cardScript.SetFeedbackSelected(true);
         }
@@ -254,14 +292,14 @@ public class Collection : MonoBehaviour
     {
         if(card.b_IsSelected)
         {
-            DeckManager.instance._PlayerDeck.Remove(card.currentSkillcard);
+            DeckManager.instance._CurrentDeck.Remove(card.currentSkillcard);
             card.SetFeedbackSelected(false);
         }
         else
         {
-            if ( DeckManager.instance._PlayerDeck.Count < 24 )
+            if ( DeckManager.instance._CurrentDeck.Count < 24 )
             {
-                DeckManager.instance._PlayerDeck.Add(card.currentSkillcard);
+                DeckManager.instance._CurrentDeck.Add(card.currentSkillcard);
                 card.SetFeedbackSelected(true);
                 // mettre à jour le compteur en prenant le count sur 24
             }
