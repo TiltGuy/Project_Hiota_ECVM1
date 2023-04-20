@@ -11,10 +11,22 @@ public class DeckManager : MonoBehaviour
     int playerMoney;
     [SerializeField]
     int playerBetMoney;
+    public ListOfCards AllCards;
     public ListOfCards BaseListOfCards;
+
+    // Hidden Deck = Cartes que l'on va acheter dans le shop
     public List<SkillCard_SO> _HiddenDeck = new List<SkillCard_SO>();
+
+    // Player Deck = les cartes que l'on a achetées/possèdent déjà
     public List<SkillCard_SO> _PlayerDeck = new List<SkillCard_SO>();
+
+    // Current Deck = cartes que l'on a sélectionnées pour la Run
+    public List<SkillCard_SO> _CurrentDeck = new List<SkillCard_SO>();
+
+    // Run deck = Deck copie du current Deck que l'on va vidé à chaque choix du joueur pendant la run
     public List<SkillCard_SO> _RunDeck = new List<SkillCard_SO>();
+
+    // Enemies Deck = Deck rempli à chaque choix du joueur et qui est appelé pour donner les effets aux mobs à chaque début de combat
     public List<SkillCard_SO> _EnemiesDeck = new List<SkillCard_SO>();
 
     [System.Serializable]
@@ -79,16 +91,15 @@ public class DeckManager : MonoBehaviour
         //{
         //    _RunDeck.Add(_PlayerDeck[i]);
         //}
-        if(DataPersistentManager.instance)
+        
+        _PlayerDeck.Clear();
+        _PlayerDeck = BaseListOfCards.ListCards.ToList();
+        _HiddenDeck = AllCards.ListCards.ToList();
+        if(_CurrentDeck.Count == 0)
         {
-            TakeSavedDecksFromDPManager();
+            _CurrentDeck = _PlayerDeck.ToList();
         }
-        else
-        {
-            _PlayerDeck.Clear();
-            _PlayerDeck = BaseListOfCards.ListCards.ToList();
-        }
-        _RunDeck = _PlayerDeck.ToList();
+        _RunDeck = _CurrentDeck.ToList();
     }
 
     #region Save STuffs
@@ -148,7 +159,7 @@ public class DeckManager : MonoBehaviour
         
         if ( _RunDeck.Count == 0 )
         {
-            _RunDeck = _PlayerDeck;
+            _RunDeck = _CurrentDeck.ToList();
         }
         SkillCard_SO newCard = _RunDeck[UnityEngine.Random.Range(0, _RunDeck.Count)];
         //_RunDeck.Remove(newCard);

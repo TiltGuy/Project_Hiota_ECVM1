@@ -43,6 +43,12 @@ public class Shop : MonoBehaviour
 
     void ToggleShopCanvas()
     {
+        if ( ShopPanel_GO == null )
+        {
+            Debug.Log("Il n'y a pas de shop panel");
+            return;
+        }
+
         ShopPanel_GO.SetActive(!ShopPanel_GO.activeInHierarchy);
         if ( ShopPanel_GO.activeInHierarchy )
         {
@@ -62,13 +68,23 @@ public class Shop : MonoBehaviour
 
     private void SelectFirstCardShop()
     {
-        ShopGrid.GetComponentsInChildren<Selectable>().First().Select();
+        bool b_IsAnyone = false;
+        foreach(CardCollection child in ShopGrid.transform.GetComponentsInChildren<CardCollection>())
+        {
+            if ( child.gameObject.activeInHierarchy )
+                b_IsAnyone = true;
+        }
+        if(b_IsAnyone)
+        {
+            Debug.Log("Je select !!!");
+            ShopGrid.GetComponentsInChildren<Selectable>().First().Select();
+        }
     }
 
     private void SortCardsSO()
     {
         // Dupliquer cela deux fois pour les Communes, Rares et Légendaires
-        currentListOfSkillCardSOToChoose = DeckManager.instance.BaseListOfCards.ListCards.ToList();
+        currentListOfSkillCardSOToChoose = DeckManager.instance._HiddenDeck.ToList();
         List<SkillCard_SO> newListSorted = new List<SkillCard_SO>();
         foreach(SkillCard_SO skillCard in currentListOfSkillCardSOToChoose)
         {
