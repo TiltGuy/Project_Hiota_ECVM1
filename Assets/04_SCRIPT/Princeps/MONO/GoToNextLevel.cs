@@ -16,6 +16,7 @@ public class GoToNextLevel : MonoBehaviour
             else
             {
                 Debug.Log("TELEPORTAION!!!");
+                GameManager.instance.GoToNextLVL();
             }
         }
     }
