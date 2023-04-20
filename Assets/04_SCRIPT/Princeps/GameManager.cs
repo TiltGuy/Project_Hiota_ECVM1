@@ -72,9 +72,9 @@ public class GameManager : MonoBehaviour
     {
         #region -- Delete All Saves --
 
-        PlayerPrefs.DeleteAll();
-        SaveSystem.ClearData(SaveSystem.MainSaveFileName);
-        DataPersistentManager.instance.TryClearData();
+        //PlayerPrefs.DeleteAll();
+        //SaveSystem.ClearData(SaveSystem.MainSaveFileName);
+        //DataPersistentManager.instance.TryClearData();
 
         #endregion
 
@@ -90,10 +90,10 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        if(!File.Exists(SaveSystem.GetPath(SaveSystem.MainSaveFileName)))
-        {
-            return;
-        }
+        //if(!File.Exists(SaveSystem.GetPath(SaveSystem.MainSaveFileName)))
+        //{
+        //    return;
+        //}
         scenesLoading.Clear();
         scenesLoading = new List<AsyncOperation>();
         LoadingScreen_GO.SetActive(true);
@@ -117,29 +117,34 @@ public class GameManager : MonoBehaviour
         scenesLoading = new List<AsyncOperation>();
         ResetCurrentListOfScenes();
         LoadingScreen_GO.SetActive(true);
-        if ( DataPersistentManager.instance.currentDataToApply != null )
-        {
-            PlayerData playerData = DataPersistentManager.instance.currentDataToApply;
-            if ( !playerData.b_HasPassedTutorial )
-            {
-                //Debug.Log("----- Want to respawn from " + currentScene.name);
-                scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
+        //if ( DataPersistentManager.instance.currentDataToApply != null )
+        //{
+        //    PlayerData playerData = DataPersistentManager.instance.currentDataToApply;
+        //    if ( !playerData.b_HasPassedTutorial )
+        //    {
+        //        //Debug.Log("----- Want to respawn from " + currentScene.name);
+        //        scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
 
-                scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
+        //        scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
                 
-                Debug.Log("----- New Scene is  " + currentScene.name);
-                Debug.Log("---- Current Scene Handle = " + currentScene.handle);
-            }
-            else
-            {
-                //Debug.Log("----- Want to respawn from " + currentScene.name);
-                scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
-                scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
-                LevelManager.currentRoomIndex= 0;
-                arenaIndex = 0;
-                DataPersistentManager.instance.saveCurrentMainDataSave();
-            }
-        }
+        //        Debug.Log("----- New Scene is  " + currentScene.name);
+        //        Debug.Log("---- Current Scene Handle = " + currentScene.handle);
+        //    }
+        //    else
+        //    {
+        //        //Debug.Log("----- Want to respawn from " + currentScene.name);
+        //        scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
+        //        scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
+        //        LevelManager.currentRoomIndex= 0;
+        //        arenaIndex = 0;
+        //        //DataPersistentManager.instance.saveCurrentMainDataSave();
+        //    }
+        //}
+
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
+        scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
+        LevelManager.currentRoomIndex = 0;
+        arenaIndex = 0;
         StartCoroutine(GetScenesLoadProgress_Coroutine());
     }
 
@@ -235,7 +240,7 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
-        DataPersistentManager.instance.TryToLoad();
+        //DataPersistentManager.instance.TryToLoad();
         scenesLoading.Clear();
         LoadingScreen_GO.SetActive(false);
         //Debug.Log("Current Scene Active = " + GetOtherSceneNonActive().name);
