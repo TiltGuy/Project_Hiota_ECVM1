@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using FMODUnity;
-using FMOD;
 
 public class ChallengeTrigger : MonoBehaviour
 {
@@ -73,7 +72,8 @@ public class ChallengeTrigger : MonoBehaviour
         {
             toggleObjects.ForEach(o => o.SetActive(true));
             onAllEnemiesKilled?.Invoke();
-            if(LevelManager.instance != null)
+            RuntimeManager.StudioSystem.setParameterByNameWithLabel("Fight", "Value A");
+            if (LevelManager.instance != null)
             {
                 LevelManager.instance.DefineNextTroopIndex();
             }
@@ -122,6 +122,7 @@ public class ChallengeTrigger : MonoBehaviour
             onPlayerEnterCombatZone?.Invoke();
             OnStartCombatDelegate?.Invoke();
             b_CombatDone = true;
+            RuntimeManager.StudioSystem.setParameterByNameWithLabel("Fight", "Value B");
         }
 
     }

@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7007019531082678518}
   - component: {fileID: 7007019531082678519}
-  - component: {fileID: 7007019531082678516}
   - component: {fileID: 7007019531082678512}
   - component: {fileID: 72195720}
+  - component: {fileID: 1465305653913755251}
+  - component: {fileID: 7345505328374383332}
+  - component: {fileID: 4457734413032481784}
   m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -27,8 +29,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7007019531082678517}
-  m_LocalRotation: {x: -0.08900184, y: -0.80019987, z: -0.122738145, w: 0.58025366}
-  m_LocalPosition: {x: -14.448698, y: 27.809746, z: -146.80055}
+  m_LocalRotation: {x: 0.024721907, y: 0.71673924, z: -0.025442548, w: 0.69643843}
+  m_LocalPosition: {x: -26.121584, y: 15.974644, z: -145.77127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4572284871480578776}
@@ -78,14 +80,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7007019531082678516
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7007019531082678517}
-  m_Enabled: 1
 --- !u!114 &7007019531082678512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +174,65 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1465305653913755251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007019531082678517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+--- !u!114 &7345505328374383332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007019531082678517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -789972017
+      Data2: 1276391181
+      Data3: -707089023
+      Data4: -353778351
+    Path: event:/Music/Hiota_combat_test
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: Health
+    Value: 100
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4457734413032481784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007019531082678517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7258e8584bf2c2409ace17f0e1058ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicEmitter: {fileID: 7345505328374383332}
 --- !u!1 &8576103920220843608
 GameObject:
   m_ObjectHideFlags: 0

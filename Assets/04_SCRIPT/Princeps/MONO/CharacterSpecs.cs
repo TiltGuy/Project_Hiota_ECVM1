@@ -60,6 +60,8 @@ public class CharacterSpecs : MonoBehaviour
     public UnityEvent onKilled;
     public delegate void MultiCastDelegate();
     public MultiCastDelegate OnSomethingKilledMe;
+    public delegate void MultiCastDelegateWithFloat(float value);
+    public MultiCastDelegateWithFloat OnLoosingHealth;
 
     //[HideInInspector]
     private float health;
@@ -78,6 +80,7 @@ public class CharacterSpecs : MonoBehaviour
             health = Mathf.Clamp(value, 0, _maxHealth);
             healthPointBarFillAmount = health / _maxHealth;
             healthBar.value = healthPointBarFillAmount;
+            OnLoosingHealth?.Invoke(healthPointBarFillAmount);
             if ( health <= 0f )
             {
                 //Debug.Log(this + " => Killed");
