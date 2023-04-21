@@ -53,7 +53,7 @@ public class Collection : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Debug.Log(instance,instance);
+        //Debug.Log(instance,instance);
         instance = this;
 
         
