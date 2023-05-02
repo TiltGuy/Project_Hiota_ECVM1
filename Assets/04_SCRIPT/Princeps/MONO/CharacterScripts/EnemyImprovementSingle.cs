@@ -132,6 +132,7 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         currentDeckInstance.RemoveCardFromRunDeck(SkillCards[1]);
         if ( currentDeckInstance )
         {
+            currentDeckInstance.GainMoneyBet();
             currentDeckInstance.PlayerBetMoney = currentDeckInstance.CalculateCurrentCardsBet();
             print("Money Bet = " + currentDeckInstance.PlayerBetMoney);
         }

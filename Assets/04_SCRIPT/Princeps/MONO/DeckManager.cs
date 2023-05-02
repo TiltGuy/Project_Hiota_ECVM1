@@ -82,6 +82,7 @@ public class DeckManager : MonoBehaviour
 
     public void GainMoneyBet()
     {
+        Debug.Log("Tu as gagné : " + playerBetMoney);
         PlayerMoney += PlayerBetMoney;
     }
 
