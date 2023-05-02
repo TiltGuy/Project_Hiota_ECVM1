@@ -31,6 +31,12 @@ public class MainMenu : MonoBehaviour
 
     private bool rightWindowSwitched = true;
 
+    [SerializeField]
+    private float timeForLaunchingGame = 1f;
+
+    [SerializeField]
+    private Animator Hiota_Animator;
+
 
     private void Awake()
     {
@@ -55,14 +61,14 @@ public class MainMenu : MonoBehaviour
     private void SwitchLeftWindow()
     {  
 
-            if (leftWindowSwitched)
+        if (leftWindowSwitched)
         {
             controller.SetActive(false);
             keyboard.SetActive(true);
 
             leftWindowSwitched = !leftWindowSwitched;
         }
-            else if (!leftWindowSwitched)
+        else if (!leftWindowSwitched)
         {
             controller.SetActive(true);
             keyboard.SetActive(false);
@@ -101,8 +107,24 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
-        GameManager.instance.StartNewGame();
+        StartCoroutine(LaunchGame());
 	}
+
+    private IEnumerator LaunchGame()
+    {
+        Hiota_Animator.SetBool("b_LaunchAnimation", true);
+
+        yield return new WaitForSeconds(timeForLaunchingGame);
+
+        if(GameManager.instance != null)
+        {
+            GameManager.instance.StartNewGame();
+        }
+        else
+        {
+            Debug.Log("There isn't a Game Manager", this);
+        }
+    }
 
     public void Continue()
     {
