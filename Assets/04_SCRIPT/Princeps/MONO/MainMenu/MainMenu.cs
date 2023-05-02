@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
@@ -37,11 +38,24 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Animator Hiota_Animator;
 
+    [SerializeField]
+    private EventSystem eventSystem;
 
     private void Awake()
     {
 		action = new InputMaster();
 	}
+
+    public void SetInputMenuActive(bool value)
+    {
+        if(value)
+        {
+        }
+        else
+        {
+            action.UI.Disable();
+        }
+    }
 
     private void Start()
     {
