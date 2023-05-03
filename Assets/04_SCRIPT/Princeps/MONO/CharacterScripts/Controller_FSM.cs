@@ -197,15 +197,6 @@ public class Controller_FSM : ActionHandler, IDamageable
 
     #endregion
 
-    #region CAMERA SETTINGS & DEPENDENDCIES
-
-    //[Header(" -- CAMERA SETTINGS & DEPENDENDCIES -- ")]
-
-    //public GameObject GO_CameraFreeLook;
-
-    //public GameObject GO_FocusCamera;
-    #endregion
-
     #region STATE MACHINE SETTINGS
 
     [Header(" -- STATE MACHINE SETTINGS -- ")]
@@ -418,10 +409,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         }
         //print("currentState = " + currentState);
         //fDebug.Log(this + " current state = " + currentState, this);
-        if ( CharRigidbody )
-        {
-            //Debug.Log(CurrentSpeed, this);
-        }
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
     }
 
@@ -430,7 +417,6 @@ public class Controller_FSM : ActionHandler, IDamageable
         if ( characontroller )
         {
             IsDetectingGround();
-            //Debug.Log(_isGrounded, this);
         }
         
     }
