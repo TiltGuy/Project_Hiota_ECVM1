@@ -147,15 +147,20 @@ public class IABrain : MonoBehaviour
 
     public void DisplayHealthBar(bool value, bool b_IsTarget)
     {
+        Debug.Log(b_IsTarget + " " + transform.name, this);
         if(b_IsTarget)
         {
-            HealthBar.gameObject.SetActive(value);
+            HealthBar.gameObject.SetActive(true);
             Debug.Log(value, transform);
             return;
         }
+        else
+        {
+            HealthBar.gameObject.SetActive(false);
+        }
         if((charSpecs.Health != charSpecs.MaxHealth))
         {
-            HealthBar.gameObject.SetActive(value);
+            HealthBar.gameObject.SetActive(true);
             Debug.Log(value, transform);
         }
     }

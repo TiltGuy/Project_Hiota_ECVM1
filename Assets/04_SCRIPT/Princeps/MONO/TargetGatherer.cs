@@ -172,8 +172,12 @@ public class TargetGatherer : MonoBehaviour
     {
         if(b_IsPlayer)
         {
-            enemy.GetComponent<IABrain>().DisplayHealthBar(b_ToDisplayBars, false);
-            Debug.Log(enemy.name, transform);
+            if(enemy.GetComponent<IABrain>())
+            {
+                IABrain currentbrain = enemy.GetComponent<IABrain>();
+                currentbrain.DisplayHealthBar(b_ToDisplayBars, false);
+                //Debug.Log("Displayong HealthBars = " + enemy.name, transform);
+            }
         }
     }
 

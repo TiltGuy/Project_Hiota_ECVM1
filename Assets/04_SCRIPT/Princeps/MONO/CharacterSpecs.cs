@@ -81,6 +81,10 @@ public class CharacterSpecs : MonoBehaviour
             healthPointBarFillAmount = health / _maxHealth;
             healthBar.value = healthPointBarFillAmount;
             OnLoosingHealth?.Invoke(healthPointBarFillAmount);
+            if(health < MaxHealth)
+            {
+                DisplayEnemiesHPBarOnTouch();
+            }
             if ( health <= 0f )
             {
                 //Debug.Log(this + " => Killed");
@@ -224,7 +228,8 @@ public class CharacterSpecs : MonoBehaviour
     {
 		controller.UpdateGuardAmountDelegate += UpdateGuardBar;
         controller.OnPerfectGuard += RegenerateLife;
-	}
+
+    }
 
     private void OnDisable()
     {
@@ -305,6 +310,15 @@ public class CharacterSpecs : MonoBehaviour
         Health += amountToRegain;
         Instantiate(Particle_Health_Recovered, this.gameObject.transform.position, Quaternion.identity);
         //Debug.Log("REGENERATE", this);
+    }
+
+    private void DisplayEnemiesHPBarOnTouch()
+    {
+        IABrain currentBrain = transform.GetComponent<IABrain>();
+        if(transform.CompareTag("Enemy") && currentBrain != null)
+        {
+            currentBrain.DisplayHealthBar(true, false);
+        }
     }
 
 }

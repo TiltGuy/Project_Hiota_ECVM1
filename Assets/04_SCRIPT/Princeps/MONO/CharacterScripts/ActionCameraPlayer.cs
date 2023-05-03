@@ -173,6 +173,11 @@ public class ActionCameraPlayer : MonoBehaviour
         {
             FocusCamera_cine.Priority = 0;
             FreeLookCamera_cine.Priority = 10;
+            IABrain currentBrain = controller_FSM.CurrentCharacterTarget.GetComponent<IABrain>();
+            if(currentBrain != null)
+            {
+                currentBrain.DisplayHealthBar(false,false);
+            }
             controller_FSM.CurrentCharacterTarget = null;
             CurrentHiotaActionCameraTarget = null;
             //Debug.Log("FreeLook Mode Camera Activated", this);

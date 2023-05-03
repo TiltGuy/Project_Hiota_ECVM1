@@ -78,6 +78,13 @@ public class ActionHandler : MonoBehaviour
                 characterAnimator.SetBool("Is_Focusing", b_IsFocusing);
             }
             currentCharacterTarget = value;
+
+            if(transform.CompareTag("Player") && currentCharacterTarget != null)
+            {
+                IABrain currentBrain = currentCharacterTarget.GetComponent<IABrain>();
+                currentBrain.DisplayHealthBar(true, true);
+            }
+
             //Debug.Log(" CurrentCharTarget of Hiota = " + currentCharacterTarget);
             //Debug.Log("b_IsFocusing = " + b_IsFocusing);
             //Debug.Log("Anim IsFocusing = " + characterAnimator.GetBool("Is_Focusing"));
