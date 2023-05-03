@@ -33,7 +33,7 @@ public class CardCollection : MonoBehaviour
         UpdateCardMessageTitle(Title_Text, skillCard);
         if ( Cost_Text != null )
         {
-            Cost_Text.text = "Cost : " + currentSkillcard.shopCost.ToString();
+            Cost_Text.text = /*"Cost : " +*/ currentSkillcard.shopCost.ToString();
         }
     }
 
