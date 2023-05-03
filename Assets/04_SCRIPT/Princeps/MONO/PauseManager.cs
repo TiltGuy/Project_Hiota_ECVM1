@@ -12,6 +12,9 @@ public class PauseManager : MonoBehaviour
     private InputMaster action;
 
     [SerializeField]
+    private Collection collection;
+
+    [SerializeField]
     private Transform Menu;
     [SerializeField]
     private Transform SettingsMenu;
@@ -58,6 +61,10 @@ public class PauseManager : MonoBehaviour
 
     void DetermineGamePauseStatut()
     {
+        if(collection.cardCanvas.gameObject.activeInHierarchy)
+        {
+            return;
+        }
         if(b_IsPaused)
         {
             ResumeGame();
