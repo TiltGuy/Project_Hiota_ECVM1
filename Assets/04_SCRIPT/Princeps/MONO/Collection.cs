@@ -141,14 +141,7 @@ public class Collection : MonoBehaviour
 
     private void UpdateIsInUIPlayer()
     {
-        if ( cardCanvas.gameObject.activeInHierarchy )
-        {
-            refPlayerInput.B_IsInUI = true;
-        }
-        else
-        {
-            refPlayerInput.B_IsInUI = false;
-        }
+        refPlayerInput.B_IsInUI = cardCanvas.gameObject.activeInHierarchy;
     }
 
     public void ScrollLeft()
@@ -260,10 +253,10 @@ public class Collection : MonoBehaviour
         //Debug.Log(list.Count);
         //Debug.Log(cardCanvas.GetComponentsInChildren<SelectedScroll>().First());
         //cardCanvas.GetComponentsInChildren<SelectedScroll>().First().GetComponent<Button>().Select();
-        StartCoroutine("SelectContinueButtonLater");
+        StartCoroutine("SelectContinueButtonLater_Coroutine");
     }
 
-    IEnumerator SelectContinueButtonLater()
+    IEnumerator SelectContinueButtonLater_Coroutine()
     {
         yield return null;
         GameObject eventSchose = GameObject.Find("EventSystem");
