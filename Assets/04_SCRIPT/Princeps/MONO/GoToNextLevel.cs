@@ -8,7 +8,7 @@ public class GoToNextLevel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if(DataPersistentManager.instance!=null && GameManager.instance!=null)
+            if(GameManager.instance!=null)
             {
                 DataPersistentManager.instance.saveCurrentMainDataSave();
                 GameManager.instance.GoToNextLVL();
