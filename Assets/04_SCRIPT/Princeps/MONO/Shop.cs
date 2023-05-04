@@ -41,7 +41,7 @@ public class Shop : MonoBehaviour
         controls.UI.ShopToggle.started += ctx => ToggleShopCanvas();
     }
 
-    void ToggleShopCanvas()
+    public void ToggleShopCanvas()
     {
         if ( ShopPanel_GO == null )
         {

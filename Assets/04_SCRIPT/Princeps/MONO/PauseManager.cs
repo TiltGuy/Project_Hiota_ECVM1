@@ -15,6 +15,12 @@ public class PauseManager : MonoBehaviour
     private Collection collection;
 
     [SerializeField]
+    private Shop shop;
+
+    [SerializeField]
+    private OpenMenu openMenuScript;
+
+    [SerializeField]
     private Transform Menu;
     [SerializeField]
     private Transform SettingsMenu;
@@ -63,7 +69,17 @@ public class PauseManager : MonoBehaviour
     {
         if(collection.cardCanvas.gameObject.activeInHierarchy)
         {
+            collection.cardCanvas.gameObject.SetActive(false);
+            openMenuScript.b_IsOpen = false;
             return;
+        }
+        if(shop != null)
+        {
+            if ( shop.ShopPanel_GO.gameObject.activeInHierarchy )
+            {
+                shop.ToggleShopCanvas();
+                return;
+            }
         }
         if(b_IsPaused)
         {

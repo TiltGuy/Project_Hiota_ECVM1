@@ -11,7 +11,7 @@ public class OpenMenu : MonoBehaviour
     public UnityEvent OnOpen;
     public UnityEvent OnClose;
 
-    private bool b_IsOpen;
+    public bool b_IsOpen;
 
     private void Awake()
     {

@@ -242,7 +242,7 @@ public class Collection : MonoBehaviour
         SetFirstCardSelectable();
     }
 
-    private void SetFirstCardSelectable()
+    public void SetFirstCardSelectable()
     {
         //List<SelectedScroll> list = new List<SelectedScroll>();
         //list = cardCanvas.GetComponentsInChildren<SelectedScroll>().ToList();
@@ -263,8 +263,12 @@ public class Collection : MonoBehaviour
         if(eventSchose != null)
         {
             EventSystem es = eventSchose.GetComponent<EventSystem>();
-            es.SetSelectedGameObject(null);
+            //es.SetSelectedGameObject(null);
             es.SetSelectedGameObject(cardCanvas.GetComponentsInChildren<SelectedScroll>().First().gameObject);
+        }
+        else
+        {
+            Debug.LogError("There isn't any EventSystem", this);
         }
     }
 
