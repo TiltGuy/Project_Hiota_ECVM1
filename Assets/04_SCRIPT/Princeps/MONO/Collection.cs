@@ -266,10 +266,6 @@ public class Collection : MonoBehaviour
             //es.SetSelectedGameObject(null);
             es.SetSelectedGameObject(cardCanvas.GetComponentsInChildren<SelectedScroll>().First().gameObject);
         }
-        else
-        {
-            Debug.LogError("There isn't any EventSystem", this);
-        }
     }
 
     private void InitializeCard( GameObject currentPage, SkillCard_SO card )
