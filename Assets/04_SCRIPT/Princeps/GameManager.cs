@@ -144,6 +144,10 @@ public class GameManager : MonoBehaviour
         scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)ScenesIndexes.HUB, LoadSceneMode.Additive));
         LevelManager.currentRoomIndex = 0;
+        DeckManager.instance._EnemyList.Clear();
+        DeckManager.instance._EnemiesDeck.Clear();
+        DeckManager.instance._RunDeck.Clear();
+
         arenaIndex = 0;
         StartCoroutine(GetScenesLoadProgress_Coroutine());
     }
@@ -190,7 +194,7 @@ public class GameManager : MonoBehaviour
         AsyncOperation newScene = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
         scenesLoading.Add(newScene);
         StartCoroutine(GetScenesLoadProgress_Coroutine());
-        //Debug.Log("LoadingSceneDone");
+        Debug.Log("LoadingSceneDone Arena index : " + ArenaIndex);
     }
 
     private string PickNextScene( string currentPrefix )
