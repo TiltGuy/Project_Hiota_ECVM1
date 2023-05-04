@@ -582,7 +582,7 @@ namespace FMODUnity
         {
             if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.ERROR)
             {
-                Debug.LogError(message);
+                Debug.LogWarning(message);
             }
         }
 
