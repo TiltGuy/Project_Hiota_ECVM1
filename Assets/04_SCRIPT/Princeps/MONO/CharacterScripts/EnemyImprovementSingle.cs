@@ -86,10 +86,10 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         //    TakeDamagesParriable(0, null, false);
         //}
         print("je me display !");
-        PauseManager pManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
-        if(pManager)
+        GameObject pManager = GameObject.Find("PauseManager");
+        if(pManager )
         {
-            pManager.b_IsChoosingCard = true;
+            pManager.GetComponent<PauseManager>().b_IsChoosingCard = true;
         }
         cardCanvas.gameObject.SetActive(true);
         cardCanvas.GetComponentsInChildren<UnityEngine.UI.Selectable>().First().Select();
