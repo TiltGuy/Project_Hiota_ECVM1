@@ -11,6 +11,8 @@ public class RoomObject : MonoBehaviour
     [Range(0, 5)]
     public int maxIndex = 5;
 
+    public bool b_CanSpawnAfterEndWorld = false;
+
     static public int debugArenaIndex
     {
 
@@ -46,8 +48,13 @@ public class RoomObject : MonoBehaviour
 
     public void Start()
     {
-        var arenaIndex = debugPlay || GameManager.instance == null ? debugArenaIndex : GameManager.instance.ArenaIndex;
-        gameObject.SetActive(arenaIndex >= minIndex && arenaIndex <= maxIndex);
+        var arenaIndex = debugPlay || GameManager.instance == null ? debugArenaIndex : 
+            GameManager.instance.ArenaIndex;
+        gameObject.SetActive(arenaIndex >= minIndex && arenaIndex <= maxIndex );
+        if(arenaIndex > maxIndex && b_CanSpawnAfterEndWorld)
+        {
+            gameObject.SetActive(true);
+        }
         debugPlay = false;
     }
 
