@@ -48,6 +48,7 @@ public class Player_InputScript : MonoBehaviour
     public MultiDelegate OnChangeCurrentPlayerTarget;
     private bool b_ChangeTargetInput;
 
+    [SerializeField]
     private bool b_IsControllable = true;
 
     public bool B_IsControllable
