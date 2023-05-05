@@ -34,6 +34,11 @@ public class PlayerController_Animator:MonoBehaviour
 
     #endregion
 
+    private void Awake()
+    {
+        inputScript = GetComponent<Player_InputScript>();
+    }
+
     private void Start()
     {
         if ( controller_FSM.CurrentAttackStats )
@@ -216,9 +221,13 @@ public class PlayerController_Animator:MonoBehaviour
         }
     }
 
-    public void UpdatePlayerControllableStatus(bool value)
+    public void UpdatePlayerControllableStatus()
     {
-        inputScript.B_IsControllable = value;
+        inputScript.B_IsControllable = !inputScript.B_IsControllable;
+        if(inputScript.B_IsControllable)
+        {
+            animator.SetBool("b_Respawn", false);
+        }
     }
 
 }
