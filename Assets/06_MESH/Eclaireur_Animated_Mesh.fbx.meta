@@ -53,7 +53,7 @@ ModelImporter:
     second: ECLAIREUR_Dash_FRWD_ATK_REC
   - first:
       74: -7898528792236625985
-    second: ECLAIREUR_Hook
+    second: ECLAIREUR_Hook_ANT
   - first:
       74: -2665645554867627006
     second: ECLAIREUR_Dash_L
@@ -135,6 +135,12 @@ ModelImporter:
   - first:
       74: 5189397933021662664
     second: ECLAIREUR_Guard_BRK
+  - first:
+      74: 5443353771250391475
+    second: ECLAIREUR_Hook_HF
+  - first:
+      74: -980528080758457805
+    second: ECLAIREUR_Hook_REC
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -686,11 +692,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 10
     - serializedVersion: 16
-      name: ECLAIREUR_Hook
+      name: ECLAIREUR_Hook_ANT
       takeName: Take 001
       internalID: 0
       firstFrame: 370
-      lastFrame: 385
+      lastFrame: 375
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1474,6 +1480,64 @@ ModelImporter:
       internalID: 0
       firstFrame: 585
       lastFrame: 610
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
+    - serializedVersion: 16
+      name: ECLAIREUR_Hook_HF
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 375
+      lastFrame: 380
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
+    - serializedVersion: 16
+      name: ECLAIREUR_Hook_REC
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 380
+      lastFrame: 385
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
