@@ -139,10 +139,10 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         //GameObject.FindGameObjectsWithTag("Gate").ToList().ForEach(o => o.gameObject.SetActive(false));
         ToggleOnRoomComplete.ToggleAll();
         OnSelectSkillCard?.Invoke();
-        PauseManager pManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+        GameObject pManager = GameObject.Find("PauseManager");
         if ( pManager )
         {
-            pManager.b_IsChoosingCard = false;
+            pManager.GetComponent<PauseManager>().b_IsChoosingCard = false;
         }
         Time.timeScale = 1;
         gameObject.SetActive(false);
