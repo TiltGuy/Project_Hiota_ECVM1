@@ -23,6 +23,7 @@ public class PlayerController_Animator:MonoBehaviour
     public Transform Dash_FX;
     public Transform FXAiles;
     public Controller_FSM controller_FSM;
+    public Player_InputScript inputScript;
     [HideInInspector]
     public Transform currentAttackHitboxPrefab;
     public Transform currentAttackHitbox;
@@ -162,7 +163,7 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void Slash_Activate_Neutral( GameObject targetFX )
     {
-        if ( targetFX != null )
+        if ( targetFX != null && Base_Attack != null)
         {
             Transform Slash_Activate_Neutral = Instantiate(targetFX.transform, Base_Attack.transform.position, Quaternion.identity);
             Slash_Activate_Neutral.SetParent(Base_Attack.transform);
@@ -173,7 +174,7 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void Slash_Activate_Dash_Frwd( GameObject targetFX )
     {
-        if ( targetFX != null )
+        if ( targetFX != null  && Dash_Attack_Frwd )
         {
             Transform Slash_Activate_Dash_Frwd = Instantiate(targetFX.transform, Dash_Attack_Frwd.transform.position, Quaternion.identity);
             Slash_Activate_Dash_Frwd.SetParent(Base_Attack.transform);
@@ -184,7 +185,7 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void Slash_Activate_Dash_L( GameObject targetFX )
     {
-        if ( targetFX != null )
+        if ( targetFX != null && Dash_Attack_L )
         {
             Transform Slash_Activate_Dash_L = Instantiate(targetFX.transform, Dash_Attack_L.transform.position, Quaternion.identity);
             Slash_Activate_Dash_L.SetParent(Base_Attack.transform);
@@ -195,7 +196,7 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void Slash_Activate_Dash_R( GameObject targetFX )
     {
-        if ( targetFX != null )
+        if ( targetFX != null && Dash_Attack_R )
         {
             Transform Slash_Activate_Dash_R = Instantiate(targetFX.transform, Dash_Attack_R.transform.position, Quaternion.identity);
             Slash_Activate_Dash_R.SetParent(Base_Attack.transform);
@@ -206,13 +207,18 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void Slash_Activate_Counter( GameObject targetFX )
     {
-        if ( targetFX != null )
+        if ( targetFX != null && Counter_Attack )
         {
             Transform Slash_Activate_Counter = Instantiate(targetFX.transform, Counter_Attack.transform.position, Quaternion.identity);
             Slash_Activate_Counter.SetParent(Base_Attack.transform);
             Slash_Activate_Counter.transform.localRotation = Quaternion.identity;
             Slash_Activate_Counter.transform.localPosition = Vector3.zero;
         }
+    }
+
+    public void UpdatePlayerControllableStatus(bool value)
+    {
+        inputScript.B_IsControllable = value;
     }
 
 }

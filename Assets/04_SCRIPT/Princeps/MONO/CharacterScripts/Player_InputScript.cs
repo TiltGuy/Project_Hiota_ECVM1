@@ -48,6 +48,18 @@ public class Player_InputScript : MonoBehaviour
     public MultiDelegate OnChangeCurrentPlayerTarget;
     private bool b_ChangeTargetInput;
 
+    private bool b_IsControllable = true;
+
+    public bool B_IsControllable
+    {
+        get => b_IsControllable;
+        set
+        {
+            if(b_IsControllable != value)
+                b_IsControllable = value;
+        }
+    }
+
 
     private void Awake()
     {
@@ -97,11 +109,20 @@ public class Player_InputScript : MonoBehaviour
 
     void InputMovement(Vector2 value)
     {
+        if ( !b_IsControllable )
+        {
+            return;
+        }
         controller_FSM.m_InputMoveVector = value;
     }
 
     void InputAttack()
     {
+        if(!b_IsControllable)
+        {
+            return;
+        }
+
         if ( b_IsInUI )
             return;
         if(controller_FSM != null)
@@ -112,7 +133,12 @@ public class Player_InputScript : MonoBehaviour
 
     void WantingToParry(bool value)
     {
-        if(b_IsInUI)
+        if ( !b_IsControllable )
+        {
+            controller_FSM.b_IsInputParry = false;
+            return;
+        }
+        if (b_IsInUI)
         {
             controller_FSM.b_IsInputParry = false;
             Debug.Log(controller_FSM.b_IsInputParry);
@@ -124,6 +150,11 @@ public class Player_InputScript : MonoBehaviour
 
     void SetInputDash(bool value)
     {
+        if ( !b_IsControllable )
+        {
+            controller_FSM.b_WantDash = false;
+            return;
+        }
         if ( b_IsInUI)
         {
             controller_FSM.b_WantDash = false;
@@ -134,6 +165,10 @@ public class Player_InputScript : MonoBehaviour
 
     void WantToChangeTarget(Vector2 value)
     {
+        if ( !b_IsControllable )
+        {
+            return;
+        }
         Vector2 input = controls.Player.ChangeFocusCameraTarget.ReadValue<Vector2>();
         if(input.x > 0.4f || input.x < -0.4f)
         {
@@ -144,6 +179,10 @@ public class Player_InputScript : MonoBehaviour
 
     void ToggleHiotaFocusMode()
     {
+        if(!b_IsControllable)
+        {
+            return;
+        }
         //appeler la fonction dans la cameraAction script pour changer le comportement camera
         actionCameraPlayer.ToggleCameraMode();
         //appeler la fonction dans l'action handler qui va changer le comportement SM et behaviour anim
