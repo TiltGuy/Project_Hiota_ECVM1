@@ -24,13 +24,13 @@ public class MainMenu : MonoBehaviour
 
 	public GameObject pauseMenu, optionsWindow;
 
-    public GameObject keyboard, controller;
+    //public GameObject keyboard, controller;
 
 	private bool b_CursorInvisible = true;
 
-    private bool leftWindowSwitched = true;
+    //private bool leftWindowSwitched = true;
 
-    private bool rightWindowSwitched = true;
+    //private bool rightWindowSwitched = true;
 
     [SerializeField]
     private float timeForLaunchingGame = 1f;
@@ -68,11 +68,11 @@ public class MainMenu : MonoBehaviour
 
         optionsWindow.SetActive(false);
 
-        action.UI.SwitchShortcut.started += ctx => SwitchLeftWindow();
-        action.UI.SwitchShortcut.started += ctx => SwitchRightWindow();
+        //action.UI.SwitchShortcut.started += ctx => SwitchLeftWindow();
+        //action.UI.SwitchShortcut.started += ctx => SwitchRightWindow();
     }
 
-    private void SwitchLeftWindow()
+    /*private void SwitchLeftWindow()
     {  
 
         if (leftWindowSwitched)
@@ -107,7 +107,7 @@ public class MainMenu : MonoBehaviour
 
             rightWindowSwitched = !rightWindowSwitched;
         }
-    }
+    }*/
 
     private void OnEnable()
     {
