@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     {
         get => arenaIndex;
     }
-    public string nextSceneBuildName;
 
     [Header("-- MAIN MENU --")]
 
@@ -32,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     public string prefix_StandardArena;
     public string prefix_PalierArena;
+
+    [SerializeField]
+    private float timeLoadingBetweenScenes = 4f;
 
     public List<string> baseListOfScenes = new List<string>();
 
@@ -223,10 +225,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GetScenesLoadProgress_Coroutine()
     {
+        //float currentTimerBtwScenes = 0;
         foreach(AsyncOperation loadingScene in scenesLoading)
         {
-            while(!loadingScene.isDone)
+            loadingScene.allowSceneActivation = false;
+            while (totalScenesLoadingProgress < 0.9)
             {
+
                 totalScenesLoadingProgress = 0;
                 foreach (AsyncOperation operation in scenesLoading)
                 {
@@ -234,16 +239,51 @@ public class GameManager : MonoBehaviour
                 }
 
                 totalScenesLoadingProgress = (totalScenesLoadingProgress / scenesLoading.Count) * 100f;
-                //Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
                 
                 if(LoadingProgress_Bar != null)
                 {
                     LoadingProgress_Bar.value = Mathf.RoundToInt( totalScenesLoadingProgress);
                 }
+                Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
+                yield return null;
 
+            }
+        }
+
+        print("Waiting !!!");
+        yield return new WaitForSecondsRealtime(timeLoadingBetweenScenes);
+        print("Waiting Done");
+
+        foreach ( AsyncOperation loadingScene in scenesLoading )
+        {
+            loadingScene.allowSceneActivation = true;
+        }
+
+        foreach ( AsyncOperation loadingScene in scenesLoading )
+        {
+            while ( !loadingScene.isDone )
+            {
+                totalScenesLoadingProgress = 0;
+                foreach ( AsyncOperation operation in scenesLoading )
+                {
+                    totalScenesLoadingProgress += operation.progress;
+                }
+
+                totalScenesLoadingProgress = (totalScenesLoadingProgress / scenesLoading.Count) * 100f;
+
+                if ( LoadingProgress_Bar != null )
+                {
+                    LoadingProgress_Bar.value = Mathf.RoundToInt(totalScenesLoadingProgress);
+                }
+                Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
                 yield return null;
             }
         }
+
+
+
+
+
         //DataPersistentManager.instance.TryToLoad();
         scenesLoading.Clear();
         LoadingScreen_GO.SetActive(false);
