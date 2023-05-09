@@ -19169,7 +19169,7 @@ GameObject:
   - component: {fileID: 2032985859269010482}
   - component: {fileID: 2853718607144636731}
   m_Layer: 0
-  m_Name: Enemy_Weapon_Glow
+  m_Name: Sentinelle_Weapon_Glow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23940,13 +23940,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071845617005706024}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 3956091703937375721}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &7470620303555308595
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23954,7 +23954,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071845617005706024}
-  m_Mesh: {fileID: 4686849319519084627, guid: 0ea7fc03299314f44a28f53d8c4c50aa, type: 3}
+  m_Mesh: {fileID: -5940428214288733344, guid: 2727fad883f788943becc42c16592b49, type: 3}
 --- !u!23 &2356181854938971070
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24003,10 +24003,9 @@ Animation:
   m_GameObject: {fileID: 8071845617005706024}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f3f94c68d2a3a9243baa81fe4366eed7, type: 2}
+  m_Animation: {fileID: 7400000, guid: b61db22954b9a2b47946ebf7879253bd, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: b61db22954b9a2b47946ebf7879253bd, type: 2}
-  - {fileID: 7400000, guid: f3f94c68d2a3a9243baa81fe4366eed7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
