@@ -122,7 +122,10 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void DustCloud()
     {
-        Instantiate(ps, transform.position, transform.rotation);
+        if(ps)
+        {
+            Instantiate(ps, transform.position, transform.rotation);
+        }
     }
     public void DashBurst()
     {
