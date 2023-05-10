@@ -8,7 +8,6 @@ using FMODUnity;
 
 public class ChallengeTrigger : MonoBehaviour
 {
-    public StudioEventEmitter emitter;
 
     public List<CharacterSpecs> enemiesToKill = new List<CharacterSpecs>();
     public UnityEvent onPlayerEnterCombatZone;
@@ -72,7 +71,7 @@ public class ChallengeTrigger : MonoBehaviour
         {
             toggleObjects.ForEach(o => o.SetActive(true));
             onAllEnemiesKilled?.Invoke();
-            RuntimeManager.StudioSystem.setParameterByNameWithLabel("Fight", "Value A");
+            RuntimeManager.StudioSystem.setParameterByName("Fight", 0);
             if (LevelManager.instance != null)
             {
                 LevelManager.instance.DefineNextTroopIndex();
@@ -122,7 +121,8 @@ public class ChallengeTrigger : MonoBehaviour
             onPlayerEnterCombatZone?.Invoke();
             OnStartCombatDelegate?.Invoke();
             b_CombatDone = true;
-            RuntimeManager.StudioSystem.setParameterByNameWithLabel("Fight", "Value B");
+            //RuntimeManager.StudioSystem.setParameterByNameWithLabel("Fight", "Value B");
+            RuntimeManager.StudioSystem.setParameterByName("Fight", 1);
         }
 
     }
