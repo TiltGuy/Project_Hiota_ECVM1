@@ -124,12 +124,15 @@ public class PlayerController_Animator:MonoBehaviour
     {
         if(ps)
         {
-            Instantiate(ps, transform.position, transform.rotation);
+                Instantiate(ps, transform.position, transform.rotation);
         }
     }
     public void DashBurst()
     {
-        Instantiate(Dash_FX, transform.position, transform.rotation);
+        if ( Dash_FX != null )
+        {
+            Instantiate(Dash_FX, transform.position, transform.rotation);
+        }
         Transform Ailes = Instantiate(FXAiles.transform, Spine.transform.position, Quaternion.identity);
         Ailes.SetParent(Spine.transform);
         Ailes.transform.localRotation = Quaternion.identity;
