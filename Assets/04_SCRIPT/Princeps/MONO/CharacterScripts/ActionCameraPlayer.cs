@@ -35,6 +35,9 @@ public class ActionCameraPlayer : MonoBehaviour
 
     public bool b_CameraGoToNextEnemyIfPreviousDead;
 
+    [SerializeField]
+    private FMODUnity.EventReference LockFocusSound;
+
     public Transform CurrentHiotaActionCameraTarget
     {
         get => currentHiotaActionCameraTarget;
@@ -126,6 +129,7 @@ public class ActionCameraPlayer : MonoBehaviour
                 UpdateHiotaCurrentTarget(input);
                 //Debug.Log("Je passe dedans = " + input.magnitude);
                 controller_FSM.b_CanChangeFocusTarget = false;
+
             }
         }
         
@@ -141,6 +145,8 @@ public class ActionCameraPlayer : MonoBehaviour
             print("Change");
 
             OnSwitchTargetPlayerPositionForTargetGroup?.Invoke();
+
+            FMODUnity.RuntimeManager.PlayOneShotAttached(LockFocusSound, Camera.main.gameObject);
         }
     }
 
@@ -198,6 +204,8 @@ public class ActionCameraPlayer : MonoBehaviour
             OnNewTargetPlayerPositionForTargetGroup?.Invoke();
             FocusCamera_cine.Priority = 10;
             FreeLookCamera_cine.Priority = 0;
+
+            FMODUnity.RuntimeManager.PlayOneShotAttached(LockFocusSound, Camera.main.gameObject);
             //WaitForFocusLoose();
             //Debug.Log(currentHiotaTarget, this);
         }
