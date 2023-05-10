@@ -38,7 +38,10 @@ public class PlayerController_Animator:MonoBehaviour
     private EventReference damageEvent;
     [SerializeField]
     private EventReference healEvent;
-    private StudioEventEmitter eventEmitter;
+    [SerializeField]
+    private EventReference AttackEvent;
+    [SerializeField]
+    private EventReference DashEvent;
 
 
     //public int nbHitBoxTrue = 0;
@@ -140,16 +143,6 @@ public class PlayerController_Animator:MonoBehaviour
     }
     public void DashBurst()
     {
-<<<<<<< HEAD
-        if ( Dash_FX != null )
-        {
-            Instantiate(Dash_FX, transform.position, transform.rotation);
-        }
-        Transform Ailes = Instantiate(FXAiles.transform, Spine.transform.position, Quaternion.identity);
-        Ailes.SetParent(Spine.transform);
-        Ailes.transform.localRotation = Quaternion.identity;
-        Ailes.transform.localPosition = Vector3.zero;
-=======
         if(Dash_FX)
         {
             Instantiate(Dash_FX, transform.position, transform.rotation);
@@ -162,7 +155,6 @@ public class PlayerController_Animator:MonoBehaviour
             Ailes.transform.localRotation = Quaternion.identity;
             Ailes.transform.localPosition = Vector3.zero;
         }
->>>>>>> abea7e60 (add event asset in script & safe guard for FXs)
     }
 
 
@@ -269,6 +261,26 @@ public class PlayerController_Animator:MonoBehaviour
     {
         RuntimeManager.PlayOneShot(footStepsEvent, transform.position);
         
+    }
+
+    public void LaunchAttack()
+    {
+        RuntimeManager.PlayOneShot(AttackEvent, transform.position);
+    }
+
+    public void TakeHit_Sound()
+    {
+        RuntimeManager.PlayOneShot(damageEvent,transform.position);
+    }
+
+    public void HealYourself()
+    {
+        RuntimeManager.PlayOneShotAttached(healEvent, transform.gameObject);
+    }
+
+    public void Dash_Sound()
+    {
+        RuntimeManager.PlayOneShotAttached(DashEvent, gameObject);
     }
 
     #endregion
