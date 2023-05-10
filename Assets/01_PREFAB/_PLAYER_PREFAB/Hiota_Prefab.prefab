@@ -1651,6 +1651,13 @@ MonoBehaviour:
     type: 3}
   Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
     type: 3}
+  HealEvent:
+    Guid:
+      Data1: -277977040
+      Data2: 1338633477
+      Data3: -5528920
+      Data4: 1323589306
+    Path: event:/Sound Design/Fight/Shield
 --- !u!114 &716854953055367631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,6 +1790,41 @@ MonoBehaviour:
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
   b_IsUsingSwordHB: 1
+  footStepsEvent:
+    Guid:
+      Data1: 1826133021
+      Data2: 1300145310
+      Data3: -736792667
+      Data4: -627927007
+    Path: event:/Sound Design/Movement/Footsteps
+  damageEvent:
+    Guid:
+      Data1: -1120342466
+      Data2: 1193657385
+      Data3: -130545503
+      Data4: 204842668
+    Path: event:/Sound Design/Fight/Hit_Taken
+  healEvent:
+    Guid:
+      Data1: -277977040
+      Data2: 1338633477
+      Data3: -5528920
+      Data4: 1323589306
+    Path: event:/Sound Design/Fight/Shield
+  AttackEvent:
+    Guid:
+      Data1: -67052727
+      Data2: 1307740773
+      Data3: 232938641
+      Data4: 2089782467
+    Path: event:/Sound Design/Fight/Attack_Heavy
+  DashEvent:
+    Guid:
+      Data1: -1233934396
+      Data2: 1293431056
+      Data3: 157832894
+      Data4: -1510177949
+    Path: event:/Sound Design/Fight/Dash_Hiota
 --- !u!114 &2681276055901130558
 MonoBehaviour:
   m_ObjectHideFlags: 0

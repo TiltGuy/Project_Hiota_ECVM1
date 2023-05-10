@@ -193,7 +193,15 @@ public class CharacterSpecs : MonoBehaviour
 	public Transform Particle_Damage_Taken;
 	public Transform Particle_Health_Recovered;
 
-    
+
+    #endregion
+
+    #region SOUND SETTINGS
+    [Header(" -- SOUND SETTINGS -- ")]
+
+    public FMODUnity.EventReference HealEvent;
+
+
     #endregion
 
     private void Awake()
@@ -302,6 +310,9 @@ public class CharacterSpecs : MonoBehaviour
         float valueToGain = CharStats_SO.healthGainedWhenPGuarding;
         Health += valueToGain;
         Instantiate(Particle_Health_Recovered, this.gameObject.transform.position, Quaternion.identity);
+
+
+        FMODUnity.RuntimeManager.PlayOneShotAttached(HealEvent, gameObject);
         //Debug.Log("REGENERATE", this);
     }
 
@@ -310,6 +321,8 @@ public class CharacterSpecs : MonoBehaviour
         Health += amountToRegain;
         Instantiate(Particle_Health_Recovered, this.gameObject.transform.position, Quaternion.identity);
         //Debug.Log("REGENERATE", this);
+
+        FMODUnity.RuntimeManager.PlayOneShotAttached(HealEvent, gameObject);
     }
 
     private void DisplayEnemiesHPBarOnTouch()
