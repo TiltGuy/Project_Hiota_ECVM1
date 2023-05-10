@@ -1,4 +1,6 @@
 using UnityEngine;
+using FMODUnity;
+using FMOD;
 
 public class PlayerController_Animator:MonoBehaviour
 {
@@ -7,7 +9,6 @@ public class PlayerController_Animator:MonoBehaviour
     [Header(" -- DEPENDENCIES -- ")]
 
 
-    [Tooltip("It needs the prefab of CameraBase")]
     public GameObject Sword_GO;
     public GameObject Spine;
     //public GameObject GuardPoint;
@@ -28,6 +29,16 @@ public class PlayerController_Animator:MonoBehaviour
     public Transform currentAttackHitboxPrefab;
     public Transform currentAttackHitbox;
     public bool b_IsUsingSwordHB = false;
+
+    [Header(" -- SOUND DEPENDENCIES -- ")]
+
+    [SerializeField]
+    private EventReference footStepsEvent;
+    [SerializeField]
+    private EventReference damageEvent;
+    [SerializeField]
+    private EventReference healEvent;
+    private StudioEventEmitter eventEmitter;
 
 
     //public int nbHitBoxTrue = 0;
@@ -104,7 +115,7 @@ public class PlayerController_Animator:MonoBehaviour
         //swordHitBox.enabled = false;
     }
 
-
+    #region -- FXs Functions --
 
     public void ShaftSword()
     {
@@ -129,6 +140,7 @@ public class PlayerController_Animator:MonoBehaviour
     }
     public void DashBurst()
     {
+<<<<<<< HEAD
         if ( Dash_FX != null )
         {
             Instantiate(Dash_FX, transform.position, transform.rotation);
@@ -137,6 +149,20 @@ public class PlayerController_Animator:MonoBehaviour
         Ailes.SetParent(Spine.transform);
         Ailes.transform.localRotation = Quaternion.identity;
         Ailes.transform.localPosition = Vector3.zero;
+=======
+        if(Dash_FX)
+        {
+            Instantiate(Dash_FX, transform.position, transform.rotation);
+        }
+
+        if(FXAiles)
+        {
+            Transform Ailes = Instantiate(FXAiles.transform, Spine.transform.position, Quaternion.identity);
+            Ailes.SetParent(Spine.transform);
+            Ailes.transform.localRotation = Quaternion.identity;
+            Ailes.transform.localPosition = Vector3.zero;
+        }
+>>>>>>> abea7e60 (add event asset in script & safe guard for FXs)
     }
 
 
@@ -147,7 +173,7 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void FinishAttackAnimation()
     {
-        Debug.Log("Bob ! Do something ! ", this);
+        //Debug.Log("Bob ! Do something ! ", this);
     }
 
     public void WindUpGlow( GameObject targetFX )
@@ -226,6 +252,7 @@ public class PlayerController_Animator:MonoBehaviour
             Slash_Activate_Counter.transform.localPosition = Vector3.zero;
         }
     }
+    #endregion
 
     public void UpdatePlayerControllableStatus()
     {
@@ -235,5 +262,15 @@ public class PlayerController_Animator:MonoBehaviour
             animator.SetBool("b_Respawn", false);
         }
     }
+
+    #region -- SOUNDS METHOD --
+
+    public void PlayFootStep_Sound()
+    {
+        RuntimeManager.PlayOneShot(footStepsEvent, transform.position);
+        
+    }
+
+    #endregion
 
 }
