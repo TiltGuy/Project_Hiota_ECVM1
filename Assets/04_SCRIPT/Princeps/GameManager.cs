@@ -331,4 +331,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Number of Scenes = " + SceneManager.sceneCount);
         return SceneManager.GetActiveScene();
     }
+
+    private void Update()
+    {
+        Debug.developerConsoleVisible = false;
+    }
 }
