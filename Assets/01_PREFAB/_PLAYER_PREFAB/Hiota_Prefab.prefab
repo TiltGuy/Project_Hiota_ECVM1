@@ -1797,41 +1797,62 @@ MonoBehaviour:
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
   b_IsUsingSwordHB: 1
-  footStepsEvent:
+  footSteps_ER:
     Guid:
       Data1: 1826133021
       Data2: 1300145310
       Data3: -736792667
       Data4: -627927007
     Path: event:/Sound Design/Movement/Footsteps
-  damageEvent:
+  damage_ER:
     Guid:
       Data1: -1120342466
       Data2: 1193657385
       Data3: -130545503
       Data4: 204842668
     Path: event:/Sound Design/Fight/Hit_Taken
-  healEvent:
+  heal_ER:
     Guid:
-      Data1: -277977040
-      Data2: 1338633477
-      Data3: -5528920
-      Data4: 1323589306
-    Path: event:/Sound Design/Fight/Shield
-  AttackEvent:
+      Data1: -1316070927
+      Data2: 1202328113
+      Data3: -1528964178
+      Data4: 377761137
+    Path: event:/Sound Design/Fight/Heal
+  Attack_ER:
     Guid:
       Data1: -67052727
       Data2: 1307740773
       Data3: 232938641
       Data4: 2089782467
     Path: event:/Sound Design/Fight/Attack_Heavy
-  DashEvent:
+  AttackLight_ER:
+    Guid:
+      Data1: -1338886617
+      Data2: 1201976052
+      Data3: -1668276050
+      Data4: -204357781
+    Path: event:/Sound Design/Fight/Attack_Light
+  Dash_ER:
     Guid:
       Data1: -1233934396
       Data2: 1293431056
       Data3: 157832894
       Data4: -1510177949
     Path: event:/Sound Design/Fight/Dash_Hiota
+  GuardNormal_ER:
+    Guid:
+      Data1: -391514258
+      Data2: 1302058415
+      Data3: -1282917238
+      Data4: 952860650
+    Path: event:/Sound Design/Fight/Guard_Normal
+  GuardPerfect_ER:
+    Guid:
+      Data1: 1286359777
+      Data2: 1163188807
+      Data3: -795308870
+      Data4: -1207421920
+    Path: event:/Sound Design/Fight/Guard_Perfect
 --- !u!114 &2681276055901130558
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,15 +33,21 @@ public class PlayerController_Animator:MonoBehaviour
     [Header(" -- SOUND DEPENDENCIES -- ")]
 
     [SerializeField]
-    private EventReference footStepsEvent;
+    private EventReference footSteps_ER;
     [SerializeField]
-    private EventReference damageEvent;
+    private EventReference damage_ER;
     [SerializeField]
-    private EventReference healEvent;
+    private EventReference heal_ER;
     [SerializeField]
-    private EventReference AttackEvent;
+    private EventReference Attack_ER;
     [SerializeField]
-    private EventReference DashEvent;
+    private EventReference AttackLight_ER;
+    [SerializeField]
+    private EventReference Dash_ER;
+    [SerializeField]
+    private EventReference GuardNormal_ER;
+    [SerializeField]
+    private EventReference GuardPerfect_ER;
 
 
     //public int nbHitBoxTrue = 0;
@@ -61,11 +67,6 @@ public class PlayerController_Animator:MonoBehaviour
         }
         //Debug.Log("Player animator says : " + controller_FSM.BasicAttackStats.hitBoxPrefab, this);
 
-    }
-
-    private void Update()
-    {
-        //print("current attack is : " + currentAttackHitbox);
     }
 
     public void ToggleSwordHitBoxStatut( bool value )
@@ -259,28 +260,43 @@ public class PlayerController_Animator:MonoBehaviour
 
     public void PlayFootStep_Sound()
     {
-        RuntimeManager.PlayOneShot(footStepsEvent, transform.position);
+        RuntimeManager.PlayOneShot(footSteps_ER, transform.position);
         
     }
 
     public void LaunchAttack()
     {
-        RuntimeManager.PlayOneShot(AttackEvent, transform.position);
+        RuntimeManager.PlayOneShot(Attack_ER, transform.position);
+    }
+
+    public void LaunchAttackLight()
+    {
+        RuntimeManager.PlayOneShot(AttackLight_ER, transform.position);
     }
 
     public void TakeHit_Sound()
     {
-        RuntimeManager.PlayOneShot(damageEvent,transform.position);
+        RuntimeManager.PlayOneShot(damage_ER,transform.position);
     }
 
     public void HealYourself()
     {
-        RuntimeManager.PlayOneShotAttached(healEvent, transform.gameObject);
+        RuntimeManager.PlayOneShotAttached(heal_ER, gameObject);
     }
 
     public void Dash_Sound()
     {
-        RuntimeManager.PlayOneShotAttached(DashEvent, gameObject);
+        RuntimeManager.PlayOneShotAttached(Dash_ER, gameObject);
+    }
+
+    public void GuardNormal_SoundEvent()
+    {
+        RuntimeManager.PlayOneShot(GuardNormal_ER, transform.position);
+    }
+
+    public void GuardPerfect_SoundEvent()
+    {
+        RuntimeManager.PlayOneShot(GuardPerfect_ER, transform.position);
     }
 
     #endregion
