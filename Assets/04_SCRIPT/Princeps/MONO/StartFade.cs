@@ -8,7 +8,7 @@ public class StartFade : MonoBehaviour
     public CanvasGroup logo, start, controls, quit;
 
 
-    MainMenu mainMenu;
+    public MainMenu mainMenu;
     private void Awake()
     {
         mainMenu = GetComponent<MainMenu>();

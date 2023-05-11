@@ -1082,6 +1082,7 @@ MonoBehaviour:
   artMap: Parallax
   pauseMenu: {fileID: 0}
   optionsWindow: {fileID: 695545165867863208}
+  playButton: {fileID: 1955217963854518973}
   timeForLaunchingGame: 3
   Hiota_Animator: {fileID: 0}
   eventSystem: {fileID: 0}
@@ -1114,6 +1115,7 @@ MonoBehaviour:
   start: {fileID: 818808790}
   controls: {fileID: 695545166736557076}
   quit: {fileID: 695545166736557075}
+  mainMenu: {fileID: 695545166781237807}
 --- !u!1 &831713704747751504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1504,7 @@ GameObject:
   - component: {fileID: 3038338099250096458}
   - component: {fileID: 3666731142987052775}
   - component: {fileID: 818808790}
+  - component: {fileID: 818808797}
   m_Layer: 5
   m_Name: Button_Start Game
   m_TagString: Untagged
@@ -1699,6 +1702,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &818808797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955217963854518973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: 2012286500
+      Data2: 1231728887
+      Data3: 291893400
+      Data4: -196321640
+    Path: event:/Sound Design/UI/Button_Play
 --- !u!1 &2487793249689718153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,6 +2753,7 @@ GameObject:
   - component: {fileID: 5634221347861838669}
   - component: {fileID: 1179422174022009502}
   - component: {fileID: 695545166736557076}
+  - component: {fileID: 496643083}
   m_Layer: 5
   m_Name: Button_Controls
   m_TagString: Untagged
@@ -2867,6 +2897,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &496643083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810111421102837182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: -282234602
+      Data2: 1228539460
+      Data3: 1907438767
+      Data4: 1543127620
+    Path: event:/Sound Design/UI/ApplySelection
 --- !u!1 &5542468765020812035
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,6 +3743,7 @@ GameObject:
   - component: {fileID: 9099573626547183041}
   - component: {fileID: 3566118067484525325}
   - component: {fileID: 695545166736557075}
+  - component: {fileID: 1070418853}
   m_Layer: 5
   m_Name: Button_Quit
   m_TagString: Untagged
@@ -3750,7 +3807,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 1
+  m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!114 &3566118067484525325
 MonoBehaviour:
@@ -3807,7 +3864,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8915881290371212037}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -3830,6 +3887,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1070418853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934051920446299128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: -282234602
+      Data2: 1228539460
+      Data3: 1907438767
+      Data4: 1543127620
+    Path: event:/Sound Design/UI/ApplySelection
 --- !u!1 &8516169306460337993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,6 +4637,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 558125367563865287}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &8915881290371212037 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8936635738190507970, guid: 94bcc326508ba6346bdc38ffd500fe32,
+    type: 3}
+  m_PrefabInstance: {fileID: 558125367563865287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1181132266740214742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4823,15 +4912,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94bcc326508ba6346bdc38ffd500fe32, type: 3}
---- !u!4 &1348481544120003382 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3636572976518353402, guid: 94bcc326508ba6346bdc38ffd500fe32,
-    type: 3}
-  m_PrefabInstance: {fileID: 2360298569087859404}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &6684531312637760782 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8936635738190507970, guid: 94bcc326508ba6346bdc38ffd500fe32,
+    type: 3}
+  m_PrefabInstance: {fileID: 2360298569087859404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1348481544120003382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3636572976518353402, guid: 94bcc326508ba6346bdc38ffd500fe32,
     type: 3}
   m_PrefabInstance: {fileID: 2360298569087859404}
   m_PrefabAsset: {fileID: 0}

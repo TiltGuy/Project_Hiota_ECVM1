@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
 
     private InputMaster action;
 
-	public GameObject pauseMenu, optionsWindow;
+	public GameObject pauseMenu, optionsWindow, playButton;
 
     //public GameObject keyboard, controller;
 
@@ -48,12 +48,16 @@ public class MainMenu : MonoBehaviour
 
     public void SetInputMenuActive(bool value)
     {
-        if(value)
+        if(!value)
         {
+            eventSystem.sendNavigationEvents = false;
+            action.Disable();
         }
         else
         {
-            action.UI.Disable();
+            action.Enable();
+            eventSystem.sendNavigationEvents = true;
+            eventSystem.SetSelectedGameObject(playButton);
         }
     }
 
@@ -71,43 +75,6 @@ public class MainMenu : MonoBehaviour
         //action.UI.SwitchShortcut.started += ctx => SwitchLeftWindow();
         //action.UI.SwitchShortcut.started += ctx => SwitchRightWindow();
     }
-
-    /*private void SwitchLeftWindow()
-    {  
-
-        if (leftWindowSwitched)
-        {
-            controller.SetActive(false);
-            keyboard.SetActive(true);
-
-            leftWindowSwitched = !leftWindowSwitched;
-        }
-        else if (!leftWindowSwitched)
-        {
-            controller.SetActive(true);
-            keyboard.SetActive(false);
-
-            leftWindowSwitched = !leftWindowSwitched;
-        }
-    }
-    private void SwitchRightWindow()
-    {
-
-        if ( rightWindowSwitched )
-        {
-            controller.SetActive(false);
-            keyboard.SetActive(true);
-
-            rightWindowSwitched = !rightWindowSwitched;
-        }
-        else if ( !rightWindowSwitched )
-        {
-            controller.SetActive(true);
-            keyboard.SetActive(false);
-
-            rightWindowSwitched = !rightWindowSwitched;
-        }
-    }*/
 
     private void OnEnable()
     {
@@ -191,5 +158,5 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
-	
+    
 }

@@ -295,12 +295,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7a8be2f89768aa4f9a60150ad4d8ded, type: 3}
---- !u!198 &435762605 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8915881290371212037, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-    type: 3}
-  m_PrefabInstance: {fileID: 695545166736557063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &681079267
 Mesh:
   m_ObjectHideFlags: 0
@@ -464,12 +458,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &818808789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1955217963854518973, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-    type: 3}
-  m_PrefabInstance: {fileID: 695545166736557063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &938555159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,6 +1411,7 @@ GameObject:
   - component: {fileID: 1901197475}
   - component: {fileID: 1901197474}
   - component: {fileID: 1901197473}
+  - component: {fileID: 1901197476}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1478,8 +1467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 818808789}
-  m_sendNavigationEvents: 1
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 0
   m_DragThreshold: 10
 --- !u!4 &1901197475
 Transform:
@@ -1495,6 +1484,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901197476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901197472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Submit_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1001 &2005311965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2109,16 +2124,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 609292169054292195, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 695545165867863208, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 695545166781237792, guid: 0d3f3db0175a4b54d80ec27daeea6777,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2234,31 +2239,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 695545166781237796, guid: 0d3f3db0175a4b54d80ec27daeea6777,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 695545166781237807, guid: 0d3f3db0175a4b54d80ec27daeea6777,
+        type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 1901197474}
     - target: {fileID: 695545166781237807, guid: 0d3f3db0175a4b54d80ec27daeea6777,
         type: 3}
       propertyPath: Hiota_Animator
       value: 
       objectReference: {fileID: 938555161}
-    - target: {fileID: 3566118067484525325, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 435762605}
-    - target: {fileID: 3566118067484525325, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 7934051920446299128, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9099573626547183041, guid: 0d3f3db0175a4b54d80ec27daeea6777,
-        type: 3}
-      propertyPath: m_UseSpriteMesh
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d3f3db0175a4b54d80ec27daeea6777, type: 3}
 --- !u!1 &919132149089617243
