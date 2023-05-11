@@ -135,8 +135,10 @@ public class ActionHandler : MonoBehaviour
     {
         StopCoroutine("SetIsPerfectlyParryingCoroutine");
         b_IsPerfectlyParrying = true;
+        characterAnimator.SetBool("b_PerfectGuard", b_IsPerfectlyParrying);
         yield return new WaitForSeconds(time);
         b_IsPerfectlyParrying = false;
+        characterAnimator.SetBool("b_PerfectGuard", b_IsPerfectlyParrying);
     }
 
     public void ToggleFocusTarget()
