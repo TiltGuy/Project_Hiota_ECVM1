@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 836800880}
   - component: {fileID: 836800879}
   - component: {fileID: 836800878}
+  - component: {fileID: 8945222007155555346}
   m_Layer: 5
   m_Name: Button_Resume
   m_TagString: Untagged
@@ -391,6 +392,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8945222007155555346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836800876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: -282234602
+      Data2: 1228539460
+      Data3: 1907438767
+      Data4: 1543127620
+    Path: event:/Sound Design/UI/ApplySelection
 --- !u!1 &2102116954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,6 +2417,7 @@ GameObject:
   - component: {fileID: 4485652783323932655}
   - component: {fileID: 6816514686334948593}
   - component: {fileID: 6498235336356935342}
+  - component: {fileID: 5628153069117671335}
   m_Layer: 5
   m_Name: Button_Controls
   m_TagString: Untagged
@@ -2521,6 +2549,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5628153069117671335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024577702189764376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: -282234602
+      Data2: 1228539460
+      Data3: 1907438767
+      Data4: 1543127620
+    Path: event:/Sound Design/UI/ApplySelection
 --- !u!1 &4235694918651623809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,6 +3237,7 @@ GameObject:
   - component: {fileID: 3362588165967467453}
   - component: {fileID: 865147580136335337}
   - component: {fileID: 902474009043759298}
+  - component: {fileID: 5226929927566942204}
   m_Layer: 5
   m_Name: Button_MainMenu
   m_TagString: Untagged
@@ -3314,6 +3369,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5226929927566942204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5145864195722313743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: 2012286500
+      Data2: 1231728887
+      Data3: 291893400
+      Data4: -196321640
+    Path: event:/Sound Design/UI/Button_Play
 --- !u!1 &5388248473253743990
 GameObject:
   m_ObjectHideFlags: 0
@@ -5818,15 +5899,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e24afa27db83dd44b354d9df1b0f664, type: 3}
---- !u!1 &2438133552389467868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8232867818548805418, guid: 7e24afa27db83dd44b354d9df1b0f664,
-    type: 3}
-  m_PrefabInstance: {fileID: 6022711440009990646}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3464261719593304884 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7171841157648732866, guid: 7e24afa27db83dd44b354d9df1b0f664,
+    type: 3}
+  m_PrefabInstance: {fileID: 6022711440009990646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2438133552389467868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8232867818548805418, guid: 7e24afa27db83dd44b354d9df1b0f664,
     type: 3}
   m_PrefabInstance: {fileID: 6022711440009990646}
   m_PrefabAsset: {fileID: 0}
