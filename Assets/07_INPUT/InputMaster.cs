@@ -711,17 +711,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ba361092-e265-494c-8576-61b204dc3cae"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyB&Mouse"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f3b7bed8-6577-4ef7-8863-4edc0ea16cdc"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
