@@ -11,6 +11,6 @@ public class SelectedShopCard:MonoBehaviour, ISelectHandler
     public void OnSelect( BaseEventData eventData )
     {
         shopScript.currentCardSelected = transform.GetComponentInParent<CardCollection>().currentSkillcard;
-        Debug.Log(transform.GetComponentInParent<CardCollection>().currentSkillcard, transform.GetComponentInParent<CardCollection>().gameObject);
+        //Debug.Log(transform.GetComponentInParent<CardCollection>().currentSkillcard, transform.GetComponentInParent<CardCollection>().gameObject);
     }
 }

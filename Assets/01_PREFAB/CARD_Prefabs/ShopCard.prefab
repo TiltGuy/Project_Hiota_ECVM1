@@ -1040,6 +1040,7 @@ GameObject:
   - component: {fileID: 7152965321953761165}
   - component: {fileID: 5038424427448126021}
   - component: {fileID: 8276536057122900695}
+  - component: {fileID: 946961767110754386}
   m_Layer: 5
   m_Name: Card_Fight
   m_TagString: Untagged
@@ -1194,6 +1195,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopScript: {fileID: 0}
+--- !u!114 &946961767110754386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824225757244253238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386934914ec418842b464451e016f046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound_ER:
+    Guid:
+      Data1: -91479006
+      Data2: 1109606437
+      Data3: -1488033885
+      Data4: -540999343
+    Path: event:/Sound Design/UI/MoveCursorSelection
+  Submit_ER:
+    Guid:
+      Data1: -282234602
+      Data2: 1228539460
+      Data3: 1907438767
+      Data4: 1543127620
+    Path: event:/Sound Design/UI/ApplySelection
 --- !u!1 &5942433575199568598
 GameObject:
   m_ObjectHideFlags: 0
