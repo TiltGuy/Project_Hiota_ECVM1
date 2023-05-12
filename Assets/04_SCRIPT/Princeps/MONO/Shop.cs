@@ -161,6 +161,8 @@ public class Shop : MonoBehaviour
         {
             Debug.Log("You haven't the MONEY BRO");
         }
+        
+        // Set False le panel
         ConfirmationPanel.SetActive(false);
 
         foreach ( CardCollection cardUI in ListOfCardSlots )
