@@ -169,6 +169,13 @@ MonoBehaviour:
     type: 3}
   Particle_Health_Recovered: {fileID: 4093309232591707509, guid: 1a9af66108501904d9f57671afa061c3,
     type: 3}
+  HealEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1273245036896107738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +355,62 @@ MonoBehaviour:
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
   b_IsUsingSwordHB: 0
+  footSteps_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  damage_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  heal_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Attack_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  AttackLight_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Dash_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  GuardNormal_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  GuardPerfect_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!95 &7751398384736395856
 Animator:
   serializedVersion: 3
@@ -1079,6 +1142,62 @@ MonoBehaviour:
   currentAttackHitboxPrefab: {fileID: 0}
   currentAttackHitbox: {fileID: 0}
   b_IsUsingSwordHB: 0
+  footSteps_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  damage_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  heal_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Attack_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  AttackLight_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Dash_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  GuardNormal_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  GuardPerfect_ER:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &2841808287223530177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +2091,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8637527682490492027, guid: 792264346d1c4f043a7043b1f4fdb5b8, type: 3}
+  - {fileID: 2100000, guid: 7cde357148a17bb4086bbd3396f9509c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4919,6 +5038,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3387433867682617326, guid: 792264346d1c4f043a7043b1f4fdb5b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f06d64e222653043a8bb585b4937a2a, type: 2}
     - target: {fileID: 919132149155446097, guid: 792264346d1c4f043a7043b1f4fdb5b8,
         type: 3}
       propertyPath: m_Name
