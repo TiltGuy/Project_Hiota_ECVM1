@@ -23,6 +23,8 @@ public class Shop : MonoBehaviour
     public SkillCard_SO currentCardSelected;
     public CardCollection cardToBeBought;
 
+    public PauseManager pauseManagerScript;
+
     private void Awake()
     {
         //Initialisation of ALL the Bindings with InputMaster
@@ -46,6 +48,13 @@ public class Shop : MonoBehaviour
         if ( ShopPanel_GO == null )
         {
             Debug.Log("Il n'y a pas de shop panel");
+            return;
+        }
+
+        if(pauseManagerScript.collection.cardCanvas.gameObject.activeInHierarchy || 
+            pauseManagerScript.Menu.gameObject.activeInHierarchy)
+        {
+            Debug.Log("JE NE PEUX PAS L'OUVRIR TAMERE");
             return;
         }
 

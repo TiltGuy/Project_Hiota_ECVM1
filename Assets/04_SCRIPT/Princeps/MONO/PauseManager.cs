@@ -11,17 +11,14 @@ public class PauseManager : MonoBehaviour
 
     private InputMaster action;
 
-    [SerializeField]
-    private Collection collection;
+    public Collection collection;
 
-    [SerializeField]
-    private Shop shop;
+    public Shop shop;
 
     [SerializeField]
     private OpenMenu openMenuScript;
 
-    [SerializeField]
-    private Transform Menu;
+    public Transform Menu;
     [SerializeField]
     private Transform SettingsMenu;
 
