@@ -32,6 +32,5 @@ public class EventOnMusic : MonoBehaviour
     public void adjustLifeTrigger(float ratioLife)
     {
         MusicEmitter.SetParameter("Health", ratioLife * 100);
-        Debug.Log("ratioLife " + ratioLife * 100);
     }
 }

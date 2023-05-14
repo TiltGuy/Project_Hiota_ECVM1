@@ -244,15 +244,15 @@ public class GameManager : MonoBehaviour
                 {
                     LoadingProgress_Bar.value = Mathf.RoundToInt( totalScenesLoadingProgress);
                 }
-                Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
+                //Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
                 yield return null;
 
             }
         }
 
-        print("Waiting !!!");
+        //print("Waiting !!!");
         yield return new WaitForSecondsRealtime(timeLoadingBetweenScenes);
-        print("Waiting Done");
+        //print("Waiting Done");
 
         foreach ( AsyncOperation loadingScene in scenesLoading )
         {
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
                 {
                     LoadingProgress_Bar.value = Mathf.RoundToInt(totalScenesLoadingProgress);
                 }
-                Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
+                //Debug.Log("totalSceneLoadingProgress : " + totalScenesLoadingProgress);
                 yield return null;
             }
         }

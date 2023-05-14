@@ -109,7 +109,7 @@ public class PauseManager : MonoBehaviour
         b_IsPaused = false;
         HideSettings();
         Menu.gameObject.SetActive(false);
-        print("ResumeGame");
+        //print("ResumeGame");
     }
 
     public void ShowSettings()

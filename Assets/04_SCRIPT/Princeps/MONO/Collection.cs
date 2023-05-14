@@ -53,10 +53,10 @@ public class Collection : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //Debug.Log(instance,instance);
         instance = this;
+        Debug.Log(instance, instance);
 
-        
+
         DontDestroyOnLoad(gameObject);
         //Initialisation of ALL the Bindings with InputMaster
         if ( InputManager.inputMaster != null )
