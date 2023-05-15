@@ -40,8 +40,6 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        action.UI.Cancel.started += ctx => HideSettings();
-        action.UI.Pause.performed += _ => DetermineGamePauseStatut();
         //Debug.Log(b_IsPaused);
 
         //action.UI.SwitchWindow.started += ctx => SwitchLeftWindow();
@@ -55,11 +53,15 @@ public class PauseManager : MonoBehaviour
     private void OnEnable()
     {
         action.Enable();
+        action.UI.Cancel.started += ctx => HideSettings();
+        action.UI.Pause.performed += _ => DetermineGamePauseStatut();
     }
 
     private void OnDisable()
     {
         action.Disable();
+        action.UI.Pause.performed -= _ => DetermineGamePauseStatut();
+        action.UI.Cancel.started -= ctx => HideSettings();
     }
 
     void DetermineGamePauseStatut()
@@ -130,91 +132,18 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    /*private void SwitchLeftWindow()
-    {
-
-        if ( leftWindowSwitched )
-        {
-            pausePanel.SetActive(false);
-            shortcutPanel.SetActive(true);
-
-            leftWindowSwitched = !leftWindowSwitched;
-        }
-        else if ( !leftWindowSwitched )
-        {
-            pausePanel.SetActive(true);
-            shortcutPanel.SetActive(false);
-
-            leftWindowSwitched = !leftWindowSwitched;
-        }
-    }
-    private void SwitchRightWindow()
-    {
-        if ( rightWindowSwitched )
-        {
-            pausePanel.SetActive(false);
-            shortcutPanel.SetActive(true);
-
-            rightWindowSwitched = !rightWindowSwitched;
-        }
-        else if ( !rightWindowSwitched )
-        {
-            pausePanel.SetActive(true);
-            shortcutPanel.SetActive(false);
-
-            rightWindowSwitched = !rightWindowSwitched;
-        }
-
-    }
-
-    private void SwitchLeftShortcut()
-    {
-        if ( leftShortcut )
-        {
-            controller.SetActive(false);
-            keyboard.SetActive(true);
-
-            leftShortcut = !leftShortcut;
-        }
-        else if ( !leftShortcut )
-        {
-            controller.SetActive(true);
-            keyboard.SetActive(false);
-
-            leftShortcut = !leftShortcut;
-        }
-    }
-
-    private void SwitchRightShortcut()
-    {
-        if ( rightShortcut )
-        {
-            controller.SetActive(false);
-            keyboard.SetActive(true);
-
-            rightShortcut = !rightShortcut;
-        }
-        else if ( !rightShortcut )
-        {
-            controller.SetActive(true);
-            keyboard.SetActive(false);
-
-            rightShortcut = !rightShortcut;
-        }
-    }*/
-
     public void LoadMenu()
     {
         ResumeGame();
         if(GameManager.instance !=  null)
         {
             GameManager.instance.GoToMainMenu();
+            Destroy(this.gameObject);
         }
     }
 
-    public void ResetSave()
+    public void DestroyMySelf()
     {
-        PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Destroy(gameObject);
     }
 }
