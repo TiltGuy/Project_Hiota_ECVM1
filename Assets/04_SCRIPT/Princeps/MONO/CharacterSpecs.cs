@@ -213,14 +213,17 @@ public class CharacterSpecs : MonoBehaviour
     private void Awake()
     {
 		controller = GetComponent<Controller_FSM>();
-        pauseManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
-        if(pauseManager != null)
+        if ( gameObject.CompareTag("Player") )
         {
-            Debug.Log("Pause Manager = " + pauseManager);
-        }
-        else
-        {
-            Debug.LogError("Pause manager not found");
+            pauseManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+            if ( pauseManager != null )
+            {
+                Debug.Log("Pause Manager = " + pauseManager,pauseManager);
+            }
+            else
+            {
+                Debug.LogError("Pause manager not found");
+            }
         }
     }
 
