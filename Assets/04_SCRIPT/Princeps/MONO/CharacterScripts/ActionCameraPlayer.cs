@@ -72,12 +72,15 @@ public class ActionCameraPlayer : MonoBehaviour
     {
         controller_FSM.OnTouchedEnemy += CommandShakeCameraWhenTouchingEnemy;
         controller_FSM.OnHittenByEnemy += CommandShakeCameraWhenBeingTouched;
+        controller_FSM.charSpecs.OnSomethingKilledMe += UnlockCameraOnDeath;
+
     }
 
     private void OnDisable()
     {
         controller_FSM.OnTouchedEnemy -= CommandShakeCameraWhenTouchingEnemy;
         controller_FSM.OnHittenByEnemy -= CommandShakeCameraWhenBeingTouched;
+        controller_FSM.charSpecs.OnSomethingKilledMe -= UnlockCameraOnDeath;
     }
 
     public void DoSomethingWhenCurrentTargetGetKilled()
@@ -117,6 +120,14 @@ public class ActionCameraPlayer : MonoBehaviour
         //controller_FSM.currentCharacterTarget = null;
         
 
+    }
+
+    private void UnlockCameraOnDeath()
+    {
+        if(controller_FSM.currentCharacterTarget == null)
+        {
+            ToggleCameraMode();
+        }
     }
 
     public void InputCommandToChangeTargetOfPlayer(Vector2 input)

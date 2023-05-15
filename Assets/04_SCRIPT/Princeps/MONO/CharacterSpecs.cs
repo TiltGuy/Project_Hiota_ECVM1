@@ -87,6 +87,7 @@ public class CharacterSpecs : MonoBehaviour
             }
             if ( health <= 0f )
             {
+                controller.currentCharacterTarget = null;
                 //Debug.Log(this + " => Killed");
                 onHealthDepleted?.Invoke(this);
                 onKilled?.Invoke();

@@ -67,6 +67,8 @@ public class Player_InputScript : MonoBehaviour
         controller_FSM = GetComponent<Controller_FSM>();
         actionCameraPlayer = GetComponent<ActionCameraPlayer>();
 
+        controller_FSM.charSpecs.OnSomethingKilledMe += UpdateHiotaControlModeOnDeath;
+
         //Initialisation of ALL the Bindings with InputMaster
         if(InputManager.inputMaster != null)
         {
@@ -190,6 +192,11 @@ public class Player_InputScript : MonoBehaviour
         //controller_FSM.ToggleFocusTarget();
         //print(controller_FSM.b_IsFocusing);
         
+    }
+
+    private void UpdateHiotaControlModeOnDeath()
+    {
+        b_IsControllable = false;
     }
 
 
