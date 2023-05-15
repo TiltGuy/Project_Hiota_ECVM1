@@ -14,6 +14,7 @@ public class CharacterSpecs : MonoBehaviour
 
 	public CharacterStats_SO CharStats_SO;
 	private Controller_FSM controller;
+    private PauseManager pauseManager;
 
 	#endregion
 
@@ -92,6 +93,10 @@ public class CharacterSpecs : MonoBehaviour
                 onHealthDepleted?.Invoke(this);
                 onKilled?.Invoke();
                 OnSomethingKilledMe?.Invoke();
+                if(pauseManager)
+                {
+                    Destroy(pauseManager.gameObject);
+                }
             }
         }
 	}
@@ -208,6 +213,15 @@ public class CharacterSpecs : MonoBehaviour
     private void Awake()
     {
 		controller = GetComponent<Controller_FSM>();
+        pauseManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+        if(pauseManager != null)
+        {
+            Debug.Log("Pause Manager = " + pauseManager);
+        }
+        else
+        {
+            Debug.LogError("Pause manager not found");
+        }
     }
 
     void Start()
