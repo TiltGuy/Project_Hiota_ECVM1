@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boosted_Damages
-  m_Shader: {fileID: 4800000, guid: 7cfa6220f447cbd4e84fde15818ea246, type: 3}
+  m_Name: New_Hiota_Wings
+  m_Shader: {fileID: 4800000, guid: cefa9fbf0524123468c336e8de37c55a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a1af0de07b7bc6e4c8c22a8e12661239, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -55,8 +55,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 590bd11b50abcfd4fa47348ea40f8e6c, type: 3}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: f2e0dbc7724247a478aad173d897eed1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -64,35 +64,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amplitude: 3
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cutoff: 0.26
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Emission_Intensity: 10
-    - _Float0: 1
+    - _Emissive: 10
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Grow: 1
+    - _HighDynamicRange: 4
     - _Metallic: 0
     - _Mode: 0
-    - _New_High: 1
-    - _New_Low: 0.138
     - _OcclusionStrength: 1
-    - _Opacitest: 0
-    - _Opacity: 0.35
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed1: 2
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1, g: 0, b: 0.4247728, a: 1}
+    - _ColorPearls: {r: 0.04522112, g: 0.32075468, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Speed: {r: -0.5, g: 2, b: 0, a: 0}
-    - _Vector0: {r: 2, g: 0, b: 0, a: 0}
