@@ -1,6 +1,7 @@
 using UnityEngine;
 using FMODUnity;
 using FMOD;
+using Debug = UnityEngine.Debug;
 
 public class PlayerController_Animator:MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class PlayerController_Animator:MonoBehaviour
     private EventReference GuardNormal_ER;
     [SerializeField]
     private EventReference GuardPerfect_ER;
+    [SerializeField]
+    private EventReference Respawn_ER;
 
 
     //public int nbHitBoxTrue = 0;
@@ -117,6 +120,17 @@ public class PlayerController_Animator:MonoBehaviour
             ToggleSwordHitBoxStatut(false);
         }
         //swordHitBox.enabled = false;
+    }
+
+    public void RespawnPlayer()
+    {
+        animator.SetBool("b_Respawn", true);
+        Debug.Log("Je lance le respawn", this);
+    }
+
+    public void ResetRespawnBool()
+    {
+        animator.SetBool("b_Respawn", false);
     }
 
     #region -- FXs Functions --
@@ -297,6 +311,11 @@ public class PlayerController_Animator:MonoBehaviour
     public void GuardPerfect_SoundEvent()
     {
         RuntimeManager.PlayOneShot(GuardPerfect_ER, transform.position);
+    }
+
+    public void Respawn_SoundEvent()
+    {
+        RuntimeManager.PlayOneShotAttached(Respawn_ER, gameObject);
     }
 
     #endregion

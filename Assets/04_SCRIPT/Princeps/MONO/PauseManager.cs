@@ -48,6 +48,9 @@ public class PauseManager : MonoBehaviour
         //action.UI.SwitchShortcut.started += ctx => SwitchLeftShortcut();
         //action.UI.SwitchShortcut.started += ctx => SwitchRightShortcut();
         ResumeGame();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController_Animator animator = player.GetComponent<PlayerController_Animator>();
+        animator.RespawnPlayer();
     }
 
     private void OnEnable()
