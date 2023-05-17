@@ -218,11 +218,11 @@ public class CharacterSpecs : MonoBehaviour
             pauseManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
             if ( pauseManager != null )
             {
-                Debug.Log("Pause Manager = " + pauseManager,pauseManager);
+                //Debug.Log("Pause Manager = " + pauseManager,pauseManager);
             }
             else
             {
-                Debug.LogError("Pause manager not found");
+                Debug.LogWarning("Pause manager not found");
             }
         }
     }
