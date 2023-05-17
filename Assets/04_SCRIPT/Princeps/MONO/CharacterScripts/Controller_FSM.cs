@@ -407,8 +407,10 @@ public class Controller_FSM : ActionHandler, IDamageable
             //b_CanParry = false;
             StartCoroutine("ChockingTime");
         }
-        //print("currentState = " + currentState);
-        //fDebug.Log(this + " current state = " + currentState, this);
+        //if(gameObject.CompareTag("Player"))
+        //{
+        //    print("currentState = " + currentState);
+        //}
         //Debug.Log(b_HaveFinishedRecoveringAnimation, this);
     }
 
@@ -530,7 +532,7 @@ public class Controller_FSM : ActionHandler, IDamageable
         {
             // do Something
         }
-        if (!b_isParrying && !B_IsDashing)
+        else if (!b_isParrying && !B_IsDashing)
         {
             if ( !isAHook )
             {
@@ -540,7 +542,6 @@ public class Controller_FSM : ActionHandler, IDamageable
             {
                 HitByHook(damageTaken, striker);
             }
-            //print(DirectionHitReact);
             //Debug.Log("ARGH!!! j'ai pris : " + damageOuput + " points de Dommages", this);
         }
     }
