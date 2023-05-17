@@ -215,7 +215,8 @@ public class CharacterSpecs : MonoBehaviour
 		controller = GetComponent<Controller_FSM>();
         if ( gameObject.CompareTag("Player") )
         {
-            pauseManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+            GameObject PM = GameObject.Find("PauseManager");
+            pauseManager = PM?.GetComponent<PauseManager>();
             if ( pauseManager != null )
             {
                 //Debug.Log("Pause Manager = " + pauseManager,pauseManager);
