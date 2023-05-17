@@ -35,12 +35,12 @@ public class EventOnMusic : MonoBehaviour
         }
 
 
-        GameObject pauseManager = GameObject.Find("PauseManager");
-        if ( pauseManager != null )
-        {
-            PauseManager pauseManagerScript = pauseManager.GetComponent<PauseManager>();
-            pauseManagerScript.OnPaused -= ChangePausedParameter;
-        }
+        //GameObject pauseManager = GameObject.Find("PauseManager");
+        //if ( pauseManager != null )
+        //{
+        //    PauseManager pauseManagerScript = pauseManager.GetComponent<PauseManager>();
+        //    pauseManagerScript.OnPaused -= ChangePausedParameter;
+        //}
     }
 
     public void adjustLifeTrigger(float ratioLife)
