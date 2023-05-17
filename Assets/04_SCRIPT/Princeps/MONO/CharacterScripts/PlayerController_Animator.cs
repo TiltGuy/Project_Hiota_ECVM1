@@ -261,13 +261,15 @@ public class PlayerController_Animator:MonoBehaviour
     }
     #endregion
 
-    public void UpdatePlayerControllableStatus()
+    public void UpdatePlayerControllableStatus_False()
     {
-        inputScript.B_IsControllable = !inputScript.B_IsControllable;
-        if(inputScript.B_IsControllable)
-        {
-            animator.SetBool("b_Respawn", false);
-        }
+        inputScript.B_IsControllable = false;
+    }
+
+    public void UpdatePlayerControllableStatus_True()
+    {
+        inputScript.B_IsControllable = true;
+        animator.SetBool("b_Respawn", false);
     }
 
     #region -- SOUNDS METHOD --
