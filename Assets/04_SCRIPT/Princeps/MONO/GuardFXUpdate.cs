@@ -34,10 +34,11 @@ public class GuardFXUpdate : StateMachineBehaviour
     }
 
     // OnStateExit is called before OnStateExit is called on any state inside this state machine
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
+    {
+        //currentFX.SetActive(false);
+        Destroy(currentFX);
+    }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine
     //override public void OnStateMove( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -67,9 +68,10 @@ public class GuardFXUpdate : StateMachineBehaviour
     }
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
-    override public void OnStateMachineExit( Animator animator, int stateMachinePathHash )
-    {
-        Destroy(currentFX);
-        //Debug.Log("Je détruis mon fx!", this);
-    }
+    //override public void OnStateMachineExit( Animator animator, int stateMachinePathHash )
+    //{
+    //    currentFX.SetActive( false );
+    //    Destroy(currentFX);
+    //    //Debug.Log("Je détruis mon fx!", this);
+    //}
 }
