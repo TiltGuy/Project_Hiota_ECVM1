@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+using FMODUnity;
+using UnityEngine.Events;
 
 public class PauseManager : MonoBehaviour
 {
@@ -31,6 +33,9 @@ public class PauseManager : MonoBehaviour
     private bool leftWindowSwitched = true;
     private bool rightWindowSwitched = true;*/
     public bool b_IsChoosingCard = false;
+
+    public delegate void OnCastDelegateBool(bool b);
+    public OnCastDelegateBool OnPaused;
 
     private void Awake()
     {
@@ -103,6 +108,8 @@ public class PauseManager : MonoBehaviour
         HideSettings();
         b_IsPaused = true;
         GetComponentsInChildren<Selectable>().First().Select();
+        OnPaused?.Invoke(b_IsPaused);
+
     }
 
     public void ResumeGame()
@@ -114,6 +121,7 @@ public class PauseManager : MonoBehaviour
         b_IsPaused = false;
         HideSettings();
         Menu.gameObject.SetActive(false);
+        OnPaused?.Invoke(b_IsPaused);
         //print("ResumeGame");
     }
 
