@@ -11,15 +11,18 @@ public class GuardFXUpdate : StateMachineBehaviour
     [SerializeField]
     private MeshRenderer renderer;
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
-    //override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
-    //{
-    //    currentFX = Instantiate(ShieldFXToInstantiate,
-    //        animator.transform.position,
-    //        animator.transform.rotation);
-    //    renderer = currentFX.GetComponent<MeshRenderer>();
-    //    specs = animator.GetComponent<CharacterSpecs>();
-    //    Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
-    //}
+    override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
+    {
+        if(!currentFX && stateInfo.IsName("Basic_GuardStance"))
+        {
+            currentFX = Instantiate(ShieldFXToInstantiate,
+               animator.transform.position,
+               animator.transform.rotation);
+            renderer = currentFX.GetComponentInChildren<MeshRenderer>();
+            specs = animator.GetComponent<CharacterSpecs>();
+            Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
+        }
+    }
 
     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -36,8 +39,11 @@ public class GuardFXUpdate : StateMachineBehaviour
     // OnStateExit is called before OnStateExit is called on any state inside this state machine
     override public void OnStateExit( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        //currentFX.SetActive(false);
-        Destroy(currentFX);
+        if(currentFX)
+        {
+            //currentFX.SetActive(false);
+            Destroy(currentFX);
+        }
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine
@@ -58,20 +64,23 @@ public class GuardFXUpdate : StateMachineBehaviour
     //}
 
     // OnStateMachineEnter is called when entering a state machine via its Entry Node
-    override public void OnStateMachineEnter( Animator animator, int stateMachinePathHash )
-    {
-        currentFX = Instantiate(ShieldFXToInstantiate,
-            animator.transform.position,
-            animator.transform.rotation);
-        renderer = currentFX.GetComponentInChildren<MeshRenderer>();
-        specs = animator.GetComponent<CharacterSpecs>();
-    }
+    //override public void OnStateMachineEnter( Animator animator, int stateMachinePathHash )
+    //{
+    //    currentFX = Instantiate(ShieldFXToInstantiate,
+    //        animator.transform.position,
+    //        animator.transform.rotation);
+    //    renderer = currentFX.GetComponentInChildren<MeshRenderer>();
+    //    specs = animator.GetComponent<CharacterSpecs>();
+    //}
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
-    //override public void OnStateMachineExit( Animator animator, int stateMachinePathHash )
-    //{
-    //    currentFX.SetActive( false );
-    //    Destroy(currentFX);
-    //    //Debug.Log("Je détruis mon fx!", this);
-    //}
+    override public void OnStateMachineExit( Animator animator, int stateMachinePathHash )
+    {
+        if(currentFX)
+        {
+            currentFX.SetActive(false);
+            Destroy(currentFX);
+        }
+        //Debug.Log("Je détruis mon fx!", this);
+    }
 }
