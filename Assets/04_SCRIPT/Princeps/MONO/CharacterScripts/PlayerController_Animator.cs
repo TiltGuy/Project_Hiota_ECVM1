@@ -51,6 +51,9 @@ public class PlayerController_Animator:MonoBehaviour
     private EventReference GuardPerfect_ER;
     [SerializeField]
     private EventReference Respawn_ER;
+    [SerializeField]
+    private EventReference Death_ER;
+
 
 
     //public int nbHitBoxTrue = 0;
@@ -318,6 +321,11 @@ public class PlayerController_Animator:MonoBehaviour
     public void Respawn_SoundEvent()
     {
         RuntimeManager.PlayOneShotAttached(Respawn_ER, gameObject);
+    }
+
+    public void Death_SoundEvent()
+    {
+        RuntimeManager.PlayOneShotAttached(Death_ER, gameObject);
     }
 
     #endregion
