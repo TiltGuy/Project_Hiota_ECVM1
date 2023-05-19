@@ -7,20 +7,29 @@ public class GuardFXUpdate : StateMachineBehaviour
     public GameObject ShieldFXToInstantiate;
     private CharacterSpecs specs;
     [SerializeField]
+    private FMODUnity.EventReference GuardShield_ER;
+    [SerializeField]
+    private FMOD.Studio.EventInstance GuardShield_Instance;
+    [SerializeField]
     GameObject currentFX;
     [SerializeField]
     private MeshRenderer renderer;
+
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         if(!currentFX && stateInfo.IsName("Basic_GuardStance"))
         {
+            GuardShield_Instance = FMODUnity.RuntimeManager.CreateInstance(GuardShield_ER);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(GuardShield_Instance, animator.transform);
             currentFX = Instantiate(ShieldFXToInstantiate,
                animator.transform.position,
                animator.transform.rotation);
             renderer = currentFX.GetComponentInChildren<MeshRenderer>();
             specs = animator.GetComponent<CharacterSpecs>();
-            Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
+            GuardShield_Instance.start();
+            GuardShield_Instance.release();
+            //Debug.Log("Je fais mon fx! " + specs.CurrentGuard / specs.MaxGuard, this);
         }
     }
 
@@ -43,7 +52,9 @@ public class GuardFXUpdate : StateMachineBehaviour
         {
             //currentFX.SetActive(false);
             Destroy(currentFX);
+
         }
+        GuardShield_Instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine
@@ -81,6 +92,7 @@ public class GuardFXUpdate : StateMachineBehaviour
             currentFX.SetActive(false);
             Destroy(currentFX);
         }
+        //GuardShield_Instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         //Debug.Log("Je détruis mon fx!", this);
     }
 }
