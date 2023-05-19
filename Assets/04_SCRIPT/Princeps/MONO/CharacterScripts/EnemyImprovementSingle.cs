@@ -30,6 +30,11 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
     public string malusPrefix = "Malus";
     public string linePrefix = "> ";
 
+
+    [Header("-- SOUND DEPENDENCIES --")]
+
+    public FMODUnity.EventReference Spawn_ER;
+
     private void Awake()
     {
         UpdateListOfEnemies();
@@ -204,6 +209,16 @@ public class EnemyImprovementSingle : MonoBehaviour, IDamageable
         textToUpdate.text = skillCard.cardName;
 
     }
+
+
+    #region -- SOUNDS STUFFS --
+
+    public void SpawnStele_SoundEvent()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(Spawn_ER, gameObject);
+    }
+
+    #endregion
 
 
 }
