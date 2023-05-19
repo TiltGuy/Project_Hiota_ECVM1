@@ -58,6 +58,11 @@ public class Player_InputScript : MonoBehaviour
         {
             if(b_IsControllable != value)
                 b_IsControllable = value;
+
+            if(b_IsControllable == false)
+            {
+                InputMovement(Vector2.zero);
+            }
         }
     }
 
