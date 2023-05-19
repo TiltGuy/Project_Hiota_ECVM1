@@ -17,6 +17,9 @@ public class TriggerPlatePressure : MonoBehaviour
     public UnityEvent LaunchTrapActions;
     public List<Collider> others = new List<Collider>();
 
+    public FMODUnity.EventReference Trap_Triggered_ER;
+    public Transform pointToSound;
+
     private void OnTriggerEnter( Collider other )
     {
         if(tagFilter.Contains(other.gameObject.tag))
@@ -59,6 +62,7 @@ public class TriggerPlatePressure : MonoBehaviour
         {
 
             LaunchTrapActions?.Invoke();
+            FMODUnity.RuntimeManager.PlayOneShotAttached(Trap_Triggered_ER, pointToSound.gameObject);
             if(b_IsTimed)
             {
                 StartCoroutine(LaunchCooldown_Coroutine());

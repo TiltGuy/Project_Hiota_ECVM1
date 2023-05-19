@@ -6,6 +6,8 @@ public class LaunchProjectiles : MonoBehaviour
 {
     [SerializeField]
     private GameObject projectile;
+
+    public FMODUnity.EventReference ArrowWhoosh_ER;
     public void LaunchProjectile()
     {
         if( projectile == null)
@@ -14,5 +16,6 @@ public class LaunchProjectiles : MonoBehaviour
             return;
         }
         Instantiate(projectile, transform.position, transform.rotation);
+        FMODUnity.RuntimeManager.PlayOneShot(ArrowWhoosh_ER, transform.position);
     }
 }
