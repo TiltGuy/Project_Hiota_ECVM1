@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4819042021543973017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4819042021543973023}
+  - component: {fileID: 4819042021543973016}
+  m_Layer: 0
+  m_Name: DataPersistanceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4819042021543973023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819042021543973017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4819042021543973016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819042021543973017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac452367db05cb4482ea678ef14bfff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRespawning: 0
+  fadeDuration: 3
+  LoadingScreen: {fileID: 4263991655948846726, guid: 98980f88f057b1240b4e8a3661275e84,
+    type: 3}
+  b_IsInTuto: 0
+  mainSaveName: Hiota
+  tutoSaveName: TutoHiota
+  tutoLevel: Blockout-Scene_EnemyTweak
+  hubLevel: Blockout-Scene_HUB
+  _BaseHiddenDeck:
+  - {fileID: 11400000, guid: 3d641b2313b8e6846b7c8b72504505cf, type: 2}
+  - {fileID: 11400000, guid: 5fd9368c2bd14db44a43756f124f9640, type: 2}
+  - {fileID: 11400000, guid: 1d1d24cee9bfa1942aa817addf7a549e, type: 2}
+  - {fileID: 11400000, guid: 3d641b2313b8e6846b7c8b72504505cf, type: 2}
+  - {fileID: 11400000, guid: 1d1d24cee9bfa1942aa817addf7a549e, type: 2}
+  - {fileID: 11400000, guid: 5fd9368c2bd14db44a43756f124f9640, type: 2}
+  _BasePlayerDeck:
+  - {fileID: 11400000, guid: f144137d985b88c478bb1f9a76c20180, type: 2}
+  - {fileID: 11400000, guid: f144137d985b88c478bb1f9a76c20180, type: 2}
+  - {fileID: 11400000, guid: af9c4f4c65592a844bb4a6bd440e0ff1, type: 2}
+  - {fileID: 11400000, guid: af9c4f4c65592a844bb4a6bd440e0ff1, type: 2}
+  - {fileID: 11400000, guid: 27f4cf75146c33447bb0f5355aa4da5d, type: 2}
+  - {fileID: 11400000, guid: 27f4cf75146c33447bb0f5355aa4da5d, type: 2}
+  _TAMERE: {fileID: 11400000, guid: d197323662a8953418d09e89912e110c, type: 2}

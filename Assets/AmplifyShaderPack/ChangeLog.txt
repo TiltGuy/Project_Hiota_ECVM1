@@ -1,0 +1,25 @@
+Release Notes:
+v1.0.3 rev 00:
+* Fixes:
+    * Fixed issue on fallback behavior not properly working if using an unrecognized SRP version
+        * On this case the latest samples package for that specific SRP will now be imported
+
+v1.0.2 rev 00:
+* Fixes:
+    * Fixed issue on incorrectly importing URP files over HDRP project when on SRP v12
+
+v1.0.1 rev 00:
+* New URP 12 Samples:
+    * Decal SciFi Panels
+    * Decals Muddy Ground
+
+* Improvements:
+    * Removed versions dropdown for each SRP type on Start Screen
+        * User no longer has to manually choose which version to import
+        * Package is now automatically selected according to installed SRP version
+    * Removed unused ground material and shader from HDRP Decals Muddy Ground samples
+
+v1.0.0 rev 00:
+* New Samples added:
+    * Added tons of new cool samples across all rendering pipelines.
+        * HDRP and URP samples were created both on 7.7.1 and 10.5.1 versions

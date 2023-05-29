@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b8cbf76dc20c447a3b2f73fe3dd60f, type: 3}
+  m_Name: PLY_HOOKED
+  m_EditorClassIdentifier: 
+  actionsEnter:
+  - {fileID: 11400000, guid: ac2a67e84bdbd72489d457a10f995cce, type: 2}
+  - {fileID: 11400000, guid: 5dc3cb7843a6bcf40bf2ecfd2dbd9774, type: 2}
+  - {fileID: 11400000, guid: fa8e39edaa540d84e9f001128de2d932, type: 2}
+  - {fileID: 11400000, guid: 8c244bc1afb0c5341ab2dad12e1d65dc, type: 2}
+  - {fileID: 11400000, guid: e406c9da829750045ab9acd4b9896c8c, type: 2}
+  actionsUpdate:
+  - {fileID: 11400000, guid: dfd3a26d95f957b46a0683722524d0b1, type: 2}
+  - {fileID: 11400000, guid: e95cc75846b302d4884339cc37aa070c, type: 2}
+  actionsExit:
+  - {fileID: 11400000, guid: 13a5136bc00afd64b918a3ddfa19ef2e, type: 2}
+  - {fileID: 11400000, guid: 70de25290c9ef6445bcb13f302125d1f, type: 2}
+  - {fileID: 11400000, guid: 62fded9727a22d64ca5d270101e95424, type: 2}
+  transitions: []
+  transitionsAfterCountdown:
+  - decision: {fileID: 11400000, guid: 14302cd62bfcd744ea75a1a489fcb198, type: 2}
+    true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+    False_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+  - decision: {fileID: 11400000, guid: de1f6a8860e2bf148a77311f99f53c9d, type: 2}
+    true_State: {fileID: 11400000, guid: c648dfa447553044a8e196b0b80964e9, type: 2}
+    False_State: {fileID: 11400000, guid: 609335d6072bc9f4f973bb1ff1067da5, type: 2}
+  b_NormalTransitions: 1
+  b_TransitionsAfterCountdown: 0
+  stateDuration: 0.3
+  sceneGizmosColor: {r: 0.9419952, g: 0.06074228, b: 0.990566, a: 1}
